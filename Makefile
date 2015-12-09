@@ -6,22 +6,39 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/08 20:45:37 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/09 13:05:25 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 # ==== Editable ====
 NAME:=libft.a
-FILES:=ft_atoi ft_bzero ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit ft_isgraph ft_islower ft_isprint ft_ispunct ft_isspace ft_isupper ft_isxdigit ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr ft_strstr ft_tolower ft_toupper ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ ft_realloc ft_print_memory \
+
+CTYPEPATH:=ft_ctype/
+CTYPE:=ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit \
+ft_isgraph ft_islower ft_isprint ft_ispunct ft_isspace ft_isupper ft_isxdigit \
+ft_tolower ft_toupper
+
+VECTORPATH:=ft_vector/
+VECTOR:=ft_dyna_alloc ft_dyna_append ft_dyna_dataclear ft_dyna_dataclearf \
+ft_dyna_datainit ft_dyna_del ft_dyna_new ft_dyna_popback ft_dyna_popbackf \
+ft_dyna_release ft_dyna_reserve ft_dyna_trim
+
+STRPATH:=ft_string/
+STR:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
+ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr \
+ft_strstr ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ \
+ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ
+
+FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_realloc ft_print_memory \
 ft_lstadd ft_lstdel ft_lstdel_rec ft_lstdelone ft_lstiter ft_lstmap ft_lstmap_rec ft_lstnew ft_lstpush ft_lstpush_rec ft_lstequ_rec \
-ft_dyna_alloc ft_dyna_append ft_dyna_dataclear ft_dyna_dataclearf ft_dyna_datainit ft_dyna_del ft_dyna_new ft_dyna_popback ft_dyna_popbackf ft_dyna_release ft_dyna_reserve ft_dyna_trim
 # ==================
 
 # ==== Standard ====
 CC:=clang
-CFLAGS:=-Wall -Wextra
-CCHPATH:=cache
-SRCPATH:=.
+CCHPATH:=cache/
+SRCPATH:=src/
+HDRPATH:=include/
+CFLAGS:=-Wall -Wextra -I $(HDRPATH)
 # ==================
 
 # ===== Colors =====
@@ -35,9 +52,15 @@ WHITE:="\033[1;37m"
 # ==================
 
 # ====== Auto ======
-SRC:=$(addprefix $(SRCPATH)/,$(addsuffix .c,$(FILES)))
-OBJ:=$(addprefix $(CCHPATH)/,$(addsuffix .o,$(FILES)))
+FILES+=$(addprefix $(CTYPEPATH),$(CTYPE))
+FILES+=$(addprefix $(VECTORPATH),$(VECTOR))
+FILES+=$(addprefix $(STRPATH),$(STR))
+
+SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
+OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 # ==================
+CCHF:=.cache_exists
+
 
 all: $(NAME)
 
@@ -46,24 +69,30 @@ $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 
-$(CCHPATH)/%.o: $(SRCPATH)/%.c .cache_exists
+$(CCHPATH)%.o: $(SRCPATH)%.c $(CCHF)
 	@echo $(PURPLE) " - Compiling $< into $@" $(RED)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 %.c:
 	@echo $(RED) "Missing file : $@"
 
-.cache_exists:
+$(CCHF):
 	@mkdir $(CCHPATH)
-	@echo "OK" > .cache_exists
+	@mkdir $(CCHPATH)$(VECTORPATH)
+	@mkdir $(CCHPATH)$(CTYPEPATH)
+	@mkdir $(CCHPATH)$(STRPATH)
+	@touch $(CCHF)
 
 clean:
 	@rm -rf $(CCHPATH)
-	@rm -f .cache_exists
+	@rm -f $(CCHF)
 
 fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test:
+	@echo "Files :" $(FILES)
+
+.PHONY: all clean fclean re test

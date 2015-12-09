@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/09 19:23:49 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/09 19:34:19 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -29,9 +29,6 @@ ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr \
 ft_strstr ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ \
 ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ
 
-LSTPATH:=ft_list/
-LST:=ft_lstadd ft_lstdel ft_lstdel_rec ft_lstdelone ft_lstiter ft_lstmap \
-ft_lstmap_rec ft_lstnew ft_lstpush ft_lstpush_rec ft_lstequ_rec
 
 FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_realloc ft_print_memory \
 # ==================
@@ -58,7 +55,6 @@ WHITE:="\033[1;37m"
 FILES+=$(addprefix $(CTYPEPATH),$(CTYPE))
 FILES+=$(addprefix $(VECTORPATH),$(VECTOR))
 FILES+=$(addprefix $(STRPATH),$(STR))
-FILES+=$(addprefix $(LSTPATH),$(LST))
 
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
@@ -85,7 +81,6 @@ $(CCHF):
 	@mkdir $(CCHPATH)$(VECTORPATH)
 	@mkdir $(CCHPATH)$(CTYPEPATH)
 	@mkdir $(CCHPATH)$(STRPATH)
-	@mkdir $(CCHPATH)$(LSTPATH)
 	@touch $(CCHF)
 
 clean:

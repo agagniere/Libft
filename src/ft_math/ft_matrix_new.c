@@ -6,7 +6,7 @@
 /*   By: sid <sid@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 19:41:57 by sid               #+#    #+#             */
-/*   Updated: 2015/12/11 01:04:03 by sid              ###   ########.fr       */
+/*   Updated: 2015/12/11 12:47:09 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ t_matrix	*ftm_alloc(size_t type_size, size_t height, size_t width)
 int			ftm_data_init(t_matrix *m)
 {
 	return ((m->data = malloc(m->height * m->width * m->type_size)) == NULL);
+}
+
+t_matrix	*ftm_cpy(t_matrix *m)
+{
+	return (ftm_alloc(m->type_size, m->height, m->width));
 }

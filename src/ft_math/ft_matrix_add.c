@@ -6,7 +6,7 @@
 /*   By: sid <sid@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 00:48:21 by sid               #+#    #+#             */
-/*   Updated: 2015/12/11 02:16:47 by sid              ###   ########.fr       */
+/*   Updated: 2015/12/11 12:42:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ t_matrix	*ftm_plus(t_matrix *a, t_matrix *b,
 
 	if ((!ftm_same_dim(a, b))
 		|| (!ftm_same_type(a, b))
-		|| (!ans = ftm_alloc())
-		|| ftm_addf(ans, a, b, add))
+		|| (!(ans = ftm_cpy(a)))
+		|| ftm_add(ans, a, b, add))
 		return (NULL);
 }
+
 int			ftm_addu(t_matrix *dst, t_matrix *a, t_matrix *b)
 {
 	size_t	i;
@@ -69,7 +70,7 @@ t_matrix	*ftm_plusu(t_matrix *a, t_matrix *b)
 
 	if ((!ftm_same_dim(a, b))
 		|| (!ftm_same_type(a, b))
-		|| (!ans = ftm_alloc())
-		|| ftm_add(ans, a, b))
+		|| (!(ans = ftm_cpy(a)))
+		|| ftm_addu(ans, a, b))
 		return (NULL);
 }

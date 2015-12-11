@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/09 20:10:48 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/11 15:31:28 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			ft_dyna_del(t_dyna *td);
 void			ft_dyna_release(t_dyna **tda);
 t_dyna			ft_dyna_new(size_t chunck_size);
 int				ft_dyna_trim(t_dyna *td);
-int     		ft_dyna_reserve(t_dyna *td, size_t size);
+int				ft_dyna_reserve(t_dyna *td, size_t size);
 void			ft_dyna_popback(t_dyna *td);
 void			ft_dyna_popbackf(t_dyna *td, void (*del)(void *));
 
@@ -45,6 +45,5 @@ void			ft_dyna_iter2(t_dyna const *td, void (*f)(), void *a, void *b);
 void			ft_dyna_iteri(t_dyna const *td, void (*f)());
 void			ft_dyna_iteri1(t_dyna const *td, void (*f)(), void *a);
 void			ft_dyna_iteri2(t_dyna const *td, void (*f)(), void *a, void *b);
-
 
 #endif

@@ -29,7 +29,6 @@ ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr \
 ft_strstr ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ \
 ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ
 
-
 FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_realloc ft_print_memory \
 # ==================
 
@@ -68,6 +67,7 @@ $(NAME): $(OBJ)
 	@echo $(CYAN) " - Compiling $@" $(RED)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
+	@echo $(GREEN) "\tDone" $(END)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c $(CCHF)
 	@echo $(PURPLE) " - Compiling $< into $@" $(RED)

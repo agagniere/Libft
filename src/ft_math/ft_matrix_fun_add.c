@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 12:12:41 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/11 17:17:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/12 14:50:48 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,13 @@ t_op	ftmu_get_op(size_t type_size)
 	if (type_size == t)
 		return (uadd_functions[p]);
 	return (NULL);
+}
+
+int		uums(t_matrix *d, t_matrix *a, t_matrix *b)
+{
+	unsigned char	carry[3];
+	unsigned char	mask;
+	size_t			i;
+
+
 }

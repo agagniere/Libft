@@ -6,7 +6,7 @@
 /*   By: sid <sid@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 00:48:21 by sid               #+#    #+#             */
-/*   Updated: 2015/12/11 17:32:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/12 11:11:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,24 @@ t_matrix	*ftm_plus(t_matrix *a, t_matrix *b, t_op add)
 
 int			ftmu_add_auto(t_matrix *dst, t_matrix *a, t_matrix *b)
 {
+	t_op add;
 
-	return (ftm_add(dst, a, b, ftm()));
+	if (!(add = ftmu_get_op(a->type_size)))
+		return (3);
+	return (ftm_add(dst, a, b, add));
+}
+
+int			ftm_add_auto(t_matrix *dst, t_matrix *a, t_matrix *b)
+{
+	t_op add;
+
+	if (!(add = ftm_get_op(a->type_size)))
+		return (3);
+	return (ftm_add(dst, a, b, add));
 }
 
 t_matrix	*ftmu_plus_auto(t_matrix *a, t_matrix *b)
 {
-	t_matrix *ans;
-
-	if ((!ftm_same_dim(a, b))
-		|| (!ftm_same_type(a, b))
-		|| (!(ans = ftm_cpy(a)))
-		|| ftm_add_autou(ans, a, b))
-		return (NULL);
 }
 
 int		ftm_plus_auto()

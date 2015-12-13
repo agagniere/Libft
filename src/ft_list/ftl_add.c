@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 15:22:52 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/13 16:50:18 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/13 17:43:44 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int			ftl_push_front(t_list *l, t_node const *e)
 
 	if (!(node = (t_node *)ft_memdup(e, l->type_size)))
 		return (1);
-	ftl_add(l->root->prev, node, l->root);
-	l->root = node;
+	ftl_add(l, node, l->root->next);
 	l->size++;
 	return (0);
 }
@@ -38,13 +37,7 @@ int			ftl_push_back(t_list *l, t_node const *e)
 
 	if (!(node = (t_node *)ft_memdup(e, l->type_size)))
 		return (1);
-	if (l->size == 0)
-	{
-		node->next = node;
-		node->prev = node;
-	}
-	else
-		ftl_add(l->root, node, l->root);
+	ftl_add(l->root, node, l->root);
 	l->size++;
 	return (0);
 }

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrix_compare.c                                :+:      :+:    :+:   */
+/*   ft_list.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sid <sid@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/11 01:11:02 by sid               #+#    #+#             */
-/*   Updated: 2015/12/11 01:26:27 by sid              ###   ########.fr       */
+/*   Created: 2015/12/12 15:14:40 by angagnie          #+#    #+#             */
+/*   Updated: 2015/12/13 12:40:54 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#ifndef FT_LIST_H
+# define FT_LIST_H
 
-int		ftm_same_dim(t_matrix *a, t_matrix *b)
+typedef struct		s_node
 {
-	return ((a->height == b->height) && (a->width == b->width));
-}
+	struct s_node	*next;
+	struct s_node	*prev;
+}					t_node;
 
-int		ftm_same_type(t_matrix *a, t_matrix *b)
+typedef struct		s_list
 {
-	return (a->type_size == b->type_size);
-}
+	struct
+}					t_list;
+
+#endif

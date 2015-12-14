@@ -6,9 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 14:51:19 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/13 16:52:34 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/14 10:51:50 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_list.h"
+#include <stdlib.h>
 
 void	ftl_init(t_list *l, size_t type_size)
 {
@@ -31,8 +34,8 @@ int		ftl_cpy(t_list *dst, t_list const *src)
 
 	ptr = (t_node const *)src;
 	*dst = (t_list){{(t_node *)dst, (t_node *)dst}, src->type_size, 0};
-	while ((ptr = ptr->next) != src)
-		if (!(((((((((((((ft_push_back(dst, ptr)))))))))))))))
+	while ((ptr = ptr->next) != (t_node const *)src)
+		if (!(((((((((((((ftl_push_back(dst, ptr)))))))))))))))
 			return (1);
 	return (0);
 }

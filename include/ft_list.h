@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 15:14:40 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/13 16:50:09 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/14 10:44:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ Returns the number of elements in this list.
 #ifndef FT_LIST_H
 # define FT_LIST_H
 
+# include "libft.h"
+
 typedef struct		s_node
 {
 	struct s_node	*next;
@@ -140,9 +142,9 @@ typedef struct		s_list
 ** ----------===== Constructors =====----------
 */
 
-t_list				ftl_new(size_t type_size);
+void				ftl_init(t_list *l, size_t type_size);
 t_list				*ftl_alloc(size_t type_size);
-t_list				ftl_cpy(t_list *l);
+int					ftl_cpy(t_list *dst, t_list const *src);
 
 /*
 ** ----------===== Destructors  =====----------
@@ -156,7 +158,14 @@ void				ftl_free();
 ** ----- Insert -----
 */
 
-int         ftl_push_front(t_list *l, t_node const *e);
-int         ftl_push_back(t_list *l, t_node const *e);
+int					ftl_push_front(t_list *l, t_node const *e);
+int					ftl_push_back(t_list *l, t_node const *e);
+
+/*
+** ----- Remove -----
+*/
+
+void    ftl_pop_back(t_list *l);
+void    ftl_pop_backf(t_list *l, void (*del)());
 
 #endif

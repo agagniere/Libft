@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/13 16:11:03 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/14 10:46:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*ft_memchr(const void *s, int c, size_t n); //withit OK
 int		ft_memcmp(const void *s1, const void *s2, size_t n); //withit OK
 void	*ft_memcpy(void *dst, const void *src, size_t n); //withit OK
 void	ft_memdel(void **ap);
-void    *ft_memdup(void *addr, size_t len); //withit
+void    *ft_memdup(void const *addr, size_t len); //withit
 void	*ft_memmove(void *dst, const void *src, size_t len); //withit OK
 void	*ft_memset(void *b, int c, size_t len); //withit OK
 

@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/14 10:40:24 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/14 13:10:26 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,6 +32,9 @@ ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ
 LSTPATH:=ft_list/
 LST:=ftl_new ftl_add ftl_pop
 
+MATHPATH:=ft_math/
+MATH:=ft_fib
+
 FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_realloc ft_print_memory \
 # ==================
 
@@ -40,7 +43,7 @@ CC:=clang
 CCHPATH:=cache/
 SRCPATH:=src/
 HDRPATH:=include/
-CFLAGS:=-Wall -Wextra -I $(HDRPATH)
+CFLAGS:=-Wall -Wextra -I $(HDRPATH) -trigraphs
 # ==================
 
 # ===== Colors =====
@@ -58,6 +61,7 @@ FILES+=$(addprefix $(CTYPEPATH),$(CTYPE))
 FILES+=$(addprefix $(VECTORPATH),$(VECTOR))
 FILES+=$(addprefix $(STRPATH),$(STR))
 FILES+=$(addprefix $(LSTPATH),$(LST))
+FILES+=$(addprefix $(MATHPATH),$(MATH))
 
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
@@ -75,7 +79,7 @@ $(NAME): $(OBJ)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c $(CCHF)
 	@echo $(PURPLE) " - Compiling $< into $@" $(RED)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ 2>&1 | tail -1
 
 %.c:
 	@echo $(RED) "Missing file : $@"
@@ -86,6 +90,7 @@ $(CCHF):
 	@mkdir $(CCHPATH)$(CTYPEPATH)
 	@mkdir $(CCHPATH)$(STRPATH)
 	@mkdir $(CCHPATH)$(LSTPATH)
+	@mkdir $(CCHPATH)$(MATHPATH)
 	@touch $(CCHF)
 
 clean:
@@ -100,4 +105,9 @@ re: fclean all
 test:
 	@echo "Files :" $(FILES)
 
-.PHONY: all clean fclean re test
+norme:
+	@echo $(RED)
+	@norminette $(SRC) $(HDRPATH) | grep -v  Norme -B1 || true
+	@echo $(END)
+
+.PHONY: all clean fclean re test norme

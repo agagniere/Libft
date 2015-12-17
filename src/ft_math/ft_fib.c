@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 11:24:31 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/14 15:02:03 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/15 14:11:53 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_mat2x2_pow(t_mat2x2 *m, size_t p)
 
 
 /*
-** This function has a O(log(n)) complexity,
+** This function has a O(log_2(n)) complexity,
 ** and is to be prefered when n > 30
 */
 
@@ -53,21 +53,30 @@ size_t	ft_fib2(unsigned char n)
 	if (n > 93)
 		return (0);
 	f.x = 1;
-	f.y = 1;
+	f.y = 0;
 	m.data[0] = 1;
 	m.data[1] = 1;
 	m.data[2] = 1;
 	m.data[3] = 0;
 }
 
+
+/*
+** This function has a O(n) complexity
+** and can be used when n < 48
+*/
 unsigned int	ft_fib(unsigned char n)
 {
 	unsigned int	fn;
 	unsigned int	fnm1;
 	unsigned int	fnm2;
 
+	if (n > 47)
+		return (0);
+	else if (n == 0)
+		return (0);
 	fn = 1;
-	fnm1 = 1;
+	fnm1 = 0;
 	while (n-- > 1)
 	{
 		fnm2 = fnm1;
@@ -75,4 +84,21 @@ unsigned int	ft_fib(unsigned char n)
 		fn = fnm1 + fnm2;
 	}
 	return (fn);
+}
+
+/*
+** This function does not handle overflow !
+*/
+unsigned int	ft_fibg(unsigned char n, unsigned char u0, unsigned char u1)
+{
+	unsigned int	un;
+
+	un = u0;
+	while (n-- > 0)
+	{
+		u0 = u1;
+		u1 += un;
+		un = u0;
+	}
+	return (un);
 }

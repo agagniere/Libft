@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/14 14:48:55 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/16 14:14:49 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -33,7 +33,7 @@ LSTPATH:=ft_list/
 LST:=ftl_new ftl_add ftl_pop
 
 MATHPATH:=ft_math/
-MATH:=ft_fib
+#MATH:=ft_fib
 
 FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_realloc ft_print_memory \
 # ==================

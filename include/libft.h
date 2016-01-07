@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/14 10:46:06 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/07 11:29:58 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "ft_vector.h"
 # include "ft_string.h"
 # include "ft_list.h"
+# include "ft_color.h"
 
 int		ft_atoi(const char *str);
 

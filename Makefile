@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/16 14:14:49 by angagnie         ###   ########.fr        #
+#    Updated: 2016/01/13 13:52:07 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -15,27 +15,30 @@ NAME:=libft.a
 
 CTYPEPATH:=ft_ctype/
 CTYPE:=ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit \
-ft_isgraph ft_islower ft_isprint ft_ispunct ft_isspace ft_isupper ft_isxdigit \
-ft_tolower ft_toupper
+	ft_isgraph ft_islower ft_isprint ft_ispunct ft_isspace ft_isupper \
+	ft_isxdigit ft_tolower ft_toupper
 
 VECTORPATH:=ft_vector/
 VECTOR:=ft_dyna_alloc ft_dyna_append ft_dyna_dataclear ft_dyna_dataclearf \
-ft_dyna_datainit ft_dyna_del ft_dyna_new ft_dyna_popback ft_dyna_popbackf \
-ft_dyna_release ft_dyna_reserve ft_dyna_trim ft_dyna_iter ft_dyna_iteri
+	ft_dyna_datainit ft_dyna_del ft_dyna_new ft_dyna_popback ft_dyna_popbackf \
+	ft_dyna_release ft_dyna_reserve ft_dyna_trim ft_dyna_iter ft_dyna_iteri
 
 STRPATH:=ft_string/
 STR:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
-ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr \
-ft_strstr ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ \
-ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ
+	ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr \
+	ft_strstr ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ \
+	ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ
 
 LSTPATH:=ft_list/
 LST:=ftl_new ftl_add ftl_pop
 
 MATHPATH:=ft_math/
-#MATH:=ft_fib
+MATH:=
 
-FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_realloc ft_print_memory \
+FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr \
+	ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar \
+	ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr \
+	ft_putstr_fd ft_realloc ft_print_memory \
 # ==================
 
 # ==== Standard ====
@@ -43,7 +46,7 @@ CC:=clang
 CCHPATH:=cache/
 SRCPATH:=src/
 HDRPATH:=include/
-CFLAGS:=-Wall -Wextra -I $(HDRPATH) -trigraphs
+CFLAGS:=-Wall -Wextra -I $(HDRPATH)
 # ==================
 
 # ===== Colors =====
@@ -68,14 +71,13 @@ OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 # ==================
 CCHF:=.cache_exists
 
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo $(CYAN) " - Compiling $@" $(RED)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo $(GREEN) "\tDone" $(END)
+	@echo $(GREEN) " - Done" $(END)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c $(CCHF)
 	@echo $(PURPLE) " - Compiling $< into $@" $(RED)

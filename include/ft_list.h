@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 15:14:40 by angagnie          #+#    #+#             */
-/*   Updated: 2016/03/01 12:54:37 by sid              ###   ########.fr       */
+/*   Updated: 2016/03/02 22:16:24 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int					ftl_push_back(t_list *l, t_node const *e);
 */
 
 void				ftl_pop_back(t_list *l);
+void				ftl_pop_front(t_list *l);
 void				ftl_pop_backf(t_list *l, void (*del)());
+void				ftl_pop_elem(t_list *const l, t_node *const e);
 
 #endif

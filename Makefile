@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/01/13 13:52:07 by angagnie         ###   ########.fr        #
+#    Updated: 2016/03/02 21:56:33 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -36,7 +36,7 @@ MATHPATH:=ft_math/
 MATH:=
 
 FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr \
-	ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar \
+	ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_memdup ft_putchar \
 	ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr \
 	ft_putstr_fd ft_realloc ft_print_memory \
 # ==================
@@ -73,15 +73,19 @@ CCHF:=.cache_exists
 
 all: $(NAME)
 
+print1:
+	@echo $(GREEN) " - Compiling binaries : [\033[1;42m\c"
+
 $(NAME): $(OBJ)
+	@echo $(END)$(GREEN)"]"
 	@echo $(CYAN) " - Compiling $@" $(RED)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo $(GREEN) " - Done" $(END)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c $(CCHF)
-	@echo $(PURPLE) " - Compiling $< into $@" $(RED)
-	@$(CC) $(CFLAGS) -c $< -o $@ 2>&1 | tail -1
+	@echo ".\c"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 %.c:
 	@echo $(RED) "Missing file : $@"

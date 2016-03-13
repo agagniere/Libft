@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/07 11:29:58 by sid              ###   ########.fr       */
+/*   Updated: 2016/03/06 11:49:22 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	ft_putstr(char const *s);
 void	ft_putstr_fd(char const *s, int fd);
 
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size, size_t factor);
+
+int		get_next_line(int const fd, char **buf);
 
 # define ABS(v) ((v) < 0 ? -(v) : (v))
 

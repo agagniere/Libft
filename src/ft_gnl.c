@@ -1,60 +1,81 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gnl.c                                           :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mseinic <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/16 10:59:20 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/16 12:46:06 by angagnie         ###   ########.fr       */
+/*   Created: 2016/01/29 17:04:12 by mseinic           #+#    #+#             */
+/*   Updated: 2016/03/13 16:18:08 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
-#include "ft_list.h"
-#define BUF_SIZE 1024
+# include <sys/types.h>
+# include <sys/uio.h>
+# include "libft.h"
 
-typedef struct	s_fd_save
+# define BUFF_SIZE 1024
+
+static char	*new_joined(char *str1, char *str2)
 {
-	t_node		node;
-	int			fd;
-	char		*data;
-}				t_fd_save;
+	char*	tmp;
 
-static char		*get_save(int fd, t_list *saves)
-{
-	t_node			*iter;
-
-	iter = (t_node *)saves;
-	while ((iter = iter->next) != (t_node *)saves)
-	{
-		static t_list saves;
-		if (((t_fd_save *)iter)->fd == fd)
-			return (((t_fd_save *)iter)->data);
-	}
-	return (NULL);
+	tmp = ft_strjoin(str1, str2);
+	if (tmp == NULL)
+		return (NULL);
+	ft_strdel(&str1);
+	return (tmp);
 }
 
-int				ft_get_next_line(int fd, char **line)
+static int	end_file(char **s, char **line)
 {
-	static t_list	saves[1];
-	int			ret;
-	int			i;
-	t_dyna		cat[1];
-	char		buf[BUF_SIZE];
-
-	*cat = ft_dyna_new(sizeof(char));
-	while ((ret = read(fd, buf, BUF_SIZE)) > 0)
+	*line = ft_strdup(*s);
+	ft_strdel(&(*s));
+	if (*line[0] == '\0')
 	{
-		i = 0;
-		while (i < ret && BUF[i] != '\n')
-			++i;
-		ft_dyna_append(cat, buf, i);
-		if (i != ret)
-			ftl_push_back(saves);
-		if (i < ret && buf[i] == '\n')
-		{
-			*line = ft_memdup(buf + i, ret - i);
-		}
+		ft_strdel(&(*line));
+		return (0);
 	}
+	return (1);
+}
+
+static int	new_line(char **str, char **line)
+{
+	char	*next_line;
+	char	*tmp;
+
+	tmp = *str;
+	next_line = ft_strchr(*str, '\n');
+	if (next_line == NULL)
+		return (0);
+	*next_line = '\0';
+	*line = ft_strdup(*str);
+	*str = ft_strdup(next_line + 1);
+	ft_strdel(&tmp);
+	return (1);
+}
+
+int			get_next_line(int const fd, char **line)
+{
+	static char	*rest[256];
+	char		buff[BUFF_SIZE + 1];
+	int			ret;
+
+	if (fd < 0 || !line || fd > 256)
+		return (-1);
+	if (rest[fd] && new_line(&(rest[fd]), line))
+		return (1);
+	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
+	{
+		buff[ret] = '\0';
+		if (rest[fd] == NULL)
+			rest[fd] = ft_strdup(buff);
+		else
+			rest[fd] = new_joined(rest[fd], buff);
+		if (new_line(&(rest[fd]), line) == 1)
+			return (1);
+	}
+	if (rest[fd] != NULL && ret >= 0)
+		return (end_file(&(rest[fd]), line));
+	return (ret > 0 ? 1 : ret);
 }

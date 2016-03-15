@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/03/15 22:21:50 by angagnie         ###   ########.fr        #
+#    Updated: 2016/03/16 00:01:01 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,7 +21,8 @@ CTYPE:=ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit \
 VECTORPATH:=ft_vector/
 VECTOR:=ft_dyna_alloc ft_dyna_append ft_dyna_dataclear ft_dyna_dataclearf \
 	ft_dyna_datainit ft_dyna_del ft_dyna_new ft_dyna_popback ft_dyna_popbackf \
-	ft_dyna_release ft_dyna_reserve ft_dyna_trim ft_dyna_iter ft_dyna_iteri
+	ft_dyna_release ft_dyna_reserve ft_dyna_trim ft_dyna_iter ft_dyna_iteri \
+	ft_dyna_get
 
 STRPATH:=ft_string/
 STR:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \

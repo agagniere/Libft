@@ -6,19 +6,20 @@
 /*   By: mseinic <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 17:04:12 by mseinic           #+#    #+#             */
-/*   Updated: 2016/03/13 16:18:08 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/03/15 22:25:21 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <sys/types.h>
-# include <sys/uio.h>
-# include "libft.h"
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <unistd.h>
+#include "libft.h"
 
-# define BUFF_SIZE 1024
+#define BUFF_SIZE 1024
 
 static char	*new_joined(char *str1, char *str2)
 {
-	char*	tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin(str1, str2);
 	if (tmp == NULL)

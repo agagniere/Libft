@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/03/13 16:13:07 by angagnie         ###   ########.fr        #
+#    Updated: 2016/03/15 22:21:50 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,7 +30,7 @@ STR:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
 	ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ
 
 LSTPATH:=ft_list/
-LST:=ftl_new ftl_add ftl_pop
+LST:=ftl_new ftl_add ftl_pop ftl_del
 
 MATHPATH:=ft_math/
 MATH:=

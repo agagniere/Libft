@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 10:14:38 by angagnie          #+#    #+#             */
-/*   Updated: 2016/03/02 22:13:00 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/03/15 22:25:48 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ftl_pop(t_node *prev, t_node *next)
 	next->prev = prev;
 }
 
-void	ftl_pop_back(t_list *l)
+void		ftl_pop_back(t_list *l)
 {
 	t_node *last;
 
@@ -29,7 +29,7 @@ void	ftl_pop_back(t_list *l)
 	l->size--;
 }
 
-void	ftl_pop_backf(t_list *l, void (*del)())
+void		ftl_pop_backf(t_list *l, void (*del)())
 {
 	t_node *last;
 
@@ -39,7 +39,7 @@ void	ftl_pop_backf(t_list *l, void (*del)())
 	l->size--;
 }
 
-void	ftl_pop_front(t_list *l)
+void		ftl_pop_front(t_list *l)
 {
 	t_node *first;
 
@@ -49,7 +49,7 @@ void	ftl_pop_front(t_list *l)
 	l->size--;
 }
 
-void	ftl_pop_elem(t_list *const l, t_node *const e)
+void		ftl_pop_elem(t_list *const l, t_node *const e)
 {
 	ftl_pop(e->prev, e->next);
 	free(e);

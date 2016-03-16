@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/03/16 00:15:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/03/16 13:31:26 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				ft_dyna_trim(t_dyna *td);
 int				ft_dyna_reserve(t_dyna *td, size_t size);
 void			ft_dyna_popback(t_dyna *td);
 void			ft_dyna_popbackf(t_dyna *td, void (*del)(void *));
-void			*ft_dyna_vector(t_dyna *td, size_t i);
+void			*ft_dyna_get(t_dyna *td, size_t i);
 
 void			ft_dyna_iter(t_dyna const *td, void (*f)());
 void			ft_dyna_iter1(t_dyna const *td, void (*f)(), void *a);

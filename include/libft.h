@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/03/29 10:52:18 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/13 13:45:51 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@
 
 int		ft_atoi(const char *str);
 
-void	ft_bzero(void *s, size_t n); // SP++ OK
+void	ft_bzero(void *s, size_t n);
 
 char	*ft_itoa_base(int n, int base);
 char	*ft_itoa(int n);
 
 void	*ft_memalloc(size_t size);
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n); //withit OK
-void	*ft_memchr(const void *s, int c, size_t n); //withit OK
-int		ft_memcmp(const void *s1, const void *s2, size_t n); //withit OK
-void	*ft_memcpy(void *dst, const void *src, size_t n); //withit OK
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
+void	*ft_memchr(const void *s, int c, size_t n);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	ft_memdel(void **ap);
-void    *ft_memdup(void const *addr, size_t len); //withit
-void	*ft_memmove(void *dst, const void *src, size_t len); //withit OK
-void	*ft_memset(void *b, int c, size_t len); //withit OK
+void	*ft_memdup(void const *addr, size_t len);
+void	*ft_memmove(void *dst, const void *src, size_t len);
+void	*ft_memset(void *b, int c, size_t len);
 
 void	ft_print_memory(void const *addr, size_t size);
 
@@ -50,8 +50,6 @@ void	ft_putstr(char const *s);
 void	ft_putstr_fd(char const *s, int fd);
 
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size, size_t factor);
-
-//int		get_next_line(int const fd, char **buf);
 
 # define ABS(v) ((v) < 0 ? -(v) : (v))
 

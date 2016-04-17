@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/03/29 10:51:43 by angagnie         ###   ########.fr        #
+#    Updated: 2016/04/17 16:03:49 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -36,10 +36,13 @@ LST:=ftl_new ftl_add ftl_pop ftl_del
 MATHPATH:=ft_math/
 MATH:=
 
+PRINTFPATH:=ft_printf/
+PRINTF:=
+
 FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr \
 	ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_memdup ft_putchar \
 	ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr \
-	ft_putstr_fd ft_realloc ft_print_memory
+	ft_putstr_fd ft_realloc ft_print_memory ft_gnl
 # ==================
 
 # ==== Standard ====
@@ -66,16 +69,15 @@ FILES+=$(addprefix $(VECTORPATH),$(VECTOR))
 FILES+=$(addprefix $(STRPATH),$(STR))
 FILES+=$(addprefix $(LSTPATH),$(LST))
 FILES+=$(addprefix $(MATHPATH),$(MATH))
+FILES+=$(addprefix $(PRINTFPATH),$(PRINTF))
 
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 # ==================
 CCHF:=.cache_exists
+MAKEFLAGS+=-j
 
 all: $(NAME)
-
-print1:
-	@echo $(GREEN) " - Compiling binaries : [\033[1;42m\c"
 
 $(NAME): $(OBJ)
 	@echo $(END)
@@ -84,7 +86,7 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 	@echo $(GREEN) " - Done" $(END)
 
-$(CCHPATH)%.o: $(SRCPATH)%.c $(CCHF)
+$(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHF)
 	@echo ".\c"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -98,6 +100,7 @@ $(CCHF):
 	@mkdir $(CCHPATH)$(STRPATH)
 	@mkdir $(CCHPATH)$(LSTPATH)
 	@mkdir $(CCHPATH)$(MATHPATH)
+	@mkdir $(CCHPATH)$(PRINTFPATH)
 	@touch $(CCHF)
 
 clean:
@@ -107,12 +110,13 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	@$(MAKE) all
 
 test:
 	@echo "Files :" $(FILES)
 
-norme:
+norm:
 	@echo $(RED)
 	@norminette $(SRC) $(HDRPATH) | grep -v  Norme -B1 || true
 	@echo $(END)

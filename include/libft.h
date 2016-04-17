@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/13 13:45:51 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:15:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@ int		ft_atoi(const char *str);
 
 void	ft_bzero(void *s, size_t n);
 
+/*
+** itoa_base :   NxN    ->  String
+** |            (n,b)   |-> n expressed in base b
+** -
+** @return : An allocated null-termminated characters array.
+** | If _value_ is strictly negative, the first character will be '-'.
+** | If _base_ is not in [2;36], NULL is returned.
+** -
+** @param _value_ : the number to be expressed in base _base_
+** @param _base_ : an integer that should be in range [2;36]
+** -
+*/
 char	*ft_itoa_base(int n, int base);
 char	*ft_itoa(int n);
 

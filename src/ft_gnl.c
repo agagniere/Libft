@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/05/17 09:28:15 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/05/17 11:00:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,11 @@ int					get_next_line(int const fd, char **line)
 
 	if (line == NULL || BUFF_SIZE <= 0 || fd < 0)
 		return (-1);
-	if (*line != NULL)
+/*	if (*line != NULL)
 	{
 		free(*line);
 		*line = NULL;
-	}
+		}*/
 	data = ft_dyna_new(sizeof(char));
 	ft_dyna_datainit(&data);
 	if (save.size != 0 && (past = get_past(fd, &save)) != NULL)

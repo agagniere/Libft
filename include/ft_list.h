@@ -6,14 +6,14 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 15:14:40 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/13 09:23:19 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/05/17 09:58:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LIST_H
 # define FT_LIST_H
 
-# include "libft.h"
+# include <stddef.h>
 
 typedef struct		s_node
 {

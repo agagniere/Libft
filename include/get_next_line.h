@@ -6,16 +6,19 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:17 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/13 20:47:12 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/05/17 09:50:32 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include "ft_list.h"
+
 # include "libft.h"
-# include <unistd.h>
+
 # include <stdlib.h>
+# include <unistd.h>
 
 # define BUFF_SIZE 2048
 

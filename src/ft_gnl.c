@@ -6,11 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/17 15:53:57 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/05/17 09:28:15 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 #define ACCSIZE (acc->chunck_count)
 #define DATA(A) ((char *)(A->data))
 

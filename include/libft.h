@@ -6,21 +6,21 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/21 16:38:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/05/17 09:47:37 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
-
 # include "ft_ctype.h"
 # include "ft_vector.h"
 # include "ft_string.h"
-# include "ft_list.h"
 # include "ft_color.h"
+# include "ft_list.h"
 # include "get_next_line.h"
+
+# include <stddef.h>
 
 int		ft_atoi(const char *str);
 
@@ -63,6 +63,9 @@ void	ft_putstr(char const *s);
 void	ft_putstr_fd(char const *s, int fd);
 
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size, size_t factor);
+void	*ft_calloc(size_t count, size_t size);
+void	ft_exit(char const *const fnc, char const *const str);
+void	*ft_safe_calloc(size_t count, size_t size);
 
 # define ABS(v) ((v) < 0 ? -(v) : (v))
 

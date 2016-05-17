@@ -6,11 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 15:22:52 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/14 10:47:30 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/05/17 09:58:50 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "libft.h"
 
 static void	ftl_add(t_node *prev, t_node *node, t_node *next)
 {

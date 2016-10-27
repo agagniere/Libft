@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 11:37:29 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/17 15:21:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/27 16:22:47 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,26 @@ char			*ft_itoa_base(int value, int base)
 	p = 0;
 	if (value < 0)
 		ans[p++] = '-';
-	else
-		aux(value, base, ans, &p);
+	aux(value, base, ans, &p);
 	ans[p] = '\0';
 	return (ans);
 }
+
+/*
+** int			main(int ac, char **av)
+** {
+** 	int		n,
+** 			b;
+**
+** 	if (ac > 1)
+** 		n = atoi(av[1]);
+** 	else
+** 		n = -2147483648;
+** 	if (ac > 2)
+** 		b = atoi(av[2]);
+** 	else
+** 		b = 10;
+** 	printf("%i en base %i : %s\n", n, b, ft_itoa_base(n, b));
+** 	return (0);
+** }
+*/

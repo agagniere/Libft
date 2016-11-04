@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 17:24:47 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/08 20:08:11 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/04 01:52:43 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,14 @@ char	*ft_strchr(const char *s, int c)
 	while (*s != (char)c && *s != '\0')
 		s++;
 	return (*s == (char)c ? (char *)s : NULL);
+
+}
+
+int		is_in(char i, char const *str)
+{
+	char const	*p = str;
+
+	while (*p != '\0' && *p != i)
+		p++;
+	return (*p == '\0' ? -1 : p - str);
 }

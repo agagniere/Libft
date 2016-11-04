@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/13 13:44:53 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/04 01:55:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ char	**ft_strsplit(char const *s, char c);
 char	*ft_strstr(const char *s1, const char *s2);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s);
+
+int		is_in(char i, char const *str);
 
 #endif

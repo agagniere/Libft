@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/05/17 09:47:37 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/30 14:14:11 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	ft_exit(char const *const fnc, char const *const str);
 void	*ft_safe_calloc(size_t count, size_t size);
 
 # define ABS(v) ((v) < 0 ? -(v) : (v))
+# define MIN(A,B) (A < B ? A : B)
 
 #endif

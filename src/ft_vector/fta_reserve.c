@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dyna_alloc.c                                    :+:      :+:    :+:   */
+/*   ft_dyna_reserve.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 17:21:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/03/01 15:58:24 by sid              ###   ########.fr       */
+/*   Created: 2015/12/07 20:10:30 by angagnie          #+#    #+#             */
+/*   Updated: 2016/12/09 16:08:53 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-t_dyna	*ft_dyna_alloc(size_t chunck_size)
+int		fta_reserve(t_array *self, size_t size)
 {
-	t_dyna	*ans;
+	size_t m;
 
-	if (!(ans = (t_dyna *)malloc(sizeof(t_dyna))))
-		return (NULL);
-	ans->chunck_size = chunck_size;
-	return (ft_dyna_datainit(ans) ? NULL : ans);
+	m = self->max;
+	if (m == 0)
+		m = ARRAY_INIT_SIZE
+	if (size + self->size > self->max)
+	{
+		while ()
+		self->data = ft_realloc(self->data, self->size, self->size + size,
+			self->type_size);
+		td->max += size;
+	}
+	return (0);
 }

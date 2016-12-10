@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/10 15:19:43 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/10 20:45:32 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,22 @@ typedef struct	s_array
 }				t_array;
 
 /*
+** |		----------===== public: =====----------
+*/
+
+/*
 ** Failsafe constructor,
 ** no memory is allocated.
 */
 
 # define NEW_ARRAY(T) (t_array){NULL, 0, 0, sizeof(T)}
+
+/*
+** Constructor that tries a first malloc.
+** In case of failure,
+*/
+
+t_array			fta_new(size_t type_size);
 
 /*
 ** Array::alloc
@@ -100,7 +111,6 @@ void			fta_dataclearf(t_array *t, void (*del)(void *));
 int				fta_datainit(t_array *td);
 void			fta_del(t_array *td);
 void			fta_release(t_array **tda);
-t_array			fta_new(size_t chunck_size);
 int				fta_trim(t_array *td);
 void			fta_popback(t_array *td);
 void			fta_popbackf(t_array *td, void (*del)(void *));
@@ -120,7 +130,10 @@ void			fta_iteri2(t_array const *td, void (*f)(), void *a, void *b);
 /*
 ** Array::_resize
 ** No subtlety, just resizes the underlying array, no matter the consequences.
+** However, in case of a malloc fail, the arrey is left untouched.
 */
+
+int				fta_resize(t_array *self, size_t new_size);
 
 /*
 ** The initial size is the number of elements a new array will be able

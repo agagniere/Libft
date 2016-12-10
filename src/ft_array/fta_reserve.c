@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 20:10:30 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/10 15:15:36 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/10 20:21:21 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,7 @@ int		fta_reserve(t_array *self, size_t size)
 		new_size = (self->max > 0 ? self->max : FT_ARRAY_INIT_SIZE);
 		while (new_size < total_size)
 			new_size *= FT_ARRAY_FACTOR;
-		tmp = malloc(new_size * self->type_size);
-		if (tmp == NULL)
-			return (1);
-		ft_memcpy(tmp, );
-		free(self->data);
-		self->data = tmp;
-		self->max += size;
+		fta_resize();
 	}
 	return (0);
 }

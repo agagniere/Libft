@@ -6,13 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 17:41:24 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 19:36:09 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/10 20:45:22 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_array.h"
 
-t_dyna	ft_dyna_new(size_t chunck_size)
+t_array		fta_new(size_t type_size)
 {
 	return ((t_dyna){NULL, 0, 0, chunck_size});
 }

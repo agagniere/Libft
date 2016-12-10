@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dyna_alloc.c                                    :+:      :+:    :+:   */
+/*   fta_alloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:21:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/09 15:15:58 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/10 15:09:18 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_array.h"
 #include <stdlib.h>
 
-t_array	*fta_alloc(size_t type_size)
+/*
+** Array::alloc
+** -
+** Allocates an array and its data.
+** -
+** _type_size_ should equal to the returned value of sizeof(t_some_type)
+** -
+** Returns the allocated array,
+** or NULL if malloc failed.
+*/
+
+t_array		*fta_alloc(size_t type_size)
 {
 	t_array	*ans;
 

@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dyna_dataclear.c                                :+:      :+:    :+:   */
+/*   fta_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:46:25 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 19:32:54 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/12 19:01:26 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_array.h"
 #include <stdlib.h>
 
-void	ft_dyna_dataclear(t_dyna *t)
+/*
+** Array::clear
+** -
+** Frees the underlying data, but leaves the array usable :
+** one might still call the append function, the array was only
+** emptied.
+*/
+
+void	fta_clear(t_array *self)
 {
-	if (t->chunck_max > 0)
+	if (self->max > 0)
 	{
-		free(t->data);
-		t->chunck_count = 0;
-		t->chunck_max = 0;
+		free(self->data);
+		self->size = 0;
+		self->max = 0;
 	}
 }

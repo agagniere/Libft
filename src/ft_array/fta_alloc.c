@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:21:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/12 14:55:52 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/12 21:05:54 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** -
 ** Allocates an array and its data.
 ** -
-** _type_size_ should equal to the returned value of sizeof(t_some_type)
+** _type_size_ should equal to the returned value of sizeof(T)
 ** -
 ** Returns the allocated array,
 ** or NULL if malloc failed.

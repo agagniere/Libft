@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/12 14:42:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/12 21:27:32 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include <stddef.h>
 
 /*
+** |		----------=====  Array<T>  =====----------
 ** The following functions allows one to manipulate a collection of objects,
 ** not bothering about malloc.
-** It is inspired by the C++ "Vector"
+** It is inspired by the C++ "Vector<T>"
 ** -
 ** In C++ and Java, one would declare such an object with
 ** the template/generics syntax :
@@ -65,7 +66,7 @@ typedef struct	s_array
 ** -
 ** Constructor that tries a first malloc.
 ** -
-** _type_size_ should equal to the returned value of sizeof(t_some_type)
+** _type_size_ should equal to the returned value of sizeof(T)
 ** -
 */
 
@@ -76,7 +77,7 @@ t_array			fta_new(size_t type_size);
 ** -
 ** Allocates an array and its data.
 ** -
-** _type_size_ should equal to the returned value of sizeof(t_some_type)
+** _type_size_ should equal to the returned value of sizeof(T)
 ** -
 ** Returns the allocated array,
 ** or NULL if malloc failed.
@@ -91,7 +92,7 @@ t_array			*fta_alloc(size_t type_size);
 ** Adds _datalen_ elements to _self_.
 ** May fail if malloc does.
 ** -
-** _data_ should be a variable of type T* casted to void *.
+** _data_ should be a variable of type T* casted to void*.
 ** _datalen_ should be the number of elements stored in _data_.
 ** -
 ** Returns a status :
@@ -137,8 +138,29 @@ int				fta_reserve(t_array *self, size_t size);
 
 int				fta_trim(t_array *self);
 
-void			fta_dataclear(t_array *t);
-void			fta_dataclearf(t_array *t, void (*del)(void *));
+/*
+** Array::clear
+** -
+** Frees the underlying data, but leaves the array usable :
+** one might still call the append function, the array was only
+** emptied.
+*/
+
+void			fta_clear(t_array *self);
+
+/*
+** Array::clearf
+** -
+** Same as Array::clear, but uses a custom function instead of free,
+** useful when your structures contains addresses of allocated variables
+** to be freed to prevent leaks.
+** -
+** _del_ is a function that knows how to properly free a single element
+** from its address.
+*/
+
+void			fta_clearf(t_array *t, void (*del)(void *));
+
 void			fta_del(t_array *td);
 void			fta_release(t_array **tda);
 void			fta_popback(t_array *td);
@@ -151,6 +173,30 @@ void			fta_iter2(t_array const *td, void (*f)(), void *a, void *b);
 void			fta_iteri(t_array const *td, void (*f)());
 void			fta_iteri1(t_array const *td, void (*f)(), void *a);
 void			fta_iteri2(t_array const *td, void (*f)(), void *a, void *b);
+
+/*
+** Iterator<Array>::Start
+** -
+** Returns the start of the array.
+*/
+
+# define ARRAY_START(A) ((A)->data)
+
+/*
+** Iterator<Array>::End
+** -
+** Returns the end end of the array
+*/
+
+# define ARRAY_END(A) ((A)->data + (A)->size * (A)->type_size)
+
+/*
+** Iterator<Array>::Step
+** -
+** Allows one to go from the address of an element to an other.
+*/
+
+# define ARRAY_STEP(A) ((A)->type_size)
 
 /*
 ** |		----------===== private: =====----------

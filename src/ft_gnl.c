@@ -6,13 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/06/07 16:34:09 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/12 14:54:59 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-#define ACCSIZE (acc->chunck_count)
 #define DATA(A) ((char *)(A->data))
 
 static t_fdsave		*get_past(int const fd, const t_list *save)
@@ -46,24 +45,24 @@ static int			handle_past(t_fdsave *past, char **line)
 	return (0);
 }
 
-static int			gnl2(int ret, t_dyna *acc, char **line)
+static int			gnl2(int ret, t_array *acc, char **line)
 {
 	if (ret < 0)
 	{
-		ft_dyna_del(acc);
+		fta_del(acc);
 		return (-1);
 	}
-	if (ACCSIZE > 0)
+	if (acc->size > 0)
 	{
-		*line = ft_memdup(acc->data, ACCSIZE + 1);
-		(*line)[ACCSIZE] = '\0';
+		*line = ft_memdup(acc->data, acc->size + 1);
+		(*line)[acc->size] = '\0';
 		return (1);
 	}
-	ft_dyna_del(acc);
+	fta_del(acc);
 	return (0);
 }
 
-static int			now_read(char **line, t_dyna *acc,
+static int			now_read(char **line, t_array *acc,
 	int const fd, t_list *save)
 {
 	char	buf[BUFF_SIZE];
@@ -73,17 +72,17 @@ static int			now_read(char **line, t_dyna *acc,
 
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		ft_dyna_append(acc, buf, ret);
-		ln = ft_memchr(DATA(acc) + ACCSIZE - ret, '\n', ret);
+		fta_append(acc, buf, ret);
+		ln = ft_memchr(DATA(acc) + acc->size - ret, '\n', ret);
 		if (ln != NULL)
 		{
-			len = (DATA(acc) + ACCSIZE) - ln - 1;
+			len = (DATA(acc) + acc->size) - ln - 1;
 			*line = ft_memdup(acc->data, ln - DATA(acc) + 1);
 			*(*line + (ln - DATA(acc))) = '\0';
 			if (len > 0)
 				ftl_push_front(save, (t_node *)&(t_fdsave){{0, 0}, fd,
 					len, ft_memdup(ln + 1, len)});
-			ft_dyna_del(acc);
+			fta_del(acc);
 			return (1);
 		}
 	}
@@ -108,19 +107,18 @@ static int			now_read(char **line, t_dyna *acc,
 int					get_next_line(int const fd, char **line)
 {
 	static t_list	save;
-	t_dyna			data;
+	t_array			data;
 	t_fdsave		*past;
 
 	if (line == NULL || BUFF_SIZE <= 0 || fd < 0)
 		return (-1);
-	data = ft_dyna_new(sizeof(char));
-	ft_dyna_datainit(&data);
+	data = NEW_ARRAY(char);
 	if (save.size != 0 && (past = get_past(fd, &save)) != NULL)
 	{
 		past = get_past(fd, &save);
 		if (handle_past(past, line))
 			return (1);
-		ft_dyna_append(&data, past->data, past->size);
+		fta_append(&data, past->data, past->size);
 		ftl_pop_elem(&save, (t_node **)&past);
 	}
 	else if (save.type_size == 0)
@@ -139,4 +137,3 @@ int					get_next_line(int const fd, char **line)
 */
 
 #undef DATA
-#undef ACCSIZE

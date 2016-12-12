@@ -6,13 +6,27 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 17:41:24 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/10 20:45:22 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/12 14:59:08 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_array.h"
 
+/*
+** Array::alloc
+** -
+** Allocates an array and its data.
+** -
+** _type_size_ should equal to the returned value of sizeof(t_some_type)
+** -
+** Returns the allocated array,
+** or NULL if malloc failed.
+*/
+
 t_array		fta_new(size_t type_size)
 {
-	return ((t_dyna){NULL, 0, 0, chunck_size});
+	t_array		ans = (t_array){NULL, 0, 0, type_size};
+
+	fta_reserve(&ans, 1);
+	return (ans);
 }

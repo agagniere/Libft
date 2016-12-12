@@ -6,25 +6,31 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 18:17:19 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/07 22:09:14 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/12 15:02:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "ft_array.h"
 
 /*
-** http://www.cplusplus.com/reference/vector/vector/shrink_to_fit/
+** Array::trim
+** -
+** Could be called "shrink to fit" as it is in C++.
+** This function is meant to be called when no more
+** elements are expected to be appended to the array.
+** Usually there are extra bytes allocated, to ensure
+** a low complexity and few system calls, but this
+** functions allocates the minimum number of bytes for
+** all elements to fit.
+** -
+** Returns :
+** 0 if the malloc succeeded,
+** 1 otherwise.
 */
 
-int	ft_dyna_trim(t_dyna *td)
+int		ft_dyna_trim(t_array *self)
 {
-	if (td->chunck_count < td->chunck_max)
-	{
-		if (!(td->data = ft_realloc(td->data,
-			td->chunck_max, td->chunck_count, td->chunck_size)))
-			return (1);
-		td->chunck_max = td->chunck_count;
-	}
+	if (self->size < self->max)
+		return (fta_resize(self, self->size));
 	return (0);
 }

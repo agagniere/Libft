@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 14:14:11 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/10 12:06:38 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # include "ft_ctype.h"
-# include "ft_vector.h"
+# include "ft_array.h"
 # include "ft_string.h"
 # include "ft_color.h"
 # include "ft_list.h"

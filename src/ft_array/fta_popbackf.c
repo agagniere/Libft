@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dyna_new.c                                      :+:      :+:    :+:   */
+/*   fta_popback.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/06 17:41:24 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 19:36:09 by angagnie         ###   ########.fr       */
+/*   Created: 2015/12/07 20:08:29 by angagnie          #+#    #+#             */
+/*   Updated: 2016/12/13 12:36:40 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_array.h"
 
-t_dyna	ft_dyna_new(size_t chunck_size)
+/*
+** Array::pop_back_f
+** -
+** Same as pop_back, but provides a way to avoid leaks by freeing
+** contents pointed by the poped element.
+** -
+** _del_ is a function that knows how to properly free a single element's
+** contents from its address.
+*/
+
+void	fta_popbackf(t_array *self, void (*del)(void *))
 {
-	return ((t_dyna){NULL, 0, 0, chunck_size});
+	if (self->size > 0)
+	{
+		self->size--;
+		del(ARRAY_END(self));
+	}
 }

@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dyna_alloc.c                                    :+:      :+:    :+:   */
+/*   fta_alloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:21:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/03/01 15:58:24 by sid              ###   ########.fr       */
+/*   Updated: 2016/12/12 21:05:54 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_array.h"
 #include <stdlib.h>
 
-t_dyna	*ft_dyna_alloc(size_t chunck_size)
-{
-	t_dyna	*ans;
+/*
+** Array::alloc
+** -
+** Allocates an array and its data.
+** -
+** _type_size_ should equal to the returned value of sizeof(T)
+** -
+** Returns the allocated array,
+** or NULL if malloc failed.
+*/
 
-	if (!(ans = (t_dyna *)malloc(sizeof(t_dyna))))
+t_array		*fta_alloc(size_t type_size)
+{
+	t_array	*ans;
+
+	if (!(ans = (t_array *)malloc(sizeof(t_array))))
 		return (NULL);
-	ans->chunck_size = chunck_size;
-	return (ft_dyna_datainit(ans) ? NULL : ans);
+	ans->type_size = type_size;
+	return (fta_reserve(ans, 1) ? NULL : ans);
 }

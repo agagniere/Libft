@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dyna_trim.c                                     :+:      :+:    :+:   */
+/*   fta_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 18:17:19 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/07 22:09:14 by angagnie         ###   ########.fr       */
+/*   Created: 2015/12/04 17:46:25 by angagnie          #+#    #+#             */
+/*   Updated: 2016/12/12 19:01:26 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_array.h"
 #include <stdlib.h>
 
 /*
-** http://www.cplusplus.com/reference/vector/vector/shrink_to_fit/
+** Array::clear
+** -
+** Frees the underlying data, but leaves the array usable :
+** one might still call the append function, the array was only
+** emptied.
 */
 
-int	ft_dyna_trim(t_dyna *td)
+void	fta_clear(t_array *self)
 {
-	if (td->chunck_count < td->chunck_max)
+	if (self->max > 0)
 	{
-		if (!(td->data = ft_realloc(td->data,
-			td->chunck_max, td->chunck_count, td->chunck_size)))
-			return (1);
-		td->chunck_max = td->chunck_count;
+		free(self->data);
+		self->size = 0;
+		self->max = 0;
 	}
-	return (0);
 }

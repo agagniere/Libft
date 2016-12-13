@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/11/27 17:42:42 by angagnie         ###   ########.fr        #
+#    Updated: 2016/12/13 14:12:11 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,11 +18,9 @@ CTYPE:=ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit \
 	ft_isgraph ft_islower ft_isprint ft_ispunct ft_isspace ft_isupper \
 	ft_isxdigit ft_tolower ft_toupper
 
-VECTORPATH:=ft_vector/
-VECTOR:=ft_dyna_alloc ft_dyna_append ft_dyna_dataclear ft_dyna_dataclearf \
-	ft_dyna_datainit ft_dyna_del ft_dyna_new ft_dyna_popback ft_dyna_popbackf \
-	ft_dyna_release ft_dyna_reserve ft_dyna_trim ft_dyna_iter ft_dyna_iteri \
-	ft_dyna_get
+VECTORPATH:=ft_array/
+VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
+	fta_clear fta_clearf fta_popback fta_popbackf fta_iter fta_iteri
 
 STRPATH:=ft_string/
 STR:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
@@ -75,7 +73,7 @@ SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 # ==================
 CCHF:=.cache_exists
-MAKEFLAGS+=-j
+# MAKEFLAGS+=-j
 
 all: $(NAME)
 

@@ -6,28 +6,32 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:53:40 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/08 20:28:04 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/12 21:07:26 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_array.h"
 #include "libft.h"
 
-int		ft_dyna_append(t_dyna *td, void *data, size_t datalen)
-{
-	size_t fact;
+/*
+** Array::apppend
+** -
+** Could be called "add all" like in Java.
+** Adds _datalen_ elements to _self_.
+** May fail if malloc does.
+** -
+** _data_ should be a variable of type T* casted to void*.
+** _datalen_ should be the number of elements stored in _data_.
+** -
+** Returns a status :
+** 0 in case of success,
+** 1 if malloc failed.
+*/
 
-	if (td->chunck_max == 0)
-		ft_dyna_datainit(td);
-	if (td->chunck_count + datalen > td->chunck_max)
-	{
-		fact = 2;
-		while (td->chunck_count + datalen > fact * td->chunck_max)
-			fact *= DYNA_FACTOR;
-		if (ft_dyna_reserve(td, fact * td->chunck_max))
-			return (1);
-	}
-	ft_memcpy(td->data + td->chunck_count * td->chunck_size,
-		data, datalen * td->chunck_size);
-	td->chunck_count += datalen;
+int		fta_append(t_array *self, void *data, size_t datalen)
+{
+	if (fta_reserve(self, datalen))
+		return (1);
+	ft_memcpy(self->data, data, self->type_size * datalen);
 	return (0);
 }

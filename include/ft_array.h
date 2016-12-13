@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/12 21:27:32 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/13 12:34:44 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct	s_array
 ** -
 ** _T_ should be the type to be stored in the array.
 ** -
-** returns an array, correctly initialised.
+** Returns an array, correctly initialised.
 */
 
 # define NEW_ARRAY(T) (t_array){NULL, 0, 0, sizeof(T)}
@@ -149,23 +149,65 @@ int				fta_trim(t_array *self);
 void			fta_clear(t_array *self);
 
 /*
-** Array::clearf
+** Array::clear_f
 ** -
-** Same as Array::clear, but uses a custom function instead of free,
+** Same as Array::clear, but uses a custom function on each element before
+** free the underlying array,
 ** useful when your structures contains addresses of allocated variables
 ** to be freed to prevent leaks.
 ** -
-** _del_ is a function that knows how to properly free a single element
-** from its address.
+** _del_ is a function that knows how to properly free a single element's
+** contents from its address.
 */
 
-void			fta_clearf(t_array *t, void (*del)(void *));
+void			fta_clearf(t_array *self, void (*del)(void *));
 
-void			fta_del(t_array *td);
-void			fta_release(t_array **tda);
-void			fta_popback(t_array *td);
-void			fta_popbackf(t_array *td, void (*del)(void *));
-void			*fta_get(t_array *td, size_t i);
+/*
+** Array::release
+** -
+** If one initialised the array with fta_alloc, they are advised
+** to use fta_release to free it.
+** Both the underlying data and the array will be freed.
+** -
+** _ptr_ is the address of a pointer to an array,
+** and will be set to NULL to prevent further uses attempts.
+*/
+
+void			fta_release(t_array **ptr);
+
+/*
+** Array::pop_back
+** -
+** If the array isn't empty, its last element is removed.
+*/
+
+void			fta_popback(t_array *self);
+
+/*
+** Array::pop_back_f
+** -
+** Same as pop_back, but provides a way to avoid leaks by freeing
+** contents pointed by the poped element.
+** -
+** _del_ is a function that knows how to properly free a single element's
+** contents from its address.
+*/
+
+void			fta_popbackf(t_array *self, void (*del)(void *));
+
+/*
+** Array::get
+** -
+** Allows one to acess the i-nth element of an array
+** without bothering about the implementation.
+** -
+** _I_ is the index of the element the one wishes to access
+** -
+** Returns the desired element,
+** or NULL if _I_ is out of range
+*/
+
+# define ARRAY_GET(A,I) (ARY_INDX(A,I) ? (A)->data + (I) * ARRAY_STEP(A) : NULL)
 
 void			fta_iter(t_array const *td, void (*f)());
 void			fta_iter1(t_array const *td, void (*f)(), void *a);
@@ -193,7 +235,7 @@ void			fta_iteri2(t_array const *td, void (*f)(), void *a, void *b);
 /*
 ** Iterator<Array>::Step
 ** -
-** Allows one to go from the address of an element to an other.
+** Allows one to go from the address of an element to the next.
 */
 
 # define ARRAY_STEP(A) ((A)->type_size)
@@ -207,14 +249,24 @@ void			fta_iteri2(t_array const *td, void (*f)(), void *a, void *b);
 ** to store before allocating more memory.
 */
 
-# define FT_ARRAY_INITIAL_SIZE 16
+# define ARRAY_INITIAL_SIZE 16
 
 /*
 ** When reaching its capacity, an array will re-allocate memory,
 ** using this factor to grow relatively to its previous size.
 */
 
-# define FT_ARRAY_FACTOR 2
+# define ARRAY_FACTOR 2
+
+/*
+** Checks if the provided index is a valid index.
+** -
+** Returns a boolean :
+** 0 if _I_ is strictly negative or is greater than the number of elements
+** 1 otherwise
+*/
+
+# define ARY_INDX(A,I) (0 <= (I) && (I) < (A)->size)
 
 /*
 ** Array::_resize

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 20:10:30 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/12 15:00:44 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/13 12:35:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int		fta_reserve(t_array *self, size_t size)
 
 	if (total_size > self->max)
 	{
-		new_size = (self->max > 0 ? self->max : FT_ARRAY_INITIAL_SIZE);
+		new_size = (self->max > 0 ? self->max : ARRAY_INITIAL_SIZE);
 		while (new_size < total_size)
-			new_size *= FT_ARRAY_FACTOR;
+			new_size *= ARRAY_FACTOR;
 		return (fta_resize(self, new_size));
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/12 14:54:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/13 12:39:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int			gnl2(int ret, t_array *acc, char **line)
 {
 	if (ret < 0)
 	{
-		fta_del(acc);
+		fta_clear(acc);
 		return (-1);
 	}
 	if (acc->size > 0)
@@ -58,7 +58,7 @@ static int			gnl2(int ret, t_array *acc, char **line)
 		(*line)[acc->size] = '\0';
 		return (1);
 	}
-	fta_del(acc);
+	fta_clear(acc);
 	return (0);
 }
 
@@ -82,7 +82,7 @@ static int			now_read(char **line, t_array *acc,
 			if (len > 0)
 				ftl_push_front(save, (t_node *)&(t_fdsave){{0, 0}, fd,
 					len, ft_memdup(ln + 1, len)});
-			fta_del(acc);
+			fta_clear(acc);
 			return (1);
 		}
 	}

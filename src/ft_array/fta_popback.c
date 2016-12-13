@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dyna_datainit.c                                 :+:      :+:    :+:   */
+/*   fta_popback.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 17:30:41 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 19:34:55 by angagnie         ###   ########.fr       */
+/*   Created: 2015/12/07 20:08:29 by angagnie          #+#    #+#             */
+/*   Updated: 2016/12/13 12:36:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "ft_array.h"
 
-int		ft_dyna_datainit(t_dyna *td)
+/*
+** Array::pop_back
+** -
+** If the array isn't empty, its last element is removed.
+*/
+
+void	fta_popback(t_array *self)
 {
-	if (!(td->data = malloc(td->chunck_size * DYNA_INITIAL_SIZE)))
-		return (1);
-	td->chunck_max = DYNA_INITIAL_SIZE;
-	td->chunck_count = 0;
-	return (0);
+	if (self->size > 0)
+		self->size--;
 }

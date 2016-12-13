@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/12/12 21:09:03 by angagnie         ###   ########.fr        #
+#    Updated: 2016/12/13 12:05:00 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,7 +20,7 @@ CTYPE:=ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit \
 
 VECTORPATH:=ft_array/
 VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
-	fta_clear fta_clearf
+	fta_clear fta_clearf fta_popback fta_popbackf
 
 STRPATH:=ft_string/
 STR:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \

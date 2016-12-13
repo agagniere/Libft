@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 14:19:35 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/13 19:15:19 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,16 +196,16 @@ void			fta_popback(t_array *self);
 void			fta_popbackf(t_array *self, void (*del)(void *));
 
 /*
-** Array::is_safe
+** Array::index_check
 ** -
-** Checks if the provided index is a valid index.
+** Checks if the provided index is a valid one.
 ** -
 ** Returns a boolean :
 ** 0 if _I_ is strictly negative or is greater than the number of elements
 ** 1 otherwise
 */
 
-# define ARRAY_SAFE(A,I) (0 <= (I) && (I) < (A)->size)
+# define ARRAY_INDEX_CHECK(A,I) (0 <= (I) && (I) < (A)->size)
 
 /*
 ** Array::get
@@ -229,7 +229,7 @@ void			fta_popbackf(t_array *self, void (*del)(void *));
 ** or NULL if _I_ is out of range
 */
 
-# define ARRAY_GETS(A,I) (ARRAY_SAFE(A,I) ? ARRAY_GET(A,I) : NULL)
+# define ARRAY_GETS(A,I) (ARRAY_INDEX_CHECK(A,I) ? ARRAY_GET(A,I) : NULL)
 
 /*
 ** Array::get_typed
@@ -239,9 +239,27 @@ void			fta_popbackf(t_array *self, void (*del)(void *));
 
 # define ARRAY_GETT(T,A,I) ((T*)ARRAY_GETS(A,I))
 
+/*
+** Array::iterate
+** -
+** The following set of functions allow one to apply a certain
+** function on each of the elements of the array.
+** -
+** iter :	f(T*)		knows what to do with the address of an element
+** iter1 :	f(A*,T*)	the same, but with an extra piece of information
+** iter2 :	f(A*,B*,T*)	the same, but with two external variables passed through
+**
+** iteri :	f(int,T*)		knows what to do with an element and its index
+** iteri1 :	f(A*,int,T*)	the same but with an extra piece of data
+** iteri2 :	f(A*,B*,int,T*)	the same but with two extra pieces of data
+** -
+** _f_ will be called on each of the elements.
+*/
+
 void			fta_iter(const t_array *self, void (*f)());
 void			fta_iter1(const t_array *self, void (*f)(), void *a);
 void			fta_iter2(const t_array *self, void (*f)(), void *a, void *b);
+
 void			fta_iteri(const t_array *self, void (*f)());
 void			fta_iteri1(const t_array *self, void (*f)(), void *a);
 void			fta_iteri2(const t_array *self, void (*f)(), void *a, void *b);

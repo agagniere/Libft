@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 12:34:44 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/13 14:19:35 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,25 +196,63 @@ void			fta_popback(t_array *self);
 void			fta_popbackf(t_array *self, void (*del)(void *));
 
 /*
+** Array::is_safe
+** -
+** Checks if the provided index is a valid index.
+** -
+** Returns a boolean :
+** 0 if _I_ is strictly negative or is greater than the number of elements
+** 1 otherwise
+*/
+
+# define ARRAY_SAFE(A,I) (0 <= (I) && (I) < (A)->size)
+
+/*
 ** Array::get
 ** -
-** Allows one to acess the i-nth element of an array
-** without bothering about the implementation.
+** Returns the address of the i-nth element of the array
+** Just be sure that such an element exists
+*/
+
+# define ARRAY_GET(A,I) (ARRAY_START(A) + ARRAY_OFFSET(A,I))
+
+/*
+** Array::get_safe
 ** -
-** _I_ is the index of the element the one wishes to access
+** Allows one to access the i-nth element of an array
+** without bothering about neither the implementation
+** nor if the index is actually valid.
+** -
+** _I_ is the index of the element that one wishes to access
 ** -
 ** Returns the desired element,
 ** or NULL if _I_ is out of range
 */
 
-# define ARRAY_GET(A,I) (ARY_INDX(A,I) ? (A)->data + (I) * ARRAY_STEP(A) : NULL)
+# define ARRAY_GETS(A,I) (ARRAY_SAFE(A,I) ? ARRAY_GET(A,I) : NULL)
 
-void			fta_iter(t_array const *td, void (*f)());
-void			fta_iter1(t_array const *td, void (*f)(), void *a);
-void			fta_iter2(t_array const *td, void (*f)(), void *a, void *b);
-void			fta_iteri(t_array const *td, void (*f)());
-void			fta_iteri1(t_array const *td, void (*f)(), void *a);
-void			fta_iteri2(t_array const *td, void (*f)(), void *a, void *b);
+/*
+** Array::get_typed
+** -
+** Same as get_safe, but casted to a pointer of the type.
+*/
+
+# define ARRAY_GETT(T,A,I) ((T*)ARRAY_GETS(A,I))
+
+void			fta_iter(const t_array *self, void (*f)());
+void			fta_iter1(const t_array *self, void (*f)(), void *a);
+void			fta_iter2(const t_array *self, void (*f)(), void *a, void *b);
+void			fta_iteri(const t_array *self, void (*f)());
+void			fta_iteri1(const t_array *self, void (*f)(), void *a);
+void			fta_iteri2(const t_array *self, void (*f)(), void *a, void *b);
+
+/*
+** Iterator<Array>::new
+** -
+** Returns an iterator over an array.
+*/
+
+# define ARRAY_ITERATOR(A) (ARRAY_START(A) - ARRAY_STEP(A))
 
 /*
 ** Iterator<Array>::Start
@@ -241,6 +279,34 @@ void			fta_iteri2(t_array const *td, void (*f)(), void *a, void *b);
 # define ARRAY_STEP(A) ((A)->type_size)
 
 /*
+** Iterator<Array>::offset
+** -
+** Allows one to go from the address of an element to another.
+*/
+
+# define ARRAY_OFFSET(A,I) ((I) * ARRAY_STEP(A))
+
+/*
+** Iterator<Array>::next
+** -
+** Increments the iterator, for it to point to the next element.
+** -
+** Returns the new value of the iterator.
+*/
+
+# define ARRAY_NEXT(A,IT) ((IT) += ARRAY_STEP(A))
+
+/*
+** Iterator<Array>::has_next
+** -
+** Increments the iterator, for it to point to the next element.
+** -
+** Returns a boolean indicating if the end of the array was reached.
+*/
+
+# define ARRAY_HASNEXT(A,IT) (ARRAY_NEXT(A,IT) < ARRAY_END(A))
+
+/*
 ** |		----------===== private: =====----------
 */
 
@@ -257,16 +323,6 @@ void			fta_iteri2(t_array const *td, void (*f)(), void *a, void *b);
 */
 
 # define ARRAY_FACTOR 2
-
-/*
-** Checks if the provided index is a valid index.
-** -
-** Returns a boolean :
-** 0 if _I_ is strictly negative or is greater than the number of elements
-** 1 otherwise
-*/
-
-# define ARY_INDX(A,I) (0 <= (I) && (I) < (A)->size)
 
 /*
 ** Array::_resize

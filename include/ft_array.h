@@ -25,15 +25,7 @@
 ** the template/generics syntax :
 ** |	Vector<SomeType> variable = new Vector<SomeType>();
 ** -
-** Here in C, one must create a custom type, that "extends" t_array :
-** |	typedef struct		s_some_type
-** |	{
-** |		t_array		super;	// it's a t_array
-** |		type1		var1;	// with additional information
-** |		. . .		. . .
-** |		typen		varn;
-** |	}					t_some_type;
-** And then :
+** Here in C,
 ** |	t_array	variable = NEW_ARRAY(t_some_type);
 */
 

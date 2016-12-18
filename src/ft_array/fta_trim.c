@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 18:17:19 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/12 15:02:07 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/18 17:08:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 ** 1 otherwise.
 */
 
-int		ft_dyna_trim(t_array *self)
+int		fta_trim(t_array *self)
 {
 	if (self->size < self->max)
 		return (fta_resize(self, self->size));

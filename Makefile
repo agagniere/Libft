@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/12/13 14:12:11 by angagnie         ###   ########.fr        #
+#    Updated: 2016/12/18 17:07:03 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -73,7 +73,7 @@ SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 # ==================
 CCHF:=.cache_exists
-# MAKEFLAGS+=-j
+MAKEFLAGS+=-j
 
 all: $(NAME)
 

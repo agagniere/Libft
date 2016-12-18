@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:53:40 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/12 21:07:26 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/18 18:13:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		fta_append(t_array *self, void *data, size_t datalen)
 {
 	if (fta_reserve(self, datalen))
 		return (1);
-	ft_memcpy(self->data, data, self->type_size * datalen);
+	ft_memcpy(ARRAY_END(self), data, ARRAY_OFFSET(self, datalen));
+	self->size += datalen;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 19:15:19 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/01/18 20:05:14 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,10 +226,18 @@ void			fta_popbackf(t_array *self, void (*del)(void *));
 /*
 ** Array::get_typed
 ** -
+** Same as get, but casted to a pointer of the type.
+*/
+
+# define ARRAY_GETT(T,A,I) ((T*)ARRAY_GET(A,I))
+
+/*
+** Array::get_typed_safe
+** -
 ** Same as get_safe, but casted to a pointer of the type.
 */
 
-# define ARRAY_GETT(T,A,I) ((T*)ARRAY_GETS(A,I))
+# define ARRAY_GETTS(T,A,I) ((T*)ARRAY_GETS(A,I))
 
 /*
 ** Array::iterate

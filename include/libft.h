@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/10 12:06:38 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/01/24 18:48:40 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,8 @@ void	*ft_safe_calloc(size_t count, size_t size);
 
 # define ABS(v) ((v) < 0 ? -(v) : (v))
 # define MIN(A,B) (A < B ? A : B)
+
+# define TWICE(A) A,A
+# define THRICE(A) A,A,A
 
 #endif

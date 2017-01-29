@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/24 18:48:40 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/01/28 20:47:30 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "ft_ctype.h"
 # include "ft_array.h"
-# include "ft_string.h"
+# include "ft_string_legacy.h"
 # include "ft_color.h"
 # include "ft_list.h"
 # include "get_next_line.h"

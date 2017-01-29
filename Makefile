@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/12/18 17:07:03 by angagnie         ###   ########.fr        #
+#    Updated: 2017/01/29 05:40:22 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,8 +22,8 @@ VECTORPATH:=ft_array/
 VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
 	fta_clear fta_clearf fta_popback fta_popbackf fta_iter fta_iteri
 
-STRPATH:=ft_string/
-STR:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
+STRLPATH:=ft_string_legacy/
+STRL:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
 	ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr \
 	ft_strstr ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ \
 	ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ ft_strrev
@@ -64,7 +64,7 @@ WHITE:="\033[1;37m"
 # ====== Auto ======
 FILES+=$(addprefix $(CTYPEPATH),$(CTYPE))
 FILES+=$(addprefix $(VECTORPATH),$(VECTOR))
-FILES+=$(addprefix $(STRPATH),$(STR))
+FILES+=$(addprefix $(STRLPATH),$(STRL))
 FILES+=$(addprefix $(LSTPATH),$(LST))
 FILES+=$(addprefix $(MATHPATH),$(MATH))
 FILES+=$(addprefix $(PRINTFPATH),$(PRINTF))
@@ -95,7 +95,7 @@ $(CCHF):
 	@mkdir $(CCHPATH)
 	@mkdir $(CCHPATH)$(VECTORPATH)
 	@mkdir $(CCHPATH)$(CTYPEPATH)
-	@mkdir $(CCHPATH)$(STRPATH)
+	@mkdir $(CCHPATH)$(STRLPATH)
 	@mkdir $(CCHPATH)$(LSTPATH)
 	@mkdir $(CCHPATH)$(MATHPATH)
 	@mkdir $(CCHPATH)$(PRINTFPATH)

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_token.h                                         :+:      :+:    :+:   */
+/*   ft_stream.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/29 05:43:19 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/31 22:04:33 by angagnie         ###   ########.fr       */
+/*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
+/*   Updated: 2017/01/31 21:33:04 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TOKEN_H
-# define FT_TOKEN_H
+#ifndef FT_STREAM_H
+# define FT_STREAM_H
 
-# include "ft_string.h"
+/*
+** File Input Stream
+*/
 
-typedef struct	s_tokenizer
+typedef struct		s_fis
 {
-	t_string	in;
-}				t_tokenizer;
+//	struct
+//	{
+	char		*buff;
+	size_t		i;
+//	}				private;
+	int				fd;
+}					t_fis;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/09 01:53:45 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/09 15:25:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_bzero(void *s, size_t n);
 ** @param _base_ : an integer that should be in range [2;36]
 ** -
 */
+
 char	*ft_itoa_base(int n, int base);
 char	*ft_itoa(int n);
 
@@ -68,10 +69,10 @@ void	*ft_calloc(size_t count, size_t size);
 void	ft_exit(char const *const fnc, char const *const str);
 void	*ft_safe_calloc(size_t count, size_t size);
 
-# define ABS(v) ((v) < 0 ? -(v) : (v))
-# define MIN(A,B) (A < B ? A : B)
+# define ABS(V) ((V) < 0 ? -(V) : (V))
+# define MIN(A,B) ((A) < (B) ? (A) : (B))
 
-# define TWICE(A) A,A
-# define THRICE(A) A,A,A
+# define TWICE(A) (A),(A)
+# define THRICE(A) (A),(A),(A)
 
 #endif

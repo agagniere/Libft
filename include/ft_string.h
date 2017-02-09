@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/09 15:01:44 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/09 15:24:52 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef t_array		t_string;
 
 typedef struct		s_substr
 {
-	char		*str;
+	size_t		index;
 	size_t		len;
 }					t_substr;
 
@@ -39,9 +39,8 @@ typedef struct		s_substr
 ** SubString::new
 ** -
 ** Failsafe constructor, no memory is allocated.
+** # define NEW_SUB(S) (t_substr){S, S == NULL ? 0 : ft_strlen(S)}
 */
-
-# define NEW_SUB(S) (t_substr){S, S == NULL ? 0 : ft_strlen(S)}
 
 /*
 ** String::new

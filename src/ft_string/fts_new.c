@@ -6,16 +6,8 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 10:29:42 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/29 10:48:47 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/09 14:39:34 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
-
-t_string		fts_new(const char *str)
-{
-	t_string ans;
-
-	ans = NEW_STRING();
-	if ()
-}

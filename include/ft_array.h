@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/31 21:12:47 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/09 14:59:28 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,24 @@ t_array			*fta_alloc(size_t type_size);
 */
 
 int				fta_append(t_array *self, void *data, size_t datalen);
+
+/*
+** Array::insert
+** -
+** Adds _datalen_ elements at index _index_ to _self_.
+** May fail if malloc does.
+** -
+** _data_ should be a variable of type T* casted to void*.
+** _datalen_ should be the number of elements stored in _data_.
+** _index_ is the future index of the first element of _data_.
+** -
+** Returns a status :
+** 0 in case of success,
+** 1 if malloc failed.
+*/
+
+int				fta_insert(
+				t_array *self, void *data, size_t datalen, size_t index);
 
 /*
 ** Array::reserve

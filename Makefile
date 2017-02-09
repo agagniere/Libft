@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2017/01/31 18:15:14 by angagnie         ###   ########.fr        #
+#    Updated: 2017/02/09 14:44:36 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,6 +22,9 @@ VECTORPATH:=ft_array/
 VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
 	fta_clear fta_clearf fta_popback fta_popbackf fta_iter fta_iteri \
 	fta_popfront fta_swap
+
+STRPATH:=ft_string/
+STR:=
 
 STRLPATH:=ft_string_legacy/
 STRL:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
@@ -66,6 +69,7 @@ WHITE:="\033[1;37m"
 FILES+=$(addprefix $(CTYPEPATH),$(CTYPE))
 FILES+=$(addprefix $(VECTORPATH),$(VECTOR))
 FILES+=$(addprefix $(STRLPATH),$(STRL))
+FILES+=$(addprefix $(STRPATH),$(STR))
 FILES+=$(addprefix $(LSTPATH),$(LST))
 FILES+=$(addprefix $(MATHPATH),$(MATH))
 FILES+=$(addprefix $(PRINTFPATH),$(PRINTF))
@@ -97,6 +101,7 @@ $(CCHF):
 	@mkdir $(CCHPATH)$(VECTORPATH)
 	@mkdir $(CCHPATH)$(CTYPEPATH)
 	@mkdir $(CCHPATH)$(STRLPATH)
+	@mkdir $(CCHPATH)$(STRPATH)
 	@mkdir $(CCHPATH)$(LSTPATH)
 	@mkdir $(CCHPATH)$(MATHPATH)
 	@mkdir $(CCHPATH)$(PRINTFPATH)

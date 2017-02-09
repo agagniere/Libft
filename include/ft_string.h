@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/09 15:24:52 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/09 18:47:51 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct		s_substr
 ** Appends a SubString at the end of the given String.
 */
 
-# define STR_JOIN_SUB(STR,SUB) fta_append(STR, SUB->str, SUB->len)
+# define STR_JOIN(STR,SUB) fta_append(STR, SUB->str, SUB->len)
+
+# define STR_INSERT()
 
 #endif

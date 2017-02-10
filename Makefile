@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2017/02/09 14:44:36 by angagnie         ###   ########.fr        #
+#    Updated: 2017/02/10 01:20:06 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -35,11 +35,14 @@ STRL:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
 LSTPATH:=ft_list/
 LST:=ftl_new ftl_add ftl_pop ftl_del
 
-MATHPATH:=ft_math/
-MATH:=
+TREEPATH:=ft_tree/
+TREE:=ftt_push
 
-PRINTFPATH:=ft_printf/
-PRINTF:=
+#MATHPATH:=ft_math/
+#MATH:=
+
+#PRINTFPATH:=ft_printf/
+#PRINTF:=
 
 FILES:=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr \
 	ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_memdup ft_putchar \
@@ -71,8 +74,8 @@ FILES+=$(addprefix $(VECTORPATH),$(VECTOR))
 FILES+=$(addprefix $(STRLPATH),$(STRL))
 FILES+=$(addprefix $(STRPATH),$(STR))
 FILES+=$(addprefix $(LSTPATH),$(LST))
-FILES+=$(addprefix $(MATHPATH),$(MATH))
-FILES+=$(addprefix $(PRINTFPATH),$(PRINTF))
+#FILES+=$(addprefix $(MATHPATH),$(MATH))
+#FILES+=$(addprefix $(PRINTFPATH),$(PRINTF))
 
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
@@ -103,8 +106,8 @@ $(CCHF):
 	@mkdir $(CCHPATH)$(STRLPATH)
 	@mkdir $(CCHPATH)$(STRPATH)
 	@mkdir $(CCHPATH)$(LSTPATH)
-	@mkdir $(CCHPATH)$(MATHPATH)
-	@mkdir $(CCHPATH)$(PRINTFPATH)
+#	@mkdir $(CCHPATH)$(MATHPATH)
+#	@mkdir $(CCHPATH)$(PRINTFPATH)
 	@touch $(CCHF)
 
 clean:

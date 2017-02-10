@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:53:40 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/09 15:24:14 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/10 01:23:11 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ int		fta_append(t_array *self, void *data, size_t datalen)
 ** 1 if malloc failed or if the index isn't valid.
 */
 
-int             fta_insert(
-                t_array *self, void *data, size_t datalen, size_t index)
+int		fta_insert(
+				t_array *self, void *data, size_t datalen, size_t index)
 {
 	if (self->size < index || fta_reserve(self, datalen))
 		return (1);
 	ft_memmove(ARRAY_GET(self, index + datalen),
-			   ARRAY_GET(self, index),
-			   ARRAY_OFFSET(self, self->size - index));
+				ARRAY_GET(self, index),
+				ARRAY_OFFSET(self, self->size - index));
 	ft_memcpy(ARRAY_GET(self, index),
-			  data,
-			  ARRAY_OFFSET(self, datalen));
+				data,
+				ARRAY_OFFSET(self, datalen));
 	self->size += datalen;
 	return (0);
 }

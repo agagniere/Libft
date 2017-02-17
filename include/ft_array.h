@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/17 18:03:55 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/17 18:10:50 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ void			fta_popback(t_array *self, size_t len);
 ** contents from its address.
 */
 
-void			fta_popbackf(t_array *self, void (*del)(void *));
+void			fta_popbackf(t_array *self, size_t len, void (*del)(void *));
 
 /*
 ** Array::pop_index

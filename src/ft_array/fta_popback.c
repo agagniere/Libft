@@ -6,11 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 20:08:29 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/17 17:13:18 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/17 18:08:41 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_array.h"
+#include "libft.h"
 
 /*
 ** Array::pop_back

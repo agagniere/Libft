@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/09 14:59:28 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/17 18:03:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,22 +188,40 @@ void			fta_release(t_array **ptr);
 /*
 ** Array::pop_back
 ** -
-** If the array isn't empty, its last element is removed.
+** Removes at most _len_ elements at the end.
+** -
+** _len_ is the number of elements to be removed.
 */
 
-void			fta_popback(t_array *self);
+void			fta_popback(t_array *self, size_t len);
 
 /*
-** Array::pop_back_f
+** Array::pop_back w/ function
 ** -
 ** Same as pop_back, but provides a way to avoid leaks by freeing
-** contents pointed by the poped element.
+** contents pointed by the poped elements.
 ** -
+** _len_ is the number of elements to be removed.
 ** _del_ is a function that knows how to properly free a single element's
 ** contents from its address.
 */
 
 void			fta_popbackf(t_array *self, void (*del)(void *));
+
+/*
+** Array::pop_index
+** -
+** Removes at most _len_ elements starting at _index_.
+** -
+** _index_ is the index of the first element to be removed.
+** _len_ is the number of elements to be removed.
+** -
+** Returns a status :
+** 0 for success
+** 1 if the index is invalid.
+*/
+
+int				fta_popindex(t_array *self, size_t index, size_t len);
 
 /*
 ** Array::index_check

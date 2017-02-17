@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 20:08:29 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 12:36:17 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/17 17:13:18 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,33 @@
 /*
 ** Array::pop_back
 ** -
-** If the array isn't empty, its last element is removed.
+** Removes at most _len_ elements at the end.
+** -
+** _len_ is the number of elements to be removed.
 */
 
-void	fta_popback(t_array *self)
+void	fta_popback(t_array *self, size_t len)
 {
-	if (self->size > 0)
+	self->size -= MIN(len, self->size);
+}
+
+/*
+** Array::pop_back w/ function
+** -
+** Same as pop_back, but provides a way to avoid leaks by freeing
+** contents pointed by the poped elements.
+** -
+** _len_ is the number of elements to be removed.
+** _del_ is a function that knows how to properly free a single element's
+** contents from its address.
+*/
+
+void	fta_popbackf(t_array *self, size_t len, void (*del)(void *))
+{
+	while (self->size > 0 && len > 0)
+	{
 		self->size--;
+		del(ARRAY_END(self));
+		len--;
+	}
 }

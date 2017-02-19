@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 14:45:06 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/19 16:46:57 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ struct					s_substr
 ** Appends a SubString at the end of the given String.
 */
 
-# define STR_JOIN(STR,SUB) fta_append(STR, SUB->str, SUB->len)
+# define STR_JOIN(STR,SUB) fta_append(STR, (SUB)->str, (SUB)->len)
 
 /*
 ** String::insert(SubString)
 */
 
-# define STR_INSERT(STR,SUB,I) fta_insert(STR, (void *)SUB->str, SUB->len, I)
+# define STR_INSERT(STR,SUB,I) fta_insert(STR, (void *)(SUB)->str, (SUB)->len, I)
 
 /*
 ** String::insert(char*)

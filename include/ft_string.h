@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 16:46:57 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/19 16:49:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ struct					s_substr
 ** String::insert(SubString)
 */
 
-# define STR_INSERT(STR,SUB,I) fta_insert(STR, (void *)(SUB)->str, (SUB)->len, I)
+# define STR_INSERT(ST,SB,I) fta_insert(ST, (void *)(SB)->str, (SB)->len, I)
 
 /*
 ** String::insert(char*)

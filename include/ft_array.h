@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/17 18:10:50 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/19 19:07:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,14 @@ void			fta_popbackf(t_array *self, size_t len, void (*del)(void *));
 */
 
 int				fta_popindex(t_array *self, size_t index, size_t len);
+
+/*
+** Array::pop_front
+** -
+** Might be clearer sometimes
+*/
+
+# define ARRAY_POPFRONT(A,N) fta_popindex(A, 0, N)
 
 /*
 ** Array::index_check

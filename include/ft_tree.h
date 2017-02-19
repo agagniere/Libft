@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:48:26 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 16:24:17 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/19 17:37:18 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ struct					s_tree
 	size_t		leaf_size;
 	size_t		count;
 	t_node		*root;
-	int			(*push)(t_node **, t_node *);
+	t_tr		(*push)(t_node **, t_node *);
 };
 
 enum					e_tr

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 16:34:51 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/17 18:11:16 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/19 19:04:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int		fta_popindex(t_array *self, size_t index, size_t len)
 	if (index > self->size)
 		return (1);
 	ft_memmove(ARRAY_GET(self, index),
-			   ARRAY_GET(self, index + n),
-			   ARRAY_OFFSET(self, self->size - n - index));
+				ARRAY_GET(self, index + n),
+				ARRAY_OFFSET(self, self->size - n - index));
 	self->size -= n;
 	return (0);
 }

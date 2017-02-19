@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/10 02:18:11 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/19 14:45:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@
 ** Vector<char> wraper
 */
 
-typedef t_array		t_string;
+typedef t_array			t_string;
 
-typedef struct		s_substr
+typedef struct s_substr	t_substr;
+
+struct					s_substr
 {
 	char		*str;
 	size_t		len;
-}					t_substr;
+};
 
 /*
 ** |		----------===== public: =====----------
@@ -58,7 +60,7 @@ typedef struct		s_substr
 ** Appends a char* at the end of the given String.
 */
 
-# define STR_JOIN_CS(S,CS,L) fta_append(S, CS, L) || (FTSZ(S))
+# define STR_JOIN_CS(S,CS,L) (fta_append(S, CS, L) || (FTSZ(S)))
 
 /*
 ** String::join(SubString)
@@ -83,18 +85,28 @@ typedef struct		s_substr
 ** _I_ the index where the data is to be inserted.
 */
 
-# define STR_INSERT_CS(S,CS,L,I) fta_insert(S, (void *)CS, L, I) || (FTSZ(S))
+# define STR_INSERT_CS(S,CS,L,I) (fta_insert(S, (void *)CS, L, I) || (FTSZ(S)))
 
 /*
 ** String::get
+** -
+** Returns the address of the element at index _I_
 */
 
 # define STR_GET(STR,I) ARRAY_GETT(char, STR, I)
 
 /*
+** String::getChar
+** -
+** Returns the element of index _I_
+*/
+
+# define STR_GETCHAR(STR,I) (*ARRAY_GETT(char, STR, I))
+
+/*
 ** |		----------===== private: =====----------
 */
 
-#define FTSZ(STR) *(char *)ARRAY_END(STR) = '\0'
+# define FTSZ(STR) (*(char *)ARRAY_END(STR) = '\0')
 
 #endif

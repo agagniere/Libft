@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 05:43:19 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/31 22:04:33 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/19 14:35:44 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 
 # include "ft_string.h"
 
-typedef struct	s_tokenizer
+typedef struct s_tokenizer	t_tokenizer;
+
+struct						s_tokenizer
 {
-	t_string	in;
-}				t_tokenizer;
+	t_is	in;
+	t_token	current;
+};
 
 #endif

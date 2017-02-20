@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 18:53:15 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/20 16:47:53 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "ft_string.h"
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/uio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 
 typedef struct s_is		t_is;
 typedef struct s_fis	t_fis;

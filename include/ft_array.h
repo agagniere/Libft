@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/20 16:36:52 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/19 19:07:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,25 @@ void			fta_popbackf(t_array *self, size_t len, void (*del)(void *));
 */
 
 int				fta_popindex(t_array *self, size_t index, size_t len);
+
+/*
+** Array::pop_index w/ function
+** -
+** Same as fta_popindex, but with a way to free cleanly the removed
+** elements.
+** -
+** _index_ is the index of the first element to be removed.
+** _len_ is the number of elements to be removed.
+** _del_ is a function that knows how to properly free a single
+** element's contents from its address.
+** -
+** Returns a status :
+** 0 for success
+** 1 if the index is invalid.
+*/
+
+int				fta_popindexf(
+	t_array *self, size_t index, size_t len, void (*del)(void *));
 
 /*
 ** Array::pop_front

@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2017/02/19 17:34:34 by angagnie         ###   ########.fr        #
+#    Updated: 2017/02/20 17:14:54 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,7 +23,7 @@ VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
 	fta_clear fta_clearf fta_popback fta_iter fta_iteri fta_popindex fta_swap
 
 STREAMPATH:=ft_stream/
-STREAM:=
+STREAM:=fis_new fis_read
 
 STRPATH:=ft_string/
 STR:=
@@ -75,7 +75,7 @@ FILES+=$(addprefix $(CTYPEPATH),$(CTYPE))
 FILES+=$(addprefix $(VECTORPATH),$(VECTOR))
 FILES+=$(addprefix $(STRLPATH),$(STRL))
 FILES+=$(addprefix $(STRPATH),$(STR))
-FILES+=$(addprefix $(STREAMPATH),$(STR))
+FILES+=$(addprefix $(STREAMPATH),$(STREAM))
 FILES+=$(addprefix $(LSTPATH),$(LST))
 #FILES+=$(addprefix $(MATHPATH),$(MATH))
 #FILES+=$(addprefix $(PRINTFPATH),$(PRINTF))

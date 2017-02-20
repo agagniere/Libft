@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 19:07:31 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/20 16:36:52 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,14 @@ int				fta_popindex(t_array *self, size_t index, size_t len);
 */
 
 # define ARRAY_GETTS(T,A,I) ((T*)ARRAY_GETS(A,I))
+
+/*
+** Array::index_from_pointer
+** -
+** _P_ is an element of the array whose index is seeked
+*/
+
+# define ARRAY_IFP(A,P) ((((void *)P) - (A)->data) / (A)->type_size)
 
 /*
 ** Array::iterate

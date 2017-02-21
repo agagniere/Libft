@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fis_read.c                                         :+:      :+:    :+:   */
+/*   automaton.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/19 18:06:00 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/21 20:04:43 by angagnie         ###   ########.fr       */
+/*   Created: 2017/02/21 12:59:29 by angagnie          #+#    #+#             */
+/*   Updated: 2017/02/21 20:00:44 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stream.h"
+#ifndef FT_AUTOMATON_H
+# define FT_AUTOMATON_H
 
-/*
-** TODO : if read fails :/
-*/
+typedef struct s_dfa	t_dfa;
+typedef struct s_state	t_state;
 
-int		fis_read(t_is *self, size_t n)
+struct					s_dfa
 {
-	t_fis *const	this = (t_fis *)self;
-	int				ret;
+	t_array		states;
+	t_is		in;
+	t_string	output;
+};
 
-	fta_reserve(&this->buff, n);
-	ret = read(this->fd, ARRAY_END(&this->buff), n);
-	if (ret == -1)
-		return (1);
-	this->buff.size += ret;
-	return (0);
-}
+
+
+#endif

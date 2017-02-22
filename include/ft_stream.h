@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/20 16:47:53 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/22 14:44:44 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_sis	t_sis;
 
 struct					s_is
 {
-	int		(*read)(t_is *self, size_t n);
+	t_substr	(*read)(t_is *self, size_t n);
 };
 
 /*
@@ -40,9 +40,8 @@ struct					s_is
 struct					s_fis
 {
 	t_is		super;
-	t_string	buff;
-	size_t		i;
 	int			fd;
+	t_string	buff;
 };
 
 /*
@@ -52,8 +51,8 @@ struct					s_fis
 struct					s_sis
 {
 	t_is		super;
-	t_string	*in;
 	size_t		i;
+	t_string	*in;
 };
 
 /*
@@ -61,10 +60,17 @@ struct					s_sis
 */
 
 # define NEW_IS(F) (t_is){F}
-# define NEW_FIS() (t_fis){NEW_IS(&fis_read), NEW_STRING, 0, -1}
-# define NEW_FIS_O(F,S) (t_fis){NEW_IS(F), NEW_STRING, 0, open(S)}
-# define NEW_SIS(F,S) (t_fis){NEW_IS(F), S, 0}
+# define NEW_FIS() (t_fis){{&fis_read}, -1, NEW_STRING}
+# define NEW_FIS_O(S) (t_fis){{&fis_read}, open(S, O_RDONLY), NEW_STRING}
+# define NEW_SIS(S) (t_sis){{&sis_read}, 0, S}
 
-# define IS_READ(IS,N) (((t_is *)(IS)).read((t_is *)(IS), N))
+/*
+** Tools
+*/
+
+# define FIS_OPEN(A,S) ((A)->fd = open(S, O_RDONLY))
+# define FIS_CLOSE(A) (close((A)->fd))
+
+# define IS_READ(IS,N) (((t_is *)(IS))->read((t_is *)(IS), N))
 
 #endif

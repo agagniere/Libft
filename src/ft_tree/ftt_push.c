@@ -6,9 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:55:40 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 16:12:35 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/22 21:09:43 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_tree.h"
+#include "libft.h"
 
 /*
 ** Tree::push
@@ -19,33 +22,33 @@
 ** _new_ is a node to be added to the tree.
 */
 
-int		ftt_push(t_tree *self, t_node *new)
+int		ftt_push(t_tree *self, t_tnode *new)
 {
-	t_node	*tmp;
+	t_tnode	*tmp;
 
 	if (!(tmp = ft_memdup((void *)new,
 		new->is_node ? self->node_size : self->leaf_size)))
 		return (1);
-	return (node_push(self, &self->root, tmp));
+	return (tnode_push(self, &self->root, tmp));
 }
 
 /*
-** Node::push
+** TreeNode::push
 ** -
 ** Handles the recursion and node counting.
 */
 
-int		node_push(t_tree *self, t_node **node, t_node *new)
+int		tnode_push(t_tree *self, t_tnode **node, t_tnode *new)
 {
 	const int	ret = self->push(node, new);
 
 	if (ret == TR_LEFT)
-		return (node_push(self, &node->left, new));
+		return (tnode_push(self, &(*node)->left, new));
 	else if (ret == TR_RIGHT)
-		return (node_push(self, &node->right, new));
+		return (tnode_push(self, &(*node)->right, new));
 	else if (ret == TR_BOTH)
-		return (node_push(self, &node->left, new)
-				|| node_push(self, &self->right, new));
+		return (tnode_push(self, &(*node)->left, new)
+				|| tnode_push(self, &(*node)->right, new));
 	else if (ret == TR_ERROR)
 		return (1);
 	else if (ret == TR_DONE)

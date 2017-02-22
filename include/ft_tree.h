@@ -6,25 +6,27 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:48:26 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 17:37:18 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/22 21:07:57 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_TREE_H
 # define FT_TREE_H
 
+# include <stddef.h>
+
 typedef struct s_tree	t_tree;
-typedef struct s_node	t_node;
+typedef struct s_tnode	t_tnode;
 typedef enum e_tr		t_tr;
 
 /*
 ** |		----------=====  Tree<N,L>  =====----------
 */
 
-struct					s_node
+struct					s_tnode
 {
-	t_node		*left;
-	t_node		*right;
+	t_tnode		*left;
+	t_tnode		*right;
 	char		is_node;
 };
 
@@ -33,8 +35,8 @@ struct					s_tree
 	size_t		node_size;
 	size_t		leaf_size;
 	size_t		count;
-	t_node		*root;
-	t_tr		(*push)(t_node **, t_node *);
+	t_tnode		*root;
+	t_tr		(*push)(t_tnode **, t_tnode *);
 };
 
 enum					e_tr
@@ -71,7 +73,7 @@ enum					e_tr
 ** "protected" : not useful outisde the construction of the concrete types.
 */
 
-# define NEW_NODE(IS_NODE) (t_node){NULL, NULL, IS_NODE}
+# define NEW_NODE(IS_NODE) (t_tnode){NULL, NULL, IS_NODE}
 
 /*
 ** Tree::push
@@ -82,7 +84,7 @@ enum					e_tr
 ** _new_ is a node to be added to the tree.
 */
 
-int						ftt_push(t_tree *self, t_node *new);
+int						ftt_push(t_tree *self, t_tnode *new);
 
 /*
 ** |		----------===== private: =====----------
@@ -94,6 +96,6 @@ int						ftt_push(t_tree *self, t_node *new);
 ** Handles the recursion and node counting.
 */
 
-int						node_push(t_tree *self, t_node **node, t_node *new);
+int						tnode_push(t_tree *self, t_tnode **node, t_tnode *new);
 
 #endif

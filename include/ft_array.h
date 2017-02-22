@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 19:07:31 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/22 20:13:20 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_array			*fta_alloc(size_t type_size);
 ** 1 if malloc failed.
 */
 
-int				fta_append(t_array *self, void *data, size_t datalen);
+int				fta_append(t_array *self, void const *data, size_t datalen);
 
 /*
 ** Array::insert
@@ -110,7 +110,7 @@ int				fta_append(t_array *self, void *data, size_t datalen);
 */
 
 int				fta_insert(
-				t_array *self, void *data, size_t datalen, size_t index);
+				t_array *self, void const *data, size_t datalen, size_t index);
 
 /*
 ** Array::reserve

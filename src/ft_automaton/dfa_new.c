@@ -6,12 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 21:10:18 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/22 21:10:57 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/22 21:30:20 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_automaton.h"
 
-t_dfa		dfa_new()
+t_dfa		dfa_new(t_is)
 {
 }

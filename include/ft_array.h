@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/22 20:13:20 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/27 16:20:45 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,22 @@ int				fta_popindex(t_array *self, size_t index, size_t len);
 
 int				fta_popindexf(
 	t_array *self, size_t index, size_t len, void (*del)(void *));
+
+/*
+** Array::overwrite
+** -
+** Replaces _self_'s contents with _other_'s.
+** -
+** Will fail, leaving _self_ untouched,
+** if the two array's aren't compatible.
+** (i.e. if the two types do not have the same lenght)
+** -
+** Returns a status :
+** 0 upon success
+** 1 otherwise.
+*/
+
+int				fta_overwrite(t_array *self, const t_array *other);
 
 /*
 ** Array::pop_front

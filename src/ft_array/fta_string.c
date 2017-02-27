@@ -6,9 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 18:09:32 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/27 19:04:47 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/27 19:15:34 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_array.h"
+#include "libft.h"
 
 #define TMP_STRING_APPEND(A,S) fta_append(A, S, ft_strlen(S))
 
@@ -30,19 +33,19 @@ char	*fta_string(t_array *self, char *(*f)(void *))
 	char		*tmp;
 
 	*ans = NEW_ARRAY(char);
-	fta_reserve(self->size * 3 + 10);
+	fta_reserve(self, self->size * 3 + 10);
 	TMP_STRING_APPEND(ans, "[|");
 	iterator = ARRAY_START(self);
 	tmp = f(iterator);
 	TMP_STRING_APPEND(ans, tmp);
-	while (HAS_NEXT(self, iterator))
+	while (ARRAY_HASNEXT(self, iterator))
 	{
 		TMP_STRING_APPEND(ans, ", ");
 		tmp = f(iterator);
 		TMP_STRING_APPEND(ans, tmp);
 	}
 	fta_append(ans, "|]", 3);
-	return ((char *)ans.data);
+	return ((char *)ans->data);
 }
 
 #undef TMP_STRING_APPEND

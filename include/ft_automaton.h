@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 12:59:29 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/25 20:47:30 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/27 16:56:40 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 
 # include "ft_array.h"
 
-typedef struct s_dfa	t_dfa;
-typedef struct s_state	t_state;
-typedef struct s_trans	t_trans;
-typedef enum e_dfa_action
-						t_dfa_action;
+typedef struct s_dfa		t_dfa;
+typedef struct s_state		t_state;
+typedef struct s_trans		t_trans;
+typedef enum e_dfa_action	t_dfa_action;
 
-enum					e_dfa_action
+enum						e_dfa_action
 {
 	DA_NONE,
 	DA_SKIP,
@@ -40,7 +39,7 @@ enum					e_dfa_action
 ** At least supposed to be definite...
 */
 
-struct					s_dfa
+struct						s_dfa
 {
 	t_array		states[1];
 	t_is		*in;
@@ -57,7 +56,7 @@ struct					s_dfa
 ** };
 */
 
-struct					s_trans
+struct						s_trans
 {
 	char		c;
 	uint8_t		state;
@@ -72,12 +71,12 @@ struct					s_trans
 
 # define NEW_TRANS(C,S) (t_trans){C, S, {0, 0}}
 
-t_dfa					dfa_new(t_is *in, uint8_t size);
+t_dfa						dfa_new(t_is *in, uint8_t size);
 
 # define STATE_GET(A,S) ARRAY_GETT(t_array, (A)->states, S)
 
 # define TRANS_ADD(A,S,T) fta_append(STATE_GET(A, S), T, 1)
 
-int						dfa_new_state();
+int							dfa_new_state();
 
 #endif

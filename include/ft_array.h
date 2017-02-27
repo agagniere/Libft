@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/27 16:20:45 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/27 19:05:15 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -410,6 +410,19 @@ void			fta_iteri2(const t_array *self, void (*f)(), void *a, void *b);
 */
 
 # define ARRAY_HASNEXT(A,IT) (ARRAY_NEXT(A,IT) < ARRAY_END(A))
+
+/*
+** Array::string
+** -
+** toString
+** description
+** -
+** _f_ converts an element to a string.
+** -
+** Returns a string representing the given array.
+*/
+
+char			*fta_string(t_array *self, char *(*f)(void *));
 
 /*
 ** |		----------===== private: =====----------

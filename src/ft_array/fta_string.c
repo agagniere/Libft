@@ -6,9 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 18:09:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/18 20:39:18 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/02/27 19:04:47 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#define TMP_STRING_APPEND(A,S) fta_append(A, S, ft_strlen(S))
 
 /*
 ** Array::string
@@ -20,8 +22,6 @@
 ** -
 ** Returns a string representing the given array.
 */
-
-#define TMP_STRING_APPEND(A,S) fta_append(A, S, ft_strlen(S))
 
 char	*fta_string(t_array *self, char *(*f)(void *))
 {
@@ -41,7 +41,7 @@ char	*fta_string(t_array *self, char *(*f)(void *))
 		tmp = f(iterator);
 		TMP_STRING_APPEND(ans, tmp);
 	}
-	fta_append(ans, "|]", 2);
+	fta_append(ans, "|]", 3);
 	return ((char *)ans.data);
 }
 

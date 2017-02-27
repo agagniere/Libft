@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2017/02/27 16:53:37 by angagnie         ###   ########.fr        #
+#    Updated: 2017/02/27 19:02:14 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,7 +21,7 @@ CTYPE:=ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit \
 VECTORPATH:=ft_array/
 VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
 	fta_clear fta_clearf fta_popback fta_iter fta_iteri fta_popindex \
-	fta_swap fta_overwrite
+	fta_swap fta_overwrite fta_string
 
 STREAMPATH:=ft_stream/
 STREAM:=
@@ -137,7 +137,7 @@ test:
 
 norm:
 	@echo $(RED)
-	@norminette $(SRC) $(HDRPATH) | grep -v  Norme -B1 || true
+	@norminette $(SRC) $(HDRPATH) | grep -v Norme -B1 || true
 	@echo $(END)
 
 .PHONY: all clean fclean re test norme

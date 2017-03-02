@@ -6,33 +6,43 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 12:59:29 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/27 16:56:40 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/02 18:27:48 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_AUTOMATON_H
 # define FT_AUTOMATON_H
 
-# include "ft_array.h"
+# include "ft_string.h"
 
 typedef struct s_dfa		t_dfa;
 typedef struct s_state		t_state;
 typedef struct s_trans		t_trans;
-typedef enum e_dfa_action	t_dfa_action;
+typedef struct s_sstr		t_sstr;
+typedef struct s_meta		t_meta;
 
-enum						e_dfa_action
+/*
+** |	----------===== SuperString =====----------
+*/
+
+struct						s_sstr
 {
-	DA_NONE,
-	DA_SKIP,
-	DA_NEXT
+	t_string	str;
+	t_array		meta;
+};
+
+struct						s_meta
+{
+	t_sh_sates		state;
+	size_t			len;
 };
 
 /*
 ** /---------------------------------\
-** |     DefiniteFiniteAutomaton     |
+** |	DefiniteFiniteAutomaton	|
 ** |---------------------------------|
 ** | Array<Array<Transition>> states |
-** | InputStream                  in |
+** | InputStream					in |
 ** |---------------------------------|
 ** \---------------------------------/
 **
@@ -42,7 +52,7 @@ enum						e_dfa_action
 struct						s_dfa
 {
 	t_array		states[1];
-	t_is		*in;
+	t_string	*in;
 };
 
 /*
@@ -51,16 +61,27 @@ struct						s_dfa
 **
 ** struct					s_state
 ** {
-** size_t			id;
+** size_t			id; ????????
 ** t_array		transitions;
 ** };
 */
 
+/*
+** /----------------------\
+** |		Transition		|
+** |----------------------|
+** | char		trigger |
+** | Sate			target |
+** | Function	sideEffect |
+** |----------------------|
+** \----------------------/
+*/
+
 struct						s_trans
 {
-	char		c;
+	char		trigger;
 	uint8_t		state;
-	dfa_action	action[1];
+	int			(*f)(char c, uint8_t s, size_t *i);
 };
 
 /*
@@ -69,9 +90,9 @@ struct						s_trans
 
 # define NEW_DFA(IS) (t_dfa){NEW_ARRAY(t_array), IS}
 
-# define NEW_TRANS(C,S) (t_trans){C, S, {0, 0}}
+# define NEW_TRANS(C,S,F) (t_trans){C, S, F}
 
-t_dfa						dfa_new(t_is *in, uint8_t size);
+t_dfa						dfa_new(t_string *in, uint8_t size);
 
 # define STATE_GET(A,S) ARRAY_GETT(t_array, (A)->states, S)
 

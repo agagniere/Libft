@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 12:59:29 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/02 18:27:48 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/03 12:28:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,17 @@ typedef struct s_state		t_state;
 typedef struct s_trans		t_trans;
 typedef struct s_sstr		t_sstr;
 typedef struct s_meta		t_meta;
+typedef struct s_tdata		t_tdata;
 
 /*
-** |	----------===== SuperString =====----------
+** /-----------------------\
+** |      SuperString      |
+** |-----------------------|
+** | String            str |
+** | Array<Meta>      meta |
+** |-----------------------|
+** | int               add |
+** \-----------------------/
 */
 
 struct						s_sstr
@@ -39,10 +47,10 @@ struct						s_meta
 
 /*
 ** /---------------------------------\
-** |	DefiniteFiniteAutomaton	|
+** |	DefiniteFiniteAutomaton	     |
 ** |---------------------------------|
 ** | Array<Array<Transition>> states |
-** | InputStream					in |
+** | InputStream                  in |
 ** |---------------------------------|
 ** \---------------------------------/
 **
@@ -61,27 +69,32 @@ struct						s_dfa
 **
 ** struct					s_state
 ** {
-** size_t			id; ????????
-** t_array		transitions;
+**   size_t			id;
+**   t_array		transitions;
 ** };
 */
 
 /*
-** /----------------------\
-** |		Transition		|
-** |----------------------|
-** | char		trigger |
-** | Sate			target |
-** | Function	sideEffect |
-** |----------------------|
-** \----------------------/
+** /--------------------------\
+** |        Transition        |
+** |--------------------------|
+** | char             trigger |
+** | Sate              target |
+** | Function      sideEffect |
+** |--------------------------|
+** \--------------------------/
 */
 
 struct						s_trans
 {
 	char		trigger;
 	uint8_t		state;
-	int			(*f)(char c, uint8_t s, size_t *i);
+	int			(*f)(t_tdata *w);
+};
+
+struct						s_tdata
+{
+
 };
 
 /*

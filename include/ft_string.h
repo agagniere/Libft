@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 16:49:33 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/04 20:09:02 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ struct					s_substr
 ** Appends a char* at the end of the given String.
 */
 
-# define STR_JOIN_CS(S,CS,L) (fta_append(S, CS, L) || (FTSZ(S)))
+# define STR_JOIN_CS(S,CS,L) (fta_append(S, CS, L)
 
 /*
 ** String::join(SubString)
@@ -85,7 +85,7 @@ struct					s_substr
 ** _I_ the index where the data is to be inserted.
 */
 
-# define STR_INSERT_CS(S,CS,L,I) (fta_insert(S, (void *)CS, L, I) || (FTSZ(S)))
+# define STR_INSERT_CS(S,CS,L,I) (fta_insert(S, (void *)CS, L, I)
 
 /*
 ** String::get
@@ -102,6 +102,10 @@ struct					s_substr
 */
 
 # define STR_GETCHAR(STR,I) (*ARRAY_GETT(char, STR, I))
+
+# define STR_GET_CS(STR) (FTSZ(STR) ||0 (char *)(STR)->data)
+
+# define STR_NULL_TERMINATE(STR) (FTSZ(STR))
 
 /*
 ** |		----------===== private: =====----------

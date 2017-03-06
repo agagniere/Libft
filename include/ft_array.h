@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/27 19:05:15 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/06 20:08:40 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,14 @@ int				fta_popindexf(
 */
 
 int				fta_overwrite(t_array *self, const t_array *other);
+
+/*
+** "echo $USER is cool"
+** "     |   \----\"
+** "echo john_smith is cool"
+*/
+
+int				fta_replace(t_array *self, size_t index, size_t len, t_array *new);
 
 /*
 ** Array::pop_front

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/07 16:53:02 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/07 16:55:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ struct					s_substr
 ** Appends a char* at the end of the given String.
 */
 
-# define STR_JOIN_CS(S,CS,L) (fta_append(S, CS, L)
+# define STR_JOIN_CS(S,CS,L) (fta_append(S, CS, L))
 
 /*
 ** String::join(SubString)

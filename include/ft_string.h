@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/04 20:09:02 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/07 16:53:02 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ struct					s_substr
 ** _I_ the index where the data is to be inserted.
 */
 
-# define STR_INSERT_CS(S,CS,L,I) (fta_insert(S, (void *)CS, L, I)
+# define STR_INSERT_CS(S,CS,L,I) (fta_insert(S, (void *)CS, L, I))
 
 /*
 ** String::get
@@ -103,9 +103,15 @@ struct					s_substr
 
 # define STR_GETCHAR(STR,I) (*ARRAY_GETT(char, STR, I))
 
-# define STR_GET_CS(STR) (FTSZ(STR) ||0 (char *)(STR)->data)
+/*
+** String::nullTerminate
+** to be compatible with regular string functions,
+** this ensures the string has a '\0' signaling its end
+** However size will not be affected.
+** the post-condition is 'strlen(STR->data) = STR->size'
+*/
 
-# define STR_NULL_TERMINATE(STR) (FTSZ(STR))
+# define STR_NULL_TERMINATE(STR) (fta_reserve(STR, 1) || FTSZ(STR))
 
 /*
 ** |		----------===== private: =====----------

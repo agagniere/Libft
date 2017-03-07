@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 12:59:29 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/03 12:28:17 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/07 15:13:24 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,16 @@ typedef struct s_state		t_state;
 typedef struct s_trans		t_trans;
 typedef struct s_sstr		t_sstr;
 typedef struct s_meta		t_meta;
-typedef struct s_tdata		t_tdata;
+typedef enum s_dfa_action	t_dfa_action;
+
+enum						e_dfa_action
+{
+	DFAA_NONE,
+	DFAA_SKIP,
+	DFAA_NEXT,
+	DFAA_ASNEXT,
+	DFAA_PUSH
+}
 
 /*
 ** /-----------------------\
@@ -39,10 +48,15 @@ struct						s_sstr
 	t_array		meta;
 };
 
+/*
+** Not yet sure about storing index
+*/
+
 struct						s_meta
 {
-	t_sh_sates		state;
+	size_t			index;
 	size_t			len;
+	t_sh_sates		state;
 };
 
 /*
@@ -51,6 +65,8 @@ struct						s_meta
 ** |---------------------------------|
 ** | Array<Array<Transition>> states |
 ** | InputStream                  in |
+** | State                   initial |
+** | SuperString                 out |
 ** |---------------------------------|
 ** \---------------------------------/
 **
@@ -61,6 +77,8 @@ struct						s_dfa
 {
 	t_array		states[1];
 	t_string	*in;
+	t_sstr		*out;
+	uint8_t		initial;
 };
 
 /*
@@ -87,15 +105,11 @@ struct						s_dfa
 
 struct						s_trans
 {
-	char		trigger;
-	uint8_t		state;
-	int			(*f)(t_tdata *w);
+	char			trigger;
+	uint8_t			state;
+	t_dfa_action	action;
 };
 
-struct						s_tdata
-{
-
-};
 
 /*
 ** |	----------===== public: =====----------

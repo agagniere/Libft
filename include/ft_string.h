@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/07 16:55:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/07 19:08:09 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ struct					s_substr
 */
 
 # define STR_NULL_TERMINATE(STR) (fta_reserve(STR, 1) || FTSZ(STR))
+
+# define STR_CLEAN_REST(STR) ft_bzero(ARRAY_END(S), (S)->max - (S)->size)
 
 /*
 ** |		----------===== private: =====----------

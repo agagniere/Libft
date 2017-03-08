@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:48:26 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/22 21:07:57 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/08 18:59:57 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,28 @@
 
 typedef struct s_tree	t_tree;
 typedef struct s_tnode	t_tnode;
+typedef struct s_leaf	t_leaf;
 typedef enum e_tr		t_tr;
 
 /*
 ** |		----------=====  Tree<N,L>  =====----------
 */
 
+struct					s_leaf
+{
+	uint8_t		type;
+};
+
 struct					s_tnode
 {
+	uint8_t		type;
 	t_tnode		*left;
 	t_tnode		*right;
-	char		is_node;
 };
 
 struct					s_tree
 {
-	size_t		node_size;
-	size_t		leaf_size;
+	size_t		type_size;
 	size_t		count;
 	t_tnode		*root;
 	t_tr		(*push)(t_tnode **, t_tnode *);
@@ -56,8 +61,7 @@ enum					e_tr
 /*
 ** Tree::new
 ** -
-** Creates a new tree whose nodes are of type _A_ and leaves of type _B_.
-** _A_ and _B_ can be the same type.
+** Creates a new tree whose element are of type T.
 ** -
 ** _A_ is the type of the nodes.
 ** _B_ is the type of the leaves.
@@ -65,7 +69,7 @@ enum					e_tr
 ** and take action accordingly.
 */
 
-# define NEW_TREE(A,B,F) (t_tree){sizeof(A), sizeof(B), 0, NULL, F}
+# define NEW_TREE(T,F) (t_tree){sizeof(T), 0, NULL, F}
 
 /*
 ** Node::new

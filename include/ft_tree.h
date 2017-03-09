@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:48:26 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/08 18:59:57 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:25:20 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 # define FT_TREE_H
 
 # include <stddef.h>
+# include <stdint.h>
 
 typedef struct s_tree	t_tree;
 typedef struct s_tnode	t_tnode;
-typedef struct s_leaf	t_leaf;
 typedef enum e_tr		t_tr;
 
 /*
-** |		----------=====  Tree<N,L>  =====----------
+** |		----------=====  Tree<N>  =====----------
+** -
+** /-----------------------\
+** | Tree<N extends Node>  |
+** |-----------------------|
+** | uint            count |
+** | N*               root |
+** |-----------------------|
+** | tr       push(N**,N*) |
+** \-----------------------/
 */
-
-struct					s_leaf
-{
-	uint8_t		type;
-};
-
-struct					s_tnode
-{
-	uint8_t		type;
-	t_tnode		*left;
-	t_tnode		*right;
-};
 
 struct					s_tree
 {
@@ -42,6 +39,22 @@ struct					s_tree
 	size_t		count;
 	t_tnode		*root;
 	t_tr		(*push)(t_tnode **, t_tnode *);
+};
+
+/*
+** /------------------------\
+** |          Node          |
+** |------------------------|
+** | N*                left |
+** | N*               right |
+** \------------------------/
+*/
+
+struct					s_tnode
+{
+	uint8_t		type;
+	t_tnode		*left;
+	t_tnode		*right;
 };
 
 enum					e_tr
@@ -63,8 +76,7 @@ enum					e_tr
 ** -
 ** Creates a new tree whose element are of type T.
 ** -
-** _A_ is the type of the nodes.
-** _B_ is the type of the leaves.
+** _T_ is the type of the nodes.
 ** _F_ is a function that knows how to properly handle nodes, to compare them
 ** and take action accordingly.
 */
@@ -77,7 +89,7 @@ enum					e_tr
 ** "protected" : not useful outisde the construction of the concrete types.
 */
 
-# define NEW_NODE(IS_NODE) (t_tnode){NULL, NULL, IS_NODE}
+# define NEW_NODE(TYPE) (t_tnode){TYPE, NULL, NULL}
 
 /*
 ** Tree::push
@@ -91,11 +103,23 @@ enum					e_tr
 int						ftt_push(t_tree *self, t_tnode *new);
 
 /*
+** Node::isLeaf
+** -
+** tells if the given node is a leaf.
+** As the node's type is supposed to be a variant,
+** there can be multiple subtypes that are leaves,
+** and multiple subtypes that are nodes.
+** So a node is a leaf _iff_ its most significant bit is on.
+*/
+
+# define NODE_ISLEAF(N) (((t_tnode *)(N))->type & (1 << 7))
+
+/*
 ** |		----------===== private: =====----------
 */
 
 /*
-** nodePush
+** Node::push
 ** -
 ** Handles the recursion and node counting.
 */

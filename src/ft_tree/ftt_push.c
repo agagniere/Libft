@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:55:40 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/22 21:09:43 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/09 13:47:21 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 ** It is safe to reuse and push the same node multiple times.
 ** -
 ** _new_ is a node to be added to the tree.
+**
 */
 
 int		ftt_push(t_tree *self, t_tnode *new)
 {
 	t_tnode	*tmp;
 
-	if (!(tmp = ft_memdup((void *)new,
-		new->is_node ? self->node_size : self->leaf_size)))
+	if (!(tmp = ft_memdup((void *)new, self->type_size)))
 		return (1);
 	return (tnode_push(self, &self->root, tmp));
 }

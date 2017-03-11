@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 18:06:00 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/22 20:16:02 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/11 00:56:51 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ t_substr	sis_read(t_is *self)
 {
 	t_sis *const		this = (t_sis *)self;
 
-	return ();
+	return ((t_substr){});
 }

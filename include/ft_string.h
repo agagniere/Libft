@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/07 19:08:09 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/11 02:11:28 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,23 @@ struct					s_substr
 
 /*
 ** String::nullTerminate
+** -
 ** to be compatible with regular string functions,
 ** this ensures the string has a '\0' signaling its end
 ** However size will not be affected.
-** the post-condition is 'strlen(STR->data) = STR->size'
+** the post-condition is 'strlen(STR->data) <= STR->size'
 */
 
 # define STR_NULL_TERMINATE(STR) (fta_reserve(STR, 1) || FTSZ(STR))
+
+/*
+** String::cleanRest
+** -
+** sets the rest of the currently allocated array to 0.
+** So if only appends are performed, there's no need to call FTSZ.
+** However if max = size the string isn't null-terminated, hence
+** the nullTerminate function.
+*/
 
 # define STR_CLEAN_REST(STR) ft_bzero(ARRAY_END(S), (S)->max - (S)->size)
 

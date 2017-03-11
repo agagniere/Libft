@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/22 14:44:44 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/11 16:47:41 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,46 @@ typedef struct s_sis	t_sis;
 
 /*
 ** Input Stream
+** -
+** Expected behavior :
+** > one calls refresh
+** > if it returns 1, buff points to a string of len buff_len
+** -
+** /-------------------\
+** |    InputStream    |
+** |-------------------|
+** | char*        buff |
+** | uint     buff_len |
+** | uint       buff_i |
+** |-------------------|
+** | bool      refresh |
+** \-------------------/
 */
 
 struct					s_is
 {
-	t_substr	(*read)(t_is *self, size_t n);
+	char const	*buff;
+	int			(*refresh)(t_is *self);
+	size_t		buff_i;
+	size_t		buff_len;
 };
 
 /*
 ** File Input Stream
+** -
+** /----------------------------------------\
+** | FileInputStream implements InputStream |
+** |----------------------------------------|
+** |----------------------------------------|
+** \----------------------------------------/
 */
 
 struct					s_fis
 {
 	t_is		super;
 	int			fd;
-	t_string	buff;
+	int			opened;
+	size_t		buff_size;
 };
 
 /*
@@ -51,18 +75,22 @@ struct					s_fis
 struct					s_sis
 {
 	t_is		super;
-	size_t		i;
-	t_string	*in;
+	t_string	*ptr;
 };
 
 /*
-** InputStream constructors
+** Constructors
 */
 
-# define NEW_IS(F) (t_is){F}
-# define NEW_FIS() (t_fis){{&fis_read}, -1, NEW_STRING}
-# define NEW_FIS_O(S) (t_fis){{&fis_read}, open(S, O_RDONLY), NEW_STRING}
-# define NEW_SIS(S) (t_sis){{&sis_read}, 0, S}
+# define NEW_IS(F) (t_is){NULL,F,0,0}
+# define NEW__IS(B,S,F) (t_is){B,F,0,S}
+
+
+# define NEW_SIS(S) (t_sis){NEW_IS(&sis_refresh), S}
+# define NEW__SIS(S) (t_sis){NEW__IS(ARRAY_GETT(char const, S, 0),(S)->size,&sis_refresh), S}
+
+# define NEW_FIS(S) (t_fis){NEW_IS(%), -1, NEW_STRING}
+# define NEW_FIS_O(S) (t_fis){NEW__IS(), open(S, O_RDONLY), NEW_STRING}
 
 /*
 ** Tools
@@ -71,6 +99,33 @@ struct					s_sis
 # define FIS_OPEN(A,S) ((A)->fd = open(S, O_RDONLY))
 # define FIS_CLOSE(A) (close((A)->fd))
 
-# define IS_READ(IS,N) (((t_is *)(IS))->read((t_is *)(IS), N))
+# define IS_REFRESH(IS) (((t_is *)(IS))->refresh((t_is *)IS))
+
+/*
+** |	----------===== private: =====----------
+*/
+
+/*
+** Size of a buffer
+*/
+
+# define FIS_BUFF_SIZE 512
+
+/*
+** StringInputStream::refresh
+** -
+** returns FALSE if the string has been read entirely.
+*/
+
+int						sis_refresh(t_is *self);
+
+/*
+** FileInputStream::_getBuffer
+** -
+** the buffer may be modified internaly.
+** However the buffer is constant publicly.
+*/
+
+# define FIS_BUFFER(SIS) ((char *)((t_is *)SIS)->buff)
 
 #endif

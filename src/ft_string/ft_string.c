@@ -1,12 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dfa_add.c                                          :+:      :+:    :+:   */
+/*   ft_string.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/25 14:11:00 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/25 14:14:31 by angagnie         ###   ########.fr       */
+/*   Created: 2017/03/11 02:55:15 by angagnie          #+#    #+#             */
+/*   Updated: 2017/03/11 02:59:32 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string.h"
+
+/*
+** String::toChar*
+** -
+** Handy function to use a String as a char*
+*/
+
+char	*ft_string(t_string *str)
+{
+	STR_NULL_TERMINATE(str);
+	return (str->data);
+}

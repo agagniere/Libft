@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 12:59:29 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/07 15:13:24 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/11 03:04:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,6 @@ t_dfa						dfa_new(t_string *in, uint8_t size);
 
 # define TRANS_ADD(A,S,T) fta_append(STATE_GET(A, S), T, 1)
 
-int							dfa_new_state();
+int							dfa_new_state(void);
 
 #endif

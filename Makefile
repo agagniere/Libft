@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2017/03/06 20:08:49 by angagnie         ###   ########.fr        #
+#    Updated: 2017/03/11 03:00:55 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,10 +24,10 @@ VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
 	fta_swap fta_overwrite fta_string fta_replace
 
 STREAMPATH:=ft_stream/
-STREAM:=
+STREAM:=is_refresh
 
 STRPATH:=ft_string/
-STR:=
+STR:=ft_string
 
 STRLPATH:=ft_string_legacy/
 STRL:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
@@ -41,8 +41,8 @@ LST:=ftl_new ftl_add ftl_pop ftl_del
 TREEPATH:=ft_tree/
 TREE:=ftt_push
 
-AUTOMPATH:=ft_automaton/
-AUTOM:=
+#AUTOMPATH:=ft_automaton/
+#AUTOM:=
 
 #MATHPATH:=ft_math/
 #MATH:=
@@ -82,7 +82,7 @@ FILES+=$(addprefix $(STRPATH),$(STR))
 FILES+=$(addprefix $(STREAMPATH),$(STREAM))
 FILES+=$(addprefix $(LSTPATH),$(LST))
 FILES+=$(addprefix $(TREEPATH),$(TREE))
-FILES+=$(addprefix $(AUTOMPATH),$(AUTOM))
+#FILES+=$(addprefix $(AUTOMPATH),$(AUTOM))
 #FILES+=$(addprefix $(MATHPATH),$(MATH))
 #FILES+=$(addprefix $(PRINTFPATH),$(PRINTF))
 
@@ -117,7 +117,7 @@ $(CCHF):
 	@mkdir $(CCHPATH)$(STREAMPATH)
 	@mkdir $(CCHPATH)$(LSTPATH)
 	@mkdir $(CCHPATH)$(TREEPATH)
-	@mkdir $(CCHPATH)$(AUTOMPATH)
+#	@mkdir $(CCHPATH)$(AUTOMPATH)
 #	@mkdir $(CCHPATH)$(MATHPATH)
 #	@mkdir $(CCHPATH)$(PRINTFPATH)
 	@touch $(CCHF)

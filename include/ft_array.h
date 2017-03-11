@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/06 20:08:40 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/11 03:03:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,8 @@ int				fta_overwrite(t_array *self, const t_array *other);
 ** "echo john_smith is cool"
 */
 
-int				fta_replace(t_array *self, size_t index, size_t len, t_array *new);
+int				fta_replace(
+	t_array *self, size_t index, size_t len, t_array *new);
 
 /*
 ** Array::pop_front
@@ -289,7 +290,7 @@ int				fta_replace(t_array *self, size_t index, size_t len, t_array *new);
 /*
 ** Array::get
 ** -
-** Returns the address of the i-nth element of the array
+** Returns the address of the element of the array of index _I_
 ** Just be sure that such an element exists
 */
 
@@ -325,6 +326,14 @@ int				fta_replace(t_array *self, size_t index, size_t len, t_array *new);
 */
 
 # define ARRAY_GETTS(T,A,I) ((T*)ARRAY_GETS(A,I))
+
+/*
+** Array::get_element
+** -
+** returns the element of index _I_
+*/
+
+# define ARRAY_GETL(T,A,I) (*ARRAY_GETT(T,A,I));
 
 /*
 ** Array::index_from_pointer

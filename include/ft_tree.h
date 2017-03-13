@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:48:26 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/11 12:01:42 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/13 17:12:14 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ enum					e_tr
 # define NEW_TREE(T,F) (t_tree){sizeof(T), 0, NULL, F}
 
 /*
-** Node::new
+** TreeNode::new
 ** -
 ** "protected" : not useful outisde the construction of the concrete types.
 */
@@ -103,7 +103,7 @@ enum					e_tr
 int						ftt_push(t_tree *self, t_tnode *new);
 
 /*
-** Node::isLeaf
+** TreeNode::isLeaf
 ** -
 ** tells if the given node is a leaf.
 ** As the node's type is supposed to be a variant,
@@ -112,14 +112,22 @@ int						ftt_push(t_tree *self, t_tnode *new);
 ** So a node is a leaf _iff_ its most significant bit is on.
 */
 
-# define NODE_ISLEAF(N) (((t_tnode *)(N))->type & (1 << 7))
+# define NODE_ISLEAF(N) (NODE_TYPE(N) & (1 << 7))
+
+/*
+** TreeNode::getType
+** -
+** Allows to get the type of a tree node
+*/
+
+# define NODE_TYPE(N) (((t_node *)N)->type)
 
 /*
 ** |		----------===== private: =====----------
 */
 
 /*
-** Node::push
+** TreeNode::push
 ** -
 ** Handles the recursion and node counting.
 */

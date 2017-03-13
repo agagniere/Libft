@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/11 02:11:28 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/13 17:41:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ struct					s_substr
 */
 
 # define NEW_STRING NEW_ARRAY(char)
+
+/*
+** String::toChar*
+** -
+** Handy function to use a String as a char*
+*/
+
+char		*ft_string(t_string *str)
 
 /*
 ** String::join(char*)

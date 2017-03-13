@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 01:32:05 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/11 16:47:25 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/13 21:16:27 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int		fis_refresh(t_is *self)
 {
 	t_fis *const	this = (t_fis *)self;
 
-
+	return (1);
 }

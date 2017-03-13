@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/11 03:03:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/13 21:13:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,9 +259,19 @@ int				fta_popindexf(
 int				fta_overwrite(t_array *self, const t_array *other);
 
 /*
+** Array::replace
+** -
+** replace a part of _self_ by _new_
+** -
+**       |---| <-len
 ** "echo $USER is cool"
-** "     |   \----\"
+**       |   \----\
 ** "echo john_smith is cool"
+**       ^index
+** -
+** Returns a status
+** 1 in case of failure (malloc)
+** 0 otherwise.
 */
 
 int				fta_replace(

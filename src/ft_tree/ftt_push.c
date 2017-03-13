@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:55:40 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/09 13:47:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/13 21:16:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ftt_push(t_tree *self, t_tnode *new)
 {
 	t_tnode	*tmp;
 
-	if (!(tmp = ft_memdup((void *)new, self->type_size)))
+	if (!(tmp = ft_memdup((void *)new, new->size)))
 		return (1);
 	return (tnode_push(self, &self->root, tmp));
 }

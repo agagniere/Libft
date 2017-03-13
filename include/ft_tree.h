@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:48:26 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/13 17:12:14 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/13 18:06:24 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef enum e_tr		t_tr;
 
 struct					s_tree
 {
-	size_t		type_size;
 	size_t		count;
 	t_tnode		*root;
 	t_tr		(*push)(t_tnode **, t_tnode *);
@@ -48,11 +47,15 @@ struct					s_tree
 ** | N*                left |
 ** | N*               right |
 ** \------------------------/
+** -
+** As each node may have a different
+** type, they each have a size.
 */
 
 struct					s_tnode
 {
-	uint8_t		type;
+	uint8_t		label;
+	size_t		size;
 	t_tnode		*left;
 	t_tnode		*right;
 };
@@ -81,7 +84,7 @@ enum					e_tr
 ** and take action accordingly.
 */
 
-# define NEW_TREE(T,F) (t_tree){sizeof(T), 0, NULL, F}
+# define NEW_TREE(F) (t_tree){0, NULL, F}
 
 /*
 ** TreeNode::new
@@ -89,7 +92,7 @@ enum					e_tr
 ** "protected" : not useful outisde the construction of the concrete types.
 */
 
-# define NEW_NODE(TYPE) (t_tnode){TYPE, NULL, NULL}
+# define NEW_NODE(T,LABEL) (t_tnode){LABEL, sizeof(T), NULL, NULL}
 
 /*
 ** Tree::push
@@ -106,21 +109,21 @@ int						ftt_push(t_tree *self, t_tnode *new);
 ** TreeNode::isLeaf
 ** -
 ** tells if the given node is a leaf.
-** As the node's type is supposed to be a variant,
-** there can be multiple subtypes that are leaves,
-** and multiple subtypes that are nodes.
-** So a node is a leaf _iff_ its most significant bit is on.
+** There can be multiple element types that are leaves,
+** and multiple element types that are nodes.
+** -
+** `A node is a leaf _iff_ its most significant bit is on`
 */
 
-# define NODE_ISLEAF(N) (NODE_TYPE(N) & (1 << 7))
+# define NODE_ISLEAF(N) (NODE_LABEL(N) & (1 << 7))
 
 /*
-** TreeNode::getType
+** TreeNode::getLabel
 ** -
-** Allows to get the type of a tree node
+** Allows to get the label of a tree node
 */
 
-# define NODE_TYPE(N) (((t_node *)N)->type)
+# define NODE_LABEL(N) (((t_node *)N)->label)
 
 /*
 ** |		----------===== private: =====----------

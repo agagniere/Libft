@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/13 17:41:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/13 21:15:12 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ struct					s_substr
 ** Handy function to use a String as a char*
 */
 
-char		*ft_string(t_string *str)
+char		*ft_string(t_string *str);
 
 /*
 ** String::join(char*)

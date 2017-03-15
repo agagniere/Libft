@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:48:26 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/13 18:06:24 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/15 11:41:21 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef enum e_tr		t_tr;
 
 struct					s_tree
 {
+	size_t		type_size;
 	size_t		count;
 	t_tnode		*root;
 	t_tr		(*push)(t_tnode **, t_tnode *);
@@ -47,15 +48,11 @@ struct					s_tree
 ** | N*                left |
 ** | N*               right |
 ** \------------------------/
-** -
-** As each node may have a different
-** type, they each have a size.
 */
 
 struct					s_tnode
 {
 	uint8_t		label;
-	size_t		size;
 	t_tnode		*left;
 	t_tnode		*right;
 };
@@ -84,7 +81,7 @@ enum					e_tr
 ** and take action accordingly.
 */
 
-# define NEW_TREE(F) (t_tree){0, NULL, F}
+# define NEW_TREE(T, F) (t_tree){sizeof(T), 0, NULL, F}
 
 /*
 ** TreeNode::new
@@ -92,7 +89,7 @@ enum					e_tr
 ** "protected" : not useful outisde the construction of the concrete types.
 */
 
-# define NEW_NODE(T,LABEL) (t_tnode){LABEL, sizeof(T), NULL, NULL}
+# define NEW_NODE(LABEL) (t_tnode){LABEL, NULL, NULL}
 
 /*
 ** Tree::push

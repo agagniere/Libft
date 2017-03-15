@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/09 15:25:55 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/14 07:57:04 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ void	*ft_safe_calloc(size_t count, size_t size);
 # define ABS(V) ((V) < 0 ? -(V) : (V))
 # define MIN(A,B) ((A) < (B) ? (A) : (B))
 
+# define _MAX(A,B) ((A) > (B) ? (A) : (B))
+# define MAX(N,A,B,...) (N < 3 ? _MAX(A, B) : MAX(N - 1, _MAX(A, B), PPP))
+
+# define PPP __VA_ARGS__
 # define TWICE(A) (A),(A)
 # define THRICE(A) (A),(A),(A)
 

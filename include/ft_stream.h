@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/11 16:47:41 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/15 10:15:15 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ struct					s_fis
 	t_is		super;
 	int			fd;
 	int			opened;
-	size_t		buff_size;
 };
 
 /*
@@ -87,10 +86,11 @@ struct					s_sis
 
 
 # define NEW_SIS(S) (t_sis){NEW_IS(&sis_refresh), S}
-# define NEW__SIS(S) (t_sis){NEW__IS(ARRAY_GETT(char const, S, 0),(S)->size,&sis_refresh), S}
+# define NEW__SIS(S) (t_sis){NEW__IS(ARRAY_GETT(char const, S, 0),	\
+									 (S)->size,&sis_refresh), S}
 
-# define NEW_FIS(S) (t_fis){NEW_IS(%), -1, NEW_STRING}
-# define NEW_FIS_O(S) (t_fis){NEW__IS(), open(S, O_RDONLY), NEW_STRING}
+# define NEW_FIS() (t_fis){NEW_IS(&fis_refresh), -1, 0}
+# define NEW__FIS(S) (t_fis){NEW_IS(&fis_refresh), open(S, O_RDONLY), 1}
 
 /*
 ** Tools

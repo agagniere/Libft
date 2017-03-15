@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 05:43:19 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/19 14:35:44 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/15 13:52:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ typedef struct s_tokenizer	t_tokenizer;
 
 struct						s_tokenizer
 {
-	t_is	in;
-	t_token	current;
+	t_is		in;
+	t_substr	current;
+	uint8_t		tag;
+	int			eof;
 };
 
 #endif

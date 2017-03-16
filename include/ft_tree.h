@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:48:26 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/15 11:41:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/16 11:55:20 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int						ftt_push(t_tree *self, t_tnode *new);
 ** Allows to get the label of a tree node
 */
 
-# define NODE_LABEL(N) (((t_node *)N)->label)
+# define NODE_LABEL(N) (((t_tnode *)N)->label)
 
 /*
 ** |		----------===== private: =====----------

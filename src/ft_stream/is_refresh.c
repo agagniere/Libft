@@ -6,11 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 01:32:05 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/15 10:06:08 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/16 16:53:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stream.h"
+#include <stdlib.h>
 
 /*
 ** StringInputStream::refresh
@@ -34,8 +35,8 @@ int		fis_refresh(t_is *self)
 	t_fis *const	this = (t_fis *)self;
 
 	if (!self->buff
-		&& !(FIS_BUFFER(self) = malloc(FIS_BUFF_SIZE * sizeof(char))))
+		&& !(self->buff = (char const *)malloc(FIS_BUFF_SIZE * sizeof(char))))
 		return (0);
-	self->buff_len = read(fd, FIS_BUFFER(self), FIS_BUFF_SIZE);
+	self->buff_len = read(this->fd, FIS_BUFFER(self), FIS_BUFF_SIZE);
 	return (1);
 }

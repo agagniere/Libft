@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/15 10:15:15 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/16 16:51:00 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,6 @@ int						sis_refresh(t_is *self);
 ** However the buffer is constant publicly.
 */
 
-# define FIS_BUFFER(SIS) ((char *)((t_is *)SIS)->buff)
+# define FIS_BUFFER(SIS) ((char *)(((t_is *)SIS)->buff))
 
 #endif

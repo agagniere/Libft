@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 05:43:19 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/16 16:38:26 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/17 17:23:51 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@ struct						s_tokenizer
 };
 
 # define NEW_TOKENIZER(IS) (t_tokenizer){IS, {NULL, 0}, 0, 0}
+
+# define TK_SKIP(TK, N) ((TK)->in->buff_i += N)
+
+# define TK_SHOW(TK, N) (TK)->current = NEW_SUB(IS_CURRENT((TK)->in) - N, N)
 
 #endif

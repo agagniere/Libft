@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/16 16:51:00 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/17 17:03:50 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ struct					s_sis
 # define FIS_CLOSE(A) (close((A)->fd))
 
 # define IS_REFRESH(IS) (((t_is *)(IS))->refresh((t_is *)IS))
+
+# define IS_CURRENT(IS) (((t_is *)IS)->buff + ((t_is *)IS)->buff_i)
 
 /*
 ** |	----------===== private: =====----------

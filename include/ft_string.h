@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/13 21:15:12 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/19 05:36:02 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ struct					s_substr
 ** Handy function to use a String as a char*
 */
 
-char		*ft_string(t_string *str);
+char					*ft_string(t_string *str);
 
 /*
 ** String::join(char*)
@@ -132,6 +132,14 @@ char		*ft_string(t_string *str);
 */
 
 # define STR_CLEAN_REST(STR) ft_bzero(ARRAY_END(S), (S)->max - (S)->size)
+
+/*
+** Tools for manipulating characters
+*/
+
+# define UPPER_CASE(C) (C & !(1 << 5))
+# define LOWER_CASE(C) (C | (1 << 5))
+# define TOGGLE_CASE(C) (C ^ (1 << 5))
 
 /*
 ** |		----------===== private: =====----------

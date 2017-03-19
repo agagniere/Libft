@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 16:34:51 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/20 16:45:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/19 05:25:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 int
 	fta_popindex(t_array *self, size_t index, size_t len)
 {
-	const size_t	n = MIN(len, self->size - index);
+	const size_t	n = _MIN(len, self->size - index);
 
 	if (index > self->size)
 		return (1);
@@ -58,7 +58,7 @@ int
 int
 	fta_popindexf(t_array *self, size_t index, size_t len, void (*del)(void *))
 {
-	const size_t	n = MIN(len, self->size - index);
+	const size_t	n = _MIN(len, self->size - index);
 	size_t			i;
 
 	if (index > self->size)

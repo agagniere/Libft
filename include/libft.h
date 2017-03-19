@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/14 07:57:04 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/19 05:28:03 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,39 @@ void	*ft_calloc(size_t count, size_t size);
 void	ft_exit(char const *const fnc, char const *const str);
 void	*ft_safe_calloc(size_t count, size_t size);
 
-# define ABS(V) ((V) < 0 ? -(V) : (V))
-# define MIN(A,B) ((A) < (B) ? (A) : (B))
+/*
+** Numbers manipulation tools
+*/
 
+# define ABS(V) ((V) < 0 ? -(V) : (V))
+
+# define _MIN(A,B) ((A) < (B) ? (A) : (B))
 # define _MAX(A,B) ((A) > (B) ? (A) : (B))
+# define MIN(N,A,B,...) (N < 3 ? _MIN(A, B) : MIN(N - 1, _MIN(A, B), PPP))
 # define MAX(N,A,B,...) (N < 3 ? _MAX(A, B) : MAX(N - 1, _MAX(A, B), PPP))
 
+/*
+** Miscellaneous tricks
+*/
+
 # define PPP __VA_ARGS__
+
 # define TWICE(A) (A),(A)
 # define THRICE(A) (A),(A),(A)
+
+# define FD_PUT(F,A) write(F, A, ft_strlen(A))
+# define FT_PUT(A) FD_PUT(1, A)
+
+# define TO_STR(M) #M
+
+/*
+** Asserts
+*/
+
+# ifdef DISABLE_ASSERT
+#  define ASSERT(B) (B)
+# else
+#  define ASSERT(B) (B ? 1 : FD_PUT(2, __FILE__ " @" TO_STR(__LINE__) " : " #B))
+# endif
 
 #endif

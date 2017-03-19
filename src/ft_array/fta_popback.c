@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 20:08:29 by angagnie          #+#    #+#             */
-/*   Updated: 2017/02/17 18:08:41 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/19 03:42:14 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 void	fta_popback(t_array *self, size_t len)
 {
-	self->size -= MIN(len, self->size);
+	self->size -= _MIN(len, self->size);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:55:40 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/16 16:54:20 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/19 05:41:41 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 ** It is safe to reuse and push the same node multiple times.
 ** -
 ** _new_ is a node to be added to the tree.
-**
 */
 
 int		ftt_push(t_tree *self, t_tnode *new)

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 01:32:05 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/17 17:08:10 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/19 05:45:40 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		fis_refresh(t_is *self)
 {
 	t_fis *const	this = (t_fis *)self;
 
-	if (!(self->buff || (self->buff_i = 0)
+	if (!(self->buf f || (self->buff_i = 0)
 		|| (self->buff = (char const *)malloc(FIS_BUFF_SIZE * sizeof(char)))))
 		return (0);
 	self->buff_len = read(this->fd, FIS_BUFFER(self), FIS_BUFF_SIZE);

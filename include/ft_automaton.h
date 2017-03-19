@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 12:59:29 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/11 03:04:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/19 05:31:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ enum						e_dfa_action
 	DFAA_NEXT,
 	DFAA_ASNEXT,
 	DFAA_PUSH
-}
+};
 
 /*
 ** /-----------------------\
@@ -109,7 +109,6 @@ struct						s_trans
 	uint8_t			state;
 	t_dfa_action	action;
 };
-
 
 /*
 ** |	----------===== public: =====----------

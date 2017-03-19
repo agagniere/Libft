@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 05:43:19 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/18 20:55:16 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/19 05:57:14 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ struct						s_tokenizer
 
 # define TK_ACCEPT(TK, C) (fta_append((TK)->current, &(C), 1))
 
-# define TK_EMPTY(TK) (TK)->current.size = 0
+# define TK_EMPTY(TK) ((TK)->current.size = 0)
 
 #endif

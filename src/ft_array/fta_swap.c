@@ -6,12 +6,25 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 18:06:01 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/31 18:20:30 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/21 03:57:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_array.h"
 #include "libft.h"
+
+/*
+** Array::_swap
+** -
+** swaps an array segment with what follows.
+** very specific function, not useful for standard cases.
+** -
+** "   -1415920000"
+** -swap(4, 10)->
+** "   -0000141592"
+** -swap(0, 4)->
+** "-0000141592   "
+*/
 
 void	fta_swap(t_array *self, size_t before, size_t after)
 {

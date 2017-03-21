@@ -6,12 +6,14 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 01:09:07 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/21 05:52:48 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include "private_libft.h"
 
 # include "ft_ctype.h"
 # include "ft_array.h"
@@ -75,30 +77,24 @@ void	*ft_safe_calloc(size_t count, size_t size);
 
 # define ABS(V) ((V) < 0 ? -(V) : (V))
 
-# define _MIN(A,B) ((A) < (B) ? (A) : (B))
-# define _MAX(A,B) ((A) > (B) ? (A) : (B))
-# define MIN(N,A,B,...) (N < 3 ? _MIN(A, B) : MIN(N - 1, _MIN(A, B), PPP))
-# define MAX(N,A,B,...) (N < 3 ? _MAX(A, B) : MAX(N - 1, _MAX(A, B), PPP))
+# define MIN(...) CAT(_MIN,ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
+# define MAX(...) CAT(_MAX,ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
 
 /*
 ** Miscellaneous tricks
 */
 
-# define PPP __VA_ARGS__
-
-# define TWICE(A) (A),(A)
-# define THRICE(A) (A),(A),(A)
+# define ARG_COUNT(...) _ARG_COUNT1(__VA_ARGS__)
 
 # define FD_PUT(F,A) write(F, A, ft_strlen(A))
 # define FT_PUT(A) FD_PUT(1, A)
 
-# define TO_STR(M) #M
+# define TO_STR(M) _TO_STR(M)
+# define CAT(A,B) _CAT(A,B)
 
-# define ARG_COUNT(...) _ARG_COUNT1(__VA_ARGS__)
-# define _ARG_COUNT1(...) _ARG_COUNT2(A, ##__VA_ARGS__, _ARG_COUNT4)
-# define _ARG_COUNT2(...) _ARG_COUNT3(__VA_ARGS__)
-# define _ARG_COUNT3(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,n,...) n
-# define _ARG_COUNT4 21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0
+# define TWICE(A) (A),(A)
+# define THRICE(A) (A),(A),(A)
+# define PPP __VA_ARGS__
 
 /*
 ** Asserts

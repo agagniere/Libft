@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 01:32:05 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/19 07:22:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/19 11:37:54 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		sis_refresh(t_is *self)
 
 	if (self->buff_i >= this->ptr->size)
 		return (0);
-	self->buff = this->ptr->data;
+	self->buff = (char const *)this->ptr->data;
 	self->buff_len = this->ptr->size;
 	return (1);
 }
@@ -35,7 +35,7 @@ int		fis_refresh(t_is *self)
 	t_fis *const	this = (t_fis *)self;
 
 	if (!(self->buff || (self->buff_i = 0)
-		|| (self->buff = (char const *)malloc(FIS_BUFF_SIZE * sizeof(char)))))
+		|| (self->buff = (char const *)malloc(FIS_BUFF_SIZE))))
 		return (0);
 	self->buff_len = read(this->fd, FIS_BUFFER(self), FIS_BUFF_SIZE);
 	return (1);

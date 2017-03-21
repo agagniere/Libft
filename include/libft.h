@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/19 05:28:03 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/21 01:09:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,12 @@ void	*ft_safe_calloc(size_t count, size_t size);
 # define FT_PUT(A) FD_PUT(1, A)
 
 # define TO_STR(M) #M
+
+# define ARG_COUNT(...) _ARG_COUNT1(__VA_ARGS__)
+# define _ARG_COUNT1(...) _ARG_COUNT2(A, ##__VA_ARGS__, _ARG_COUNT4)
+# define _ARG_COUNT2(...) _ARG_COUNT3(__VA_ARGS__)
+# define _ARG_COUNT3(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,n,...) n
+# define _ARG_COUNT4 21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0
 
 /*
 ** Asserts

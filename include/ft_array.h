@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 03:56:51 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:50:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,7 +343,7 @@ int				fta_replace(
 ** returns the element of index _I_
 */
 
-# define ARRAY_GETL(T,A,I) (*ARRAY_GETT(T,A,I));
+# define ARRAY_GETL(T,A,I) (*ARRAY_GETT(T,A,I))
 
 /*
 ** Array::index_from_pointer

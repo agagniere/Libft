@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/04/12 11:45:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/12 16:09:29 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,14 @@ char					*ft_string(t_string *str);
 # define UPPER_CASE(C) (C & ~(1 << 5))
 # define LOWER_CASE(C) (C | (1 << 5))
 # define TOGGLE_CASE(C) (C ^ (1 << 5))
+
+# define IS_LOWER(C) ('a' <= C && C <= 'z')
+# define IS_UPPER(C) ('A' <= C && C <= 'Z')
+# define IS_ALPHA(C) (IS_LOWER(C) || IS_UPPER(C))
+# define IS_DIGIT(C) ('0' <= C && C <= '9')
+# define IS_ALNUM(C) (IS_ALPHA(C) || IS_DIGIT(C))
+# define IS_BLANK(C) (C == ' ' || C == '\t')
+# define IS_SPACE(C) (IS_BLANK(C) || C == '\v' || C == '\r')
 
 /*
 ** |		----------===== private: =====----------

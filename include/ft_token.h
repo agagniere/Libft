@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 05:43:19 by angagnie          #+#    #+#             */
-/*   Updated: 2017/04/12 12:10:47 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/12 15:04:26 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_TOKEN_H
 
 # include "ft_stream.h"
+# include "stdint.h"
 
 typedef struct s_tokenizer	t_tokenizer;
 typedef struct s_token		t_token;

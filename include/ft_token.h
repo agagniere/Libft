@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 05:43:19 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/29 02:34:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/12 12:10:47 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ struct						s_tokenizer
 	t_token		current;
 	int			eof;
 };
+
+/*
+** Fields shouldnt be modified by the user.
+*/
 
 # define NEW_TOKENIZER(IS) (t_tokenizer){IS, NEW_TOKEN, 0}
 # define NEW_TOKEN (t_token){0, {NULL, 0}}

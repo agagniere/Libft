@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/19 05:36:02 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/12 11:45:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ char					*ft_string(t_string *str);
 ** Tools for manipulating characters
 */
 
-# define UPPER_CASE(C) (C & !(1 << 5))
+# define UPPER_CASE(C) (C & ~(1 << 5))
 # define LOWER_CASE(C) (C | (1 << 5))
 # define TOGGLE_CASE(C) (C ^ (1 << 5))
 

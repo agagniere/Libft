@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/19 05:34:53 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/12 12:06:48 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ struct					s_sis
 # define IS_REFRESH(IS) (((t_is *)(IS))->refresh((t_is *)IS))
 
 # define IS_CURRENT(IS) (((t_is *)IS)->buff + ((t_is *)IS)->buff_i)
+# define IS_CURRENTC(IS) (*IS_CURRENT(IS))
 
 /*
 ** |	----------===== private: =====----------

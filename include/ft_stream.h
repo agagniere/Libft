@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
-/*   Updated: 2017/04/12 12:06:48 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/19 21:51:15 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ struct					s_sis
 # define FIS_OPEN(A,S) ((A)->fd = open(S, O_RDONLY))
 # define FIS_CLOSE(A) (close((A)->fd))
 
-# define IS_REFRESH(IS) (((t_is *)(IS))->refresh((t_is *)IS))
+# define IS_REFRESH(I) ((I)->buff_i >= (I)->buff_len ? _IS_REFRESH(I) : 0)
+# define _IS_REFRESH(IS) (((t_is *)(IS))->refresh((t_is *)IS))
 
 # define IS_CURRENT(IS) (((t_is *)IS)->buff + ((t_is *)IS)->buff_i)
 # define IS_CURRENTC(IS) (*IS_CURRENT(IS))

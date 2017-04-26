@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 05:43:19 by angagnie          #+#    #+#             */
-/*   Updated: 2017/04/25 21:26:41 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/26 17:36:03 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ struct						s_token
 struct						s_tokenizer
 {
 	t_is *const	in;
-	void *const	map;
 	t_token		current;
 	int			eof;
 };
@@ -37,7 +36,7 @@ struct						s_tokenizer
 ** Fields shouldnt be modified by the user.
 */
 
-# define NEW_TOKENIZER(IS,M) (t_tokenizer){IS, M, NEW_TOKEN, 0}
+# define NEW_TOKENIZER(IS) (t_tokenizer){IS, NEW_TOKEN, 0}
 # define NEW_TOKEN (t_token){0, {NULL, 0}}
 
 #endif

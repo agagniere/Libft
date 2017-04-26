@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 20:47:11 by angagnie          #+#    #+#             */
-/*   Updated: 2017/04/12 16:09:29 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/26 16:42:53 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_STRING_H
 
 # include "ft_array.h"
+# include "ft_string_legacy.h"
 
 /*
 ** |		----------===== String =====----------

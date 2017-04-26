@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 05:43:19 by angagnie          #+#    #+#             */
-/*   Updated: 2017/04/19 15:16:24 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/25 21:26:41 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ struct						s_token
 
 struct						s_tokenizer
 {
-	const t_is	*in;
-	const void	*map;
+	t_is *const	in;
+	void *const	map;
 	t_token		current;
 	int			eof;
 };

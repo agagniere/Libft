@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 01:32:05 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/19 11:37:54 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/04/29 22:14:03 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*
 ** StringInputStream::refresh
 ** -
-** returns FALSE if the string has been read entirely.
+** returns 1 if the string has been read entirely.
 */
 
 int		sis_refresh(t_is *self)
@@ -24,10 +24,10 @@ int		sis_refresh(t_is *self)
 	t_sis *const	this = (t_sis *)self;
 
 	if (self->buff_i >= this->ptr->size)
-		return (0);
+		return (1);
 	self->buff = (char const *)this->ptr->data;
 	self->buff_len = this->ptr->size;
-	return (1);
+	return (0);
 }
 
 int		fis_refresh(t_is *self)
@@ -36,7 +36,7 @@ int		fis_refresh(t_is *self)
 
 	if (!(self->buff || (self->buff_i = 0)
 		|| (self->buff = (char const *)malloc(FIS_BUFF_SIZE))))
-		return (0);
+		return (1);
 	self->buff_len = read(this->fd, FIS_BUFFER(self), FIS_BUFF_SIZE);
-	return (1);
+	return (0);
 }

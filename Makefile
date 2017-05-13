@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2017/03/28 22:45:35 by angagnie         ###   ########.fr        #
+#    Updated: 2017/05/13 18:53:27 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,7 +40,7 @@ LSTPATH:=ft_list/
 LST:=ftl_new ftl_add ftl_pop ftl_del
 
 TREEPATH:=ft_tree/
-TREE:=ftt_push ftt_debug
+TREE:=ftt_push ftt_debug ftt_clear
 
 #AUTOMPATH:=ft_automaton/
 #AUTOM:=

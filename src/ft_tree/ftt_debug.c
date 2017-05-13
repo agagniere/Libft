@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 21:53:52 by angagnie          #+#    #+#             */
-/*   Updated: 2017/04/12 16:08:57 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/05/13 18:57:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	node_debug(t_tnode *self, int depth, char c)
 
 void	ftt_debug(t_tree *self)
 {
-	printf("This tree has %i nodes.\n", self->count);
+	printf("This tree has %zu nodes.\n", self->count);
 	node_debug(self->root, 0, 'R');
 }

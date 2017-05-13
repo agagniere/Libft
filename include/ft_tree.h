@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 21:48:26 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/16 11:55:20 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/05/13 19:04:11 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,24 @@ enum					e_tr
 */
 
 int						ftt_push(t_tree *self, t_tnode *new);
+
+/*
+** Tree::clear
+** -
+** Release each node
+** -
+** Returns the number of nodes allocated that were not freed.
+*/
+
+int						ftt_clear(t_tree **self);
+
+/*
+** Tree::clear w/ custom function
+** -
+** Same as ftt_clear, but provides a mean to free nodes' resources.
+*/
+
+int						ftt_clearf(t_tree **self, void (*f)());
 
 /*
 ** TreeNode::isLeaf

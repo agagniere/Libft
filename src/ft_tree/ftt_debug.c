@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 21:53:52 by angagnie          #+#    #+#             */
-/*   Updated: 2017/05/13 18:57:55 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/05/22 12:07:21 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	node_debug(t_tnode *self, int depth, char c)
 {
-	if (NODE_LABEL(self) == 0x80)
+	if (SH_IS_FLEAF(NODE_LABEL(self)))
 		printf("%*s%c`%s`\n", depth, "", c, *(char **)(self + 1));
 	else
 	{
@@ -31,5 +31,6 @@ void	node_debug(t_tnode *self, int depth, char c)
 void	ftt_debug(t_tree *self)
 {
 	printf("This tree has %zu nodes.\n", self->count);
-	node_debug(self->root, 0, 'R');
+	if (self->root)
+		node_debug(self->root, 0, 'R');
 }

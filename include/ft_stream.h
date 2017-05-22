@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 19:37:02 by angagnie          #+#    #+#             */
-/*   Updated: 2017/04/30 01:17:51 by sid              ###   ########.fr       */
+/*   Updated: 2017/05/22 13:56:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,12 @@ struct					s_sis
 */
 
 int						sis_refresh(t_is *self);
+
+/*
+** FileInputStream::refresh
+*/
+
+int						fis_refresh(t_is *self);
 
 /*
 ** FileInputStream::_getBuffer

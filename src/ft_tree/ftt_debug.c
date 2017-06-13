@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 21:53:52 by angagnie          #+#    #+#             */
-/*   Updated: 2017/05/22 12:07:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/05/25 12:03:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	node_debug(t_tnode *self, int depth, char c)
 {
-	if (SH_IS_FLEAF(NODE_LABEL(self)))
-		printf("%*s%c`%s`\n", depth, "", c, *(char **)(self + 1));
+	if ((self->label >> 2) == 0x20)
+		printf("%*s%c(\"%s\", %#x)\n", depth, "", c, *(char **)(self + 1), self->label);
 	else
 	{
 		printf("%*s%c(%p, %#x) --- %p, %p\n", depth, "", c,

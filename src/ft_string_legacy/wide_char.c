@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 06:16:18 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 10:08:58 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/09/22 21:06:28 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t		ft_wstrlen(const wchar_t *wstr)
 {
 	const wchar_t	*ptr = wstr;
 
-	if (!wstr)
-		return (0);
 	while (*ptr)
 		ptr++;
 	return (ptr - wstr);
@@ -25,8 +23,11 @@ size_t		ft_wstrlen(const wchar_t *wstr)
 
 size_t		ft_widetoa(char *buff, wint_t w)
 {
-	if (w < 0x80 && (*buff = (w & 0x7f)) >= 0)
+	if (w < 0x80)
+	{
+		*buff = (w & 0x7f);
 		return (1);
+	}
 	else if (w < 0x800)
 	{
 		*(buff++) = ((w >> 6) & 0x1F) | 0xC0;
@@ -68,10 +69,12 @@ size_t		ft_wstrnconv(char *buff, const wchar_t *wstr, size_t n)
 
 	ans = 0;
 	tmp = 0;
-	while (*wstr != 0 && ans + tmp < n)
+	while (*wstr != 0)
 	{
-		ans += tmp;
 		tmp = ft_widetoa(buff + ans, (wint_t)*(wstr++));
+		if (ans + tmp > n)
+			break ;
+		ans += tmp;
 	}
 	return (ans);
 }

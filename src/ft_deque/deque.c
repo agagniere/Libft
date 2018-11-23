@@ -6,18 +6,13 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:32:56 by angagnie          #+#    #+#             */
-/*   Updated: 2018/11/23 15:29:27 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/11/23 18:44:15 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_deque.h"
 #include "ft_deque_private.h"
-
-#include <string.h>
-
-#ifndef MIN
-# define MIN(A,B) (A < B ? A : B)
-#endif
+#include "libft.h"
 
 /*
 ** Returns an initialized t_deque that uses the specified storage
@@ -39,24 +34,17 @@ bool		ftq_intent(t_deque *self, char intent)
 {
 	if (!ftq_is_empty(self))
 		return (false);
-	switch (intent)
-	{
-	case 'B' :
+	if (intent == 'B')
 		self->front = ftq_begin(self);
-		break;
-	case 'b' :
+	else if (intent == 'b')
 		self->front = ftq_begin(self) + ftq_offset(self, self->capacity / 4);
-		break;
-	case '2' :
+	else if (intent == '2')
 		self->front = ftq_begin(self) + ftq_offset(self, self->capacity / 2);
-		break;
-	case 'f' :
+	else if (intent == 'f')
 		self->front = ftq_end(self) - ftq_offset(self, self->capacity / 4);
-		break;
-	case 'F' :
+	else if (intent == 'F')
 		self->front = ftq_end(self) - ftq_offset(self, 1);
-		break;
-	default :
+	else
 		return (false);
 	}
 	self->back = self->front;
@@ -108,7 +96,7 @@ bool		ftq_push_one(t_deque *self, void *element, bool front)
 		return (false);
 	if (front)
 		FTQ_MOVE_BACKWARD_ONE(self, self->front);
-	memcpy(front ? self->front : self->back, element, ftq_offset(self, 1));
+	ft_memcpy(front ? self->front : self->back, element, ftq_offset(self, 1));
 	if (!front)
 		FTQ_MOVE_FORWARD_ONE(self, self->back);
 	return (true);
@@ -133,7 +121,7 @@ bool		ftq_push_back(t_deque *self, void *elements, unsigned count)
 	if (ftq_max(self) < ftq_size(self) + count)
 		return (false);
 	first = MIN(count, ftq_distance(self, ftq_end(self), self->back));
-	memcpy(self->back, elements, ftq_offset(self, first));
+	ft_memcpy(self->back, elements, ftq_offset(self, first));
 	self->back += ftq_offset(self, first);
 	if (self->back == ftq_end(self))
 	{
@@ -149,7 +137,8 @@ bool		ftq_pop_one(t_deque *self, void *destination, bool front)
 		return (false);
 	if (!front)
 		FTQ_MOVE_BACKWARD_ONE(self, self->back);
-	memcpy(destination, front ? self->front : self->back, ftq_offset(self, 1));
+	if (destination)
+		ft_memcpy(destination, front ? self->front : self->back, ftq_offset(self, 1));
 	if (front)
 		FTQ_MOVE_FORWARD_ONE(self, self->front);
 	return (true);
@@ -162,7 +151,7 @@ bool		ftq_pop_front(t_deque *self, void *destination, unsigned count)
 	if (ftq_size(self) < count)
 		return (false);
 	first = MIN(count, ftq_distance(self, ftq_end(self), self->front));
-	memcpy(destination, self->front, ftq_offset(self, first));
+	ft_memcpy(destination, self->front, ftq_offset(self, first));
 	self->front += ftq_offset(self, first);
 	if (self->front == ftq_end(self))
 	{

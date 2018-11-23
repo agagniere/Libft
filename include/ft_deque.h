@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:54:39 by angagnie          #+#    #+#             */
-/*   Updated: 2018/11/23 13:55:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/11/23 15:30:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ bool					ftq_pop_front(t_deque *self,
 									void *destination,
 									unsigned count);
 
-# define FTQ_PUSH_FRONT_ONE(Q, EL T_DEQUE_push_one(Q, EL, true)
-# define FTQ_PUSH_BACK_ONE(Q, EL) T_DEQUE_push_one(Q, EL, false)
+# define FTQ_PUSH_FRONT_ONE(Q, EL) ftq_push_one(Q, EL, true)
+# define FTQ_PUSH_BACK_ONE(Q, EL) ftq_push_one(Q, EL, false)
 
-# define FTQ_POP_FRONT_ONE(Q, DST) T_DEQUE_pop_one(Q, DST, true)
-# define FTQ_POP_BACK_ONE(Q, DST) T_DEQUE_pop_one(Q, DST, false)
+# define FTQ_POP_FRONT_ONE(Q, DST) ftq_pop_one(Q, DST, true)
+# define FTQ_POP_BACK_ONE(Q, DST) ftq_pop_one(Q, DST, false)
 
 #endif

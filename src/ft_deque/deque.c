@@ -6,12 +6,12 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:32:56 by angagnie          #+#    #+#             */
-/*   Updated: 2018/11/23 13:44:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/11/23 15:29:27 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "deque.h"
-#include "deque_private.h"
+#include "ft_deque.h"
+#include "ft_deque_private.h"
 
 #include <string.h>
 
@@ -107,10 +107,10 @@ bool		ftq_push_one(t_deque *self, void *element, bool front)
 	if (ftq_is_full(self))
 		return (false);
 	if (front)
-		ftq_move_backward_one(self, self->front);
+		FTQ_MOVE_BACKWARD_ONE(self, self->front);
 	memcpy(front ? self->front : self->back, element, ftq_offset(self, 1));
 	if (!front)
-		ftq_move_forward_one(self, self->back);
+		FTQ_MOVE_FORWARD_ONE(self, self->back);
 	return (true);
 }
 
@@ -120,7 +120,7 @@ bool		ftq_push_front(t_deque *self, void *elements, unsigned count)
 		return (false);
 	while (count-- > 0)
 	{
-		ftq_push_front_one(self, elements);
+		FTQ_PUSH_FRONT_ONE(self, elements);
 		elements += ftq_offset(self, 1);
 	}
 	return (true);
@@ -148,10 +148,10 @@ bool		ftq_pop_one(t_deque *self, void *destination, bool front)
 	if (ftq_is_empty(self))
 		return (false);
 	if (!front)
-		ftq_move_backward_one(self, self->back);
+		FTQ_MOVE_BACKWARD_ONE(self, self->back);
 	memcpy(destination, front ? self->front : self->back, ftq_offset(self, 1));
 	if (front)
-		ftq_move_forward_one(self, self->front);
+		FTQ_MOVE_FORWARD_ONE(self, self->front);
 	return (true);
 }
 

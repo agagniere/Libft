@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 06:16:18 by angagnie          #+#    #+#             */
-/*   Updated: 2017/09/22 21:06:28 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/11/23 14:09:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ size_t		ft_wstrlen(const wchar_t *wstr)
 size_t		ft_widetoa(char *buff, wint_t w)
 {
 	if (w < 0x80)
-	{
-		*buff = (w & 0x7f);
-		return (1);
-	}
+		return ((*buff = (w & 0x7f)) < 0x80);
 	else if (w < 0x800)
 	{
 		*(buff++) = ((w >> 6) & 0x1F) | 0xC0;

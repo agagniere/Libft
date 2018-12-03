@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   private_libft.h                                    :+:      :+:    :+:   */
+/*   ft_prepro_private.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/21 05:36:52 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 05:50:09 by angagnie         ###   ########.fr       */
+/*   Created: 2018/12/03 20:12:15 by angagnie          #+#    #+#             */
+/*   Updated: 2018/12/03 20:21:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRIVATE_LIBFT_H
-# define PRIVATE_LIBFT_H
+#ifndef FT_PREPRO_PRIVATE_H
+# define FT_PREPRO_PRIVATE_H
 
-# define _ARG_COUNT1(...) _ARG_COUNT2(A, ##__VA_ARGS__, _ARG_COUNT4)
-# define _ARG_COUNT2(...) _ARG_COUNT3(__VA_ARGS__)
-# define _ARG_COUNT3(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,n,...) n
-# define _ARG_COUNT4 21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0
+# define _ARG_COUNT1(...) _ARG_COUNT2(A, ##__VA_ARGS__, _AC4)
+# define _ARG_COUNT2(...) _AC3(__VA_ARGS__)
+# define _AC3(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,n,...) n
+# define _AC4 24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0
 
 # define _TO_STR(M) #M
 # define _CAT(A,B) A##B

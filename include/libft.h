@@ -1,28 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string_legacy.h                                 :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/28 22:52:30 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/03 22:04:58 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-# include "private_libft.h"
-
-# include "ft_ctype.h"
-# include "ft_array.h"
-# include "ft_tree.h"
-# include "ft_string_legacy.h"
-# include "ft_string.h"
-# include "ft_color.h"
-# include "ft_list.h"
-# include "get_next_line.h"
 
 # include <stddef.h>
 
@@ -71,40 +60,5 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size, size_t factor);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_exit(char const *const fnc, char const *const str);
 void	*ft_safe_calloc(size_t count, size_t size);
-
-/*
-** Numbers manipulation tools
-*/
-
-# define ABS(V) ((V) < 0 ? -(V) : (V))
-
-# define MIN(...) CAT(_MIN,ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
-# define MAX(...) CAT(_MAX,ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
-
-/*
-** Miscellaneous tricks
-*/
-
-# define ARG_COUNT(...) _ARG_COUNT1(__VA_ARGS__)
-
-# define FD_PUT(F,A) write(F, A, ft_strlen(A))
-# define FT_PUT(A) FD_PUT(1, A)
-
-# define TO_STR(M) _TO_STR(M)
-# define CAT(A,B) _CAT(A,B)
-
-# define TWICE(A) (A),(A)
-# define THRICE(A) (A),(A),(A)
-# define PPP __VA_ARGS__
-
-/*
-** Asserts
-*/
-
-# ifdef DISABLE_ASSERT
-#  define ASSERT(B) (B)
-# else
-#  define ASSERT(B) (B ? 1 : FD_PUT(2, __FILE__ " @" TO_STR(__LINE__) " : " #B))
-# endif
 
 #endif

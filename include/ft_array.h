@@ -19,11 +19,13 @@
 ** |		----------=====  Array<T>  =====----------
 ** The following functions allows one to manipulate a collection of objects,
 ** not bothering about malloc.
-** It is inspired by the C++ "Vector<T>"
+** It is inspired by the C++ "std::vector<T>"
 ** -
-** In C++ and Java, one would declare such an object with
-** the template/generics syntax :
-** |	Vector<SomeType> variable = new Vector<SomeType>();
+** In Java, one would declare such an object with :
+** |	Vector variable = new Vector<SomeType>();
+** |	ArrayList variable = new ArrayList<SomeType>();
+** In C++ it would be :
+** |	std::vector<some_type> variable();
 ** -
 ** Here in C,
 ** |	t_array	variable = NEW_ARRAY(t_some_type);

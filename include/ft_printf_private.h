@@ -15,6 +15,7 @@
 
 # include "ft_array.h"
 # include <stdarg.h>
+# include <stdint.h>
 
 # define FTPF_CV "diouxXDOUeEfFgGaAcCsSpnb"
 # define FTPF_NUMERIC "diouDOUxXpb"

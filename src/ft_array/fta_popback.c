@@ -6,12 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 20:08:29 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 05:32:50 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:46:48 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_array.h"
-#include "libft.h"
+#include "ft_prepro.h"
 
 /*
 ** Array::pop_back
@@ -23,7 +23,7 @@
 
 void	fta_popback(t_array *self, size_t len)
 {
-	self->size -= _MIN2(len, self->size);
+	self->size -= MIN(len, self->size);
 }
 
 /*

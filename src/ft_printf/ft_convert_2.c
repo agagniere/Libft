@@ -6,12 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:37:44 by angagnie          #+#    #+#             */
-/*   Updated: 2017/09/22 21:02:32 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:04:50 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_wchar.h"
 #include "ft_printf.h"
+#include "ft_prepro.h"
 #include <wchar.h>
 
 int		pf_cv_s(t_modifier *m, t_array *d, va_list ap)

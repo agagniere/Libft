@@ -6,11 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 16:34:51 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 05:36:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:47:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_array.h"
+#include "ft_prepro.h"
 #include "libft.h"
 
 /*
@@ -29,7 +30,7 @@
 int
 	fta_popindex(t_array *self, size_t index, size_t len)
 {
-	const size_t	n = _MIN2(len, self->size - index);
+	const size_t	n = MIN(len, self->size - index);
 
 	if (index > self->size)
 		return (1);

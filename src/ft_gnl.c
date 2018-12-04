@@ -6,11 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 12:39:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 17:54:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
+#include "ft_array.h"
 
 #define DATA(A) ((char *)(A->data))
 

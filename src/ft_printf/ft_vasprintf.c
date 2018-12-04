@@ -6,11 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2017/09/22 22:31:37 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:37:43 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static inline const char
 	*pf_update_value(char const *s, int *v, va_list ap)
@@ -44,7 +45,7 @@ static inline const char
 	{
 		if (*s == '.')
 			s = pf_update_value(s + 1, &(m->precision), ap) - 1;
-		else if ('1' <= *s && *s <= '9' || *s == '*')
+		else if (('1' <= *s && *s <= '9') || *s == '*')
 			s = pf_update_value(s, &(m->size), ap) - 1;
 		else if ((n = is_in(*s, FTPF_SWITCHES)) >= 0)
 			m->booleans.t[n] = 1;

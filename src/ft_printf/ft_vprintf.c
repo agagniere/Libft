@@ -6,11 +6,14 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:16:43 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/04 12:12:56 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:45:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
+#include <unistd.h>
+#include <stdlib.h>
 
 int		ft_vprintf(char const *format, va_list ap)
 {

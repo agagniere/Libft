@@ -67,6 +67,7 @@ void		*ftq_last(t_deque *self)
 /*
 ** Number of elements stored
 */
+
 unsigned	ftq_size(t_deque *self)
 {
 	return (ftq_is_split(self) ? ftq_exterior(self) : ftq_interior(self));
@@ -75,6 +76,7 @@ unsigned	ftq_size(t_deque *self)
 /*
 ** Maximum number of elements that can be stored
 */
+
 unsigned	ftq_max(t_deque *self)
 {
 	return (self->capacity - 1);
@@ -88,75 +90,4 @@ bool		ftq_is_empty(t_deque *self)
 bool		ftq_is_full(t_deque *self)
 {
 	return (ftq_size(self) == ftq_max(self));
-}
-
-bool		ftq_push_one(t_deque *self, void *element, bool front)
-{
-	if (ftq_is_full(self))
-		return (false);
-	if (front)
-		FTQ_MOVE_BACKWARD_ONE(self, self->front);
-	ft_memcpy(front ? self->front : self->back, element, ftq_offset(self, 1));
-	if (!front)
-		FTQ_MOVE_FORWARD_ONE(self, self->back);
-	return (true);
-}
-
-bool		ftq_push_front(t_deque *self, void *elements, unsigned count)
-{
-	if (ftq_max(self) < ftq_size(self) + count)
-		return (false);
-	while (count-- > 0)
-	{
-		FTQ_PUSH_FRONT_ONE(self, elements);
-		elements += ftq_offset(self, 1);
-	}
-	return (true);
-}
-
-bool		ftq_push_back(t_deque *self, void *elements, unsigned count)
-{
-	unsigned		first;
-
-	if (ftq_max(self) < ftq_size(self) + count)
-		return (false);
-	first = MIN(count, ftq_distance(self, ftq_end(self), self->back));
-	ft_memcpy(self->back, elements, ftq_offset(self, first));
-	self->back += ftq_offset(self, first);
-	if (self->back == ftq_end(self))
-	{
-		self->back = ftq_begin(self);
-		ftq_push_back(self, elements + ftq_offset(self, first), count - first);
-	}
-	return (true);
-}
-
-bool		ftq_pop_one(t_deque *self, void *destination, bool front)
-{
-	if (ftq_is_empty(self))
-		return (false);
-	if (!front)
-		FTQ_MOVE_BACKWARD_ONE(self, self->back);
-	if (destination)
-		ft_memcpy(destination, front ? self->front : self->back, ftq_offset(self, 1));
-	if (front)
-		FTQ_MOVE_FORWARD_ONE(self, self->front);
-	return (true);
-}
-
-bool		ftq_pop_front(t_deque *self, void *destination, unsigned count)
-{
-	unsigned		first;
-
-	if (ftq_size(self) < count)
-		return (false);
-	first = MIN(count, ftq_distance(self, ftq_end(self), self->front));
-	ft_memcpy(destination, self->front, ftq_offset(self, first));
-	self->front += ftq_offset(self, first);
-	if (self->front == ftq_end(self))
-	{
-		self->front = ftq_begin(self);
-		ftq_pop_front(self, destination + ftq_offset(self, first), count - first);
-	}
-	return (true);
 }

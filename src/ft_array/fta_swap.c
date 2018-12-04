@@ -6,12 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 18:06:01 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 03:57:16 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:48:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_array.h"
 #include "libft.h"
+#include <stdlib.h>
 
 /*
 ** Array::_swap

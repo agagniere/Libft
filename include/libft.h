@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stddef.h>
+# include "ft_string_legacy.h"
 
 int		ft_atoi(const char *str);
 

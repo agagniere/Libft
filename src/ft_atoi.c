@@ -6,11 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 12:39:02 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/13 13:53:56 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 15:51:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ctype.h"
 
 int		ft_atoi(const char *str)
 {

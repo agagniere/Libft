@@ -6,11 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/31 18:07:49 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:04:13 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
+#include "ft_prepro.h"
 
 static inline int
 	pf_print(t_modifier *m, t_array *d, va_list ap)

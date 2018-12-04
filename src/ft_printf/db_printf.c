@@ -6,11 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/31 11:25:39 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 13:34:41 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 18:39:10 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 void	db_print_bool(char c)
 {

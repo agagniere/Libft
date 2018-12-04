@@ -21,8 +21,6 @@ int		pf_cv_b(t_modifier *m, t_array *d, va_list ap)
 
 int		pf_cv_p(t_modifier *m, t_array *d, va_list ap)
 {
-	void	*arg;
-
 	(void)m;
 	fta_append(d, "0x", 2);
 	m->length = 'L';

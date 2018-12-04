@@ -6,55 +6,44 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2017/05/13 18:53:27 by angagnie         ###   ########.fr        #
+#    Updated: 2018/12/04 18:06:07 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 # ==== Editable ====
 NAME:=libft.a
 
-CTYPEPATH:=ft_ctype/
+FILES=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr \
+	ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_memdup ft_putchar \
+	ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr \
+	ft_putstr_fd ft_realloc ft_print_memory ft_gnl ft_malloc ft_string is_refresh
+
+CTYPE_PATH:=ft_ctype/
 CTYPE:=ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit \
 	ft_isgraph ft_islower ft_isprint ft_ispunct ft_isspace ft_isupper \
 	ft_isxdigit ft_tolower ft_toupper
 
-VECTORPATH:=ft_array/
-VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
-	fta_clear fta_clearf fta_popback fta_iter fta_iteri fta_popindex \
-	fta_swap fta_overwrite fta_string fta_replace
-
-STREAMPATH:=ft_stream/
-STREAM:=is_refresh
-
-STRPATH:=ft_string/
-STR:=ft_string
-
-STRLPATH:=ft_string_legacy/
+STRL_PATH:=ft_string_legacy/
 STRL:=ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin \
 	ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr \
 	ft_strstr ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ \
 	ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ ft_strrev \
 	wide_char
 
-LSTPATH:=ft_list/
-LST:=ftl_new ftl_add ftl_pop ftl_del
+LIST_PATH:=ft_list/
+LIST:=ftl_new ftl_add ftl_pop ftl_del
 
-TREEPATH:=ft_tree/
-TREE:=ftt_push ftt_debug ftt_clear
+PRINTF_PATH:=ft_printf/
+PRINTF:=ft_convert ft_convert_1 ft_convert_2 ft_convert_3 ft_convert_4 \
+	ft_convert_5 ft_printf ft_vasprintf ft_vprintf db_printf
 
-#AUTOMPATH:=ft_automaton/
-#AUTOM:=
+VECTOR_PATH:=ft_array/
+VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
+	fta_clear fta_clearf fta_popback fta_iter fta_iteri fta_popindex \
+	fta_swap fta_overwrite fta_string fta_replace
 
-#MATHPATH:=ft_math/
-#MATH:=
-
-#PRINTFPATH:=ft_printf/
-#PRINTF:=
-
-FILES=ft_atoi ft_bzero ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr \
-	ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_memdup ft_putchar \
-	ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr \
-	ft_putstr_fd ft_realloc ft_print_memory ft_gnl ft_malloc
+DEQUE_PATH:=ft_deque/
+DEQUE:=ftq_push ftq_pop
 # ==================
 
 # ==== Standard ====
@@ -66,7 +55,7 @@ CFLAGS:=-Wall -Wextra -I $(HDRPATH)
 # ==================
 
 # ===== Colors =====
-END:="\033[0;0m"
+EOC:="\033[0;0m"
 BLACK:="\033[1;30m"
 RED:="\033[1;31m"
 GREEN:="\033[1;32m"
@@ -76,69 +65,47 @@ WHITE:="\033[1;37m"
 # ==================
 
 # ====== Auto ======
-FILES+=$(addprefix $(CTYPEPATH),$(CTYPE))
-FILES+=$(addprefix $(VECTORPATH),$(VECTOR))
-FILES+=$(addprefix $(STRLPATH),$(STRL))
-FILES+=$(addprefix $(STRPATH),$(STR))
-FILES+=$(addprefix $(STREAMPATH),$(STREAM))
-FILES+=$(addprefix $(LSTPATH),$(LST))
-FILES+=$(addprefix $(TREEPATH),$(TREE))
-#FILES+=$(addprefix $(AUTOMPATH),$(AUTOM))
-#FILES+=$(addprefix $(MATHPATH),$(MATH))
-#FILES+=$(addprefix $(PRINTFPATH),$(PRINTF))
+FOLDERS=$(CTYPE_PATH) $(STRL_PATH) $(LIST_PATH) $(PRINTF_PATH) $(VECTOR_PATH) $(DEQUE_PATH)
+FILES+=$(addprefix $(CTYPE_PATH),$(CTYPE))
+FILES+=$(addprefix $(STRL_PATH),$(STRL))
+FILES+=$(addprefix $(LIST_PATH),$(LIST))
+FILES+=$(addprefix $(PRINTF_PATH),$(PRINTF))
+FILES+=$(addprefix $(VECTOR_PATH),$(VECTOR))
+FILES+=$(addprefix $(DEQUE_PATH),$(DEQUE))
 
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 # ==================
-CCHF:=.cache_exists
-MAKEFLAGS+=-j
+
+MAKEFLAGS+=-sj
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo $(END)
-	@echo $(CYAN) " - Compiling $@" $(RED)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-	@echo $(GREEN) " - Done" $(END)
+	@echo $(EOC)
+	@echo $(CYAN) " - Compiling $@" $(EOC)
+	ar rcs $@ $^
+	@echo $(GREEN) " - Done" $(EOC)
 
-$(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHF)
-	@echo ".\c"
-	@$(CC) $(CFLAGS) -c $< -o $@
+$(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHPATH)
+	@echo -n .
+	$(CC) $(CFLAGS) -c $< -o $@
 
-%.c:
-	@echo $(RED) "Missing file : $@"
-
-$(CCHF):
-	@mkdir $(CCHPATH)
-	@mkdir $(CCHPATH)$(VECTORPATH)
-	@mkdir $(CCHPATH)$(CTYPEPATH)
-	@mkdir $(CCHPATH)$(STRLPATH)
-	@mkdir $(CCHPATH)$(STRPATH)
-	@mkdir $(CCHPATH)$(STREAMPATH)
-	@mkdir $(CCHPATH)$(LSTPATH)
-	@mkdir $(CCHPATH)$(TREEPATH)
-#	@mkdir $(CCHPATH)$(AUTOMPATH)
-#	@mkdir $(CCHPATH)$(MATHPATH)
-#	@mkdir $(CCHPATH)$(PRINTFPATH)
-	@touch $(CCHF)
+$(CCHPATH):
+	mkdir -p $(addprefix $@/,$(FOLDERS))
 
 clean:
-	@rm -rf $(CCHPATH)
-	@rm -f $(CCHF)
+	rm -rf $(CCHPATH)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean
-	@$(MAKE) all
-
-test:
-	@echo "Files :" $(FILES)
+	$(MAKE) all
 
 norm:
 	@echo $(RED)
-	@norminette $(SRC) $(HDRPATH) | grep -v Norme -B1 || true
+	norminette $(SRC) $(HDRPATH) | grep -v Norme -B1 || true
 	@echo $(END)
 
-.PHONY: all clean fclean re test norme
+.PHONY: all clean fclean re norm

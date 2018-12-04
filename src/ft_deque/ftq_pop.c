@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:32:56 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/04 18:49:42 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 19:11:46 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ bool		ftq_pop_one(t_deque *self, void *destination, bool front)
 	if (!front)
 		FTQ_MOVE_BACKWARD_ONE(self, self->back);
 	if (destination)
-		ft_memcpy(destination, front ? self->front : self->back, ftq_offset(self, 1));
+		ft_memcpy(destination,
+				(front ? self->front : self->back),
+				ftq_offset(self, 1));
 	if (front)
 		FTQ_MOVE_FORWARD_ONE(self, self->front);
 	return (true);
@@ -40,7 +42,9 @@ bool		ftq_pop_front(t_deque *self, void *destination, unsigned count)
 	if (self->front == ftq_end(self))
 	{
 		self->front = ftq_begin(self);
-		ftq_pop_front(self, destination + ftq_offset(self, first), count - first);
+		ftq_pop_front(self,
+					(destination + ftq_offset(self, first)),
+					count - first);
 	}
 	return (true);
 }

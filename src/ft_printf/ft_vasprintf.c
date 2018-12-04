@@ -6,14 +6,14 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/04 18:37:43 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/04 19:00:40 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-static inline const char
+static const char
 	*pf_update_value(char const *s, int *v, va_list ap)
 {
 	if (*s == '*')
@@ -27,7 +27,7 @@ static inline const char
 	return (s);
 }
 
-static inline void
+static void
 	pf_set_length(char c, char *lm)
 {
 	if ((c == 'h' || c == 'l') && *lm == c)
@@ -36,7 +36,7 @@ static inline void
 		*lm = c;
 }
 
-static inline const char
+static const char
 	*pf_match(char const *s, t_modifier *m, va_list ap)
 {
 	int			n;

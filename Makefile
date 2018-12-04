@@ -51,7 +51,7 @@ CC:=clang
 CCHPATH:=cache/
 SRCPATH:=src/
 HDRPATH:=include/
-CFLAGS:=-Wall -Wextra -I $(HDRPATH)
+CFLAGS:=-Wall -Wextra -I $(HDRPATH) -ansi
 # ==================
 
 # ===== Colors =====
@@ -106,6 +106,6 @@ re: fclean
 norm:
 	@echo $(RED)
 	norminette $(SRC) $(HDRPATH) | grep -v Norme -B1 || true
-	@echo $(END)
+	@echo $(EOC)
 
 .PHONY: all clean fclean re norm

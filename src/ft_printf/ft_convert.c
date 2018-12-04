@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "ft_prepro.h"
 
-static inline int
+static int
 	pf_print(t_modifier *m, t_array *d, va_list ap)
 {
 	int			i;
@@ -39,7 +39,7 @@ static inline int
 	return (1);
 }
 
-static inline int
+static int
 	pf_precision(t_modifier *m, t_array *d, va_list ap)
 {
 	size_t	before;

@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:54:39 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/06 14:04:44 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/06 14:45:18 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,15 @@ bool					ftq_pop_one(t_deque *self,
 bool					ftq_pop_front(t_deque *self,
 									void *destination,
 									unsigned count);
+
+/*
+** Deque::toString
+** -
+** Returns a string representing the Dequeue
+** The _f_ parameter is a function that converts a single element to char*
+*/
+char					*ftq_string(t_deque *self,
+									char *(*f)());
 
 /*
 ** Iterate functions :

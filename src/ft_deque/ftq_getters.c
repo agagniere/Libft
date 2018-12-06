@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:32:56 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/05 14:58:00 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/06 19:11:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ unsigned	ftq_size(t_deque *self)
 ** Maximum number of elements that can be stored
 */
 
-unsigned	ftq_max(t_deque *self)
+unsigned	ftq_capacity(t_deque *self)
 {
 	return (self->capacity - 1);
 }

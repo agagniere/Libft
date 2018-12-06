@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:54:39 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/06 14:45:18 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/06 19:10:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ void					*ftq_last(t_deque *self);
 ** Number of elements stored
 */
 unsigned				ftq_size(t_deque *self);
+
 /*
 ** Maximum number of elements that can be stored
 */
-unsigned				ftq_max(t_deque *self);
+unsigned				ftq_capacity(t_deque *self);
 
 bool					ftq_is_empty(t_deque *self);
 bool					ftq_is_full(t_deque *self);

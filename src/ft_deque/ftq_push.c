@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:32:56 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/04 18:49:09 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/06 19:12:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool		ftq_push_one(t_deque *self, void *element, bool front)
 
 bool		ftq_push_front(t_deque *self, void *elements, unsigned count)
 {
-	if (ftq_max(self) < ftq_size(self) + count)
+	if (ftq_capacity(self) < ftq_size(self) + count)
 		return (false);
 	while (count-- > 0)
 	{
@@ -43,7 +43,7 @@ bool		ftq_push_back(t_deque *self, void *elements, unsigned count)
 {
 	unsigned		first;
 
-	if (ftq_max(self) < ftq_size(self) + count)
+	if (ftq_capacity(self) < ftq_size(self) + count)
 		return (false);
 	first = MIN(count, ftq_distance(self, ftq_end(self), self->back));
 	ft_memcpy(self->back, elements, ftq_offset(self, first));

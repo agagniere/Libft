@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:32:56 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/05 15:07:07 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/06 19:12:25 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ bool		ftq_is_empty(t_deque *self)
 
 bool		ftq_is_full(t_deque *self)
 {
-	return (ftq_size(self) == ftq_max(self));
+	return (ftq_size(self) == ftq_capacity(self));
 }

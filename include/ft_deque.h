@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:54:39 by angagnie          #+#    #+#             */
-/*   Updated: 2018/11/23 15:30:16 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/06 14:04:44 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,17 @@ bool					ftq_pop_one(t_deque *self,
 bool					ftq_pop_front(t_deque *self,
 									void *destination,
 									unsigned count);
+
+/*
+** Iterate functions :
+** Call the supplied function on each element,
+** in the front-to-back order
+*/
+void					ftq_iter(t_deque *self, void (*f)());
+void					ftq_iter1(t_deque *self, void (*f)(),
+									void *ext);
+void					ftq_iter2(t_deque *self, void (*f)(),
+									void *ext1, void *ext2);
 
 # define FTQ_PUSH_FRONT_ONE(Q, EL) ftq_push_one(Q, EL, true)
 # define FTQ_PUSH_BACK_ONE(Q, EL) ftq_push_one(Q, EL, false)

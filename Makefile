@@ -43,8 +43,8 @@ VECTOR:=fta_alloc fta_append fta_new fta_reserve fta_resize fta_trim \
 	fta_swap fta_overwrite fta_string fta_replace
 
 DEQUE_PATH:=ft_deque/
-DEQUE:=ftq_push ftq_pop ftq_getters ft_deque \
-	ftq_private ftq_private_getters ftq_private_utils\
+DEQUE:=ftq_push ftq_pop ftq_getters ft_deque ftq_iter \
+	ftq_private ftq_private_getters ftq_private_utils \
 	ft_stack ft_stack_pushswap
 # ==================
 

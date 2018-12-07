@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 14:05:05 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/06 14:44:50 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/07 17:45:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char		*ftq_string(t_deque *self, char *(*f)())
 	fta_reserve(&ans, ftq_size(self) * 3);
 	fta_append(&ans, "[", 1);
 	ftq_iter2(self, &append_element, &ans, f);
-	fta_popback(&ans, 2);
+	if (!ftq_is_empty(self))
+		fta_popback(&ans, 2);
 	fta_append(&ans, "]", 2);
 	return ((char*)ans.data);
 }

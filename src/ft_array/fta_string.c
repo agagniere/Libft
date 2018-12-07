@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 18:09:32 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/05 19:00:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/07 18:07:00 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ char	*fta_string(t_array *self, char *(*f)(void *))
 		free(tmp);
 		STRING_APPEND(ans, ", ");
 	}
-	fta_popback(ans, 2);
+	if (self->size > 0)
+		fta_popback(ans, 2);
 	fta_append(ans, "]", 2);
 	return ((char *)ans->data);
 }

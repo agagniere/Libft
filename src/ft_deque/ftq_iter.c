@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 18:29:32 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/06 14:04:04 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/07 18:27:20 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		ftq_iter(t_deque *self, void (*f)())
 			< (split ? ftq_end(self) : ftq_back(self)))
 		f(ptr);
 	if (split && (ptr = ftq_begin(self) - ftq_offset(self, 1)))
-		while ((ptr += ftq_offset(self, 1)) < ftq_end(self))
+		while ((ptr += ftq_offset(self, 1)) < ftq_back(self))
 			f(ptr);
 }
 
@@ -35,7 +35,7 @@ void		ftq_iter1(t_deque *self, void (*f)(), void *ext)
 			< (split ? ftq_end(self) : ftq_back(self)))
 		f(ext, ptr);
 	if (split && (ptr = ftq_begin(self) - ftq_offset(self, 1)))
-		while ((ptr += ftq_offset(self, 1)) < ftq_end(self))
+		while ((ptr += ftq_offset(self, 1)) < ftq_back(self))
 			f(ext, ptr);
 }
 
@@ -48,6 +48,6 @@ void		ftq_iter2(t_deque *self, void (*f)(), void *ext1, void *ext2)
 			< (split ? ftq_end(self) : ftq_back(self)))
 		f(ext1, ext2, ptr);
 	if (split && (ptr = ftq_begin(self) - ftq_offset(self, 1)))
-		while ((ptr += ftq_offset(self, 1)) < ftq_end(self))
+		while ((ptr += ftq_offset(self, 1)) < ftq_back(self))
 			f(ext1, ext2, ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:54:39 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/06 19:10:31 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/07 15:19:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,19 @@ unsigned				ftq_capacity(t_deque *self);
 bool					ftq_is_empty(t_deque *self);
 bool					ftq_is_full(t_deque *self);
 
+/*
+** Deque::isSorted
+** -
+** @param : _cmp_ is a function such that
+** (elem* A, elem* B) -> 0 if both elements are equal
+**					-> >0 if B > A
+**					-> <0 if B < A
+** -
+** @return_value :
+** true if the stack is sorted in the ascending order
+*/
+bool					ftq_is_sorted(t_deque *self, int (*cmp)());
+
 bool					ftq_push_one(t_deque *self,
 									void *element,
 									bool front);
@@ -94,6 +107,7 @@ char					*ftq_string(t_deque *self,
 
 /*
 ** Iterate functions :
+** -
 ** Call the supplied function on each element,
 ** in the front-to-back order
 */

@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 15:35:24 by angagnie          #+#    #+#             */
-/*   Updated: 2018/11/23 16:21:55 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/07 17:26:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,9 @@ typedef t_deque		t_stack;
 bool				stack_push(t_stack *self, void *element);
 bool				stack_pop(t_stack *self, void *destination);
 void				*stack_peek(t_stack *self);
+
+bool				stack_swap(t_stack *self);
+bool				stack_rotate(t_stack *self);
+bool				stack_rotate_reverse(t_stack *self);
 
 #endif

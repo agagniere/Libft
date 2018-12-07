@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:18:04 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/05 17:44:50 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/07 17:33:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include <stdint.h>
 
 typedef uint64_t		t_bitset;
-
-// Mmmmhh
-//# define BITSET_NEW(NAME, SIZE) t_bitset NAME[(SIZE) / sizeof(t_bitset)]
 
 # define BITSET_GET(S,V) (S[BS_INDEX(V)] & BS_MASK(V))
 # define BITSET_SET(S,V) (S[BS_INDEX(V)] |= BS_MASK(V))

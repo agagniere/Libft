@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:54:39 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/07 15:19:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/18 19:41:13 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ bool					ftq_is_full(t_deque *self);
 ** -
 ** @param : _cmp_ is a function such that
 ** (elem* A, elem* B) -> 0 if both elements are equal
-**					-> >0 if B > A
-**					-> <0 if B < A
+**					-> <0 if A < B
+**					-> >0 if B < A
 ** -
 ** @return_value :
 ** true if the stack is sorted in the ascending order

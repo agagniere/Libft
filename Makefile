@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2018/12/12 20:12:58 by angagnie         ###   ########.fr        #
+#    Updated: 2018/12/28 18:59:36 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -47,6 +47,9 @@ DEQUE_PATH:=ft_deque/
 DEQUE:=ftq_push ftq_pop ftq_getters ft_deque ftq_iter ftq_string ftq_is_sorted \
 	ftq_private ftq_private_getters ftq_private_utils \
 	ft_stack ft_stack_pushswap
+
+TREE_PATH:=ft_tree/
+TREE:=ftt_push ftt_debug ftt_clear
 # ==================
 
 # ==== Standard ====
@@ -68,13 +71,14 @@ WHITE:="\033[1;37m"
 # ==================
 
 # ====== Auto ======
-FOLDERS=$(CTYPE_PATH) $(STRL_PATH) $(LIST_PATH) $(PRINTF_PATH) $(VECTOR_PATH) $(DEQUE_PATH)
+FOLDERS=$(CTYPE_PATH) $(STRL_PATH) $(LIST_PATH) $(PRINTF_PATH) $(VECTOR_PATH) $(DEQUE_PATH) $(TREE_PATH)
 FILES+=$(addprefix $(CTYPE_PATH),$(CTYPE))
 FILES+=$(addprefix $(STRL_PATH),$(STRL))
 FILES+=$(addprefix $(LIST_PATH),$(LIST))
 FILES+=$(addprefix $(PRINTF_PATH),$(PRINTF))
 FILES+=$(addprefix $(VECTOR_PATH),$(VECTOR))
 FILES+=$(addprefix $(DEQUE_PATH),$(DEQUE))
+FILES+=$(addprefix $(TREE_PATH),$(TREE))
 
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))

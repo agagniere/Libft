@@ -32,7 +32,7 @@ static void		print_numbers(const unsigned char *addr,
 		if (a + i < size)
 			ft_putnbr_hex(addr[i + a], 2);
 		else
-			write(1, "  ", 2)
+			write(1, "  ", 2);
 		if (a % 2)
 			write(1, " ", 1);
 		a++;
@@ -47,7 +47,10 @@ static void		print_characters(const unsigned char *addr,
 	a = 0;
 	while (a < 16 && a + i < size)
 	{
-		write(1, (' ' <= addr[a + i] && addr[a + i] <= '~' ? addr + a + i : "."), 1);
+		if (' ' <= addr[a + i] && addr[a + i] <= '~')
+			write(1, addr + a + i, 1);
+		else
+			write(1, ".", 1);
 		a++;
 	}
 }

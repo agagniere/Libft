@@ -16,8 +16,20 @@
 /*
 ** -----===== Custom Types =====-----
 */
-typedef union _my_double  my_double;
-typedef union _my_float   my_float;
+typedef union _my_long_double my_long_double;
+typedef union _my_double      my_double;
+typedef union _my_float       my_float;
+
+union _my_long_double
+{
+    long double  data;
+    struct
+    {
+        uint64_t significand;
+        uint16_t exponent:15;
+        uint16_t sign:1;
+    }       fields;
+};
 
 union _my_double
 {
@@ -77,8 +89,8 @@ float ft_modff(float input, float* out_integral)
 }
 long double ft_modfl(long double input, long double* out_integral)
 {
-    my_double intg = (my_double){input};
-    _ft_modf(input, intg, out_integral, 1023, 52);
+    my_long_double intg = (my_long_double){input};
+    _ft_modf(input, intg, out_integral, 16383, 64);
     return (input);
 }
 

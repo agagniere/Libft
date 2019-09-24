@@ -42,12 +42,10 @@ static int
 static int
 	pf_precision(t_modifier *m, t_array *d, va_list ap)
 {
-	size_t	before;
 	size_t	after;
 	int		width;
 	int		len;
 
-	before = d->size;
 	width = pf_print(m, d, ap);
 	after = d->size;
 	len = width;

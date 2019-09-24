@@ -38,7 +38,6 @@
 
 # define TWICE(A) (A),(A)
 # define THRICE(A) (A),(A),(A)
-# define PPP __VA_ARGS__
 
 /*
 ** Asserts

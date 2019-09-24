@@ -53,7 +53,7 @@ TREE:=ftt_push ftt_debug ftt_clear
 # ==================
 
 # ==== Standard ====
-CC:=clang
+CC ?= gcc
 CCHPATH:=cache/
 SRCPATH:=src/
 HDRPATH:=include/

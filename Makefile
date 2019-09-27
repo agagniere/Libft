@@ -57,7 +57,7 @@ CC ?= gcc
 CCHPATH:=cache/
 SRCPATH:=src/
 HDRPATH:=include/
-CFLAGS:=-Wall -Wextra -I $(HDRPATH) -ansi -O2
+CFLAGS=-Wall -Wextra -I $(HDRPATH) -ansi -O2
 # ==================
 
 # ===== Colors =====
@@ -80,13 +80,16 @@ FILES+=$(addprefix $(VECTOR_PATH),$(VECTOR))
 FILES+=$(addprefix $(DEQUE_PATH),$(DEQUE))
 FILES+=$(addprefix $(TREE_PATH),$(TREE))
 
-SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
-OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
+SRC=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
+OBJ=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
+DEP=$(OBJ:.o=.d)
 # ==================
 
 MAKEFLAGS+=-sj
 
 all: $(NAME)
+
+include $(wildcard $(DEP))
 
 $(NAME): $(OBJ)
 	@echo $(EOC)
@@ -96,16 +99,16 @@ $(NAME): $(OBJ)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHPATH)
 	@echo -n .
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -MMD -c $< -o $@
 
 $(CCHPATH):
 	mkdir -p $(addprefix $@/,$(FOLDERS))
 
 clean:
-	rm -rf $(CCHPATH)
+	$(RM) -r $(CCHPATH)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean
 	$(MAKE) all

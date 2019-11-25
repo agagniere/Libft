@@ -41,7 +41,7 @@ static void		aux(int n, int b, char *ans, int *p)
 ** | <=> there exist a unique (k, a0, a1, ..., ak) in N^(k+2)
 ** | such that the sum for i = 0 to k of	(ai * b^i)
 ** | equals n, with ak > 0.
-** | => k = (int)(log(n) / log(b))	where log in the natural logarithm
+** | => k = (int)(log(n) / log(b))	where log is the natural logarithm
 ** -
 ** Negative numbers can be expressed in base b by using the decomposition
 ** of its opposite, preceded by '-'.

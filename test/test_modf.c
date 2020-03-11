@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdbool.h>
+#include "libft.h"
 
 bool test_modf(double f)
 {

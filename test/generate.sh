@@ -92,6 +92,10 @@ generate "strcmp" "stdf" "int_sign" "string" \
 
 generate "modf" "test_modf" "test_modf" "math" \
          'forty_two|42' 'four_point_two|4.2' 'pi|M_PI' 'zero|0' 'infinity|INFINITY' 'minus_infinity|-INFINITY' \
-         'not_a_number|NAN' 'tiny|4.7e-30' 'huge|7.4e30'
+         'not_a_number|NAN' 'small|4.7e-30' 'big|7.4e30' 'tiny|3e-100' 'huge|9e150'
+
+generate "modff" "test_modff" "test_modff" "math" \
+         'forty_twof|42' 'four_point_twof|4.2' 'pif|M_PI' 'zerof|0' 'infinityf|INFINITY' 'minus_infinityf|-INFINITY' \
+         'not_a_numberf|NAN' 'smallf|4.7e-30' 'bigf|7.4e30'
 
 echo -e "\treturn 0;\n}" >> $global_main

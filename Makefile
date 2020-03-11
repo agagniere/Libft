@@ -112,4 +112,4 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
-.PHONY: all clean fclean re norm
+.PHONY: all test clean fclean re norm

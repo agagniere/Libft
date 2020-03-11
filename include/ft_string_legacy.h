@@ -13,6 +13,8 @@
 #ifndef FT_STRING_LEGACY_H
 # define FT_STRING_LEGACY_H
 
+# include <stddef.h>
+
 char	*ft_strcat(char *s1, const char *s2);
 char	*ft_strchr(const char *s, int c);
 void	ft_strclr(char *s);

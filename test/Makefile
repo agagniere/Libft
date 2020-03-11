@@ -8,7 +8,7 @@ LIBFT=$(LIBFT_PATH)/libft.a
 FILES=$(shell find . -name '*.c')
 OBJ=$(FILES:.c=.o)
 
-CPPFLAGS+=-Wall -Wextra
+CPPFLAGS+=-Wall -Wextra -O2 -g
 CPPFLAGS+=-I$(LIBUNIT_PATH) -I$(LIBFT_PATH)/include
 
 all: $(EXEC)

@@ -17,12 +17,12 @@ jobs:
     - name: Download source files
       uses: actions/checkout@v2
     - name: Compile
-      run: make
+      run: make -j
     - name: Generate tests
       run: ( cd test ; bash ./generate.sh )
     - name: Compile tests
       run: ( cd test ; make )
     - name: Run tests
-      run: ( cd test ; make test )
+      run: make test
     - name: Clean
       run: make fclean

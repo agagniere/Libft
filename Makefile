@@ -57,7 +57,7 @@ CC ?= gcc
 CCHPATH:=cache
 SRCPATH:=src/
 HDRPATH:=include/
-CPPFLAGS+=-Wall -Wextra -I $(HDRPATH) -ansi -O2
+CPPFLAGS+=-Wall -Wextra -I $(HDRPATH) -ansi -g -O0
 # ==================
 
 # ===== Colors =====

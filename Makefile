@@ -57,7 +57,7 @@ CC ?= gcc
 CCHPATH:=cache
 SRCPATH:=src/
 HDRPATH:=include/
-CPPFLAGS+=-Wall -Wextra -I $(HDRPATH) -ansi -g -O0
+CPPFLAGS+=-Wall -Wextra -I $(HDRPATH) -ansi -O2 -g
 # ==================
 
 # ===== Colors =====
@@ -90,7 +90,7 @@ all: $(NAME)
 include $(wildcard $(DEP))
 
 test:
-	@$(MAKE) -C test test
+	@$(MAKE) -C test $@
 
 $(NAME): $(OBJ)
 	$(AR) rcs $@ $^

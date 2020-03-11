@@ -3,7 +3,7 @@ NAME=libunit.a
 LIBFT_PATH=../..
 
 CPPFLAGS+=-I $(LIBFT_PATH)/include
-CPPFLAGS+=-Wall -Wextra
+CPPFLAGS+=-Wall -Wextra -O2 -g
 
 OBJ=${FILE:.c=.o}
 

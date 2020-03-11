@@ -27,7 +27,7 @@ static unsigned	run_test(t_test *test)
 	else
 	{
 		wait(&status);
-		ft_printf("\t%s :\t[", test->name);
+		ft_printf("\t%-30s : [", test->name);
 		if (status == 0)
 			ft_printf("%sOK", COLOR(BOLD, GREEN));
 		else if (status == SIGBUS)

@@ -3,7 +3,7 @@ NAME=libunit.a
 LIBFT_PATH=../..
 
 CPPFLAGS+=-I $(LIBFT_PATH)/include
-CPPFLAGS+=-Wall -Wextra -Werror
+CPPFLAGS+=-Wall -Wextra
 
 OBJ=${FILE:.c=.o}
 
@@ -13,8 +13,6 @@ re: fclean all
 
 $(NAME): $(OBJ)
 	$(AR) rcs $@ $^
-
-$(OBJECT): $(FILE)
 
 clean:
 	$(RM) $(OBJECT)

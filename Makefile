@@ -57,7 +57,7 @@ CC ?= gcc
 CCHPATH:=cache/
 SRCPATH:=src/
 HDRPATH:=include/
-CFLAGS=-Wall -Wextra -I $(HDRPATH) -ansi -O2
+CPPFLAGS+=-Wall -Wextra -I $(HDRPATH) -ansi -O2
 # ==================
 
 # ===== Colors =====
@@ -85,21 +85,17 @@ OBJ=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 DEP=$(OBJ:.o=.d)
 # ==================
 
-MAKEFLAGS+=-sj
+MAKEFLAGS+=-j
 
 all: $(NAME)
 
 include $(wildcard $(DEP))
 
 $(NAME): $(OBJ)
-	@echo $(EOC)
-	@echo $(CYAN) " - Compiling $@" $(EOC)
-	ar rcs $@ $^
-	@echo $(GREEN) " - Done" $(EOC)
+	$(AR) rcs $@ $^
 
 $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHPATH)
-	@echo -n .
-	$(CC) $(CFLAGS) -MMD -c $< -o $@
+	$(CC) $(CPPFLAGS) -MMD -c $< -o $@
 
 $(CCHPATH):
 	mkdir -p $(addprefix $@/,$(FOLDERS))
@@ -112,10 +108,5 @@ fclean: clean
 
 re: fclean
 	$(MAKE) all
-
-norm:
-	@echo $(RED)
-	norminette $(SRC) $(HDRPATH) | grep -v Norme -B1 || true
-	@echo $(EOC)
 
 .PHONY: all clean fclean re norm

@@ -8,7 +8,11 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     steps:
     - name: Download source files
       uses: actions/checkout@v2

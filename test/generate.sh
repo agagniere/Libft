@@ -12,6 +12,8 @@ generate()
 {
 	fun=$1
 	shift
+    compare="compare_$1"
+	shift
 	lib=$1
 	shift
 	header="${fun}_tests.h"
@@ -43,12 +45,12 @@ generate()
 		echo -e "#include \"$header\"" > $filename
 		echo -e '#include "libft.h"' >> $filename
 		echo -e "#include <$lib.h>\n" >> $filename
-		echo -e "int\t\t${name}(void)\n{" >> $filename
-		echo -e "\tif (${fun}(${input}) == ft_${fun}(${input}))" >> $filename
-		echo -e "\t\treturn (0);" >> $filename
+		echo -e "int ${name}(void)\n{" >> $filename
+		echo -e "\tif (${compare}(${fun}(${input}),ft_${fun}(${input})))" >> $filename
+		echo -e "\t\treturn 0;" >> $filename
 		echo -e "\telse" >> $filename
-		echo -e "\t\treturn (-1);\n}" >> $filename
-		echo -e "int\t\t${name}(void);" >> $header
+		echo -e "\t\treturn -1;\n}" >> $filename
+		echo -e "int ${name}(void);" >> $header
 		echo -e "\tload_test(test_list, \"$(echo -e $name | tr '_' ' ')\", &$name);" >> $launcher
 		let count++
 	done
@@ -57,16 +59,16 @@ generate()
 	cd ..
 }
 
-generate "strlen" "string" 'basic_string|"Hello\040World"' 'empty_string|""' 'other|"\\\t!@#$%^&\\\0*()"'
+generate "strlen" "int" "string" 'basic_string|"Hello\040World"' 'empty_string|""' 'other|"\\\t!@#$%^&\\\0*()"'
 
-generate "atoi" "stdlib" 'basic_number|"28"' 'negative|"-8128"' 'empty|""' 'negative_zero|"-0"' \
+generate "atoi" "int" "stdlib" 'basic_number|"28"' 'negative|"-8128"' 'empty|""' 'negative_zero|"-0"' \
 		 'space|"\040\040-496"' 'plus_sign|"+1729\040Ramanujan"' 'tab|"\040\\\t33550336\040Perfect"' \
 		 'carriage_return|"\\\r+877\040BellPrime"' 'form_feed|"\\\f\040-16127\040CarolPrime"' \
 		 'vertical_tab|"\\\v7057\040CubanPrime"' 'two_plus_signs|"++3"' 'invalid_first_char|"~197\040Chen"' \
 		 'leading_zeros|"000231"' 'combo|"\040\\\r\\\v\\\n\040-00000987654321"' 'int_min|"-2147483648"' \
 		 'int_max|"2147483647"'
 
-generate "strcmp" "string" 'pure_alpha|"first_string","second_string"' 'empty_s1|"","why"' 'empty_s2|"are",""' \
+generate "strcmp" "int_sign" "string" 'pure_alpha|"first_string","second_string"' 'empty_s1|"","why"' 'empty_s2|"are",""' \
 		 'empty_both|"",""' 'null_s1|NULL,"you"' 'null_s2|"so\040beautiful",NULL' 'null_both|NULL,NULL' \
 		 'long_equality|"Hellllllooooooo!!!!!","Hellllllooooooo!!!!!"'
 

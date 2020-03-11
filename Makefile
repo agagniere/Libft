@@ -54,7 +54,7 @@ TREE:=ftt_push ftt_debug ftt_clear
 
 # ==== Standard ====
 CC ?= gcc
-CCHPATH:=cache/
+CCHPATH:=cache
 SRCPATH:=src/
 HDRPATH:=include/
 CPPFLAGS+=-Wall -Wextra -I $(HDRPATH) -ansi -O2
@@ -81,7 +81,7 @@ FILES+=$(addprefix $(DEQUE_PATH),$(DEQUE))
 FILES+=$(addprefix $(TREE_PATH),$(TREE))
 
 SRC=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
-OBJ=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
+OBJ=$(addprefix $(CCHPATH)/,$(addsuffix .o,$(FILES)))
 DEP=$(OBJ:.o=.d)
 # ==================
 
@@ -92,7 +92,7 @@ include $(wildcard $(DEP))
 $(NAME): $(OBJ)
 	$(AR) rcs $@ $^
 
-$(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHPATH)
+$(CCHPATH)/%.o: $(SRCPATH)%.c | $(CCHPATH)
 	$(CC) $(CPPFLAGS) -MMD -c $< -o $@
 
 $(CCHPATH):

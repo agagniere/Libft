@@ -98,4 +98,8 @@ generate "modff" "test_modff" "test_modff" "math" \
          'forty_twof|42' 'four_point_twof|4.2' 'pif|M_PI' 'zerof|0' 'infinityf|INFINITY' 'minus_infinityf|-INFINITY' \
          'not_a_numberf|NAN' 'smallf|4.7e-30' 'bigf|7.4e30'
 
+generate "modfl" "test_modfl" "test_modfl" "math" \
+         'forty_twol|42' 'four_point_twol|4.2' 'pil|M_PI' 'zerol|0' 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' \
+         'not_a_numberl|NAN' 'smalll|4.7e-30' 'bigl|7.4e30' 'tinyl|3e-100' 'hugel|9e150'
+
 echo -e "\treturn 0;\n}" >> $global_main

@@ -14,5 +14,11 @@ jobs:
       uses: actions/checkout@v2
     - name: Compile
       run: make
+    - name: Generate tests
+      run: ( cd test ; bash ./generate.sh )
+    - name: Compile tests
+      run: ( cd test ; make )
+    - name: Run tests
+      run: ( cd test ; make test )
     - name: Clean
       run: make fclean

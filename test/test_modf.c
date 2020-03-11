@@ -9,7 +9,7 @@ bool test_modf(double f)
 
 	frac[0] = ft_modf(f, intg);
 	frac[1] = modf(f, intg + 1);
-	if (frac[0] == NAN && frac[1] == NAN)
+	if (isnan(frac[0]) && isnan(frac[1]))
 		return true;
 	return (frac[0] == frac[1] && intg[0] == intg[1]);
 }
@@ -21,7 +21,7 @@ bool test_modff(float f)
 
 	frac[0] = ft_modff(f, intg);
 	frac[1] = modff(f, intg + 1);
-	if (frac[0] == NAN && frac[1] == NAN)
+	if (isnan(frac[0]) && isnan(frac[1]))
 		return true;
 	return (frac[0] == frac[1] && intg[0] == intg[1]);
 }
@@ -33,7 +33,7 @@ bool test_modfl(long double f)
 
 	frac[0] = ft_modfl(f, intg);
 	frac[1] = modfl(f, intg + 1);
-	if (frac[0] == NAN && frac[1] == NAN)
+	if (isnan(frac[0]) && isnan(frac[1]))
 		return true;
 	return (frac[0] == frac[1] && intg[0] == intg[1]);
 }

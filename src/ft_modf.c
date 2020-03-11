@@ -94,14 +94,7 @@ long double ft_modfl(long double input, long double* out_integral)
     return (input);
 }
 
-#ifdef UNIT_TEST
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <stdbool.h>
-
-/* Debug functions */
+/* Debug functions
 void display_double(const double* f)
 {
     const my_double* x = (my_double*)f;
@@ -114,36 +107,4 @@ void display_float(const float* f)
     printf("(-1)^%u * 2^%-4i * %x * 2^-23 = %+f\n",
            x->fields.sign, (x->fields.exponent - 127), (x->fields.significand + (1U << 23)), x->data);
 }
-
-/* Test functions */
-bool test_modf(double f)
-{
-    double intg[2];
-    double frac[2];
-
-    frac[0] = ft_modf(f, intg);
-    frac[1] = modf(f, intg + 1);
-    return (frac[0] == frac[1] && intg[0] == intg[1]);
-}
-bool test_modff(float f)
-{
-    float intg[2];
-    float frac[2];
-
-    frac[0] = ft_modff(f, intg);
-    frac[1] = modff(f, intg + 1);
-    return (frac[0] == frac[1] && intg[0] == intg[1]);
-}
-
-int  main(int ac, char** av)
-{
-    while (ac --> 1)
-    {
-        double f = atof(av[ac]);
-        bool   is_success = test_modff(f);
-        printf("%+20lf : [%s]\n", f, is_success ? "OK" : "no");
-    }
-    return (0);
-}
-
-#endif /* UNIT_TEST */
+*/

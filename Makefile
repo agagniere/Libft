@@ -85,8 +85,6 @@ OBJ=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 DEP=$(OBJ:.o=.d)
 # ==================
 
-MAKEFLAGS+=-j
-
 all: $(NAME)
 
 include $(wildcard $(DEP))

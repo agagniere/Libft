@@ -1,4 +1,4 @@
-FILE=libunit.c
+FILE=libunit.c comparisons.c
 NAME=libunit.a
 LIBFT_PATH=../..
 
@@ -15,7 +15,7 @@ $(NAME): $(OBJ)
 	$(AR) rcs $@ $^
 
 clean:
-	$(RM) $(OBJECT)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)

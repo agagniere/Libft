@@ -12,7 +12,7 @@
      T frac[2];                                                 \
      frac[LFT] = ft_##NAME(f, intg + LFT);                      \
      frac[STD] = NAME(f, intg + STD);                           \
-     if (is_nan(frac[STD]) && is_nan(frac[LFT]))                \
+     if (isnan(frac[STD]) && isnan(frac[LFT]))                  \
          return true;                                           \
      return (frac[LFT] == frac[STD] && intg[LFT] == intg[STD]); \
  }

@@ -41,6 +41,8 @@ static unsigned	run_test(t_test *test)
 	return (status == 0);
 }
 
+
+
 int				launch_tests(const char *name, t_array *list)
 {
 	void		*iterator;
@@ -56,5 +58,5 @@ int				launch_tests(const char *name, t_array *list)
 	          success,
 	          list->size,
 	          COLOR(NORMAL));
-	return (-(success != list->size));
+	return (success != list->size);
 }

@@ -9,14 +9,14 @@ FILES=$(shell find . -name '*.c')
 OBJ=$(FILES:.c=.o)
 
 CPPFLAGS+=-Wall -Wextra -O2 -g
-CPPFLAGS+=-I$(LIBUNIT_PATH) -I$(LIBFT_PATH)/include
+CPPFLAGS+=-I$(LIBUNIT_PATH) -I$(LIBFT_PATH)/include -I.
 
 all: $(EXEC)
 
 re: fclean all
 
-test:
-	./$(EXEC)
+test: $(EXEC)
+	./$<
 
 $(EXEC): $(OBJ) | $(LIBUNIT) $(LIBFT)
 	$(CC) $^ -L$(LIBUNIT_PATH) -L$(LIBFT_PATH) -lunit -lft -o $@

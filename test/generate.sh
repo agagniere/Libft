@@ -5,8 +5,12 @@ global_main="main.c"
 
 echo -e "#pragma once\n" > $global_header
 
-echo -e "#include \"$global_header\"\n" > $global_main
+echo -e "#include \"${global_header}\"" > $global_main
+echo -e "#include \"ft_color.h\"" >> $global_main
+echo -e "#include \"ft_printf.h\"\n" >> $global_main
 echo -e "int main()\n{" >> $global_main
+echo -e "\tunsigned success = 0;" >> $global_main
+echo -e "\tunsigned total = 0;\n" >> $global_main
 
 generate()
 {
@@ -23,7 +27,7 @@ generate()
 
 	echo -e "Generating ${fun} tests"
 	echo -e "int ${fun}_launcher(void);" >> $global_header
-	echo -e "\t${fun}_launcher();" >> $global_main
+	echo -e "\tsuccess += !${fun}_launcher(); total++;" >> $global_main
 	mkdir -p $fun
 	cd $fun
 
@@ -48,15 +52,15 @@ generate()
 		echo -e "#include \"$header\"" > $filename
 		echo -e '#include "comparisons.h"' >> $filename
 		echo -e '#include "libft.h"' >> $filename
-		echo -e "#include <${lib}.h>\n" >> $filename
+		echo -e "#include \"${lib}.h\"\n" >> $filename
 		echo -e "int ${name}(void)\n{" >> $filename
 
         case "$comp_type" in
             "stdf") # There exists a standard equivalent that should behave the same way
 		        echo -e "\tif (compare_${compare}(${fun}(${input}),ft_${fun}(${input})))" >> $filename
                 ;;
-            *) # A custom function to call is provided
-                echo -e "\tif ($comp_type($input))" >> $filename
+            "custom") # A custom function to call is provided
+                echo -e "\tif (${compare}($input))" >> $filename
                 ;;
         esac
 
@@ -90,16 +94,17 @@ generate "strcmp" "stdf" "int_sign" "string" \
          'basic_inequality|"string_one","string_two"' 'empty_s1|"","why"' 'empty_s2|"are",""' \
 		 'empty_both|"",""' 'long_equality|"Hellllllooooooo!!!!!","Hellllllooooooo!!!!!"'
 
-generate "modf" "test_modf" "test_modf" "math" \
+generate "modf" "custom" "test_modf" "test_modf" \
          'forty_two|42' 'four_point_two|4.2' 'pi|M_PI' 'zero|0' 'infinity|INFINITY' 'minus_infinity|-INFINITY' \
-         'not_a_number|NAN' 'small|4.7e-30' 'big|7.4e30' 'tiny|3e-100' 'huge|9e150'
+         'not_a_number|NAN' 'small|4.7e-30' 'big|7.4e30' 'tiny|3e-100' 'huge|9e180' 'subnormal|1e-320'
 
-generate "modff" "test_modff" "test_modff" "math" \
-         'forty_twof|42' 'four_point_twof|4.2' 'pif|M_PI' 'zerof|0' 'infinityf|INFINITY' 'minus_infinityf|-INFINITY' \
+generate "modff" "custom" "test_modff" "test_modf" \
+         'forty_twof|42' 'four_point_twof|4.2' 'pi_float|M_PI' 'zerof|0' 'infinityf|INFINITY' 'minus_infinityf|-INFINITY' \
          'not_a_numberf|NAN' 'smallf|4.7e-30' 'bigf|7.4e30'
 
-generate "modfl" "test_modfl" "test_modfl" "math" \
-         'forty_twol|42' 'four_point_twol|4.2' 'pil|M_PI' 'zerol|0' 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' \
-         'not_a_numberl|NAN' 'smalll|4.7e-30' 'bigl|7.4e30' 'tinyl|3e-100' 'hugel|9e150'
+generate "modfl" "custom" "test_modfl" "test_modf" \
+         'forty_twol|42' 'four_point_twol|4.2' 'three|3' 'three_point_one|3.1' 'three_point_one_four|3.14L' 'pil|M_PI' 'zerol|0' 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' \
+         'not_a_numberl|NAN' 'smalll|4.7e-30' 'bigl|7.4e30' 'tinyl|1e-310' 'hugel|1e300' 'minuscule|5e-600L' 'vast|5e700L'
 
-echo -e "\treturn 0;\n}" >> $global_main
+echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
+echo -e "\treturn (success != total);\n}" >> $global_main

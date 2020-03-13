@@ -21,7 +21,7 @@ jobs:
     - name: Generate tests
       run: ( cd test ; bash ./generate.sh )
     - name: Compile tests
-      run: ( cd test ; make )
+      run: ( cd test ; make -j )
     - name: Run tests
       run: make test
     - name: Clean

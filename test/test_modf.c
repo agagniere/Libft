@@ -2,38 +2,21 @@
 #include <stdbool.h>
 #include "libft.h"
 
-bool test_modf(double f)
-{
-	double intg[2];
-	double frac[2];
+#define LFT 0
+#define STD 1
 
-	frac[0] = ft_modf(f, intg);
-	frac[1] = modf(f, intg + 1);
-	if (isnan(frac[0]) && isnan(frac[1]))
-		return true;
-	return (frac[0] == frac[1] && intg[0] == intg[1]);
-}
+#define _test_modf(T, NAME)                                     \
+ bool test_##NAME(T f)                                          \
+ {                                                              \
+     T intg[2];                                                 \
+     T frac[2];                                                 \
+     frac[LFT] = ft_##NAME(f, intg + LFT);                      \
+     frac[STD] = NAME(f, intg + STD);                           \
+     if (is_nan(frac[STD]) && is_nan(frac[LFT]))                \
+         return true;                                           \
+     return (frac[LFT] == frac[STD] && intg[LFT] == intg[STD]); \
+ }
 
-bool test_modff(float f)
-{
-	float intg[2];
-	float frac[2];
-
-	frac[0] = ft_modff(f, intg);
-	frac[1] = modff(f, intg + 1);
-	if (isnan(frac[0]) && isnan(frac[1]))
-		return true;
-	return (frac[0] == frac[1] && intg[0] == intg[1]);
-}
-
-bool test_modfl(long double f)
-{
-	long double intg[2];
-	long double frac[2];
-
-	frac[0] = ft_modfl(f, intg);
-	frac[1] = modfl(f, intg + 1);
-	if (isnan(frac[0]) && isnan(frac[1]))
-		return true;
-	return (frac[0] == frac[1] && intg[0] == intg[1]);
-}
+_test_modf(double, modf)
+_test_modf(float, modff)
+_test_modf(long double, modfl)

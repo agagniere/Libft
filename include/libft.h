@@ -63,8 +63,4 @@ void	*ft_calloc(size_t count, size_t size);
 void	ft_exit(char const *const fnc, char const *const str);
 void	*ft_safe_calloc(size_t count, size_t size);
 
-float       ft_modff(float f, float* out_intg);
-double      ft_modf(double f, double* out_intg);
-long double ft_modfl(long double f, long double* out_intg);
-
 #endif

@@ -5,8 +5,12 @@ global_main="main.c"
 
 echo -e "#pragma once\n" > $global_header
 
-echo -e "#include \"$global_header\"\n" > $global_main
+echo -e "#include \"${global_header}\"" > $global_main
+echo -e "#include \"ft_color.h\"" >> $global_main
+echo -e "#include \"ft_printf.h\"\n" >> $global_main
 echo -e "int main()\n{" >> $global_main
+echo -e "\tunsigned success = 0;" >> $global_main
+echo -e "\tunsigned total = 0;\n" >> $global_main
 
 generate()
 {
@@ -23,7 +27,7 @@ generate()
 
 	echo -e "Generating ${fun} tests"
 	echo -e "int ${fun}_launcher(void);" >> $global_header
-	echo -e "\t${fun}_launcher();" >> $global_main
+	echo -e "\tsuccess += !${fun}_launcher(); total++;" >> $global_main
 	mkdir -p $fun
 	cd $fun
 
@@ -48,15 +52,15 @@ generate()
 		echo -e "#include \"$header\"" > $filename
 		echo -e '#include "comparisons.h"' >> $filename
 		echo -e '#include "libft.h"' >> $filename
-		echo -e "#include <${lib}.h>\n" >> $filename
+		echo -e "#include \"${lib}.h\"\n" >> $filename
 		echo -e "int ${name}(void)\n{" >> $filename
 
         case "$comp_type" in
             "stdf") # There exists a standard equivalent that should behave the same way
 		        echo -e "\tif (compare_${compare}(${fun}(${input}),ft_${fun}(${input})))" >> $filename
                 ;;
-            *) # A custom function to call is provided
-                echo -e "\tif ($comp_type($input))" >> $filename
+            "custom") # A custom function to call is provided
+                echo -e "\tif (${compare}($input))" >> $filename
                 ;;
         esac
 
@@ -76,10 +80,10 @@ generate()
 }
 
 generate "strlen" "stdf" "int" "string" \
-         'basic_string|"Hello\040World"' 'empty_string|""' 'other|"\\t!@#$%^&\\0*()"'
+		 'basic_string|"Hello\040World"' 'empty_string|""' 'other|"\\t!@#$%^&\\0*()"'
 
 generate "atoi" "stdf" "int" "stdlib" \
-         'basic_number|"28"' 'negative|"-8128"' 'empty|""' 'negative_zero|"-0"' \
+		 'basic_number|"28"' 'negative|"-8128"' 'empty|""' 'negative_zero|"-0"' \
 		 'space|"\040\040-496"' 'plus_sign|"+1729\040Ramanujan"' 'tab|"\040\\t33550336\040Perfect"' \
 		 'carriage_return|"\\r+877\040BellPrime"' 'form_feed|"\\f\040-16127\040CarolPrime"' \
 		 'vertical_tab|"\\v7057\040CubanPrime"' 'two_plus_signs|"++3"' 'invalid_first_char|"~197\040Chen"' \
@@ -87,19 +91,24 @@ generate "atoi" "stdf" "int" "stdlib" \
 		 'int_max|"2147483647"'
 
 generate "strcmp" "stdf" "int_sign" "string" \
-         'basic_inequality|"string_one","string_two"' 'empty_s1|"","why"' 'empty_s2|"are",""' \
+		 'basic_inequality|"string_one","string_two"' 'empty_s1|"","why"' 'empty_s2|"are",""' \
 		 'empty_both|"",""' 'long_equality|"Hellllllooooooo!!!!!","Hellllllooooooo!!!!!"'
 
-generate "modf" "test_modf" "test_modf" "math" \
-         'forty_two|42' 'four_point_two|4.2' 'pi|M_PI' 'zero|0' 'infinity|INFINITY' 'minus_infinity|-INFINITY' \
-         'not_a_number|NAN' 'small|4.7e-30' 'big|7.4e30' 'tiny|3e-100' 'huge|9e150'
+generate "modf" "custom" "test_modf" "test_modf" \
+		 'zero|0' 'one|1' 'two|2' 'forty_two|42' \
+		 'four_point_two|4.2' 'pi|M_PI' \
+		 'small|4.7e-30' 'big|7.4e30' 'tiny|3e-100' 'huge|9e180' 'subnormal|1e-320' \
+		 'infinity|INFINITY' 'minus_infinity|-INFINITY' 'not_a_number|NAN' \
+		 'min|DBL_MIN' 'true_min|DBL_TRUE_MIN' 'max|DBL_MAX'
 
-generate "modff" "test_modff" "test_modff" "math" \
-         'forty_twof|42' 'four_point_twof|4.2' 'pif|M_PI' 'zerof|0' 'infinityf|INFINITY' 'minus_infinityf|-INFINITY' \
-         'not_a_numberf|NAN' 'smallf|4.7e-30' 'bigf|7.4e30'
+generate "modff" "custom" "test_modff" "test_modf" \
+		 'forty_twof|42' 'four_point_twof|4.2' 'pi_float|3.1415926535F' 'zerof|0' 'infinityf|INFINITY' 'minus_infinityf|-INFINITY' \
+		 'not_a_numberf|NAN' 'smallf|4.7e-30' 'bigf|7.4e30' 'minf|FLT_MIN' 'true_minf|FLT_TRUE_MIN' 'maxf|FLT_MAX'
 
-generate "modfl" "test_modfl" "test_modfl" "math" \
-         'forty_twol|42' 'four_point_twol|4.2' 'pil|M_PI' 'zerol|0' 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' \
-         'not_a_numberl|NAN' 'smalll|4.7e-30' 'bigl|7.4e30' 'tinyl|3e-100' 'hugel|9e150'
+generate "modfl" "custom" "test_modfl" "test_modf" \
+		 'zerol|0' 'onel|1' 'twol|2' 'forty_twol|42' \
+		 'four_point_twol|4.2L' 'pil|M_PI' 'smalll|4.7e-30L' 'bigl|7.4e30L' 'tinyl|1.159e-310L' 'hugel|1.357e300L' 'minuscule|5.456e-600L' 'vast|5.987e700L' \
+		 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' 'not_a_numberl|NAN' 'minl|LDBL_MIN' 'true_minl|LDBL_TRUE_MIN' 'maxl|LDBL_MAX'
 
-echo -e "\treturn 0;\n}" >> $global_main
+echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
+echo -e "\treturn (success != total);\n}" >> $global_main

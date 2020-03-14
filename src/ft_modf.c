@@ -90,7 +90,7 @@ float ft_modff(float input, float* out_integral)
 long double ft_modfl(long double input, long double* out_integral)
 {
     my_long_double intg = (my_long_double){input};
-    _ft_modf(input, intg, out_integral, 16383, 64);
+    _ft_modf(input, intg, out_integral, 16382, 64);
     return (input);
 }
 

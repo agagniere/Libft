@@ -56,5 +56,5 @@ int				launch_tests(const char *name, t_array *list)
 	          success,
 	          list->size,
 	          COLOR(NORMAL));
-	return (-(success != list->size));
+	return (success != list->size);
 }

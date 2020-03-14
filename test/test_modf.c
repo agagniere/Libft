@@ -1,6 +1,6 @@
+#include "test_modf.h"
+#include "ft_math.h"
 #include <math.h>
-#include <stdbool.h>
-#include "libft.h"
 
 #define LFT 0
 #define STD 1

@@ -80,10 +80,10 @@ generate()
 }
 
 generate "strlen" "stdf" "int" "string" \
-         'basic_string|"Hello\040World"' 'empty_string|""' 'other|"\\t!@#$%^&\\0*()"'
+		 'basic_string|"Hello\040World"' 'empty_string|""' 'other|"\\t!@#$%^&\\0*()"'
 
 generate "atoi" "stdf" "int" "stdlib" \
-         'basic_number|"28"' 'negative|"-8128"' 'empty|""' 'negative_zero|"-0"' \
+		 'basic_number|"28"' 'negative|"-8128"' 'empty|""' 'negative_zero|"-0"' \
 		 'space|"\040\040-496"' 'plus_sign|"+1729\040Ramanujan"' 'tab|"\040\\t33550336\040Perfect"' \
 		 'carriage_return|"\\r+877\040BellPrime"' 'form_feed|"\\f\040-16127\040CarolPrime"' \
 		 'vertical_tab|"\\v7057\040CubanPrime"' 'two_plus_signs|"++3"' 'invalid_first_char|"~197\040Chen"' \
@@ -91,20 +91,24 @@ generate "atoi" "stdf" "int" "stdlib" \
 		 'int_max|"2147483647"'
 
 generate "strcmp" "stdf" "int_sign" "string" \
-         'basic_inequality|"string_one","string_two"' 'empty_s1|"","why"' 'empty_s2|"are",""' \
+		 'basic_inequality|"string_one","string_two"' 'empty_s1|"","why"' 'empty_s2|"are",""' \
 		 'empty_both|"",""' 'long_equality|"Hellllllooooooo!!!!!","Hellllllooooooo!!!!!"'
 
 generate "modf" "custom" "test_modf" "test_modf" \
-         'forty_two|42' 'four_point_two|4.2' 'pi|M_PI' 'zero|0' 'infinity|INFINITY' 'minus_infinity|-INFINITY' \
-         'not_a_number|NAN' 'small|4.7e-30' 'big|7.4e30' 'tiny|3e-100' 'huge|9e180' 'subnormal|1e-320'
+		 'forty_two|42' 'four_point_two|4.2' 'pi|M_PI' 'zero|0' 'infinity|INFINITY' 'minus_infinity|-INFINITY' \
+		 'not_a_number|NAN' 'small|4.7e-30' 'big|7.4e30' 'tiny|3e-100' 'huge|9e180' 'subnormal|1e-320' \
+		 'min|DBL_MIN' 'true_min|DBL_TRUE_MIN' 'max|DBL_MAX'
 
 generate "modff" "custom" "test_modff" "test_modf" \
-         'forty_twof|42' 'four_point_twof|4.2' 'pi_float|M_PI' 'zerof|0' 'infinityf|INFINITY' 'minus_infinityf|-INFINITY' \
-         'not_a_numberf|NAN' 'smallf|4.7e-30' 'bigf|7.4e30'
+		 'forty_twof|42' 'four_point_twof|4.2' 'pi_float|M_PI' 'zerof|0' 'infinityf|INFINITY' 'minus_infinityf|-INFINITY' \
+		 'not_a_numberf|NAN' 'smallf|4.7e-30' 'bigf|7.4e30' 'minf|FLT_MIN' 'true_minf|FLT_TRUE_MIN' 'maxf|FLT_MAX'
 
 generate "modfl" "custom" "test_modfl" "test_modf" \
-         'forty_twol|42' 'four_point_twol|4.2' 'three|3' 'three_point_one|3.1' 'three_point_one_four|3.14L' 'pil|M_PI' 'zerol|0' 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' \
-         'not_a_numberl|NAN' 'smalll|4.7e-30' 'bigl|7.4e30' 'tinyl|1e-310' 'hugel|1e300' 'minuscule|5e-600L' 'vast|5e700L'
+		 'forty_twol|42' 'four_point_twol|4.2' 'three|3' 'three_point_one|3.1' 'three_point_one_four|3.14L' 'pil|M_PI' \
+		 'zerol|0' 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' \
+		 'not_a_numberl|NAN' 'smalll|4.7e-30' 'bigl|7.4e30' 'tinyl|1e-310' 'hugel|1e300' 'minuscule|5e-600L' 'vast|5e700L' \
+		 'minl|LDBL_MIN' 'true_minl|LDBL_TRUE_MIN' 'maxl|LDBL_MAX'
+
 
 echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
 echo -e "\treturn (success != total);\n}" >> $global_main

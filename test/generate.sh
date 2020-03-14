@@ -108,7 +108,7 @@ generate "modff" "custom" "test_modff" "test_modf" \
 generate "modfl" "custom" "test_modfl" "test_modf" \
 		 'zerol|0' 'onel|1' 'twol|2' 'forty_twol|42' \
 		 'four_point_twol|4.2L' 'pil|M_PI' 'smalll|4.7e-30L' 'bigl|7.4e30L' 'tinyl|1.159e-310L' 'hugel|1.357e300L' 'minuscule|5.456e-600L' 'vast|5.987e700L' \
-		 'infinity|INFINITY' 'minus_infinity|-INFINITY' 'not_a_number|NAN' 'minl|LDBL_MIN' 'true_minl|LDBL_TRUE_MIN' 'maxl|LDBL_MAX'
+		 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' 'not_a_numberl|NAN' 'minl|LDBL_MIN' 'true_minl|LDBL_TRUE_MIN' 'maxl|LDBL_MAX'
 
 echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
 echo -e "\treturn (success != total);\n}" >> $global_main

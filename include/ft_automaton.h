@@ -15,12 +15,14 @@
 
 # include "ft_string.h"
 
+# include <stdint.h>
+
 typedef struct s_dfa		t_dfa;
 typedef struct s_state		t_state;
 typedef struct s_trans		t_trans;
 typedef struct s_sstr		t_sstr;
 typedef struct s_meta		t_meta;
-typedef enum s_dfa_action	t_dfa_action;
+typedef enum e_dfa_action	t_dfa_action;
 
 enum						e_dfa_action
 {
@@ -56,7 +58,7 @@ struct						s_meta
 {
 	size_t			index;
 	size_t			len;
-	t_sh_sates		state;
+	unsigned		state;
 };
 
 /*
@@ -118,7 +120,7 @@ struct						s_trans
 
 # define NEW_TRANS(C,S,F) (t_trans){C, S, F}
 
-t_dfa						dfa_new(t_string *in, uint8_t size);
+t_dfa						dfa_new(t_string *in, size_t size);
 
 # define STATE_GET(A,S) ARRAY_GETT(t_array, (A)->states, S)
 

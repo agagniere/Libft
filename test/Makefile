@@ -22,7 +22,7 @@ $(EXEC): $(OBJ) | $(LIBUNIT) $(LIBFT)
 	$(CC) $^ -L$(LIBUNIT_PATH) -L$(LIBFT_PATH) -lunit -lft -o $@
 
 %.a:
-	@$(MAKE) -C $(@D)
+	@$(MAKE) -C $(@D) $(@F)
 
 clean:
 	$(RM) $(OBJ)

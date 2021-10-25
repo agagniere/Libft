@@ -399,10 +399,25 @@ void			fta_iteri2(const t_array *self, void (*f)(), void *a, void *b);
 /*
 ** Iterator<Array>::End
 ** -
-** Returns the end end of the array
+** Returns the one-past-the-end iterator of the array
 */
 
-# define ARRAY_END(A) ((A)->data + (A)->size * (A)->type_size)
+# define ARRAY_END(A) (ARRAY_GET(A, (A)->size))
+
+/*
+** Array::First
+** -
+** Returns the first element of the array, or NULL if it is empty
+*/
+
+# define ARRAY_FIRST(A) (ARRAY_GETS(A, 0))
+
+/*
+** Array:Last
+** -
+** Returns the last element of the array, or NULL if it is empty
+*/
+# define ARRAY_LAST(A) (ARRAY_GETS(A, (A)->size - 1))
 
 /*
 ** Iterator<Array>::Step

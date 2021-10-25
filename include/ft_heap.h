@@ -14,6 +14,7 @@
 # define FT_HEAP_H
 
 # include "ft_array.h"
+# include <stdbool.h>
 
 typedef struct s_heap
 			t_heap;
@@ -25,5 +26,10 @@ struct		s_heap
 };
 
 # define HEAP_NEW(T,F) (t_heap){NEW_ARRAY(T),F}
+
+void		heap_push(t_heap *self, void *element);
+bool		heap_pop(t_heap *self, void *out_element);
+
+# define HEAP_TOP(H) (ARRAY_START((const t_array*)H))
 
 #endif

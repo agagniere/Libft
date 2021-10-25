@@ -28,6 +28,8 @@
 ** Miscellaneous tricks
 */
 
+# define C_ARRAY_LENGTH(A) (sizeof(A) / sizeof(*(A)))
+
 # define ARG_COUNT(...) _ARG_COUNT1(__VA_ARGS__)
 
 # define FD_PUT(F,A) write(F, A, ft_strlen(A))

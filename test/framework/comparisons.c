@@ -28,3 +28,25 @@ bool compare_str(const char* a, const char* b)
 {
     return ft_strequ(a, b);
 }
+
+int unsigned_spaceship_ascending(const unsigned* a, const unsigned* b)
+{
+	if (*a > *b)
+		return 1;
+	return (*a == *b ? 0 : -1);
+}
+
+int unsigned_spaceship_descending(const unsigned* a, const unsigned* b)
+{
+	return unsigned_spaceship_ascending(b, a);
+}
+
+int int_spaceship_ascending(const int* a, const int* b)
+{
+	return (*a - *b);
+}
+
+int int_spaceship_descending(const int* a, const int* b)
+{
+	return int_spaceship_ascending(b, a);
+}

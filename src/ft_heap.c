@@ -11,43 +11,47 @@
 /* ************************************************************************** */
 
 #include "ft_heap.h"
+#include "libft.h"
 
-#include <stdbool.h>
-
-bool	heap_push(t_heap *self, void *element)
+void	heap_push(t_heap *self, void *element)
 {
-	t_array *const	super = self;
-	unsigned		index;
+	t_array *		super = (t_array*)self;
+	unsigned		index, parent;
 
 	index = super->size;
 	fta_append(super, element, 1);
-	while (index > 0 && self->cmp(ARRAY_GET(super, index), element) > 0)
+	while (index > 0)
 	{
-		;
+		parent = (index - 1) / 2;
+		if (self->cmp(ARRAY_GET(super, parent), ARRAY_GET(super, index)) > 0)
+			ft_memswp(ARRAY_GET(super, parent), ARRAY_GET(super, index), super->type_size);
+		index = parent;
 	}
 }
 
-void	heap_pop(t_heap *self, void *out_element)
+bool	heap_pop(t_heap *self, void *out_element)
 {
-	t_array *const	super = self;
-	unsigned		index;
+	t_array *		super = (t_array*)self;
+	unsigned		index, parent;
 	const size_t	one = super->type_size;
 
-	ft_memcpy(out_element, ARRAY_START(super), one);
-	ft_memcpy(super->data, ARRAY_END(super) - one, one);
+	if (super->size == 0)
+		return false;
+	if (out_element)
+		ft_memcpy(out_element, ARRAY_FIRST(super), one);
+	ft_memcpy(ARRAY_FIRST(super), ARRAY_LAST(super), one);
 	fta_popback(super, 1);
-	index = 0;
+	parent = index = 0;
 	while ((index = 2 * index + 1) < super->size)
 	{
 		if (index + 1 < super->size
-			&& self->cmp(ARRAY_GET(super, index + 1),
-						 ARRAY_GET(super, index)) > 0)
+		    && self->cmp(ARRAY_GET(super, index), ARRAY_GET(super, index + 1)) > 0)
 			index++;
-		if (self->cmp(ARRAY_GET(super, index),
-					  ARRAY_GET(super, (index - 1) / 2)) > 0)
-			ft_memswp(ARRAY_GET(super, index),
-					  ARRAY_GET(super, (index - 1) / 2));
+		if (self->cmp(ARRAY_GET(super, parent), ARRAY_GET(super, index)) > 0)
+			ft_memswp(ARRAY_GET(super, parent), ARRAY_GET(super, index), one);
 		else
 			break ;
+		parent = index;
 	}
+	return true;
 }

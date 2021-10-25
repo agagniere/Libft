@@ -13,9 +13,7 @@
 #ifndef FT_DEQUE_H
 # define FT_DEQUE_H
 
-# ifndef ARRAY_LENGTH
-#  define ARRAY_LENGTH(A) (sizeof(A) / sizeof(*(A)))
-# endif
+# include "ft_prepro.h"
 
 # include <stddef.h>
 # include <stdbool.h>
@@ -37,7 +35,7 @@ struct					s_deque
 /*
 ** This constructor can be used if the storage is a C static array
 */
-# define DEQUE_NEW(A) (t_deque){A, A, A, sizeof(*A), ARRAY_LENGTH(A)}
+# define DEQUE_NEW(A) (t_deque){A, A, A, sizeof(*A), C_ARRAY_LENGTH(A)}
 
 /*
 ** Returns an initialized t_deque that uses the specified storage

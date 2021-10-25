@@ -38,8 +38,7 @@ generate()
 	echo -e '#include "libunit.h"' > $launcher
 	echo -e "#include \"$header\"\n" >> $launcher
 	echo -e "int ${fun}_launcher(void)\n{" >> $launcher
-	echo -e "\tt_tests test_list[1];\n" >> $launcher
-	echo -e "\ttest_list[0] = NEW_TESTS;" >> $launcher
+	echo -e "\tt_tests test_list __attribute__((cleanup (fta_clear))) = NEW_TESTS;\n" >> $launcher
 
 	count=1
 	for input in $@
@@ -71,11 +70,11 @@ generate()
         # Add prototype to header
 		echo -e "int ${name}(void);" >> $header
         # And call to launcher
-		echo -e "\tload_test(test_list, \"$(echo -e $name | tr '_' ' ')\", &$name);" >> $launcher
+		echo -e "\tload_test(&test_list, \"$(echo -e $name | tr '_' ' ')\", &$name);" >> $launcher
 		let count++
 	done
 
-	echo -e "\treturn (launch_tests(\"${fun}\", test_list));\n}" >> $launcher
+	echo -e "\treturn (launch_tests(\"${fun}\", &test_list));\n}" >> $launcher
 	cd ..
 }
 
@@ -110,5 +109,7 @@ generate "modfl" "custom" "test_modfl" "test_modf" \
 		 'four_point_twol|4.2L' 'pil|M_PI' 'smalll|4.7e-30L' 'bigl|7.4e30L' 'tinyl|1.159e-310L' 'hugel|1.357e300L' 'minuscule|5.456e-600L' 'vast|5.987e700L' \
 		 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' 'not_a_numberl|NAN' 'minl|LDBL_MIN' 'true_minl|LDBL_TRUE_MIN' 'maxl|LDBL_MAX'
 
+echo -e 'int heap_launcher(void);' >> $global_header
+echo -e '\tsuccess += !heap_launcher(); total++;' >> $global_main
 echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
 echo -e "\treturn (success != total);\n}" >> $global_main

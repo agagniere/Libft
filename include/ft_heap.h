@@ -32,4 +32,7 @@ bool		heap_pop(t_heap *self, void *out_element);
 
 # define HEAP_TOP(H) (ARRAY_START((const t_array*)H))
 
+/* clang refuses to silently convert */
+inline void heap_free(t_heap* self) { fta_clear((t_array*)self); }
+
 #endif

@@ -14,6 +14,7 @@
 SOURCE_PATH := src
 CACHE_PATH  := cache
 HEADER_PATH := include
+TEST_PATH   := test
 
 # Files
 TARGET_STATIC = libft.a
@@ -49,14 +50,17 @@ PURPLE:="\033[1;36m"
 WHITE:="\033[1;37m"
 # ==================
 
+static: $(TARGET_STATIC)
 
 all: $(TARGET_STATIC) $(TARGET_SHARED)
 
 include $(wildcard $(DEP))
 
-test: $(TARGET_STATIC)
-	@(cd test && bash generate.sh )
-	@$(MAKE) -C test test
+test: $(TARGET_STATIC) $(TEST_PATH)/main.c
+	@$(MAKE) -C $(TEST_PATH) $@
+
+$(TEST_PATH)/main.c:
+	@(cd $(@D) && bash generate.sh)
 
 $(TARGET_STATIC): $(OBJECTS)
 	$(AR) rcs $@ $^

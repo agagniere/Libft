@@ -12,21 +12,6 @@
 
 #include "ft_printf.h"
 
-int		pf_cv_b(t_modifier *m, t_array *d, va_list ap)
-{
-	if (m->booleans.n.alternate)
-		fta_append(d, "b", 1);
-	return (pf_unsigned_integer(m, d, ap, 2));
-}
-
-int		pf_cv_p(t_modifier *m, t_array *d, va_list ap)
-{
-	(void)m;
-	fta_append(d, "0x", 2);
-	m->length = 'L';
-	return (pf_unsigned_integer(m, d, ap, 16));
-}
-
 int		pf_cv_n(t_modifier *m, t_array *d, va_list ap)
 {
 	int		*arg;

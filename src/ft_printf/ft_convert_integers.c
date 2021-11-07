@@ -90,3 +90,57 @@ int			pf_unsigned_integer(t_modifier *m, t_array *d, va_list ap, int b)
 		d->size -= 1;
 	return (pf_itoa_base(d, arg, ABS(b), 2 | (b < 0)));
 }
+
+/*
+** For the d (decimal) and i (integer) conversions
+*/
+
+int		pf_cv_di(t_modifier *m, t_array *d, va_list ap)
+{
+	return (pf_signed_integer(m, d, ap, 10));
+}
+
+/*
+** For the capital X conversion
+*/
+
+int		pf_cv_cx(t_modifier *m, t_array *d, va_list ap)
+{
+	if (m->booleans.n.alternate)
+		fta_append(d, "0X", 2);
+	return (pf_unsigned_integer(m, d, ap, -16));
+}
+
+int		pf_cv_x(t_modifier *m, t_array *d, va_list ap)
+{
+	if (m->booleans.n.alternate)
+		fta_append(d, "0x", 2);
+	return (pf_unsigned_integer(m, d, ap, 16));
+}
+
+int		pf_cv_o(t_modifier *m, t_array *d, va_list ap)
+{
+	if (m->booleans.n.alternate)
+		fta_append(d, "0", 1);
+	return (pf_unsigned_integer(m, d, ap, 8));
+}
+
+int		pf_cv_u(t_modifier *m, t_array *d, va_list ap)
+{
+	return (pf_unsigned_integer(m, d, ap, 10));
+}
+
+int		pf_cv_b(t_modifier *m, t_array *d, va_list ap)
+{
+	if (m->booleans.n.alternate)
+		fta_append(d, "b", 1);
+	return (pf_unsigned_integer(m, d, ap, 2));
+}
+
+int		pf_cv_p(t_modifier *m, t_array *d, va_list ap)
+{
+	(void)m;
+	fta_append(d, "0x", 2);
+	m->length = 'L';
+	return (pf_unsigned_integer(m, d, ap, 16));
+}

@@ -1,5 +1,5 @@
 from conans import ConanFile
-from conans import tools
+from conans import AutoToolsBuildEnvironment
 
 class LibftConan(ConanFile):
     name = "libft"
@@ -8,29 +8,34 @@ class LibftConan(ConanFile):
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"
     description = "Standard datastructures"
-    topics = ("libc")
+    topics = ()
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = {"shared": True, "fPIC": True}
+    options = {
+        "shared": [True, False],
+        "fPIC": [True, False],
+        "optimisation": ['0', '1', '2', '3', 's', 'fast'],
+        "debug": [True, False]}
+    default_options = {
+        "shared": True,
+        "fPIC": False,
+        "optimisation": '2',
+        "debug": True}
     generators = "make"
 
-    def config_options(self):
-        if self.settings.os == "Windows":
-            del self.options.fPIC
-
     def source(self):
-        self.run("git clone " + self.url + " .")
+        self.run(f"git clone {self.url} .")
 
     def build(self):
-        self.run("make")
+        autotools = AutoToolsBuildEnvironment(self)
+        autotools.flags = [f"-O{self.options.optimisation}"]
+        if self.options.debug:
+            autotools.flags += ["-g"]
+        autotools.make(args=["shared" if self.options.shared else "static"])
 
     def package(self):
         self.copy("*.h", dst="include", src="include")
         self.copy("*.so", dst="lib", keep_path=False)
         self.copy("*.a", dst="lib", keep_path=False)
 
-    def test(self):
-        self.run("make test")
-
     def package_info(self):
-        self.cpp_info.libs = ["libft"]
+        self.cpp_info.libs = ["ft"]

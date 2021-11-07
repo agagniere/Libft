@@ -14,7 +14,6 @@
 SOURCE_PATH := src
 CACHE_PATH  := cache
 HEADER_PATH := include
-TEST_PATH   := test
 
 # Files
 TARGET_STATIC = libft.a
@@ -25,8 +24,8 @@ DEPFILES      = $(OBJECTS:.o=.d)
 
 # Compiler
 CC ?= gcc
-CPPFLAGS += -Wall -Wextra -fPIC -O2 -g
 CPPFLAGS += -I $(HEADER_PATH)
+CFLAGS += -Wall -Wextra
 
 # ========== Conan ==========
 CONAN_BUILD_INFO = conanbuildinfo.mak
@@ -48,12 +47,6 @@ all: static shared
 
 include $(wildcard $(DEP))
 
-test: $(TARGET_STATIC) $(TEST_PATH)/main.c
-	@$(MAKE) -C $(TEST_PATH) $@
-
-$(TEST_PATH)/main.c:
-	@(cd $(@D) && bash generate.sh)
-
 $(TARGET_STATIC): $(OBJECTS)
 	$(AR) rcs $@ $^
 
@@ -62,14 +55,12 @@ $(TARGET_SHARED): $(OBJECTS)
 
 $(CACHE_PATH)/%.o: $(SOURCE_PATH)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(CPPFLAGS) -MMD -c -o $@ $<
+	$(CC) $(CPPFLAGS) $(CFLAGS) -MMD -c $< -o $@
 
 clean:
 	$(RM) -r $(CACHE_PATH)
-	@$(MAKE) -C test $@
 
 fclean: clean
 	$(RM) $(TARGET_STATIC) $(TARGET_SHARED)
-	@$(MAKE) -C test $@
 
-.PHONY: static shared all test clean fclean
+.PHONY: static shared all clean fclean

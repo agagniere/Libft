@@ -37,11 +37,12 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup virtual environment and install conan
         run : |
-          mkdir venv && cd venv
-          virtualenv local
-          source local/bin/activate
+          python --version
+          python3 -m venv localenv
+          source localenv/bin/activate
           python --version
           pip --version
           pip install conan
       - name: Compile with conan
         run: conan install . && conan build .
+      - run: deactivate

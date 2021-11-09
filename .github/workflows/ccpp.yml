@@ -7,22 +7,41 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-and-test:
     name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
     steps:
-    - name: Download source files
-      uses: actions/checkout@v2
-    - name: Compile
-      run: make -j
-    - name: Generate tests
-      run: ( cd test ; bash ./generate.sh )
-    - name: Compile tests
-      run: ( cd test ; make -j )
-    - name: Run tests
-      run: make test
-    - name: Clean
-      run: make fclean
+      - name: Download source files
+        uses: actions/checkout@v2
+      - name: Compile
+        run: make -j
+      - name: Generate tests
+        run: ( cd test ; bash ./generate.sh )
+      - name: Compile tests
+        run: make -C test -j
+      - name: Run tests
+        run: ./test/test_libft.exe
+      - name: Clean
+        run: make fclean && make -C test fclean
+  use-conan:
+    name: Create Conan package on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Download source files
+        uses: actions/checkout@v2
+      - name: Setup virtual environment and install conan
+        run : |
+          mkdir venv && cd venv
+          virtualenv local
+          source local/bin/activate
+          python --version
+          pip --version
+          pip install conan
+      - name: Compile with conan
+        run: conan install . && conan build .

@@ -37,18 +37,18 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Python
         uses: actions/setup-python@v2.2.2
-      - name: Setup virtual environment and install conan
+      - name: Install conan
         run : |
           python3 -m venv localenv
           source localenv/bin/activate
-          python --version
-          pip --version
           python -m pip install conan
+          deactivate
       - name: Compile with conan
         run: |
+          source localenv/bin/activate
           conan profile update settings.compiler.libcxx=libstdc++11 default
           conan install .
           conan build .
           conan package .
+          deactivate
       - run: find package/
-      - run: deactivate

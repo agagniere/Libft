@@ -15,7 +15,7 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     steps:
       - name: Download source files
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0
       - name: Compile
         run: make -j
       - name: Generate tests
@@ -34,7 +34,7 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     steps:
       - name: Download source files
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0
       - name: Setup Python
         uses: actions/setup-python@v2.2.2
       - name: Install conan
@@ -46,7 +46,6 @@ jobs:
       - name: Compile with conan
         run: |
           source localenv/bin/activate
-          conan profile update settings.compiler.libcxx=libstdc++11 default
           conan install .
           conan build .
           conan package .

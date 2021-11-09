@@ -1,9 +1,11 @@
-*.a
-*.o
-libft_tester
-*~
 */#*#
-*.bck
-*.cache_exists
+*~
+*.a
 cache/*
+conan*.mak
+conan*.txt
+*.exe
+*.json
+*.lock
+*.o
 *.so

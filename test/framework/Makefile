@@ -1,15 +1,14 @@
-FILE=libunit.c comparisons.c
-NAME=libunit.a
-LIBFT_PATH=../..
+# Files
+NAME  = libunit.a
+FILES = libunit.c comparisons.c
+OBJ   = ${FILES:.c=.o}
 
-CPPFLAGS+=-I $(LIBFT_PATH)/include
-CPPFLAGS+=-Wall -Wextra -O2 -g
+# Compiler
+CC     ?= gcc
+CFLAGS += -Wall -Wextra
 
-OBJ=${FILE:.c=.o}
 
 all: $(NAME)
-
-re: fclean all
 
 $(NAME): $(OBJ)
 	$(AR) rcs $@ $^
@@ -20,4 +19,4 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-.PHONY: all re clean fclean
+.PHONY: all clean fclean

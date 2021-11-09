@@ -1,0 +1,8 @@
+[requires]
+libunit/1.0@sid/testing
+
+[generators]
+make
+
+[imports]
+lib, *.so -> ./

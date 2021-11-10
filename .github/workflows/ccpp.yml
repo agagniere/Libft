@@ -18,14 +18,16 @@ jobs:
         uses: actions/checkout@v2.4.0
       - name: Compile
         run: make -j
+      - name: Compile test framework
+        run: CPPFLAGS=-I../../include make -C test/framework
       - name: Generate tests
         run: ( cd test ; bash ./generate.sh )
       - name: Compile tests
-        run: make -C test -j
+        run: CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" make -j -C test
       - name: Run tests
         run: ./test/test_libft.exe
       - name: Clean
-        run: make fclean && make -C test fclean
+        run: make fclean && make -C test fclean && make -C test/framework fclean
   use-conan:
     name: Create Conan package on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -43,11 +45,33 @@ jobs:
           source localenv/bin/activate
           python -m pip install conan
           deactivate
-      - name: Compile with conan
+      - name: Compile libft
         run: |
           source localenv/bin/activate
           conan install .
           conan build .
           conan package .
+          conan export-pkg .
           deactivate
-      - run: find package/
+      - name: Compile test framework
+        run: |
+          source localenv/bin/activate
+          pushd test/framework
+          conan install .
+          conan build .
+          conan package .
+          conan export-pkg .
+          popd
+          deactivate
+      - name: Generate and compile tests
+        run: |
+          source localenv/bin/activate
+          ( cd test ; bash generate.sh ; conan install . ; make -j )
+          deactivate
+      - name: Run tests
+        run: |
+          source test/activate_run.sh
+          ./test/test_libft.exe
+          source test/deactivate_run.sh
+      - name: Clean
+        run: git clean -xdf

@@ -1,8 +1,7 @@
 [requires]
-libunit/1.0@sid/testing
+libunit/1.0
+libft/2.0
 
 [generators]
 make
-
-[imports]
-lib, *.so -> ./
+virtualrunenv

@@ -19,7 +19,7 @@ class LibUnitConan(ConanFile):
         "optimisation": '2',
         "debug": True}
     generators = "make"
-    requires = ["libft/2.0@sid/release"]
+    requires = ["libft/2.0"]
 
 
     def source(self):

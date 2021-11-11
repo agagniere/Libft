@@ -1,28 +1,28 @@
+# Files
 EXEC=test_libft.exe
-
-LIBUNIT_PATH=framework
-LIBUNIT=$(LIBUNIT_PATH)/libunit.a
-LIBFT_PATH=..
-LIBFT=$(LIBFT_PATH)/libft.a
-
 FILES=$(shell find . -name '*.c')
 OBJ=$(FILES:.c=.o)
 
-CPPFLAGS+=-Wall -Wextra -O2 -g
-CPPFLAGS+=-I$(LIBUNIT_PATH) -I$(LIBFT_PATH)/include -I.
+# Compiler
+CC       ?= gcc
+CFLAGS   += -Wall -Wextra
+CPPFLAGS += -I.
+
+# ========== Conan ==========
+CONAN_BUILD_INFO = conanbuildinfo.mak
+include $(wildcard $(CONAN_BUILD_INFO))
+
+CFLAGS   += $(CONAN_CFLAGS)
+CPPFLAGS += $(addprefix -I, $(CONAN_INCLUDE_DIRS))
+CPPFLAGS += $(addprefix -D, $(CONAN_DEFINES))
+LDFLAGS  += $(addprefix -L, $(CONAN_LIB_DIRS))
+LDLIBS   += $(addprefix -l, $(CONAN_LIBS))
+# ===========================
 
 all: $(EXEC)
 
-re: fclean all
-
-test: $(EXEC)
-	./$<
-
-$(EXEC): $(OBJ) | $(LIBUNIT) $(LIBFT)
-	$(CC) $^ -L$(LIBUNIT_PATH) -L$(LIBFT_PATH) -lunit -lft -o $@
-
-%.a:
-	@$(MAKE) -C $(@D) $(@F)
+$(EXEC): $(OBJ)
+	$(CC) $(CFLAGS) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
 clean:
 	$(RM) $(OBJ)
@@ -30,4 +30,4 @@ clean:
 fclean: clean
 	$(RM) $(EXEC)
 
-.PHONY: all re test clean fclean
+.PHONY: all clean fclean

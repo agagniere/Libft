@@ -25,19 +25,8 @@ DEPFILES      = $(OBJECTS:.o=.d)
 # Compiler
 CC ?= gcc
 CPPFLAGS += -I $(HEADER_PATH)
-CFLAGS += -Wall -Wextra
+CFLAGS += -Wall -Wextra -Wno-unused-result
 
-# ========== Conan ==========
-CONAN_BUILD_INFO = conanbuildinfo.mak
-
-include $(wildcard $(CONAN_BUILD_INFO))
-
-CFLAGS   += $(CONAN_CFLAGS)
-CPPFLAGS += $(addprefix -I, $(CONAN_INCLUDE_DIRS))
-CPPFLAGS += $(addprefix -D, $(CONAN_DEFINES))
-LDFLAGS  += $(addprefix -L, $(CONAN_LIB_DIRS))
-LDLIBS   += $(addprefix -l, $(CONAN_LIBS))
-# ===========================
 
 static: $(TARGET_STATIC)
 

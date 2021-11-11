@@ -55,3 +55,8 @@ bool	heap_pop(t_heap *self, void *out_element)
 	}
 	return true;
 }
+
+void	heap_free(t_heap* self)
+{
+	fta_clear((t_array*)self);
+}

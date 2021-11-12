@@ -8,18 +8,21 @@ class LibUnitConan(ConanFile):
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"
     description = "Simplistic unit testing framework"
-    topics = ()
-    settings = "os", "compiler", "build_type", "arch"
+    topics = ("conan", "testing", "unit-testing")
+    settings = ("os", "compiler", "arch")
     options = {
         "fPIC" : [True, False],
         "optimisation": ['0', '1', '2', '3', 's', 'fast'],
-        "debug": [True, False]}
+        "debug": [True, False]
+    }
     default_options = {
         "fPIC": False,
         "optimisation": '2',
-        "debug": True}
+        "debug": True
+    }
     generators = "make"
-    requires = ["libft/2.0"]
+    requires = ["libft/2.1"]
+    build_policy = "missing"
 
 
     def source(self):
@@ -27,16 +30,20 @@ class LibUnitConan(ConanFile):
         self.run("mv tmpdir/test/framework/* .")
         self.run("rm -rf tmpdir")
 
+    def configure(self):
+        del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
+
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
-        autotools.flags = [f"-O{self.options.optimisation}", "-nolibc"]
+        autotools.flags = [f"-O{self.options.optimisation}"]
         if self.options.debug:
             autotools.flags += ["-g"]
         autotools.make()
 
     def package(self):
         self.copy("*.h", dst="include")
-        self.copy("*.a", dst="lib", keep_path=False)
+        self.copy("libunit.a", dst="lib")
 
     def package_info(self):
         self.cpp_info.libs = ["unit"]

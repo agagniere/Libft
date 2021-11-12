@@ -4,8 +4,10 @@
 cache/*
 conan*.mak
 conan*.txt
+*.env
 *.exe
 *.json
 *.lock
 *.o
+*.ps1
 *.so

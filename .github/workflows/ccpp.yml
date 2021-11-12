@@ -51,7 +51,7 @@ jobs:
           conan install .
           conan build .
           conan package .
-          conan export-pkg .
+          conan export-pkg . --package-folder=package
           deactivate
       - name: Compile test framework
         run: |
@@ -60,7 +60,7 @@ jobs:
           conan install .
           conan build .
           conan package .
-          conan export-pkg .
+          conan export-pkg . --package-folder=package
           popd
           deactivate
       - name: Generate and compile tests

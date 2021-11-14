@@ -34,7 +34,7 @@ shared: $(TARGET_SHARED)
 
 all: static shared
 
-include $(wildcard $(DEP))
+include $(wildcard $(DEPFILES))
 
 $(TARGET_STATIC): $(OBJECTS)
 	$(AR) rcs $@ $^

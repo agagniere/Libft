@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STRING_H
-# define FT_STRING_H
+#pragma once
 
-# include "ft_array.h"
-# include "ft_string_legacy.h"
+#include "ft_array.h"
+#include "ft_string_legacy.h"
 
 /*
 ** |		----------===== String =====----------
@@ -24,14 +23,14 @@
 ** Vector<char> wraper
 */
 
-typedef t_array			t_string;
+typedef t_array t_string;
 
-typedef struct s_substr	t_substr;
+typedef struct s_substr t_substr;
 
-struct					s_substr
+struct s_substr
 {
-	char		*str;
-	size_t		len;
+	char*  str;
+	size_t len;
 };
 
 /*
@@ -45,7 +44,7 @@ struct					s_substr
 ** -
 */
 
-# define NEW_SUB(S) (t_substr){S, S == NULL ? 0 : ft_strlen(S)}
+#define NEW_SUB(S) (t_substr){S, S == NULL ? 0 : ft_strlen(S)}
 
 /*
 ** String::new
@@ -53,7 +52,7 @@ struct					s_substr
 ** Failsafe constructor.
 */
 
-# define NEW_STRING NEW_ARRAY(char)
+#define NEW_STRING NEW_ARRAY(char)
 
 /*
 ** String::toChar*
@@ -61,7 +60,7 @@ struct					s_substr
 ** Handy function to use a String as a char*
 */
 
-char					*ft_string(t_string *str);
+char* ft_string(t_string* str);
 
 /*
 ** String::join(char*)
@@ -69,7 +68,7 @@ char					*ft_string(t_string *str);
 ** Appends a char* at the end of the given String.
 */
 
-# define STR_JOIN_CS(S,CS,L) (fta_append(S, CS, L))
+#define STR_JOIN_CS(S, CS, L) (fta_append(S, CS, L))
 
 /*
 ** String::join(SubString)
@@ -77,13 +76,13 @@ char					*ft_string(t_string *str);
 ** Appends a SubString at the end of the given String.
 */
 
-# define STR_JOIN(STR,SUB) fta_append(STR, (SUB)->str, (SUB)->len)
+#define STR_JOIN(STR, SUB) fta_append(STR, (SUB)->str, (SUB)->len)
 
 /*
 ** String::insert(SubString)
 */
 
-# define STR_INSERT(ST,SB,I) fta_insert(ST, (void *)(SB)->str, (SB)->len, I)
+#define STR_INSERT(ST, SB, I) fta_insert(ST, (void*)(SB)->str, (SB)->len, I)
 
 /*
 ** String::insert(char*)
@@ -94,7 +93,7 @@ char					*ft_string(t_string *str);
 ** _I_ the index where the data is to be inserted.
 */
 
-# define STR_INSERT_CS(S,CS,L,I) (fta_insert(S, (void *)CS, L, I))
+#define STR_INSERT_CS(S, CS, L, I) (fta_insert(S, (void*)CS, L, I))
 
 /*
 ** String::get
@@ -102,7 +101,7 @@ char					*ft_string(t_string *str);
 ** Returns the address of the element at index _I_
 */
 
-# define STR_GET(STR,I) ARRAY_GETT(char, STR, I)
+#define STR_GET(STR, I) ARRAY_GETT(char, STR, I)
 
 /*
 ** String::getChar
@@ -110,7 +109,7 @@ char					*ft_string(t_string *str);
 ** Returns the element of index _I_
 */
 
-# define STR_GETCHAR(STR,I) (*ARRAY_GETT(char, STR, I))
+#define STR_GETCHAR(STR, I) (*ARRAY_GETT(char, STR, I))
 
 /*
 ** String::nullTerminate
@@ -121,7 +120,7 @@ char					*ft_string(t_string *str);
 ** the post-condition is 'strlen(STR->data) <= STR->size'
 */
 
-# define STR_NULL_TERMINATE(STR) (fta_reserve(STR, 1) || FTSZ(STR))
+#define STR_NULL_TERMINATE(STR) (fta_reserve(STR, 1) || FTSZ(STR))
 
 /*
 ** String::cleanRest
@@ -132,28 +131,26 @@ char					*ft_string(t_string *str);
 ** the nullTerminate function.
 */
 
-# define STR_CLEAN_REST(STR) ft_bzero(ARRAY_END(S), (S)->max - (S)->size)
+#define STR_CLEAN_REST(STR) ft_bzero(ARRAY_END(S), (S)->max - (S)->size)
 
 /*
 ** Tools for manipulating characters
 */
 
-# define UPPER_CASE(C) (C & ~(1 << 5))
-# define LOWER_CASE(C) (C | (1 << 5))
-# define TOGGLE_CASE(C) (C ^ (1 << 5))
+#define UPPER_CASE(C)  (C & ~(1 << 5))
+#define LOWER_CASE(C)  (C | (1 << 5))
+#define TOGGLE_CASE(C) (C ^ (1 << 5))
 
-# define IS_LOWER(C) ('a' <= C && C <= 'z')
-# define IS_UPPER(C) ('A' <= C && C <= 'Z')
-# define IS_ALPHA(C) (IS_LOWER(C) || IS_UPPER(C))
-# define IS_DIGIT(C) ('0' <= C && C <= '9')
-# define IS_ALNUM(C) (IS_ALPHA(C) || IS_DIGIT(C))
-# define IS_BLANK(C) (C == ' ' || C == '\t')
-# define IS_SPACE(C) (IS_BLANK(C) || C == '\v' || C == '\r')
+#define IS_LOWER(C) ('a' <= C && C <= 'z')
+#define IS_UPPER(C) ('A' <= C && C <= 'Z')
+#define IS_ALPHA(C) (IS_LOWER(C) || IS_UPPER(C))
+#define IS_DIGIT(C) ('0' <= C && C <= '9')
+#define IS_ALNUM(C) (IS_ALPHA(C) || IS_DIGIT(C))
+#define IS_BLANK(C) (C == ' ' || C == '\t')
+#define IS_SPACE(C) (IS_BLANK(C) || C == '\v' || C == '\r')
 
 /*
 ** |		----------===== private: =====----------
 */
 
-# define FTSZ(STR) (*(char *)ARRAY_END(STR) = '\0')
-
-#endif
+#define FTSZ(STR) (*(char*)ARRAY_END(STR) = '\0')

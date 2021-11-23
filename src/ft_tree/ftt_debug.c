@@ -10,18 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_tree.h"
 #include "ft_printf.h"
+#include "ft_tree.h"
 
-void	node_debug(t_tnode *self, int depth, char c)
+void node_debug(t_tnode* self, int depth, char c)
 {
 	if ((self->label >> 2) == 0x20)
-		ft_printf("%*s%c(\"%s\", %#x)\n",
-			depth, "", c, *(char **)(self + 1), self->label);
+		ft_printf("%*s%c(\"%s\", %#x)\n", depth, "", c, *(char**)(self + 1), self->label);
 	else
 	{
-		ft_printf("%*s%c(%p, %#x) --- %p, %p\n", depth, "", c,
-			(void *)self, self->label, self->left, self->right);
+		ft_printf(
+		"%*s%c(%p, %#x) --- %p, %p\n", depth, "", c, (void*)self, self->label, self->left, self->right);
 		if (self->left)
 			node_debug(self->left, depth + 1, 'l');
 		if (self->right)
@@ -29,7 +28,7 @@ void	node_debug(t_tnode *self, int depth, char c)
 	}
 }
 
-void	ftt_debug(t_tree *self)
+void ftt_debug(t_tree* self)
 {
 	ft_printf("This tree has %zu nodes.\n", self->count);
 	if (self->root)

@@ -28,7 +28,7 @@
 ** 1 otherwise.
 */
 
-int		fta_trim(t_array *self)
+int fta_trim(t_array* self)
 {
 	if (self->size < self->max)
 		return (fta_resize(self, self->size));

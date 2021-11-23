@@ -28,10 +28,10 @@
 ** 1 if a re-alloc failed, and leaves the array as-is.
 */
 
-int		fta_reserve(t_array *self, size_t size)
+int fta_reserve(t_array* self, size_t size)
 {
-	const size_t	total_size = size + self->size;
-	size_t			new_size;
+	const size_t total_size = size + self->size;
+	size_t       new_size;
 
 	if (total_size > self->max)
 	{

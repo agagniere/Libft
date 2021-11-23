@@ -12,9 +12,9 @@
 
 #include <string.h>
 
-char	*ft_strncpy(char *dst, const char *src, size_t n)
+char* ft_strncpy(char* dst, const char* src, size_t n)
 {
-	char *save;
+	char* save;
 
 	save = dst;
 	while (*src != '\0' && n > 0)

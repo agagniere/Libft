@@ -12,6 +12,7 @@
 
 #include "ft_array.h"
 #include "libft.h"
+
 #include <stdlib.h>
 
 /*
@@ -27,16 +28,15 @@
 ** "-0000141592   "
 */
 
-void	fta_swap(t_array *self, size_t before, size_t after)
+void fta_swap(t_array* self, size_t before, size_t after)
 {
-	char			*tmp;
-	const size_t	len = after - before;
-	const size_t	m = self->type_size;
+	char*        tmp;
+	const size_t len = after - before;
+	const size_t m   = self->type_size;
 
 	tmp = ft_safe_calloc(len, m);
 	ft_memcpy(tmp, self->data + before * m, m * len);
-	ft_memmove(self->data + before * m, self->data + after * m,
-		(self->size - after) * m);
+	ft_memmove(self->data + before * m, self->data + after * m, (self->size - after) * m);
 	ft_memcpy(self->data + (self->size - len) * m, tmp, len * m);
 	free(tmp);
 }

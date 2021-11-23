@@ -14,9 +14,9 @@
 
 #include <stdint.h>
 
-void	ft_memswp(void *a, void *b, size_t size)
+void ft_memswp(void* a, void* b, size_t size)
 {
-	uint8_t		tmp[size];
+	uint8_t tmp[size];
 
 	ft_memcpy(tmp, a, size);
 	ft_memcpy(a, b, size);

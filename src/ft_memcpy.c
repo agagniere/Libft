@@ -12,13 +12,13 @@
 
 #include <string.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void* ft_memcpy(void* dst, const void* src, size_t n)
 {
-	unsigned char		*to;
-	unsigned char const	*from;
+	unsigned char*       to;
+	unsigned char const* from;
 
 	from = src;
-	to = dst;
+	to   = dst;
 	while (n-- > 0)
 		*to++ = *from++;
 	return (dst);

@@ -11,25 +11,21 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 #include <string.h>
 
-static int	ismerde(int c)
-{
-	return (c == ' '
-		|| c == '\n'
-		|| c == '\t');
-}
+static int ismerde(int c) { return (c == ' ' || c == '\n' || c == '\t'); }
 
-char		*ft_strtrim(char const *s)
+char* ft_strtrim(char const* s)
 {
-	int			start;
-	int			len;
-	int			flen;
+	int start;
+	int len;
+	int flen;
 
 	start = 0;
 	while (ismerde(s[start]))
 		start++;
-	len = 0;
+	len  = 0;
 	flen = 0;
 	while (s[start + len] != '\0')
 	{

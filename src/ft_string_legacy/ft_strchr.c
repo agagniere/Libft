@@ -12,16 +12,16 @@
 
 #include <string.h>
 
-char	*ft_strchr(const char *s, int c)
+char* ft_strchr(const char* s, int c)
 {
 	while (*s != (char)c && *s != '\0')
 		s++;
-	return (*s == (char)c ? (char *)s : NULL);
+	return (*s == (char)c ? (char*)s : NULL);
 }
 
-int		is_in(char i, char const *str)
+int is_in(char i, char const* str)
 {
-	char const	*p = str;
+	char const* p = str;
 
 	while (*p != '\0' && *p != i)
 		p++;

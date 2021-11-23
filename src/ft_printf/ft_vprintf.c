@@ -12,18 +12,16 @@
 
 #include "ft_printf.h"
 #include "libft.h"
-#include <unistd.h>
+
 #include <stdlib.h>
+#include <unistd.h>
 
-int		ft_vprintf(char const *format, va_list ap)
-{
-	return (ft_vdprintf(1, format, ap));
-}
+int ft_vprintf(char const* format, va_list ap) { return (ft_vdprintf(1, format, ap)); }
 
-int		ft_vdprintf(int fd, char const *format, va_list ap)
+int ft_vdprintf(int fd, char const* format, va_list ap)
 {
-	char		*str;
-	int			ans;
+	char* str;
+	int   ans;
 
 	ans = ft_vasprintf(&str, format, ap);
 	write(fd, str, ans);
@@ -31,10 +29,10 @@ int		ft_vdprintf(int fd, char const *format, va_list ap)
 	return (ans);
 }
 
-int		ft_vsprintf(char *s, char const *format, va_list ap)
+int ft_vsprintf(char* s, char const* format, va_list ap)
 {
-	char		*str;
-	int			ans;
+	char* str;
+	int   ans;
 
 	ans = ft_vasprintf(&str, format, ap);
 	ft_strcpy(s, str);
@@ -42,10 +40,10 @@ int		ft_vsprintf(char *s, char const *format, va_list ap)
 	return (ans);
 }
 
-int		ft_vsnprintf(char *s, size_t size, char const *format, va_list ap)
+int ft_vsnprintf(char* s, size_t size, char const* format, va_list ap)
 {
-	char		*str;
-	int			ans;
+	char* str;
+	int   ans;
 
 	ans = ft_vasprintf(&str, format, ap);
 	ft_strncpy(s, str, size);

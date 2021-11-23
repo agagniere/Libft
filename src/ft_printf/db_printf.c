@@ -13,15 +13,15 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-void	db_print_bool(char c)
+void db_print_bool(char c)
 {
 	ft_putstr(c ? "true" : "false");
-	return ;
+	return;
 }
 
-void	db_print_modifier(t_modifier *m)
+void db_print_modifier(t_modifier* m)
 {
-	size_t		n;
+	size_t n;
 
 	ft_putstr("(t_modifier){\n\t{");
 	n = 6;
@@ -39,5 +39,5 @@ void	db_print_modifier(t_modifier *m)
 	ft_putstr("\n\t");
 	ft_putnbr(m->precision);
 	ft_putstr("\n}\n");
-	return ;
+	return;
 }

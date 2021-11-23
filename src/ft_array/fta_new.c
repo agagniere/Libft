@@ -23,9 +23,9 @@
 ** or NULL if malloc failed.
 */
 
-t_array		fta_new(size_t type_size)
+t_array fta_new(size_t type_size)
 {
-	t_array		ans;
+	t_array ans;
 
 	ans = (t_array){NULL, 0, 0, type_size};
 	fta_reserve(&ans, 1);

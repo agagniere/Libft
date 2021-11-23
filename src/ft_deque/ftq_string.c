@@ -15,9 +15,9 @@
 
 #include <stdlib.h>
 
-void		append_element(t_string *string, char *(*f)(), void *element)
+void append_element(t_string* string, char* (*f)(), void* element)
 {
-	char *const		elem_str = f(element);
+	char* const elem_str = f(element);
 
 	fta_append(string, elem_str, ft_strlen(elem_str));
 	free(elem_str);
@@ -31,9 +31,9 @@ void		append_element(t_string *string, char *(*f)(), void *element)
 ** The _f_ parameter is a function that converts a single element to char*
 */
 
-char		*ftq_string(t_deque *self, char *(*f)())
+char* ftq_string(t_deque* self, char* (*f)())
 {
-	t_string	ans;
+	t_string ans;
 
 	ans = NEW_STRING;
 	fta_reserve(&ans, ftq_size(self) * 3);

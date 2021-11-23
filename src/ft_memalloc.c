@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-void	*ft_memalloc(size_t size)
+void* ft_memalloc(size_t size)
 {
-	void	*ans;
+	void* ans;
 
 	if (!(ans = malloc(size)))
 		return (NULL);
 	while (size-- > 0)
-		*((unsigned char *)(ans + size)) = 0;
+		*((unsigned char*)(ans + size)) = 0;
 	return (ans);
 }

@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
+
 #include <stdlib.h>
 
-void	ftl_del(t_list *l)
+void ftl_del(t_list* l)
 {
-	t_node		*tmp;
+	t_node* tmp;
 
 	tmp = l->root.next;
 	while ((tmp = tmp->next) != l->root.next)
@@ -23,7 +24,7 @@ void	ftl_del(t_list *l)
 	l->size = 0;
 }
 
-void	ftl_free(t_list **l)
+void ftl_free(t_list** l)
 {
 	ftl_del(*l);
 	*l = NULL;

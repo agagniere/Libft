@@ -12,13 +12,13 @@
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t ft_strlcat(char* dst, const char* src, size_t size)
 {
-	size_t	dst_len;
-	size_t	ret;
+	size_t dst_len;
+	size_t ret;
 
 	dst_len = ft_strlen(dst);
-	ret = ft_strlen(src) + (size < dst_len ? size : dst_len);
+	ret     = ft_strlen(src) + (size < dst_len ? size : dst_len);
 	dst += dst_len;
 	while ((++dst_len) < size && *src != '\0')
 		*dst++ = *src++;

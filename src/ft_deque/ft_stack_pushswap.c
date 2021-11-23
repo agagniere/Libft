@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-
-#include "ft_stack.h"
 #include "ft_deque_private.h"
+#include "ft_stack.h"
 #include "libft.h"
 
-bool	stack_swap(t_stack *self)
+#include <stdint.h>
+
+bool stack_swap(t_stack* self)
 {
-	void		*penu;
-	void		*last;
-	void		*temp;
+	void* penu;
+	void* last;
+	void* temp;
 
 	if (ftq_size(self) < 2)
 		return (false);
@@ -34,7 +34,7 @@ bool	stack_swap(t_stack *self)
 	return (true);
 }
 
-bool	stack_rotate(t_stack *self)
+bool stack_rotate(t_stack* self)
 {
 	if (ftq_size(self) < 2)
 		return (false);
@@ -43,9 +43,9 @@ bool	stack_rotate(t_stack *self)
 	return (true);
 }
 
-bool	stack_rotate_reverse(t_stack *self)
+bool stack_rotate_reverse(t_stack* self)
 {
-	void	*temp;
+	void* temp;
 
 	if (ftq_size(self) < 2)
 		return (false);

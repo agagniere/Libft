@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_array.h"
+
 #include <stdlib.h>
 
 /*
@@ -24,11 +25,11 @@
 ** or NULL if malloc failed.
 */
 
-t_array		*fta_alloc(size_t type_size)
+t_array* fta_alloc(size_t type_size)
 {
-	t_array	*ans;
+	t_array* ans;
 
-	if (!(ans = (t_array *)malloc(sizeof(t_array))))
+	if (!(ans = (t_array*)malloc(sizeof(t_array))))
 		return (NULL);
 	ans->type_size = type_size;
 	return (fta_reserve(ans, 1) ? NULL : ans);

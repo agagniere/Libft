@@ -15,7 +15,7 @@
 #include "ft_prepro.h"
 #include "libft.h"
 
-bool		ftq_push_one(t_deque *self, void *element, bool front)
+bool ftq_push_one(t_deque* self, void* element, bool front)
 {
 	if (ftq_is_full(self))
 		return (false);
@@ -27,7 +27,7 @@ bool		ftq_push_one(t_deque *self, void *element, bool front)
 	return (true);
 }
 
-bool		ftq_push_front(t_deque *self, void *elements, unsigned count)
+bool ftq_push_front(t_deque* self, void* elements, unsigned count)
 {
 	if (ftq_capacity(self) < ftq_size(self) + count)
 		return (false);
@@ -39,9 +39,9 @@ bool		ftq_push_front(t_deque *self, void *elements, unsigned count)
 	return (true);
 }
 
-bool		ftq_push_back(t_deque *self, void *elements, unsigned count)
+bool ftq_push_back(t_deque* self, void* elements, unsigned count)
 {
-	unsigned		first;
+	unsigned first;
 
 	if (ftq_capacity(self) < ftq_size(self) + count)
 		return (false);

@@ -12,15 +12,15 @@
 
 #include <stdlib.h>
 
-char	*ft_strmap(const char *s1, char (*f)(char))
+char* ft_strmap(const char* s1, char (*f)(char))
 {
-	char const	*ptr;
-	char		*ans;
+	char const* ptr;
+	char*       ans;
 
 	ptr = s1;
 	while (*ptr != '\0')
 		++ptr;
-	if (!(ans = (char *)malloc(sizeof(char) * (ptr - s1 + 1))))
+	if (!(ans = (char*)malloc(sizeof(char) * (ptr - s1 + 1))))
 		return (NULL);
 	ptr = s1;
 	while (*ptr != '\0')

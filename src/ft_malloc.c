@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 #include <stdlib.h>
 
-void	*ft_calloc(size_t count, size_t size)
+void* ft_calloc(size_t count, size_t size)
 {
-	void	*const ans = malloc(count * size);
+	void* const ans = malloc(count * size);
 
 	if (ans == NULL)
 		ft_putstr_fd("ERROR\tft_calloc : Malloc failed\n", 2);
@@ -24,7 +25,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ans);
 }
 
-void	ft_exit(char const *const fnc, char const *const str)
+void ft_exit(char const* const fnc, char const* const str)
 {
 	ft_putstr_fd("ERROR\tCritical failure in function ", 2);
 	ft_putstr_fd(fnc, 2);
@@ -34,9 +35,9 @@ void	ft_exit(char const *const fnc, char const *const str)
 	exit(1);
 }
 
-void	*ft_safe_calloc(size_t count, size_t size)
+void* ft_safe_calloc(size_t count, size_t size)
 {
-	void	*const ans = malloc(count * size);
+	void* const ans = malloc(count * size);
 
 	if (ans == NULL)
 		ft_exit("ft_safe_calloc", "Out of memory (Malloc failed)");

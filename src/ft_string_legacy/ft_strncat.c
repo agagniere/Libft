@@ -12,9 +12,9 @@
 
 #include <string.h>
 
-char	*ft_strncat(char *s1, const char *s2, size_t n)
+char* ft_strncat(char* s1, const char* s2, size_t n)
 {
-	char	*const save = s1;
+	char* const save = s1;
 
 	while (*s1 != '\0')
 		s1++;

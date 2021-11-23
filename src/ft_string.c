@@ -18,8 +18,8 @@
 ** Handy function to use a String as a char*
 */
 
-char	*ft_string(t_string *str)
+char* ft_string(t_string* str)
 {
 	STR_NULL_TERMINATE(str);
-	return ((char *)str->data);
+	return ((char*)str->data);
 }

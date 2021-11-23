@@ -13,9 +13,9 @@
 #include <stdlib.h>
 #define ABS(v) ((v) < 0 ? -(v) : (v))
 
-static void		aux(int n, int b, char *ans, int *p)
+static void aux(int n, int b, char* ans, int* p)
 {
-	char const	base[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char const base[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 	if (n <= -b || b <= n)
 		aux(n / b, b, ans, p);
@@ -47,13 +47,12 @@ static void		aux(int n, int b, char *ans, int *p)
 ** of its opposite, preceded by '-'.
 */
 
-char			*ft_itoa_base(int value, int base)
+char* ft_itoa_base(int value, int base)
 {
-	char	*ans;
-	int		p;
+	char* ans;
+	int   p;
 
-	if (base < 2 || 36 < base
-		|| !(ans = (char *)malloc(sizeof(char) * (sizeof(int) * 8 + 1))))
+	if (base < 2 || 36 < base || !(ans = (char*)malloc(sizeof(char) * (sizeof(int) * 8 + 1))))
 		return (NULL);
 	p = 0;
 	if (value < 0)

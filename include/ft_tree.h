@@ -10,15 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TREE_H
-# define FT_TREE_H
+#pragma once
 
-# include <stddef.h>
-# include <stdint.h>
+#include <stddef.h>
+#include <stdint.h>
 
-typedef struct s_tree	t_tree;
-typedef struct s_tnode	t_tnode;
-typedef enum e_tr		t_tr;
+typedef struct s_tree  t_tree;
+typedef struct s_tnode t_tnode;
+typedef enum e_tr      t_tr;
 
 /*
 ** |		----------=====  Tree<N>  =====----------
@@ -33,12 +32,12 @@ typedef enum e_tr		t_tr;
 ** \-----------------------/
 */
 
-struct					s_tree
+struct s_tree
 {
-	size_t		type_size;
-	size_t		count;
-	t_tnode		*root;
-	t_tr		(*push)(t_tnode **, t_tnode *);
+	size_t   type_size;
+	size_t   count;
+	t_tnode* root;
+	t_tr (*push)(t_tnode**, t_tnode*);
 };
 
 /*
@@ -50,14 +49,14 @@ struct					s_tree
 ** \------------------------/
 */
 
-struct					s_tnode
+struct s_tnode
 {
-	uint8_t		label;
-	t_tnode		*left;
-	t_tnode		*right;
+	uint8_t  label;
+	t_tnode* left;
+	t_tnode* right;
 };
 
-enum					e_tr
+enum e_tr
 {
 	TR_ERROR = -1,
 	TR_DONE,
@@ -81,7 +80,8 @@ enum					e_tr
 ** and take action accordingly.
 */
 
-# define NEW_TREE(T, F) (t_tree){sizeof(T), 0, NULL, F}
+#define NEW_TREE(T, F) \
+	(t_tree) { sizeof(T), 0, NULL, F }
 
 /*
 ** TreeNode::new
@@ -89,7 +89,8 @@ enum					e_tr
 ** "protected" : not useful outisde the construction of the concrete types.
 */
 
-# define NEW_NODE(LABEL) (t_tnode){LABEL, NULL, NULL}
+#define NEW_NODE(LABEL) \
+	(t_tnode) { LABEL, NULL, NULL }
 
 /*
 ** Tree::push
@@ -100,7 +101,7 @@ enum					e_tr
 ** _new_ is a node to be added to the tree.
 */
 
-int						ftt_push(t_tree *self, t_tnode *new);
+int ftt_push(t_tree* self, t_tnode* new);
 
 /*
 ** Tree::clear
@@ -110,7 +111,7 @@ int						ftt_push(t_tree *self, t_tnode *new);
 ** Returns the number of nodes allocated that were not freed.
 */
 
-int						ftt_clear(t_tree **self);
+int ftt_clear(t_tree** self);
 
 /*
 ** Tree::clear w/ custom function
@@ -118,7 +119,7 @@ int						ftt_clear(t_tree **self);
 ** Same as ftt_clear, but provides a mean to free nodes' resources.
 */
 
-int						ftt_clearf(t_tree **self, void (*f)());
+int ftt_clearf(t_tree** self, void (*f)());
 
 /*
 ** TreeNode::isLeaf
@@ -130,7 +131,7 @@ int						ftt_clearf(t_tree **self, void (*f)());
 ** `A node is a leaf _iff_ its most significant bit is on`
 */
 
-# define NODE_ISLEAF(N) (NODE_LABEL(N) & (1 << 7))
+#define NODE_ISLEAF(N) (NODE_LABEL(N) & (1 << 7))
 
 /*
 ** TreeNode::getLabel
@@ -138,7 +139,7 @@ int						ftt_clearf(t_tree **self, void (*f)());
 ** Allows to get the label of a tree node
 */
 
-# define NODE_LABEL(N) (((t_tnode *)N)->label)
+#define NODE_LABEL(N) (((t_tnode*)N)->label)
 
 /*
 ** |		----------===== private: =====----------
@@ -150,6 +151,4 @@ int						ftt_clearf(t_tree **self, void (*f)());
 ** Handles the recursion and node counting.
 */
 
-int						tnode_push(t_tree *self, t_tnode **node, t_tnode *new);
-
-#endif
+int tnode_push(t_tree* self, t_tnode** node, t_tnode* new);

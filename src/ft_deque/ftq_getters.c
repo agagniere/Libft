@@ -13,24 +13,20 @@
 #include "ft_deque.h"
 #include "ft_deque_private.h"
 
-void		*ftq_first(t_deque *self)
-{
-	return (ftq_is_empty(self) ? NULL : self->front);
-}
+void* ftq_first(t_deque* self) { return (ftq_is_empty(self) ? NULL : self->front); }
 
-void		*ftq_last(t_deque *self)
+void* ftq_last(t_deque* self)
 {
 	if (ftq_is_empty(self))
 		return (NULL);
-	return (((self->back == ftq_begin(self)) ? ftq_end(self) : self->back)
-			- ftq_offset(self, 1));
+	return (((self->back == ftq_begin(self)) ? ftq_end(self) : self->back) - ftq_offset(self, 1));
 }
 
 /*
 ** Number of elements stored
 */
 
-unsigned	ftq_size(t_deque *self)
+unsigned ftq_size(t_deque* self)
 {
 	return (ftq_is_split(self) ? ftq_exterior(self) : ftq_interior(self));
 }
@@ -39,7 +35,4 @@ unsigned	ftq_size(t_deque *self)
 ** Maximum number of elements that can be stored
 */
 
-unsigned	ftq_capacity(t_deque *self)
-{
-	return (self->capacity - 1);
-}
+unsigned ftq_capacity(t_deque* self) { return (self->capacity - 1); }

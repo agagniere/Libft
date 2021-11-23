@@ -12,10 +12,10 @@
 
 #include <string.h>
 
-char	*ft_strstr(const char *s1, const char *s2)
+char* ft_strstr(const char* s1, const char* s2)
 {
-	char const	*save1;
-	char const	*save2;
+	char const* save1;
+	char const* save2;
 
 	save2 = s2;
 	while (*s1 != '\0')
@@ -27,9 +27,9 @@ char	*ft_strstr(const char *s1, const char *s2)
 			++s2;
 		}
 		if (*s2 == '\0')
-			return ((char *)save1);
+			return ((char*)save1);
 		s1 = save1 + 1;
 		s2 = save2;
 	}
-	return (*s2 == '\0' ? (char *)s1 : NULL);
+	return (*s2 == '\0' ? (char*)s1 : NULL);
 }

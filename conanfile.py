@@ -35,6 +35,8 @@ class LibftConan(ConanFile):
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
         autotools.flags = [f"-O{self.options.optimisation}"]
+        if self.settings.compiler == 'gcc':
+            autotools.flags += ['-nolibc']
         if self.options.debug:
             autotools.flags += ["-g"]
         autotools.make(args=["shared" if self.options.shared else "static", "-j"])

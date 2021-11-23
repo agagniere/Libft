@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 #include <stdlib.h>
 
-void	*ft_memdup(void const *addr, size_t len)
+void* ft_memdup(void const* addr, size_t len)
 {
-	void *ans;
+	void* ans;
 
 	if ((ans = malloc(len)))
 		ft_memcpy(ans, addr, len);

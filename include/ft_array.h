@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ARRAY_H
-# define FT_ARRAY_H
+#pragma once
 
-# include <stddef.h>
+#include <stddef.h>
 
 /*
 ** |		----------=====  Array<T>  =====----------
@@ -31,13 +30,13 @@
 ** |	t_array	variable = NEW_ARRAY(t_some_type);
 */
 
-typedef struct	s_array
+typedef struct s_array
 {
-	void		*data;
-	size_t		size;
-	size_t		max;
-	size_t		type_size;
-}				t_array;
+	void*  data;
+	size_t size;
+	size_t max;
+	size_t type_size;
+} t_array;
 
 /*
 ** |		----------===== public: =====----------
@@ -52,8 +51,8 @@ typedef struct	s_array
 ** -
 ** Returns an array, correctly initialised.
 */
-
-# define NEW_ARRAY(T) (t_array){NULL, 0, 0, sizeof(T)}
+#define NEW_ARRAY(T) \
+	(t_array) { NULL, 0, 0, sizeof(T) }
 
 /*
 ** Array::new
@@ -63,8 +62,7 @@ typedef struct	s_array
 ** _type_size_ should equal to the returned value of sizeof(T)
 ** -
 */
-
-t_array			fta_new(size_t type_size);
+t_array fta_new(size_t type_size);
 
 /*
 ** Array::alloc
@@ -76,8 +74,7 @@ t_array			fta_new(size_t type_size);
 ** Returns the allocated array,
 ** or NULL if malloc failed.
 */
-
-t_array			*fta_alloc(size_t type_size);
+t_array* fta_alloc(size_t type_size);
 
 /*
 ** Array::apppend
@@ -93,8 +90,7 @@ t_array			*fta_alloc(size_t type_size);
 ** 0 in case of success,
 ** 1 if malloc failed.
 */
-
-int				fta_append(t_array *self, void const *data, size_t datalen);
+int fta_append(t_array* self, void const* data, size_t datalen);
 
 /*
 ** Array::insert
@@ -110,9 +106,7 @@ int				fta_append(t_array *self, void const *data, size_t datalen);
 ** 0 in case of success,
 ** 1 if malloc failed.
 */
-
-int				fta_insert(
-				t_array *self, void const *data, size_t datalen, size_t index);
+int fta_insert(t_array* self, void const* data, size_t datalen, size_t index);
 
 /*
 ** Array::reserve
@@ -129,8 +123,7 @@ int				fta_insert(
 ** 0 in case of success,
 ** 1 if a re-alloc failed, and leaves the array as-is.
 */
-
-int				fta_reserve(t_array *self, size_t size);
+int fta_reserve(t_array* self, size_t size);
 
 /*
 ** Array::trim
@@ -147,8 +140,7 @@ int				fta_reserve(t_array *self, size_t size);
 ** 0 if the malloc succeeded,
 ** 1 otherwise.
 */
-
-int				fta_trim(t_array *self);
+int fta_trim(t_array* self);
 
 /*
 ** Array::clear
@@ -157,8 +149,7 @@ int				fta_trim(t_array *self);
 ** one might still call the append function, the array was only
 ** emptied.
 */
-
-void			fta_clear(t_array *self);
+void fta_clear(t_array* self);
 
 /*
 ** Array::clear_f
@@ -171,8 +162,7 @@ void			fta_clear(t_array *self);
 ** _del_ is a function that knows how to properly free a single element's
 ** contents from its address.
 */
-
-void			fta_clearf(t_array *self, void (*del)(void *));
+void fta_clearf(t_array* self, void (*del)(void*));
 
 /*
 ** Array::release
@@ -184,8 +174,7 @@ void			fta_clearf(t_array *self, void (*del)(void *));
 ** _ptr_ is the address of a pointer to an array,
 ** and will be set to NULL to prevent further uses attempts.
 */
-
-void			fta_release(t_array **ptr);
+void fta_release(t_array** ptr);
 
 /*
 ** Array::pop_back
@@ -194,8 +183,7 @@ void			fta_release(t_array **ptr);
 ** -
 ** _len_ is the number of elements to be removed.
 */
-
-void			fta_popback(t_array *self, size_t len);
+void fta_popback(t_array* self, size_t len);
 
 /*
 ** Array::pop_back w/ function
@@ -207,8 +195,7 @@ void			fta_popback(t_array *self, size_t len);
 ** _del_ is a function that knows how to properly free a single element's
 ** contents from its address.
 */
-
-void			fta_popbackf(t_array *self, size_t len, void (*del)(void *));
+void fta_popbackf(t_array* self, size_t len, void (*del)(void*));
 
 /*
 ** Array::pop_index
@@ -222,8 +209,7 @@ void			fta_popbackf(t_array *self, size_t len, void (*del)(void *));
 ** 0 for success
 ** 1 if the index is invalid.
 */
-
-int				fta_popindex(t_array *self, size_t index, size_t len);
+int fta_popindex(t_array* self, size_t index, size_t len);
 
 /*
 ** Array::pop_index w/ function
@@ -240,9 +226,7 @@ int				fta_popindex(t_array *self, size_t index, size_t len);
 ** 0 for success
 ** 1 if the index is invalid.
 */
-
-int				fta_popindexf(
-	t_array *self, size_t index, size_t len, void (*del)(void *));
+int fta_popindexf(t_array* self, size_t index, size_t len, void (*del)(void*));
 
 /*
 ** Array::overwrite
@@ -257,8 +241,7 @@ int				fta_popindexf(
 ** 0 upon success
 ** 1 otherwise.
 */
-
-int				fta_overwrite(t_array *self, const t_array *other);
+int fta_overwrite(t_array* self, const t_array* other);
 
 /*
 ** Array::replace
@@ -275,17 +258,14 @@ int				fta_overwrite(t_array *self, const t_array *other);
 ** 1 in case of failure (malloc)
 ** 0 otherwise.
 */
-
-int				fta_replace(
-	t_array *self, size_t index, size_t len, t_array *new);
+int fta_replace(t_array* self, size_t index, size_t len, t_array* new);
 
 /*
 ** Array::pop_front
 ** -
 ** Might be clearer sometimes
 */
-
-# define ARRAY_POPFRONT(A,N) fta_popindex(A, 0, N)
+#define ARRAY_POPFRONT(A, N) fta_popindex(A, 0, N)
 
 /*
 ** Array::index_check
@@ -296,8 +276,7 @@ int				fta_replace(
 ** 0 if _I_ is strictly negative or is greater than the number of elements
 ** 1 otherwise
 */
-
-# define ARRAY_INDEX_CHECK(A,I) (0 <= (I) && (I) < (A)->size)
+#define ARRAY_INDEX_CHECK(A, I) (0 <= (I) && (I) < (A)->size)
 
 /*
 ** Array::get
@@ -305,8 +284,7 @@ int				fta_replace(
 ** Returns the address of the element of the array of index _I_
 ** Just be sure that such an element exists
 */
-
-# define ARRAY_GET(A,I) (ARRAY_START(A) + ARRAY_OFFSET(A,I))
+#define ARRAY_GET(A, I) (ARRAY_START(A) + ARRAY_OFFSET(A, I))
 
 /*
 ** Array::get_safe
@@ -320,40 +298,35 @@ int				fta_replace(
 ** Returns the desired element,
 ** or NULL if _I_ is out of range
 */
-
-# define ARRAY_GETS(A,I) (ARRAY_INDEX_CHECK(A,I) ? ARRAY_GET(A,I) : NULL)
+#define ARRAY_GETS(A, I) (ARRAY_INDEX_CHECK(A, I) ? ARRAY_GET(A, I) : NULL)
 
 /*
 ** Array::get_typed
 ** -
 ** Same as get, but casted to a pointer of the type.
 */
-
-# define ARRAY_GETT(T,A,I) ((T*)ARRAY_GET(A,I))
+#define ARRAY_GETT(T, A, I) ((T*)ARRAY_GET(A, I))
 
 /*
 ** Array::get_typed_safe
 ** -
 ** Same as get_safe, but casted to a pointer of the type.
 */
-
-# define ARRAY_GETTS(T,A,I) ((T*)ARRAY_GETS(A,I))
+#define ARRAY_GETTS(T, A, I) ((T*)ARRAY_GETS(A, I))
 
 /*
 ** Array::get_element
 ** -
 ** returns the element of index _I_
 */
-
-# define ARRAY_GETL(T,A,I) (*ARRAY_GETT(T,A,I))
+#define ARRAY_GETL(T, A, I) (*ARRAY_GETT(T, A, I))
 
 /*
 ** Array::index_from_pointer
 ** -
 ** _P_ is an element of the array whose index is seeked
 */
-
-# define ARRAY_IFP(A,P) ((((void *)P) - (A)->data) / (A)->type_size)
+#define ARRAY_IFP(A, P) ((((void*)P) - (A)->data) / (A)->type_size)
 
 /*
 ** Array::iterate
@@ -372,68 +345,62 @@ int				fta_replace(
 ** _f_ will be called on each of the elements.
 */
 
-void			fta_iter(const t_array *self, void (*f)());
-void			fta_iter1(const t_array *self, void (*f)(), void *a);
-void			fta_iter2(const t_array *self, void (*f)(), void *a, void *b);
+void fta_iter(const t_array* self, void (*f)());
+void fta_iter1(const t_array* self, void (*f)(), void* a);
+void fta_iter2(const t_array* self, void (*f)(), void* a, void* b);
 
-void			fta_iteri(const t_array *self, void (*f)());
-void			fta_iteri1(const t_array *self, void (*f)(), void *a);
-void			fta_iteri2(const t_array *self, void (*f)(), void *a, void *b);
+void fta_iteri(const t_array* self, void (*f)());
+void fta_iteri1(const t_array* self, void (*f)(), void* a);
+void fta_iteri2(const t_array* self, void (*f)(), void* a, void* b);
 
 /*
 ** Iterator<Array>::new
 ** -
 ** Returns an iterator over an array.
 */
-
-# define ARRAY_ITERATOR(A) (ARRAY_START(A) - ARRAY_STEP(A))
+#define ARRAY_ITERATOR(A) (ARRAY_START(A) - ARRAY_STEP(A))
 
 /*
 ** Iterator<Array>::Start
 ** -
 ** Returns the start of the array.
 */
-
-# define ARRAY_START(A) ((A)->data)
+#define ARRAY_START(A) ((A)->data)
 
 /*
 ** Iterator<Array>::End
 ** -
 ** Returns the one-past-the-end iterator of the array
 */
-
-# define ARRAY_END(A) (ARRAY_GET(A, (A)->size))
+#define ARRAY_END(A) (ARRAY_GET(A, (A)->size))
 
 /*
 ** Array::First
 ** -
 ** Returns the first element of the array, or NULL if it is empty
 */
-
-# define ARRAY_FIRST(A) (ARRAY_GETS(A, 0))
+#define ARRAY_FIRST(A) (ARRAY_GETS(A, 0))
 
 /*
 ** Array:Last
 ** -
 ** Returns the last element of the array, or NULL if it is empty
 */
-# define ARRAY_LAST(A) (ARRAY_GETS(A, (A)->size - 1))
+#define ARRAY_LAST(A) (ARRAY_GETS(A, (A)->size - 1))
 
 /*
 ** Iterator<Array>::Step
 ** -
 ** Allows one to go from the address of an element to the next.
 */
-
-# define ARRAY_STEP(A) ((A)->type_size)
+#define ARRAY_STEP(A) ((A)->type_size)
 
 /*
 ** Iterator<Array>::offset
 ** -
 ** Allows one to go from the address of an element to another.
 */
-
-# define ARRAY_OFFSET(A,I) ((I) * ARRAY_STEP(A))
+#define ARRAY_OFFSET(A, I) ((I)*ARRAY_STEP(A))
 
 /*
 ** Iterator<Array>::next
@@ -442,8 +409,7 @@ void			fta_iteri2(const t_array *self, void (*f)(), void *a, void *b);
 ** -
 ** Returns the new value of the iterator.
 */
-
-# define ARRAY_NEXT(A,IT) ((IT) += ARRAY_STEP(A))
+#define ARRAY_NEXT(A, IT) ((IT) += ARRAY_STEP(A))
 
 /*
 ** Iterator<Array>::has_next
@@ -452,8 +418,7 @@ void			fta_iteri2(const t_array *self, void (*f)(), void *a, void *b);
 ** -
 ** Returns a boolean indicating if the end of the array was reached.
 */
-
-# define ARRAY_HASNEXT(A,IT) (ARRAY_NEXT(A,IT) < ARRAY_END(A))
+#define ARRAY_HASNEXT(A, IT) (ARRAY_NEXT(A, IT) < ARRAY_END(A))
 
 /*
 ** Array::string
@@ -465,8 +430,7 @@ void			fta_iteri2(const t_array *self, void (*f)(), void *a, void *b);
 ** -
 ** Returns a string representing the given array.
 */
-
-char			*fta_string(t_array *self, char *(*f)(void *));
+char* fta_string(t_array* self, char* (*f)(void*));
 
 /*
 ** |		----------===== private: =====----------
@@ -476,15 +440,13 @@ char			*fta_string(t_array *self, char *(*f)(void *));
 ** The initial size is the number of elements a new array will be able
 ** to store before allocating more memory.
 */
-
-# define ARRAY_INITIAL_SIZE 16
+#define ARRAY_INITIAL_SIZE 16
 
 /*
 ** When reaching its capacity, an array will re-allocate memory,
 ** using this factor to grow relatively to its previous size.
 */
-
-# define ARRAY_FACTOR 2
+#define ARRAY_FACTOR 2
 
 /*
 ** Array::_resize
@@ -492,8 +454,7 @@ char			*fta_string(t_array *self, char *(*f)(void *));
 ** No subtlety, just resizes the underlying array, no matter the consequences.
 ** However, in case of a malloc fail, the array is left untouched.
 */
-
-int				fta_resize(t_array *self, size_t new_size);
+int fta_resize(t_array* self, size_t new_size);
 
 /*
 ** Array::_swap
@@ -507,7 +468,4 @@ int				fta_resize(t_array *self, size_t new_size);
 ** -swap(0, 4)->
 ** "-0000141592   "
 */
-
-void			fta_swap(t_array *self, size_t before, size_t after);
-
-#endif
+void fta_swap(t_array* self, size_t before, size_t after);

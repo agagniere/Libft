@@ -12,24 +12,24 @@
 
 #include "ft_printf.h"
 
-int		pf_cv_n(t_modifier *m, t_array *d, va_list ap)
+int pf_cv_n(t_modifier* m, t_array* d, va_list ap)
 {
-	int		*arg;
+	int* arg;
 
-	arg = va_arg(ap, void *);
-	m->size = 0;
+	arg          = va_arg(ap, void*);
+	m->size      = 0;
 	m->precision = -1;
 	if (m->length == 'H')
-		*(char *)arg = (char)d->size;
+		*(char*)arg = (char)d->size;
 	else if (m->length == 'h')
-		*(short *)arg = (short)d->size;
+		*(short*)arg = (short)d->size;
 	else if (m->length == 'l' || m->length == 'z')
-		*(long *)arg = (long)d->size;
+		*(long*)arg = (long)d->size;
 	else if (m->length == 'L')
-		*(long long *)arg = (long long)d->size;
+		*(long long*)arg = (long long)d->size;
 	else if (m->length == 'j')
-		*(intmax_t *)arg = (intmax_t)d->size;
+		*(intmax_t*)arg = (intmax_t)d->size;
 	else
-		*(int *)arg = (int)d->size;
+		*(int*)arg = (int)d->size;
 	return (0);
 }

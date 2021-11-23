@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, const char *src)
+char* ft_strcpy(char* dst, const char* src)
 {
-	char *save;
+	char* save;
 
 	save = dst;
 	while (*src != '\0')

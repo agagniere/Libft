@@ -12,15 +12,15 @@
 
 #include <string.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void* ft_memmove(void* dst, const void* src, size_t len)
 {
-	void *const save = dst;
+	void* const save = dst;
 
 	if (dst > src)
 		while (len-- > 0)
-			*((unsigned char *)(dst + len)) = *((unsigned char *)(src + len));
+			*((unsigned char*)(dst + len)) = *((unsigned char*)(src + len));
 	else if (dst < src)
 		while (len-- > 0)
-			*((unsigned char *)dst++) = *((unsigned char *)src++);
+			*((unsigned char*)dst++) = *((unsigned char*)src++);
 	return (save);
 }

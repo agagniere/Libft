@@ -10,23 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#pragma once
 
-# include "ft_list.h"
+#include "ft_list.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-# define BUFF_SIZE 2048
+#define BUFF_SIZE 2048
 
-typedef struct	s_fdsave
+typedef struct s_fdsave
 {
-	t_node	self;
-	int		fd;
-	size_t	size;
-	char	*data;
-}				t_fdsave;
+	t_node self;
+	int    fd;
+	size_t size;
+	char*  data;
+} t_fdsave;
 
 /*
 ** gnl :    N x A       ->  N x S
@@ -39,7 +38,4 @@ typedef struct	s_fdsave
 ** @precondition : *line initial value should be NULL
 ** -
 */
-
-int				get_next_line(int const fd, char **line);
-
-#endif
+int get_next_line(int const fd, char** line);

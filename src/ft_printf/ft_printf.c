@@ -23,10 +23,10 @@
 ** Writes on the standard output.
 */
 
-int		ft_printf(char const *format, ...)
+int ft_printf(char const* format, ...)
 {
-	va_list		ap;
-	int			ans;
+	va_list ap;
+	int     ans;
 
 	va_start(ap, format);
 	ans = ft_vprintf(format, ap);
@@ -38,10 +38,10 @@ int		ft_printf(char const *format, ...)
 ** Writes on the provided file descriptor _fd_.
 */
 
-int		ft_dprintf(int fd, char const *format, ...)
+int ft_dprintf(int fd, char const* format, ...)
 {
-	va_list		ap;
-	int			ans;
+	va_list ap;
+	int     ans;
 
 	va_start(ap, format);
 	ans = ft_vdprintf(fd, format, ap);
@@ -53,10 +53,10 @@ int		ft_dprintf(int fd, char const *format, ...)
 ** Writes in the provided string _s_.
 */
 
-int		ft_sprintf(char *s, char const *format, ...)
+int ft_sprintf(char* s, char const* format, ...)
 {
-	va_list		ap;
-	int			ans;
+	va_list ap;
+	int     ans;
 
 	va_start(ap, format);
 	ans = ft_vsprintf(s, format, ap);
@@ -68,10 +68,10 @@ int		ft_sprintf(char *s, char const *format, ...)
 ** Writes into the provided string _s_, but not more than _size_ bytes
 */
 
-int		ft_snprintf(char *s, size_t size, char const *format, ...)
+int ft_snprintf(char* s, size_t size, char const* format, ...)
 {
-	va_list		ap;
-	int			ans;
+	va_list ap;
+	int     ans;
 
 	va_start(ap, format);
 	ans = ft_vsnprintf(s, size, format, ap);
@@ -83,10 +83,10 @@ int		ft_snprintf(char *s, size_t size, char const *format, ...)
 ** Allocates a string, writes into it, and returns it through _ret_
 */
 
-int		ft_asprintf(char **ret, char const *format, ...)
+int ft_asprintf(char** ret, char const* format, ...)
 {
-	va_list		ap;
-	int			ans;
+	va_list ap;
+	int     ans;
 
 	va_start(ap, format);
 	ans = ft_vasprintf(ret, format, ap);

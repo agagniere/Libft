@@ -17,7 +17,7 @@
 ** Returns -1 if out of bound, -2 if outside storage
 */
 
-int			ftq_index(t_deque *self, void *element)
+int ftq_index(t_deque* self, void* element)
 {
 	if (element < ftq_begin(self) || ftq_end(self) <= element)
 		return (-2);
@@ -28,7 +28,7 @@ int			ftq_index(t_deque *self, void *element)
 	return (-1);
 }
 
-void		ftq_move_one(t_deque *self, void **pointer, bool forward)
+void ftq_move_one(t_deque* self, void** pointer, bool forward)
 {
 	if (!forward && *pointer == ftq_begin(self))
 		*pointer = ftq_end(self);

@@ -12,10 +12,10 @@
 
 #include "ft_ctype.h"
 
-int		ft_atoi(const char *str)
+int ft_atoi(const char* str)
 {
-	int		ans;
-	int		sign;
+	int ans;
+	int sign;
 
 	while (ft_isspace(*str))
 		++str;

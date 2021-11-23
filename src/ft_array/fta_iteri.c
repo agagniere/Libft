@@ -12,35 +12,35 @@
 
 #include "ft_array.h"
 
-void	fta_iteri(const t_array *self, void (*f)())
+void fta_iteri(const t_array* self, void (*f)())
 {
-	size_t		i;
-	void		*iterator;
+	size_t i;
+	void*  iterator;
 
 	iterator = ARRAY_ITERATOR(self);
-	i = 0;
+	i        = 0;
 	while (ARRAY_HASNEXT(self, iterator))
 		f(i++, iterator);
 }
 
-void	fta_iteri1(const t_array *self, void (*f)(), void *ext)
+void fta_iteri1(const t_array* self, void (*f)(), void* ext)
 {
-	size_t		i;
-	void		*iterator;
+	size_t i;
+	void*  iterator;
 
 	iterator = ARRAY_ITERATOR(self);
-	i = 0;
+	i        = 0;
 	while (ARRAY_HASNEXT(self, iterator))
 		f(ext, i++, iterator);
 }
 
-void	fta_iteri2(const t_array *self, void (*f)(), void *ext1, void *ext2)
+void fta_iteri2(const t_array* self, void (*f)(), void* ext1, void* ext2)
 {
-	size_t		i;
-	void		*iterator;
+	size_t i;
+	void*  iterator;
 
 	iterator = ARRAY_ITERATOR(self);
-	i = 0;
+	i        = 0;
 	while (ARRAY_HASNEXT(self, iterator))
 		f(ext1, ext2, i++, iterator);
 }

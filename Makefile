@@ -25,7 +25,7 @@ DEPFILES      = $(OBJECTS:.o=.d)
 # Compiler
 CC ?= gcc
 CPPFLAGS += -I $(HEADER_PATH)
-CFLAGS += -Wall -Wextra -Wno-unused-result -nolibc
+CFLAGS += -Wall -Wextra -Wno-unused-result
 
 
 static: $(TARGET_STATIC)

@@ -28,7 +28,7 @@
 ** 1 if malloc failed.
 */
 
-int		fta_append(t_array *self, void const *data, size_t datalen)
+int fta_append(t_array* self, void const* data, size_t datalen)
 {
 	if (fta_reserve(self, datalen))
 		return (1);
@@ -52,17 +52,14 @@ int		fta_append(t_array *self, void const *data, size_t datalen)
 ** 1 if malloc failed or if the index isn't valid.
 */
 
-int		fta_insert(
-				t_array *self, void const *data, size_t datalen, size_t index)
+int fta_insert(t_array* self, void const* data, size_t datalen, size_t index)
 {
 	if (self->size < index || fta_reserve(self, datalen))
 		return (1);
 	ft_memmove(ARRAY_GET(self, index + datalen),
-				ARRAY_GET(self, index),
-				ARRAY_OFFSET(self, self->size - index));
-	ft_memcpy(ARRAY_GET(self, index),
-				data,
-				ARRAY_OFFSET(self, datalen));
+	           ARRAY_GET(self, index),
+	           ARRAY_OFFSET(self, self->size - index));
+	ft_memcpy(ARRAY_GET(self, index), data, ARRAY_OFFSET(self, datalen));
 	self->size += datalen;
 	return (0);
 }

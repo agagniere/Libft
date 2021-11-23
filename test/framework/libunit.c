@@ -3,24 +3,25 @@
 #include "ft_color.h"
 #include "ft_printf.h"
 
+#include <sys/wait.h>
+
 #include <signal.h>
 #include <stdlib.h>
-#include <sys/wait.h>
 #include <unistd.h>
 
 #define IS_CHILD 0
 
-int				load_test(t_array *list, const char *name, t_fptr function)
+int load_test(t_array* list, const char* name, t_fptr function)
 {
-	const t_test	test = NEW_TEST(name, function);
+	const t_test test = NEW_TEST(name, function);
 
 	fta_append(list, &test, 1);
 	return (0);
 }
 
-static unsigned	run_test(t_test *test)
+static unsigned run_test(t_test* test)
 {
-	int		status;
+	int status;
 
 	if (fork() == IS_CHILD)
 		exit(test->function());
@@ -41,12 +42,12 @@ static unsigned	run_test(t_test *test)
 	return (status == 0);
 }
 
-int				launch_tests(const char *name, t_array *list)
+int launch_tests(const char* name, t_array* list)
 {
-	void		*iterator;
-	unsigned	success;
+	void*    iterator;
+	unsigned success;
 
-	success = 0;
+	success  = 0;
 	iterator = ARRAY_ITERATOR(list);
 	ft_printf("%s {\n", name);
 	while (ARRAY_HASNEXT(list, iterator))

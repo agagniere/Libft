@@ -10,33 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TOKEN_H
-# define FT_TOKEN_H
+#pragma once
 
-# include "ft_stream.h"
-# include "stdint.h"
+#include "ft_stream.h"
+#include "stdint.h"
 
-typedef struct s_tokenizer	t_tokenizer;
-typedef struct s_token		t_token;
+typedef struct s_tokenizer t_tokenizer;
+typedef struct s_token     t_token;
 
-struct						s_token
+struct s_token
 {
-	uint8_t		tag;
-	t_substr	data;
+	uint8_t  tag;
+	t_substr data;
 };
 
-struct						s_tokenizer
+struct s_tokenizer
 {
-	t_is *const	in;
-	t_token		current;
-	int			eof;
+	t_is* const in;
+	t_token     current;
+	int         eof;
 };
 
 /*
 ** Fields shouldnt be modified by the user.
 */
 
-# define NEW_TOKENIZER(IS) (t_tokenizer){IS, NEW_TOKEN, 0}
-# define NEW_TOKEN (t_token){0, {NULL, 0}}
-
-#endif
+#define NEW_TOKENIZER(IS) (t_tokenizer){IS, NEW_TOKEN, 0}
+#define NEW_TOKEN (t_token){0, {NULL, 0}}

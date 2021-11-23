@@ -28,8 +28,7 @@
 ** 0 otherwise.
 */
 
-int		fta_replace(t_array *self, size_t index, size_t len, t_array *new)
+int fta_replace(t_array* self, size_t index, size_t len, t_array* new)
 {
-	return (fta_popindex(self, index, len)
-		|| fta_insert(self, new->data, new->size, index));
+	return (fta_popindex(self, index, len) || fta_insert(self, new->data, new->size, index));
 }

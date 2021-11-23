@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 #include <stdlib.h>
 
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size, size_t factor)
+void* ft_realloc(void* ptr, size_t old_size, size_t new_size, size_t factor)
 {
-	void	*ans;
+	void* ans;
 
 	ans = malloc(new_size * factor);
 	if (ptr == NULL || ans == NULL)

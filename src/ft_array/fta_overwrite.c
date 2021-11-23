@@ -26,11 +26,10 @@
 ** 1 otherwise.
 */
 
-int		fta_overwrite(t_array *self, const t_array *other)
+int fta_overwrite(t_array* self, const t_array* other)
 {
 	if (self->type_size != other->type_size)
 		return (1);
 	self->size = 0;
-	return (fta_reserve(self, other->size)
-			|| fta_append(self, other->data, other->size));
+	return (fta_reserve(self, other->size) || fta_append(self, other->data, other->size));
 }

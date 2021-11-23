@@ -10,35 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_array.h"
 #include "get_next_line.h"
 #include "libft.h"
-#include "ft_array.h"
 
-#define DATA(A) ((char *)(A->data))
+#define DATA(A) ((char*)(A->data))
 
-static t_fdsave		*get_past(int const fd, const t_list *save)
+static t_fdsave* get_past(int const fd, const t_list* save)
 {
-	t_node	*tmp;
+	t_node* tmp;
 
-	tmp = (t_node *)save;
-	while ((tmp = tmp->next) != (t_node *)save)
-		if (((t_fdsave *)tmp)->fd == fd)
-			return ((t_fdsave *)tmp);
+	tmp = (t_node*)save;
+	while ((tmp = tmp->next) != (t_node*)save)
+		if (((t_fdsave*)tmp)->fd == fd)
+			return ((t_fdsave*)tmp);
 	return (NULL);
 }
 
-static int			handle_past(t_fdsave *past, char **line)
+static int handle_past(t_fdsave* past, char** line)
 {
-	char	*ln;
-	char	*tmp;
-	size_t	len;
+	char*  ln;
+	char*  tmp;
+	size_t len;
 
 	if (past != NULL && (ln = ft_memchr(past->data, '\n', past->size)) != NULL)
 	{
-		*line = ft_memdup(past->data, ln - DATA(past) + 1);
+		*line                    = ft_memdup(past->data, ln - DATA(past) + 1);
 		(*line)[ln - past->data] = '\0';
-		len = past->size - (ln - DATA(past) + 1);
-		tmp = ft_memdup(ln + 1, len);
+		len                      = past->size - (ln - DATA(past) + 1);
+		tmp                      = ft_memdup(ln + 1, len);
 		free(past->data);
 		past->data = tmp;
 		past->size = len;
@@ -47,7 +47,7 @@ static int			handle_past(t_fdsave *past, char **line)
 	return (0);
 }
 
-static int			gnl2(int ret, t_array *acc, char **line)
+static int gnl2(int ret, t_array* acc, char** line)
 {
 	if (ret < 0)
 	{
@@ -56,7 +56,7 @@ static int			gnl2(int ret, t_array *acc, char **line)
 	}
 	if (acc->size > 0)
 	{
-		*line = ft_memdup(acc->data, acc->size + 1);
+		*line              = ft_memdup(acc->data, acc->size + 1);
 		(*line)[acc->size] = '\0';
 		return (1);
 	}
@@ -64,13 +64,12 @@ static int			gnl2(int ret, t_array *acc, char **line)
 	return (0);
 }
 
-static int			now_read(char **line, t_array *acc,
-	int const fd, t_list *save)
+static int now_read(char** line, t_array* acc, int const fd, t_list* save)
 {
-	char	buf[BUFF_SIZE];
-	char	*ln;
-	int		ret;
-	int		len;
+	char  buf[BUFF_SIZE];
+	char* ln;
+	int   ret;
+	int   len;
 
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
@@ -78,12 +77,11 @@ static int			now_read(char **line, t_array *acc,
 		ln = ft_memchr(DATA(acc) + acc->size - ret, '\n', ret);
 		if (ln != NULL)
 		{
-			len = (DATA(acc) + acc->size) - ln - 1;
-			*line = ft_memdup(acc->data, ln - DATA(acc) + 1);
+			len                         = (DATA(acc) + acc->size) - ln - 1;
+			*line                       = ft_memdup(acc->data, ln - DATA(acc) + 1);
 			*(*line + (ln - DATA(acc))) = '\0';
 			if (len > 0)
-				ftl_push_front(save, (t_node *)&(t_fdsave){{0, 0}, fd,
-					len, ft_memdup(ln + 1, len)});
+				ftl_push_front(save, (t_node*)&(t_fdsave){{0, 0}, fd, len, ft_memdup(ln + 1, len)});
 			fta_clear(acc);
 			return (1);
 		}
@@ -106,11 +104,11 @@ static int			now_read(char **line, t_array *acc,
 ** -
 */
 
-int					get_next_line(int const fd, char **line)
+int get_next_line(int const fd, char** line)
 {
-	static t_list	save;
-	t_array			data;
-	t_fdsave		*past;
+	static t_list save;
+	t_array       data;
+	t_fdsave*     past;
 
 	if (line == NULL || BUFF_SIZE <= 0 || fd < 0)
 		return (-1);
@@ -121,7 +119,7 @@ int					get_next_line(int const fd, char **line)
 		if (handle_past(past, line))
 			return (1);
 		fta_append(&data, past->data, past->size);
-		ftl_pop_elem(&save, (t_node **)&past);
+		ftl_pop_elem(&save, (t_node**)&past);
 	}
 	else if (save.type_size == 0)
 		ftl_init(&save, sizeof(t_fdsave));

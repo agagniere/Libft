@@ -12,6 +12,7 @@
 
 #include "ft_array.h"
 #include "libft.h"
+
 #include <stdlib.h>
 
 /*
@@ -20,9 +21,9 @@
 ** However, in case of a malloc fail, the array is left untouched.
 */
 
-int		fta_resize(t_array *self, size_t new_size)
+int fta_resize(t_array* self, size_t new_size)
 {
-	void	*tmp;
+	void* tmp;
 
 	tmp = malloc(new_size * self->type_size);
 	if (tmp == NULL)
@@ -32,6 +33,6 @@ int		fta_resize(t_array *self, size_t new_size)
 	ft_memcpy(tmp, self->data, self->size * self->type_size);
 	free(self->data);
 	self->data = tmp;
-	self->max = new_size;
+	self->max  = new_size;
 	return (0);
 }

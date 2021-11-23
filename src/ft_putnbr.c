@@ -28,7 +28,4 @@
 ** |}
 */
 
-void	ft_putnbr(int n)
-{
-	ft_putstr(ft_itoa_base(n, 10));
-}
+void ft_putnbr(int n) { ft_putstr(ft_itoa_base(n, 10)); }

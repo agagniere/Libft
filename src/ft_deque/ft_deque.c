@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "ft_deque.h"
+
 #include "ft_deque_private.h"
 
 /*
 ** Returns an initialized t_deque that uses the specified storage
 */
 
-t_deque		ftq_new(void *data, size_t type_size, unsigned capacity)
+t_deque ftq_new(void* data, size_t type_size, unsigned capacity)
 {
 	return ((t_deque){data, data, data, type_size, capacity});
 }
@@ -32,7 +33,7 @@ t_deque		ftq_new(void *data, size_t type_size, unsigned capacity)
 ** 'F' : will only push front
 */
 
-bool		ftq_intent(t_deque *self, char intent)
+bool ftq_intent(t_deque* self, char intent)
 {
 	if (!ftq_is_empty(self))
 		return (false);
@@ -52,12 +53,6 @@ bool		ftq_intent(t_deque *self, char intent)
 	return (true);
 }
 
-bool		ftq_is_empty(t_deque *self)
-{
-	return (self->front == self->back);
-}
+bool ftq_is_empty(t_deque* self) { return (self->front == self->back); }
 
-bool		ftq_is_full(t_deque *self)
-{
-	return (ftq_size(self) == ftq_capacity(self));
-}
+bool ftq_is_full(t_deque* self) { return (ftq_size(self) == ftq_capacity(self)); }

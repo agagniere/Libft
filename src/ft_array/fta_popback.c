@@ -21,10 +21,7 @@
 ** _len_ is the number of elements to be removed.
 */
 
-void	fta_popback(t_array *self, size_t len)
-{
-	self->size -= MIN(len, self->size);
-}
+void fta_popback(t_array* self, size_t len) { self->size -= MIN(len, self->size); }
 
 /*
 ** Array::pop_back w/ function
@@ -37,7 +34,7 @@ void	fta_popback(t_array *self, size_t len)
 ** contents from its address.
 */
 
-void	fta_popbackf(t_array *self, size_t len, void (*del)(void *))
+void fta_popbackf(t_array* self, size_t len, void (*del)(void*))
 {
 	while (self->size > 0 && len > 0)
 	{

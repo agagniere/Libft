@@ -22,11 +22,11 @@
 ** _new_ is a node to be added to the tree.
 */
 
-int		ftt_push(t_tree *self, t_tnode *new)
+int ftt_push(t_tree* self, t_tnode* new)
 {
-	t_tnode	*tmp;
+	t_tnode* tmp;
 
-	if (!(tmp = ft_memdup((void *)new, self->type_size)))
+	if (!(tmp = ft_memdup((void*)new, self->type_size)))
 		return (1);
 	return (tnode_push(self, &self->root, tmp));
 }
@@ -37,17 +37,16 @@ int		ftt_push(t_tree *self, t_tnode *new)
 ** Handles the recursion and node counting.
 */
 
-int		tnode_push(t_tree *self, t_tnode **node, t_tnode *new)
+int tnode_push(t_tree* self, t_tnode** node, t_tnode* new)
 {
-	const int	ret = self->push(node, new);
+	const int ret = self->push(node, new);
 
 	if (ret == TR_LEFT)
 		return (tnode_push(self, &(*node)->left, new));
 	else if (ret == TR_RIGHT)
 		return (tnode_push(self, &(*node)->right, new));
 	else if (ret == TR_BOTH)
-		return (tnode_push(self, &(*node)->left, new)
-				|| tnode_push(self, &(*node)->right, new));
+		return (tnode_push(self, &(*node)->left, new) || tnode_push(self, &(*node)->right, new));
 	else if (ret == TR_ERROR)
 		return (1);
 	else if (ret == TR_DONE)

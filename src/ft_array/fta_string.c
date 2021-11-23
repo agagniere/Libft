@@ -15,7 +15,7 @@
 
 #include <stdlib.h>
 
-#define STRING_APPEND(A,S) fta_append(A, S, ft_strlen(S))
+#define STRING_APPEND(A, S) fta_append(A, S, ft_strlen(S))
 
 /*
 ** Array::string
@@ -28,11 +28,11 @@
 ** Returns a string representing the given array.
 */
 
-char	*fta_string(t_array *self, char *(*f)(void *))
+char* fta_string(t_array* self, char* (*f)(void*))
 {
-	t_string	ans[1];
-	void		*iterator;
-	char		*tmp;
+	t_string ans[1];
+	void*    iterator;
+	char*    tmp;
 
 	*ans = NEW_STRING;
 	fta_reserve(ans, self->size * 3);
@@ -48,5 +48,5 @@ char	*fta_string(t_array *self, char *(*f)(void *))
 	if (self->size > 0)
 		fta_popback(ans, 2);
 	fta_append(ans, "]", 2);
-	return ((char *)ans->data);
+	return ((char*)ans->data);
 }

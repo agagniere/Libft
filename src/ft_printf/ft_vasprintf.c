@@ -13,8 +13,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static const char
-	*pf_update_value(char const *s, int *v, va_list ap)
+static const char* pf_update_value(char const* s, int* v, va_list ap)
 {
 	if (*s == '*')
 	{
@@ -27,8 +26,7 @@ static const char
 	return (s);
 }
 
-static void
-	pf_set_length(char c, char *lm)
+static void pf_set_length(char c, char* lm)
 {
 	if ((c == 'h' || c == 'l') && *lm == c)
 		*lm = c - 32;
@@ -36,10 +34,9 @@ static void
 		*lm = c;
 }
 
-static const char
-	*pf_match(char const *s, t_modifier *m, va_list ap)
+static const char* pf_match(char const* s, t_modifier* m, va_list ap)
 {
-	int			n;
+	int n;
 
 	while (*s != '\0')
 	{
@@ -58,12 +55,11 @@ static const char
 	return (s);
 }
 
-int
-	ft_vasprintf(char **ret, char const *s, va_list ap)
+int ft_vasprintf(char** ret, char const* s, va_list ap)
 {
-	t_array		d;
-	t_modifier	m;
-	char const	*p;
+	t_array     d;
+	t_modifier  m;
+	char const* p;
 
 	d = NEW_ARRAY(char);
 	fta_reserve(&d, ft_strlen(s));
@@ -76,7 +72,7 @@ int
 		while (*p != '\0' && *p != '%')
 			p++;
 		if (p != s)
-			fta_append(&d, (void *)s, p - s);
+			fta_append(&d, (void*)s, p - s);
 		s = p;
 	}
 	fta_append(&d, "\0", 1);

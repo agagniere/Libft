@@ -12,17 +12,16 @@
 
 #include <unistd.h>
 
-static void		ft_putnbr_hex(unsigned n, unsigned length)
+static void ft_putnbr_hex(unsigned n, unsigned length)
 {
-	char const *base = "0123456789abcdef";
+	char const* base = "0123456789abcdef";
 
 	if (length > 1)
 		ft_putnbr_hex(n >> 4, length - 1);
 	write(1, base + (n % 16), 1);
 }
 
-static void		print_numbers(const unsigned char *addr,
-	size_t size, size_t i)
+static void print_numbers(const unsigned char* addr, size_t size, size_t i)
 {
 	int a;
 
@@ -39,8 +38,7 @@ static void		print_numbers(const unsigned char *addr,
 	}
 }
 
-static void		print_characters(const unsigned char *addr,
-	size_t size, size_t i)
+static void print_characters(const unsigned char* addr, size_t size, size_t i)
 {
 	int a;
 
@@ -55,15 +53,15 @@ static void		print_characters(const unsigned char *addr,
 	}
 }
 
-void			ft_print_memory(const void *addr, size_t size)
+void ft_print_memory(const void* addr, size_t size)
 {
 	size_t i;
 
 	i = 0;
 	while (i < size)
 	{
-		print_numbers((const unsigned char *)addr, size, i);
-		print_characters((const unsigned char *)addr, size, i);
+		print_numbers((const unsigned char*)addr, size, i);
+		print_characters((const unsigned char*)addr, size, i);
 		write(1, "\n", 1);
 		i += 16;
 	}

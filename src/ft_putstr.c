@@ -12,9 +12,9 @@
 
 #include <unistd.h>
 
-void	ft_putstr(char const *str)
+void ft_putstr(char const* str)
 {
-	char const *ptr = str;
+	char const* ptr = str;
 
 	while (*ptr != '\0')
 		++ptr;

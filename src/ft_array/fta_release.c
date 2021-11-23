@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_array.h"
+
 #include <stdlib.h>
 
 /*
@@ -24,7 +25,7 @@
 ** and will be set to NULL to prevent further uses attempts.
 */
 
-void	fta_release(t_array **ptr)
+void fta_release(t_array** ptr)
 {
 	fta_clear(*ptr);
 	free(*ptr);

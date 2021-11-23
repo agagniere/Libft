@@ -12,14 +12,14 @@
 
 #include <string.h>
 
-char	*ft_strrchr(const char *s, int c)
+char* ft_strrchr(const char* s, int c)
 {
-	char const	*p;
+	char const* p;
 
 	p = s;
 	while (*p != '\0')
 		p++;
 	while (*p != (char)c && p >= s)
 		p--;
-	return (*p == (char)c ? (char *)p : NULL);
+	return (*p == (char)c ? (char*)p : NULL);
 }

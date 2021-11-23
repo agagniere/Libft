@@ -10,29 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_HEAP_H
-# define FT_HEAP_H
+#pragma once
 
-# include "ft_array.h"
-# include <stdbool.h>
+#include "ft_array.h"
 
-typedef struct s_heap
-			t_heap;
+#include <stdbool.h>
 
-struct		s_heap
+typedef struct s_heap t_heap;
+
+struct s_heap
 {
-	t_array	super;
-	int		(*cmp)();
+	t_array super;
+	int (*cmp)();
 };
 
-# define HEAP_NEW(T,F) (t_heap){NEW_ARRAY(T),F}
+#define HEAP_NEW(T, F) \
+	(t_heap) { NEW_ARRAY(T), F }
 
-void		heap_push(t_heap *self, void *element);
-bool		heap_pop(t_heap *self, void *out_element);
+void heap_push(t_heap* self, void* element);
+bool heap_pop(t_heap* self, void* out_element);
 
-# define HEAP_TOP(H) (ARRAY_START((const t_array*)H))
+#define HEAP_TOP(H) (ARRAY_START((const t_array*)H))
 
 /* clang refuses to silently convert */
-void		heap_free(t_heap* self);
-
-#endif
+void heap_free(t_heap* self);

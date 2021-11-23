@@ -10,21 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STACK_H
-# define FT_STACK_H
+#pragma once
 
-# include "ft_deque.h"
+#include "ft_deque.h"
 
-typedef t_deque		t_stack;
+typedef t_deque t_stack;
 
-# define STACK_NEW(A) DEQUE_NEW(A)
+#define STACK_NEW(A) DEQUE_NEW(A)
 
-bool				stack_push(t_stack *self, void *element);
-bool				stack_pop(t_stack *self, void *destination);
-void				*stack_peek(t_stack *self);
+bool  stack_push(t_stack* self, void* element);
+bool  stack_pop(t_stack* self, void* destination);
+void* stack_peek(t_stack* self);
 
-bool				stack_swap(t_stack *self);
-bool				stack_rotate(t_stack *self);
-bool				stack_rotate_reverse(t_stack *self);
-
-#endif
+bool stack_swap(t_stack* self);
+bool stack_rotate(t_stack* self);
+bool stack_rotate_reverse(t_stack* self);

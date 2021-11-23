@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_array.h"
+
 #include <stdlib.h>
 
 /*
@@ -25,9 +26,9 @@
 ** contents from its address.
 */
 
-void	fta_clearf(t_array *self, void (*del)(void *))
+void fta_clearf(t_array* self, void (*del)(void*))
 {
-	void	*iterator;
+	void* iterator;
 
 	if (self->max > 0)
 	{
@@ -36,6 +37,6 @@ void	fta_clearf(t_array *self, void (*del)(void *))
 			del(iterator);
 		free(self->data);
 		self->size = 0;
-		self->max = 0;
+		self->max  = 0;
 	}
 }

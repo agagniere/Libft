@@ -11,12 +11,13 @@
 /* ************************************************************************** */
 
 #include "ft_heap.h"
+
 #include "libft.h"
 
-void	heap_push(t_heap *self, void *element)
+void heap_push(t_heap* self, void* element)
 {
-	t_array *		super = (t_array*)self;
-	unsigned		index, parent;
+	t_array* super = (t_array*)self;
+	unsigned index, parent;
 
 	index = super->size;
 	fta_append(super, element, 1);
@@ -29,11 +30,11 @@ void	heap_push(t_heap *self, void *element)
 	}
 }
 
-bool	heap_pop(t_heap *self, void *out_element)
+bool heap_pop(t_heap* self, void* out_element)
 {
-	t_array *		super = (t_array*)self;
-	unsigned		index, parent;
-	const size_t	one = super->type_size;
+	t_array*     super = (t_array*)self;
+	unsigned     index, parent;
+	const size_t one = super->type_size;
 
 	if (super->size == 0)
 		return false;
@@ -44,19 +45,15 @@ bool	heap_pop(t_heap *self, void *out_element)
 	parent = index = 0;
 	while ((index = 2 * index + 1) < super->size)
 	{
-		if (index + 1 < super->size
-		    && self->cmp(ARRAY_GET(super, index), ARRAY_GET(super, index + 1)) > 0)
+		if (index + 1 < super->size && self->cmp(ARRAY_GET(super, index), ARRAY_GET(super, index + 1)) > 0)
 			index++;
 		if (self->cmp(ARRAY_GET(super, parent), ARRAY_GET(super, index)) > 0)
 			ft_memswp(ARRAY_GET(super, parent), ARRAY_GET(super, index), one);
 		else
-			break ;
+			break;
 		parent = index;
 	}
 	return true;
 }
 
-void	heap_free(t_heap* self)
-{
-	fta_clear((t_array*)self);
-}
+void heap_free(t_heap* self) { fta_clear((t_array*)self); }

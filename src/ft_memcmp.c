@@ -12,10 +12,10 @@
 
 #include <string.h>
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+int ft_memcmp(const void* s1, const void* s2, size_t n)
 {
-	const unsigned char *one = s1;
-	const unsigned char *two = s2;
+	const unsigned char* one = s1;
+	const unsigned char* two = s2;
 
 	if (n == 0)
 		return (0);

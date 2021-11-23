@@ -12,19 +12,19 @@
 
 #include <stdlib.h>
 
-char	*ft_strmapi(const char *s1, char (*f)(unsigned int, char))
+char* ft_strmapi(const char* s1, char (*f)(unsigned int, char))
 {
-	char const	*ptr;
-	char		*ans;
-	int			i;
+	char const* ptr;
+	char*       ans;
+	int         i;
 
 	ptr = s1;
 	while (*ptr != '\0')
 		++ptr;
-	if (!(ans = (char *)malloc(sizeof(char) * (ptr - s1 + 1))))
+	if (!(ans = (char*)malloc(sizeof(char) * (ptr - s1 + 1))))
 		return (NULL);
 	ptr = s1;
-	i = 0;
+	i   = 0;
 	while (*ptr != '\0')
 	{
 		ans[i] = f(i, *ptr++);

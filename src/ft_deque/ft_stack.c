@@ -12,17 +12,11 @@
 
 #include "ft_stack.h"
 
-bool	stack_push(t_stack *self, void *element)
-{
-	return (FTQ_PUSH_BACK_ONE(self, element));
-}
+bool stack_push(t_stack* self, void* element) { return (FTQ_PUSH_BACK_ONE(self, element)); }
 
-bool	stack_pop(t_stack *self, void *destination)
+bool stack_pop(t_stack* self, void* destination)
 {
 	return (FTQ_POP_BACK_ONE(self, destination));
 }
 
-void	*stack_peek(t_stack *self)
-{
-	return (ftq_last(self));
-}
+void* stack_peek(t_stack* self) { return (ftq_last(self)); }

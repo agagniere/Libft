@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #include "ft_tree.h"
+
 #include <stdlib.h>
 
-static void		node_clear(t_tnode **self, void (*f)(), size_t *i)
+static void node_clear(t_tnode** self, void (*f)(), size_t* i)
 {
 	if (*self)
 	{
@@ -27,18 +28,18 @@ static void		node_clear(t_tnode **self, void (*f)(), size_t *i)
 	}
 }
 
-int				ftt_clear(t_tree **self)
+int ftt_clear(t_tree** self)
 {
-	const int		nodes = self[0]->count;
+	const int nodes = self[0]->count;
 
-	node_clear(&(self[0]->root), &free, &(0[self]->count));
+	node_clear(&(self[0]->root), &free, &(0 [self] -> count));
 	return (nodes - self[0]->count);
 }
 
-int				ftt_clearf(t_tree **self, void (*f)())
+int ftt_clearf(t_tree** self, void (*f)())
 {
-	const int		nodes = self[0]->count;
+	const int nodes = self[0]->count;
 
-	node_clear(&(self[0]->root), f, &(0[self]->count));
+	node_clear(&(self[0]->root), f, &(0 [self] -> count));
 	return (nodes - self[0]->count);
 }

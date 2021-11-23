@@ -14,18 +14,18 @@
 
 #include <stdbool.h>
 
-void		local_aux(bool *answer, int (*cmp)(), int *element)
+void local_aux(bool* answer, int (*cmp)(), int* element)
 {
-	static int *previous = NULL;
+	static int* previous = NULL;
 
 	if (previous != NULL)
 		*answer &= (cmp(previous, element) <= 0);
 	previous = element;
 }
 
-bool		ftq_is_sorted(t_deque *self, int (*cmp)())
+bool ftq_is_sorted(t_deque* self, int (*cmp)())
 {
-	bool	ans;
+	bool ans;
 
 	ans = true;
 	ftq_iter2(self, &local_aux, &ans, cmp);

@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_strrev(char *start, char *end)
+void ft_strrev(char* start, char* end)
 {
-	char	tmp;
+	char tmp;
 
 	while (start < --end)
 	{
-		tmp = *start;
+		tmp      = *start;
 		*start++ = *end;
-		*end = tmp;
+		*end     = tmp;
 	}
 }

@@ -17,34 +17,22 @@
 ** Pointer to the first element
 */
 
-void		*ftq_front(t_deque *self)
-{
-	return (self->front);
-}
+void* ftq_front(t_deque* self) { return (self->front); }
 
 /*
 ** Pointer to the would-be next-after-the-last element
 */
 
-void		*ftq_back(t_deque *self)
-{
-	return (self->back);
-}
+void* ftq_back(t_deque* self) { return (self->back); }
 
 /*
 ** Pointer to the start of the underlying storage
 */
 
-void		*ftq_begin(t_deque *self)
-{
-	return (self->data);
-}
+void* ftq_begin(t_deque* self) { return (self->data); }
 
 /*
 ** Pointer one-past-the-end of the underlying storage
 */
 
-void		*ftq_end(t_deque *self)
-{
-	return (ftq_begin(self) + ftq_offset(self, self->capacity));
-}
+void* ftq_end(t_deque* self) { return (ftq_begin(self) + ftq_offset(self, self->capacity)); }

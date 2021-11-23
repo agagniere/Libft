@@ -12,9 +12,9 @@
 
 #include <string.h>
 
-size_t		ft_strlen(char const *str)
+size_t ft_strlen(char const* str)
 {
-	char const *const	save = str;
+	char const* const save = str;
 
 	while (*str != '\0')
 		++str;

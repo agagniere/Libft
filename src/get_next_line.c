@@ -10,9 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_array.h"
 #include "get_next_line.h"
+
+#include "get_next_line_private.h"
+
+#include "ft_array.h"
 #include "libft.h"
+
+#include <stdlib.h>
+#include <unistd.h>
 
 #define DATA(A) ((char*)(A->data))
 
@@ -66,12 +72,12 @@ static int gnl2(int ret, t_array* acc, char** line)
 
 static int now_read(char** line, t_array* acc, int const fd, t_list* save)
 {
-	char  buf[BUFF_SIZE];
+	char  buf[FTGNL_BUFF_SIZE];
 	char* ln;
 	int   ret;
 	int   len;
 
-	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	while ((ret = read(fd, buf, FTGNL_BUFF_SIZE)) > 0)
 	{
 		fta_append(acc, buf, ret);
 		ln = ft_memchr(DATA(acc) + acc->size - ret, '\n', ret);
@@ -110,7 +116,7 @@ int get_next_line(int const fd, char** line)
 	t_array       data;
 	t_fdsave*     past;
 
-	if (line == NULL || BUFF_SIZE <= 0 || fd < 0)
+	if (line == NULL || FTGNL_BUFF_SIZE <= 0 || fd < 0)
 		return (-1);
 	data = NEW_ARRAY(char);
 	if (save.size != 0 && (past = get_past(fd, &save)) != NULL)
@@ -125,15 +131,3 @@ int get_next_line(int const fd, char** line)
 		ftl_init(&save, sizeof(t_fdsave));
 	return (now_read(line, &data, fd, &save));
 }
-
-/*
-**	--== This part is not subject compliant ==--
-**	if (*line != NULL)	// Free previous line
-**	{
-**		free(*line);
-**		*line = NULL; // Always set freed pointers to NULL
-**	}
-**	--======================--
-*/
-
-#undef DATA

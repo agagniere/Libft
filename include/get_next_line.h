@@ -12,21 +12,6 @@
 
 #pragma once
 
-#include "ft_list.h"
-
-#include <stdlib.h>
-#include <unistd.h>
-
-#define BUFF_SIZE 2048
-
-typedef struct s_fdsave
-{
-	t_node self;
-	int    fd;
-	size_t size;
-	char*  data;
-} t_fdsave;
-
 /*
 ** gnl :    N x A       ->  N x S
 ** |        (fd, &line) |-> (status, *line)

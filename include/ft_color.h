@@ -43,9 +43,9 @@
 #define BG_DEFAULT    49
 #define BG_WHITE      107
 
-#define COLOR(...) CAT(_COLOR_, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
-#define _COLOR_1(A) TO_STR(\e[CAT(A,m))
-#define _COLOR_2(A, B) TO_STR(\e[A;CAT(B,m))
-#define _COLOR_3(A, B, C) TO_STR(\e[A;B;CAT(C,m))
-#define _COLOR_4(A, B, C, D) TO_STR(\e[A;B;C;CAT(D,m))
-#define _COLOR_5(A, B, C, D, E) TO_STR(\e[A;B;C;D;CAT(E,m))
+#define COLOR(...) PP_CAT(_COLOR_, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
+#define _COLOR_1(A) PP_STR(\e[PP_CAT(A,m))
+#define _COLOR_2(A, B) PP_STR(\e[A;PP_CAT(B,m))
+#define _COLOR_3(A, B, C) PP_STR(\e[A;B;PP_CAT(C,m))
+#define _COLOR_4(A, B, C, D) PP_STR(\e[A;B;C;PP_CAT(D,m))
+#define _COLOR_5(A, B, C, D, E) PP_STR(\e[A;B;C;D;PP_CAT(E,m))

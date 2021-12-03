@@ -5,7 +5,7 @@ OBJ   = $(FILES:.c=.o)
 
 # Compiler
 CC       ?= gcc
-CFLAGS   += -Wall -Wextra
+CFLAGS   += -Wall -Wextra -g
 CPPFLAGS += -I. -D_GNU_SOURCE
 
 # ========== Conan ==========
@@ -27,7 +27,7 @@ $(EXEC): $(OBJ)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
 test_printf.o: test_printf.c
-	$(CC) -Wno-format $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -Wno-format -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

@@ -18,10 +18,10 @@
 ** Numbers manipulation tools
 */
 
-#define ABS(V) ((V) < 0 ? -(V) : (V))
+#define MIN(...) VARIADIC_MACRO(_MIN, __VA_ARGS__)
+#define MAX(...) VARIADIC_MACRO(_MAX, __VA_ARGS__)
 
-#define MIN(...) CAT(_MIN, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
-#define MAX(...) CAT(_MAX, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
+#define ABS(V) MAX(V, -(V))
 
 /*
 ** Miscellaneous tricks
@@ -29,23 +29,9 @@
 
 #define C_ARRAY_LENGTH(A) (sizeof(A) / sizeof(*(A)))
 
-#define ARG_COUNT(...) _ARG_COUNT1(__VA_ARGS__)
+#define ARG_COUNT(...) _ARGCNT1(__VA_ARGS__)
 
-#define FD_PUT(F, A) write(F, A, ft_strlen(A))
-#define FT_PUT(A)    FD_PUT(1, A)
+#define VARIADIC_MACRO(NAME, ...) PP_CAT(NAME, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
 
-#define TO_STR(M) _TO_STR(M)
-#define CAT(A, B) _CAT(A, B)
-
-#define TWICE(A)  (A), (A)
-#define THRICE(A) (A), (A), (A)
-
-/*
-** Asserts
-*/
-
-#ifdef DISABLE_ASSERT
-#	define ASSERT(B) (B)
-#else
-#	define ASSERT(B) (B ? 1 : FD_PUT(2, __FILE__ " @" TO_STR(__LINE__) " : " #    B))
-#endif
+#define PP_STR(M) _PP_STR(M)
+#define PP_CAT(A, B) _PP_CAT(A, B)

@@ -146,5 +146,5 @@ int test_printf()
 	ft_printf("\t%s%i / %i%s tests passed\n}\n\n",
 	          (success == total ? COLOR(GREEN, BOLD) : COLOR(RED, BOLD)),
 	          success, total, COLOR(NORMAL));
-	return (success == total);
+	return (success != total);
 }

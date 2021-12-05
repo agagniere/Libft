@@ -45,7 +45,8 @@ bool heap_pop(t_heap* self, void* out_element)
 	parent = index = 0;
 	while ((index = 2 * index + 1) < super->size)
 	{
-		if (index + 1 < super->size && self->cmp(ARRAY_GET(super, index), ARRAY_GET(super, index + 1)) > 0)
+		if (index + 1 < super->size &&
+		    self->cmp(ARRAY_GET(super, index), ARRAY_GET(super, index + 1)) > 0)
 			index++;
 		if (self->cmp(ARRAY_GET(super, parent), ARRAY_GET(super, index)) > 0)
 			ft_memswp(ARRAY_GET(super, parent), ARRAY_GET(super, index), one);

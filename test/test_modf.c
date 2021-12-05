@@ -19,4 +19,6 @@
 		return (frac[LFT] == frac[STD] && intg[LFT] == intg[STD]); \
 	}
 
-_test_modf(double, modf) _test_modf(float, modff) _test_modf(long double, modfl)
+_test_modf(double, modf)
+_test_modf(float, modff)
+_test_modf(long double, modfl)

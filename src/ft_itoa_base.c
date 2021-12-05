@@ -52,7 +52,8 @@ char* ft_itoa_base(int value, int base)
 	char* ans;
 	int   p;
 
-	if (base < 2 || 36 < base || !(ans = (char*)malloc(sizeof(char) * (sizeof(int) * 8 + 1))))
+	if (base < 2 || 36 < base ||
+	    !(ans = (char*)malloc(sizeof(char) * (sizeof(int) * 8 + 1))))
 		return (NULL);
 	p = 0;
 	if (value < 0)

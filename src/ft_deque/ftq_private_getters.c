@@ -35,4 +35,7 @@ void* ftq_begin(t_deque* self) { return (self->data); }
 ** Pointer one-past-the-end of the underlying storage
 */
 
-void* ftq_end(t_deque* self) { return (ftq_begin(self) + ftq_offset(self, self->capacity)); }
+void* ftq_end(t_deque* self)
+{
+	return (ftq_begin(self) + ftq_offset(self, self->capacity));
+}

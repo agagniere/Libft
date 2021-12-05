@@ -16,7 +16,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int ft_vprintf(char const* format, va_list ap) { return (ft_vdprintf(1, format, ap)); }
+int ft_vprintf(char const* format, va_list ap)
+{
+	return (ft_vdprintf(1, format, ap));
+}
 
 int ft_vdprintf(int fd, char const* format, va_list ap)
 {

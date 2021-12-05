@@ -20,7 +20,8 @@ typedef union _my_long_double my_long_double;
 typedef union _my_double      my_double;
 typedef union _my_float       my_float;
 
-union _my_long_double {
+union _my_long_double
+{
 	long double data;
 	struct
 	{
@@ -30,7 +31,8 @@ union _my_long_double {
 	} fields;
 };
 
-union _my_double {
+union _my_double
+{
 	double data;
 	struct
 	{
@@ -40,7 +42,8 @@ union _my_double {
 	} fields;
 };
 
-union _my_float {
+union _my_float
+{
 	float data;
 	struct
 	{
@@ -60,14 +63,15 @@ union _my_float {
 ** -
 ** f == f is false when f is NaN
 */
-#define _ft_modf(FRAC, INT, OUT, POW_MID, BIT_LEN)                                           \
-	int power = INT.fields.exponent - POW_MID;                                               \
-	if ((FRAC == FRAC) && (power < BIT_LEN || (FRAC = 0)) && (power >= 0 || (INT.data = 0))) \
-	{                                                                                        \
-		INT.fields.significand &= ~0UL << (BIT_LEN - power);                                 \
-		FRAC -= INT.data;                                                                    \
-	}                                                                                        \
-	if (OUT != NULL)                                                                         \
+#define _ft_modf(FRAC, INT, OUT, POW_MID, BIT_LEN)           \
+	int power = INT.fields.exponent - POW_MID;               \
+	if ((FRAC == FRAC) && (power < BIT_LEN || (FRAC = 0)) && \
+	    (power >= 0 || (INT.data = 0)))                      \
+	{                                                        \
+		INT.fields.significand &= ~0UL << (BIT_LEN - power); \
+		FRAC -= INT.data;                                    \
+	}                                                        \
+	if (OUT != NULL)                                         \
 		*OUT = INT.data;
 
 double ft_modf(double input, double* out_integral)

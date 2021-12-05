@@ -46,7 +46,8 @@ int tnode_push(t_tree* self, t_tnode** node, t_tnode* new)
 	else if (ret == TR_RIGHT)
 		return (tnode_push(self, &(*node)->right, new));
 	else if (ret == TR_BOTH)
-		return (tnode_push(self, &(*node)->left, new) || tnode_push(self, &(*node)->right, new));
+		return (tnode_push(self, &(*node)->left, new) ||
+		        tnode_push(self, &(*node)->right, new));
 	else if (ret == TR_ERROR)
 		return (1);
 	else if (ret == TR_DONE)

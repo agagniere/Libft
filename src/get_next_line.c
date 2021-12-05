@@ -83,8 +83,8 @@ static int now_read(char** line, t_array* acc, int const fd, t_list* save)
 		ln = ft_memchr(DATA(acc) + acc->size - ret, '\n', ret);
 		if (ln != NULL)
 		{
-			len                         = (DATA(acc) + acc->size) - ln - 1;
-			*line                       = ft_memdup(acc->data, ln - DATA(acc) + 1);
+			len   = (DATA(acc) + acc->size) - ln - 1;
+			*line = ft_memdup(acc->data, ln - DATA(acc) + 1);
 			*(*line + (ln - DATA(acc))) = '\0';
 			if (len > 0)
 				ftl_push_front(save, (t_node*)&(t_fdsave){{0, 0}, fd, len, ft_memdup(ln + 1, len)});

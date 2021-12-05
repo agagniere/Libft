@@ -13,13 +13,17 @@
 #include "ft_deque.h"
 #include "ft_deque_private.h"
 
-void* ftq_first(t_deque* self) { return (ftq_is_empty(self) ? NULL : self->front); }
+void* ftq_first(t_deque* self)
+{
+	return (ftq_is_empty(self) ? NULL : self->front);
+}
 
 void* ftq_last(t_deque* self)
 {
 	if (ftq_is_empty(self))
 		return (NULL);
-	return (((self->back == ftq_begin(self)) ? ftq_end(self) : self->back) - ftq_offset(self, 1));
+	return (((self->back == ftq_begin(self)) ? ftq_end(self) : self->back) -
+	        ftq_offset(self, 1));
 }
 
 /*

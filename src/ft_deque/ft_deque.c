@@ -55,4 +55,7 @@ bool ftq_intent(t_deque* self, char intent)
 
 bool ftq_is_empty(t_deque* self) { return (self->front == self->back); }
 
-bool ftq_is_full(t_deque* self) { return (ftq_size(self) == ftq_capacity(self)); }
+bool ftq_is_full(t_deque* self)
+{
+	return (ftq_size(self) == ftq_capacity(self));
+}

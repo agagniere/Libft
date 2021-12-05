@@ -1,6 +1,7 @@
 #include "comparisons.h"
-#include "ft_heap.h"
 #include "heap_tests.h"
+
+#include "ft_heap.h"
 
 int push_one_element_test(void)
 {

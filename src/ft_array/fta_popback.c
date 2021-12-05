@@ -21,7 +21,10 @@
 ** _len_ is the number of elements to be removed.
 */
 
-void fta_popback(t_array* self, size_t len) { self->size -= MIN(len, self->size); }
+void fta_popback(t_array* self, size_t len)
+{
+	self->size -= MIN(len, self->size);
+}
 
 /*
 ** Array::pop_back w/ function

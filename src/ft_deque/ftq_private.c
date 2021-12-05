@@ -23,7 +23,10 @@ bool ftq_is_split(t_deque* self) { return (self->back < self->front); }
 ** Size in memory of _count_ elements
 */
 
-size_t ftq_offset(t_deque* self, unsigned count) { return (self->type_size * count); }
+size_t ftq_offset(t_deque* self, unsigned count)
+{
+	return (self->type_size * count);
+}
 
 /*
 ** Number of elements in the range delimited by those two elements
@@ -39,10 +42,16 @@ unsigned ftq_distance(t_deque* self, void* elem1, void* elem2)
 ** Number of elements between front and back
 */
 
-unsigned ftq_interior(t_deque* self) { return (ftq_distance(self, self->front, self->back)); }
+unsigned ftq_interior(t_deque* self)
+{
+	return (ftq_distance(self, self->front, self->back));
+}
 
 /*
 ** Number of elements surrounding front and back
 */
 
-unsigned ftq_exterior(t_deque* self) { return (self->capacity - ftq_interior(self)); }
+unsigned ftq_exterior(t_deque* self)
+{
+	return (self->capacity - ftq_interior(self));
+}

@@ -33,7 +33,9 @@ int fta_popindex(t_array* self, size_t index, size_t len)
 
 	if (index > self->size)
 		return (1);
-	ft_memmove(ARRAY_GET(self, index), ARRAY_GET(self, index + n), ARRAY_OFFSET(self, self->size - n - index));
+	ft_memmove(ARRAY_GET(self, index),
+	           ARRAY_GET(self, index + n),
+	           ARRAY_OFFSET(self, self->size - n - index));
 	self->size -= n;
 	return (0);
 }
@@ -63,7 +65,9 @@ int fta_popindexf(t_array* self, size_t index, size_t len, void (*del)(void*))
 	i = index - 1;
 	while (++i < index + n)
 		del(ARRAY_GET(self, i));
-	ft_memmove(ARRAY_GET(self, index), ARRAY_GET(self, index + n), ARRAY_OFFSET(self, self->size - n - index));
+	ft_memmove(ARRAY_GET(self, index),
+	           ARRAY_GET(self, index + n),
+	           ARRAY_OFFSET(self, self->size - n - index));
 	self->size -= n;
 	return (0);
 }

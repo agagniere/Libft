@@ -12,8 +12,9 @@
 
 #pragma once
 
-#include "ft_stream.h"
 #include "stdint.h"
+
+#include "ft_stream.h"
 
 typedef struct s_tokenizer t_tokenizer;
 typedef struct s_token     t_token;

@@ -19,7 +19,9 @@ static int pf_print(t_modifier* m, t_array* d, va_list ap)
 	int         i;
 	char const* c   = "diouxXcCsSpbn";
 	void* const t[] = {
-	&pf_cv_di, &pf_cv_di, &pf_cv_o, &pf_cv_u, &pf_cv_x, &pf_cv_cx, &pf_cv_c, &pf_cv_wc, &pf_cv_s, &pf_cv_ws, &pf_cv_p, &pf_cv_b, &pf_cv_n};
+		&pf_cv_di, &pf_cv_di, &pf_cv_o, &pf_cv_u,
+		&pf_cv_x, &pf_cv_cx, &pf_cv_c, &pf_cv_wc,
+		&pf_cv_s, &pf_cv_ws, &pf_cv_p, &pf_cv_b, &pf_cv_n};
 
 	if (m->length == 'l' && is_in(m->conversion, "cs") >= 0)
 		m->conversion -= 32;

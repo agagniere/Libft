@@ -24,7 +24,8 @@
 
 typedef struct s_modifier
 {
-	union {
+	union
+	{
 		char t[6];
 		struct
 		{

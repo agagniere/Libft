@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_prepro.h"
-#include "ft_printf.h"
+#include "ft_printf_private.h"
 #include "ft_wchar.h"
 
 #include <wchar.h>

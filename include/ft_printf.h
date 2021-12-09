@@ -12,7 +12,8 @@
 
 #pragma once
 
-#include "ft_printf_private.h"
+#include <stdarg.h>
+#include <stddef.h>
 
 int ft_printf(char const* format, ...);
 int ft_dprintf(int fd, char const* format, ...);

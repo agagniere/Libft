@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_private.h"
 
 int pf_cv_n(t_modifier* m, t_array* d, va_list ap)
 {

@@ -1,6 +1,6 @@
 [requires]
 libunit/1.0
-libft/2.1
+libft/2.2
 
 [generators]
 make

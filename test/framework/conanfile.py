@@ -21,7 +21,7 @@ class LibUnitConan(ConanFile):
         "debug": True
     }
     generators = "make"
-    requires = ["libft/2.1"]
+    requires = ["libft/2.2"]
     build_policy = "missing"
 
 

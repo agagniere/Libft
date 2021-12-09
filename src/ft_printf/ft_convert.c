@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_prepro.h"
-#include "ft_printf.h"
+#include "ft_printf_private.h"
 #include "libft.h"
 
 static int pf_print(t_modifier* m, t_array* d, va_list ap)

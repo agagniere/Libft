@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_prepro.h"
-#include "ft_printf.h"
+#include "ft_printf_private.h"
 
 /*
 ** pf_itoa_base appends _n_ expressed in base _b_ in _d_

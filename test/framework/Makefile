@@ -5,7 +5,7 @@ OBJ   = ${FILES:.c=.o}
 
 # Compiler
 CC     ?= gcc
-CFLAGS += -Wall -Wextra -nolibc
+CFLAGS += -Wall -Wextra
 
 
 all: $(NAME)

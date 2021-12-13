@@ -3,7 +3,7 @@ from conans import AutoToolsBuildEnvironment
 
 class LibUnitConan(ConanFile):
     name = "libunit"
-    version = "1.0"
+    version = "1.1"
     license = "MIT"
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"
@@ -24,7 +24,6 @@ class LibUnitConan(ConanFile):
     requires = ["libft/2.2"]
     build_policy = "missing"
 
-
     def source(self):
         self.run(f"git clone {self.url} tmpdir")
         self.run("mv tmpdir/test/framework/* .")
@@ -37,6 +36,8 @@ class LibUnitConan(ConanFile):
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
         autotools.flags = [f"-O{self.options.optimisation}"]
+        if self.settings.compiler == "gcc":
+            autotools.flags += ["-nolibc"]
         if self.options.debug:
             autotools.flags += ["-g"]
         autotools.make()

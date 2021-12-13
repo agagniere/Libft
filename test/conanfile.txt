@@ -1,5 +1,5 @@
 [requires]
-libunit/1.0
+libunit/1.1
 libft/2.2
 
 [generators]

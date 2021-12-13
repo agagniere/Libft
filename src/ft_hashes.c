@@ -1,5 +1,7 @@
 #include "ft_hashes.h"
 
+#include <stdint.h>
+
 size_t fnv1a_32(char* string, size_t length)
 {
 	uint32_t hash, c;

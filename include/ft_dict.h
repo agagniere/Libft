@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ft_string.h"
 #include <stdbool.h>
 #include <stddef.h>
 
@@ -14,14 +15,15 @@ struct dict_node
 	size_t       hash;
 };
 
-#define EMPTY_NODE (void*)(0xDEADBEEF)
-
 struct dict
 {
 	t_dict_node* data;
 	size_t       capacity;
 };
 
-bool dict_add(t_dict* map, const t_substr* key, const t_substr* value);
-bool dict_get(const t_dict* map, const t_substr* key, t_substr* out_result);
-bool dict_remove(t_dict* map, const t_substr* key);
+bool dict_new(size_t capacity);
+bool dict_set(t_dict* self, const t_substr* key, const t_substr* value, bool overwrite);
+bool dict_get(const t_dict* self, const t_substr* key, t_substr* out_result);
+bool dict_remove(t_dict* self, const t_substr* key);
+void dict_print(const t_dict* self);
+void dict_free(t_dict* self);

@@ -13,6 +13,7 @@
 #pragma once
 
 #include "ft_array.h"
+#include "ft_prepro.h"
 
 /*
 ** |		----------===== String =====----------
@@ -23,12 +24,19 @@
 */
 typedef t_array t_string;
 
-typedef struct s_substr t_substr;
+/*
+** This sub-string is meant not to own the pointed memory
+** i.e. not responsible for allocating and freeing it.
+** -
+** A t_string* ( i.e. t_array<char>*) can be converted
+** to a t_substr* as if it inherited from it.
+*/
+typedef struct substr t_substr;
 
-struct s_substr
+struct substr
 {
-	char*  str;
-	size_t len;
+	char*  string;
+	size_t length;
 };
 
 /*
@@ -41,8 +49,10 @@ struct s_substr
 ** Failsafe constructor, no memory is allocated.
 ** -
 */
-#define SUBSTR(S) _SUBSTR(S, S == NULL ? 0 : ft_strlen(S))
-#define _SUBSTR(S, L) (t_substr){S, L}
+#define SUBSTR(...) CAT(SUBSTR_, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
+#define SUBSTR_1(S) SUBSTR_1(S, S == NULL ? 0 : ft_strlen(S))
+#define SUBSTR_2(S, L) (t_substr){.string = S, .length = L}
+
 
 /*
 ** String::new
@@ -56,34 +66,33 @@ struct s_substr
 ** -
 ** Handy function to use a String as a char*
 */
-char* ft_string(t_string* str);
+char* cstring(t_string* str);
 
 /*
-** String::join(SubString)
+** String::join(String)
 ** -
-** Appends a SubString at the end of the given String.
+** Appends a String or a SubString at the end of the given String.
 */
-#define STRING_APPEND(STR, SUB) fta_append(STR, (SUB)->str, (SUB)->len)
+#define STRING_APPEND(SELF, OTHER) fta_append(SELF, ((t_substr*)(OTHER))->string, ((t_substr*)(OTHER))->length)
 
 /*
-** String::insert(SubString)
+** String::insert(String, index)
 */
-#define STRING_INSERT(ST, SB, I) fta_insert(ST, (void*)(SB)->str, (SB)->len, I)
-
+#define STRING_INSERT(SELF, OTHER, INDEX) fta_insert(SELF, ((t_substr*)(OTHER))->string, ((t_substr*)(OTHER))->length, INDEX)
 
 /*
 ** String::get
 ** -
 ** Returns the address of the element at index _I_
 */
-#define STRING_GET(STR, I) ARRAY_GETT(char, STR, I)
+#define STRING_GET(SELF, INDEX) ARRAY_GETT(char, SELF, INDEX)
 
 /*
 ** String::getChar
 ** -
 ** Returns the element of index _I_
 */
-#define STRING_GETCHAR(STR, I) (*ARRAY_GETT(char, STR, I))
+#define STRING_GETCHAR(SELF, INDEX) (*ARRAY_GETT(char, SELF, INDEX))
 
 /*
 ** String::nullTerminate
@@ -93,10 +102,10 @@ char* ft_string(t_string* str);
 ** However size will not be affected.
 ** the post-condition is 'strlen(STR->data) <= STR->size'
 */
-#define STRING_NULL_TERMINATE(STR) (fta_reserve(STR, 1) || _FTSZ(STR))
+#define STRING_NULL_TERMINATE(SELF) (fta_reserve(SELF, 1) || _FTSZ(SELF))
 
 /*
 ** |		----------===== private: =====----------
 */
 
-#define _FTSZ(STR) (*(char*)ARRAY_END(STR) = '\0')
+#define _FTSZ(S) (*(char*)ARRAY_END(S) = '\0')

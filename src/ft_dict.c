@@ -9,6 +9,19 @@
 #define ft_hash    fnv1a_64
 #define EMPTY_NODE (void*)(0xDEADBEEF)
 
+t_dict dict_new(size_t desired_size)
+{
+	t_dict ans;
+	unsigned i;
+
+	ans.data = ft_safe_calloc(desired_size, sizeof(t_dict_node));
+	ans.capacity = desired_size;
+	i = ans.capacity;
+	while (i --> 0)
+		ans.data[i].next = EMPTY_NODE;
+	return ans;
+}
+
 bool dict_remove(t_dict* self, const t_substr* key)
 {
 	size_t       hash = ft_hash(key->string, key->length);
@@ -17,8 +30,7 @@ bool dict_remove(t_dict* self, const t_substr* key)
 
 	if (ptr->next == EMPTY_NODE)
 		return false;
-	while (ptr != NULL && (ptr->hash != hash || ptr->key.length != key->length ||
-	                       ft_memcmp(key->string, ptr->key.string, key->length) != 0))
+	while (ptr != NULL && (ptr->hash != hash || !string_equals(&(ptr->key), key)))
 	{
 		prev = ptr;
 		ptr  = ptr->next;
@@ -52,8 +64,7 @@ bool dict_set(t_dict* self, const t_substr* key, const t_substr* value, bool ove
 
 	if (dest->next != EMPTY_NODE)
 	{
-		while (dest != NULL && (dest->hash != hash || dest->key.length != key->length ||
-		                        ft_memcmp(key->string, dest->key.string, key->length) != 0))
+		while (dest != NULL && (dest->hash != hash || !string_equals(&(dest->key), key)))
 		{
 			prev = dest;
 			dest = dest->next;
@@ -65,6 +76,14 @@ bool dict_set(t_dict* self, const t_substr* key, const t_substr* value, bool ove
 		}
 		else if (!overwrite)
 			return false;
+		else
+		{
+			free(dest->value.string);
+			dest->value.string                = ft_memdup(value->string, value->length + 1);
+			dest->value.string[value->length] = '\0';
+			dest->value.length                = value->length;
+			return true;
+		}
 	}
 	dest->next                        = NULL;
 	dest->hash                        = hash;
@@ -84,8 +103,7 @@ bool dict_get(const t_dict* self, const t_substr* key, t_substr* out_result)
 
 	if (ptr->next == EMPTY_NODE)
 		return false;
-	while (ptr != NULL && (ptr->hash != hash || ptr->key.length != key->length ||
-	                       ft_memcmp(key->string, ptr->key.string, key->length) != 0))
+	while (ptr != NULL && (ptr->hash != hash || !string_equals(&(ptr->key), key)))
 		ptr = ptr->next;
 	if (ptr == NULL)
 		return false;

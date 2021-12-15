@@ -19,9 +19,9 @@ void append_element(t_string* string, char* (*f)(), void* element)
 {
 	char* const elem_str = f(element);
 
-	STRING_APPEND(string, SUBSTR(elem_str));
+	string_append(string, &SUBSTR(elem_str));
 	free(elem_str);
-	STRING_APPEND(string, SUBSTR(", "));
+	string_append(string, &SUBSTR(", "));
 }
 
 /*
@@ -36,10 +36,10 @@ char* ftq_string(t_deque* self, char* (*f)())
 
 	ans = NEW_STRING;
 	fta_reserve(&ans, ftq_size(self) * 3);
-	STRING_APPEND(&ans, SUBSTR("["));
+	string_append(&ans, &SUBSTR("["));
 	ftq_iter2(self, &append_element, &ans, f);
 	if (!ftq_is_empty(self))
 		fta_popback(&ans, 2);
-	STRING_APPEND(&ans, SUBSTR("]"));
+	string_append(&ans, &SUBSTR("]"));
 	return (cstring(&ans));
 }

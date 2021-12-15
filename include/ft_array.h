@@ -392,7 +392,7 @@ void fta_iteri2(const t_array* self, void (*f)(), void* a, void* b);
 ** -
 ** Returns the last element of the array, or NULL if it is empty
 */
-#define ARRAY_LAST(A) (ARRAY_GETS(A, (A)->size - 1))
+#define ARRAY_LAST(A) ((A)->size ? ARRAY_GET(A, (A)->size - 1) : NULL)
 
 /*
 ** Iterator<Array>::Step

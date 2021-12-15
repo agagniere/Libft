@@ -20,6 +20,6 @@
 
 char* cstring(t_string* str)
 {
-	STR_NULL_TERMINATE(str);
+	STRING_NULL_TERMINATE(str);
 	return ((char*)str->data);
 }

@@ -2,13 +2,13 @@
 #include "ft_prepro/tools.h"
 #include "ft_printf.h"
 
-#define TEST_LIST prepro, color, ctype, atoi, itoa, itoa_base, memcmp, memchr, bzero, strlen, strcmp, modf_float, modf_double, modf_long, heap, printf
+#define TEST_LIST prepro, color, ctype, atoi, itoa, itoa_base, memcmp, memchr, bzero, strlen, strcmp, modf_float, modf_double, modf_long, heap, printf, dict
 
 #define DECLARE(IGNORED, NAME) \
-    int PP_CAT(test_, NAME)(void);
+    int MERGE(test, NAME)(void);
 
 #define CALL(SUCCESS, TOTAL, NAME) \
-    SUCCESS += ! PP_CAT(test_, NAME)(); \
+    SUCCESS += ! MERGE(test, NAME)(); \
     TOTAL++;
 
 FOR(EACH(TEST_LIST), DECLARE, IGNORED)

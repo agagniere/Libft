@@ -113,11 +113,12 @@ bool dict_get(const t_dict* self, const t_substr* key, t_substr* out_result)
 
 void dict_print(const t_dict* self)
 {
+    ft_printf("{\n");
 	for (unsigned i = 0; i < self->capacity; i++)
 	{
 		if (self->data[i].next != EMPTY_NODE)
 		{
-			ft_printf("%u : ", i);
+			ft_printf("\t%u : ", i);
 			t_dict_node* ptr = self->data + i;
 			while (ptr)
 			{
@@ -131,6 +132,7 @@ void dict_print(const t_dict* self)
 			ft_printf("\n");
 		}
 	}
+    ft_printf("}\n");
 }
 
 static void dict_node_free(t_dict_node* node)

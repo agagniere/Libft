@@ -7,6 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
+
   build-and-test:
     name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -15,7 +16,7 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     steps:
       - name: Download source files
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - name: Compile
         run: make -j
       - name: Compile test framework
@@ -26,8 +27,7 @@ jobs:
         run: CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" make -j -C test
       - name: Run tests
         run: ./test/test_libft.exe
-      - name: Clean
-        run: make fclean && make -C test fclean && make -C test/framework fclean
+
   use-conan:
     name: Create Conan package on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -36,42 +36,19 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     steps:
       - name: Download source files
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - name: Setup Python
-        uses: actions/setup-python@v2.2.2
+        uses: actions/setup-python@v3.0.0
       - name: Install conan
-        run : |
-          python3 -m venv localenv
-          source localenv/bin/activate
-          python -m pip install conan
-          deactivate
+        run : python3 -m pip install conan
       - name: Compile libft
         run: |
-          source localenv/bin/activate
           conan install .
           conan build .
-          conan package .
-          conan export-pkg . --package-folder=package
-          deactivate
+          conan export-pkg .
       - name: Compile test framework
-        run: |
-          source localenv/bin/activate
-          pushd test/framework
-          conan install .
-          conan build .
-          conan package .
-          conan export-pkg . --package-folder=package
-          popd
-          deactivate
+        run: ( cd test/framework ; conan export-pkg . )
       - name: Generate and compile tests
-        run: |
-          source localenv/bin/activate
-          ( cd test ; bash generate.sh ; conan install . ; make -j )
-          deactivate
+        run: ( cd test ; bash generate.sh ; conan install . --build --options="libft:shared=False" ; make -j )
       - name: Run tests
-        run: |
-          source test/activate_run.sh
-          ./test/test_libft.exe
-          source test/deactivate_run.sh
-      - name: Clean
-        run: git clean -xdf
+        run: ./test/test_libft.exe

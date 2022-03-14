@@ -1,11 +1,13 @@
 #include "libunit.h"
 
+#include "ft_array.h"
 #include "ft_color.h"
 #include "ft_printf.h"
 
 #include <sys/wait.h>
 
 #include <signal.h>
+#include <stddef.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -15,8 +17,7 @@ int load_test(t_array* list, const char* name, t_fptr function)
 {
 	const t_test test = NEW_TEST(name, function);
 
-	fta_append(list, &test, 1);
-	return (0);
+	return fta_append(list, &test, 1);
 }
 
 static unsigned run_test(t_test* test)
@@ -44,15 +45,15 @@ static unsigned run_test(t_test* test)
 
 int launch_tests(const char* name, t_array* list)
 {
-	void*    iterator;
-	unsigned success;
+	void*  iterator;
+	size_t success;
 
 	success  = 0;
 	iterator = ARRAY_ITERATOR(list);
 	ft_printf("%s {\n", name);
 	while (ARRAY_HASNEXT(list, iterator))
 		success += run_test((t_test*)iterator);
-	ft_printf("\t%s%u / %u %stests passed\n}\n\n",
+	ft_printf("\t%s%lu / %lu %stests passed\n}\n\n",
 	          (success == list->size ? COLOR(GREEN) : COLOR(RED)),
 	          success,
 	          list->size,

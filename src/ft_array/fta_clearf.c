@@ -30,13 +30,13 @@ void fta_clearf(t_array* self, void (*del)(void*))
 {
 	void* iterator;
 
-	if (self->max > 0)
+	if (self->capacity > 0)
 	{
 		iterator = ARRAY_ITERATOR(self);
 		while (ARRAY_HASNEXT(self, iterator))
 			del(iterator);
 		free(self->data);
 		self->size = 0;
-		self->max  = 0;
+		self->capacity  = 0;
 	}
 }

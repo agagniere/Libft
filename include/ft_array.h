@@ -34,7 +34,7 @@ typedef struct s_array
 {
 	void*  data;
 	size_t size;
-	size_t max;
+	size_t capacity;
 	size_t type_size;
 } t_array;
 
@@ -51,8 +51,14 @@ typedef struct s_array
 ** -
 ** Returns an array, correctly initialised.
 */
-#define NEW_ARRAY(T) \
-	(t_array) { NULL, 0, 0, sizeof(T) }
+#define NEW_ARRAY(T)                        \
+    (struct s_array)                        \
+    {                                       \
+        .data = NULL,                       \
+        .size = 0,                          \
+        .capacity = 0,                      \
+        .type_size = sizeof(T)              \
+    }
 
 /*
 ** Array::new

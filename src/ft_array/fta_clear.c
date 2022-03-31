@@ -24,10 +24,10 @@
 
 void fta_clear(t_array* self)
 {
-	if (self->max > 0)
+	if (self->capacity > 0)
 	{
 		free(self->data);
 		self->size = 0;
-		self->max  = 0;
+		self->capacity  = 0;
 	}
 }

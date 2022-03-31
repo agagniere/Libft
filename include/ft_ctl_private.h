@@ -2,7 +2,7 @@
 
 #include "ft_prepro.h"
 
-#define _FOR(N, ...) CAT(_FOR_, N)(__VA_ARGS__)
+#define _FOR(N, ...) PP_CAT(_FOR_, N)(__VA_ARGS__)
 
 #define _FOR_1(A, F, ...) F(A, ##__VA_ARGS__),
 

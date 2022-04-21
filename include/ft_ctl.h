@@ -2,7 +2,7 @@
 
 #include "ft_ctl_private.h"
 
-#define PP_NOOP(...) __VA_ARGS__
+#define NOOP(...) __VA_ARGS__
 
 #define FOR(N, ...) _FOR(N, ##__VA_ARGS__)
 
@@ -35,7 +35,7 @@ static const char* g_cardinal_to_string[] =
     typedef enum NAME PP_CAT(t_, NAME);                           \
     enum NAME                                                     \
     {                                                             \
-        FOR(EACH(__VA_ARGS__), PP_NOOP)                           \
+        FOR(EACH(__VA_ARGS__), NOOP)                           \
         PP_CAT(NAME, _count)                                      \
     };                                                            \
     static const char* PP_CAT(PP_CAT(g_, NAME), _to_string)[] =   \

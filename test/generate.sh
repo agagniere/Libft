@@ -6,7 +6,7 @@ global_main="main.c"
 echo -e "#pragma once\n" > $global_header
 
 echo -e "#include \"${global_header}\"" > $global_main
-echo -e "#include \"ft_color.h\"" >> $global_main
+echo -e "#include \"ft_prepro/color.h\"" >> $global_main
 echo -e "#include \"ft_printf.h\"\n" >> $global_main
 echo -e "int main()\n{" >> $global_main
 echo -e "\tunsigned success = 0;" >> $global_main

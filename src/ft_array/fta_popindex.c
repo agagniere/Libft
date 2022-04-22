@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_array.h"
-#include "ft_prepro.h"
+#include "ft_prepro/tools.h"
 #include "libft.h"
 
 /*
@@ -57,7 +57,7 @@ int fta_popindex(t_array* self, size_t index, size_t len)
 
 int fta_popindexf(t_array* self, size_t index, size_t len, void (*del)(void*))
 {
-	const size_t n = _MIN2(len, self->size - index);
+	const size_t n = MIN(len, self->size - index);
 	size_t       i;
 
 	if (index > self->size)

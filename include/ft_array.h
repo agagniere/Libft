@@ -279,10 +279,10 @@ int fta_replace(t_array* self, size_t index, size_t len, t_array* new);
 ** Checks if the provided index is a valid one.
 ** -
 ** Returns a boolean :
-** 0 if _I_ is strictly negative or is greater than the number of elements
+** 0 if _I_ is greater than the number of elements
 ** 1 otherwise
 */
-#define ARRAY_INDEX_CHECK(A, I) (0 <= (I) && (I) < (A)->size)
+#define ARRAY_INDEX_CHECK(A, I) ((I) < (A)->size)
 
 /*
 ** Array::get

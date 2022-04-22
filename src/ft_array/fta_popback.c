@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_array.h"
-#include "ft_prepro.h"
+#include "ft_prepro/tools.h"
 
 /*
 ** Array::pop_back

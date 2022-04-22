@@ -12,7 +12,7 @@
 
 #include "ft_deque.h"
 #include "ft_deque_private.h"
-#include "ft_prepro.h"
+#include "ft_prepro/tools.h"
 #include "libft.h"
 
 bool ftq_pop_one(t_deque* self, void* destination, bool front)

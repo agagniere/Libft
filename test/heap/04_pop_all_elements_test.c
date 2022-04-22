@@ -2,7 +2,7 @@
 #include "heap_tests.h"
 
 #include "ft_heap.h"
-#include "ft_prepro.h"
+#include "ft_prepro/tools.h"
 #include "libft.h"
 
 int pop_all_elements_test(void)

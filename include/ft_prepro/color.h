@@ -43,7 +43,7 @@
 #define BG_DEFAULT    49
 #define BG_WHITE      107
 
-#define PP_COLOR(...) PP_CAT(PRIVATE_COLOR_, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
+#define COLOR(...) PP_CAT(PRIVATE_COLOR_, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
 
 /* Private: */
 

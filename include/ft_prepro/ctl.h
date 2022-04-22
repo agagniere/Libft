@@ -1,5 +1,12 @@
 #pragma once
 
+/*
+Minimum compiler versions :
+clang 12
+gcc 8
+(for __VA_OPT__)
+*/
+
 #include "tools.h"
 #include "private_ctl.h"
 

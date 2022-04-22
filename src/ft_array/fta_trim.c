@@ -30,7 +30,7 @@
 
 int fta_trim(t_array* self)
 {
-	if (self->size < self->max)
+	if (self->size < self->capacity)
 		return (fta_resize(self, self->size));
 	return (0);
 }

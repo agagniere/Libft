@@ -33,6 +33,6 @@ int fta_resize(t_array* self, size_t new_size)
 	ft_memcpy(tmp, self->data, self->size * self->type_size);
 	free(self->data);
 	self->data = tmp;
-	self->max  = new_size;
+	self->capacity = new_size;
 	return (0);
 }

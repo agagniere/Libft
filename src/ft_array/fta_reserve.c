@@ -33,9 +33,9 @@ int fta_reserve(t_array* self, size_t size)
 	const size_t total_size = size + self->size;
 	size_t       new_size;
 
-	if (total_size > self->max)
+	if (total_size > self->capacity)
 	{
-		new_size = (self->max > 0 ? self->max : ARRAY_INITIAL_SIZE);
+		new_size = (self->capacity > 0 ? self->capacity : ARRAY_INITIAL_SIZE);
 		while (new_size < total_size)
 			new_size *= ARRAY_FACTOR;
 		return (fta_resize(self, new_size));

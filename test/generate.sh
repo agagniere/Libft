@@ -6,7 +6,7 @@ global_main="main.c"
 echo -e "#pragma once\n" > $global_header
 
 echo -e "#include \"${global_header}\"" > $global_main
-echo -e "#include \"ft_color.h\"" >> $global_main
+echo -e "#include \"ft_prepro/color.h\"" >> $global_main
 echo -e "#include \"ft_printf.h\"\n" >> $global_main
 echo -e "int main()\n{" >> $global_main
 echo -e "\tunsigned success = 0;" >> $global_main
@@ -112,7 +112,9 @@ generate "modfl" "custom" "test_modfl" "test_modf" \
 echo -e 'int heap_launcher(void);' >> $global_header
 echo -e '\tsuccess += !heap_launcher(); total++;' >> $global_main
 echo -e 'int test_printf(void);' >> $global_header
-echo -e '\tsuccess += test_printf(); total++;' >> $global_main
-echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
+echo -e '\tsuccess += !test_printf(); total++;' >> $global_main
+echo -e 'int test_prepro(void);' >> $global_header
+echo -e '\tsuccess += !test_prepro(); total++;' >> $global_main
 
+echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
 echo -e "\treturn (success != total);\n}" >> $global_main

@@ -9,46 +9,68 @@ on:
 jobs:
 
   build-and-test:
-    name: Test on ${{ matrix.os }}
+    name: Test on ${{ matrix.os }} with ${{ matrix.compiler }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
+        compiler: [gcc, clang]
     steps:
       - name: Download source files
         uses: actions/checkout@v3.0.0
-      - name: Compile
-        run: make -j
+      - name: Compile libft
+        run: |
+          ${{ matrix.compiler }} --version
+          CC=${{ matrix.compiler }} make -j
       - name: Compile test framework
-        run: CPPFLAGS=-I../../include make -C test/framework
+        run: CC=${{ matrix.compiler }} CPPFLAGS=-I../../include make -C test/framework
       - name: Generate tests
         run: ( cd test ; bash ./generate.sh )
       - name: Compile tests
-        run: CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" make -j -C test
+        run: CC=${{ matrix.compiler }} CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" make -j -C test
       - name: Run tests
         run: ./test/test_libft.exe
 
   use-conan:
-    name: Create Conan package on ${{ matrix.os }}
+    name: Create Conan package on ${{ matrix.os }} with ${{ matrix.compiler }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
+        compiler: [gcc, clang]
     steps:
       - name: Download source files
         uses: actions/checkout@v3.0.0
       - name: Setup Python
         uses: actions/setup-python@v3.0.0
       - name: Install conan
-        run : python3 -m pip install conan
+        run : |
+          comp_ver=$(${{ matrix.compiler }} --version | head -1)
+          echo $comp_ver
+          python3 -m pip install conan
+          conan profile new default --detect
+          conan profile update settings.compiler=$( [ "Apple" = $(cut -d' ' -f1 <<< $comp_ver) ] && echo apple-clang || echo ${{ matrix.compiler }}) default
+          conan profile update settings.compiler.version=$(cut -d' ' -f 4 <<< $comp_ver | cut -d'.' -f1) default
+          conan profile update options.libft:shared=False default
+          conan profile update env.CC=${{ matrix.compiler }} default
+          conan profile show default
       - name: Compile libft
         run: |
           conan install .
           conan build .
           conan export-pkg .
       - name: Compile test framework
-        run: ( cd test/framework ; conan export-pkg . )
+        run: |
+          pushd test/framework
+          conan install .
+          conan build .
+          conan export-pkg .
+          popd
       - name: Generate and compile tests
-        run: ( cd test ; bash generate.sh ; conan install . --build --options="libft:shared=False" ; make -j )
+        run: |
+          pushd test
+          bash generate.sh
+          conan install .
+          CC=${{ matrix.compiler }} make -j
       - name: Run tests
         run: ./test/test_libft.exe

@@ -34,7 +34,7 @@ typedef struct s_array
 {
 	void*  data;
 	size_t size;
-	size_t max;
+	size_t capacity;
 	size_t type_size;
 } t_array;
 
@@ -51,8 +51,14 @@ typedef struct s_array
 ** -
 ** Returns an array, correctly initialised.
 */
-#define NEW_ARRAY(T) \
-	(t_array) { NULL, 0, 0, sizeof(T) }
+#define NEW_ARRAY(T)                        \
+    (struct s_array)                        \
+    {                                       \
+        .data = NULL,                       \
+        .size = 0,                          \
+        .capacity = 0,                      \
+        .type_size = sizeof(T)              \
+    }
 
 /*
 ** Array::new
@@ -273,10 +279,10 @@ int fta_replace(t_array* self, size_t index, size_t len, t_array* new);
 ** Checks if the provided index is a valid one.
 ** -
 ** Returns a boolean :
-** 0 if _I_ is strictly negative or is greater than the number of elements
+** 0 if _I_ is greater than the number of elements
 ** 1 otherwise
 */
-#define ARRAY_INDEX_CHECK(A, I) (0 <= (I) && (I) < (A)->size)
+#define ARRAY_INDEX_CHECK(A, I) ((I) < (A)->size)
 
 /*
 ** Array::get

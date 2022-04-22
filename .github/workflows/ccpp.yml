@@ -11,10 +11,15 @@ jobs:
   build-and-test:
     name: Test on ${{ matrix.os }} with ${{ matrix.compiler }}
     runs-on: ${{ matrix.os }}
+    continue-on-error: true
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
         compiler: [gcc, clang]
+        exclude:
+          # GCC on macos is just clang in disguise
+          - os: macos-latest
+            compiler: gcc
     steps:
       - name: Download source files
         uses: actions/checkout@v3.0.0
@@ -38,6 +43,10 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         compiler: [gcc, clang]
+        exclude:
+          # GCC on macos is just clang in disguise
+          - os: macos-latest
+            compiler: gcc
     steps:
       - name: Download source files
         uses: actions/checkout@v3.0.0

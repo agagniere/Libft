@@ -1,10 +1,10 @@
 #pragma once
 
 #include "ft_array.h"
-#include "ft_prepro/lambda.h"
 
 typedef struct s_test t_test;
 typedef t_array       t_tests;
+typedef int          (*Func)(void);
 
 struct s_test
 {

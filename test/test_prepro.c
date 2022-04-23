@@ -1,20 +1,24 @@
 #include "libunit.h"
 #include "ft_prepro/tools.h"
-#include "ft_prepro/lambda.h"
 #include "ft_prepro/ctl.h"
 
-#define TEST(condition) lambda(int, (){return !(condition);})
-#define TEST_MACRO(macro, args, result) PP_STR(macro of ARG_COUNT args), TEST(macro args == result)
+#define CREATE_FUNCTION(get_name, write_condition, args) \
+    int get_name args (void) \
+    { return !( write_condition args ); }
 
-#define LOAD_TEST(F, args) load_test(&tests, F args);
+#define LOAD_TEST(get_name, args) load_test(&tests, PP_STR(get_name args), get_name args ());
 
-#define TEST_SECTION(name, F, ...) \
+#define TEST_SECTION(name, get_name, write_condition, ...) \
+    FOR(EACH(__VA_ARGS__), CREATE_FUNCTION, get_name, write_condition) \
     int PP_CAT(test_, name)(void) \
     { \
         t_tests tests __attribute__((cleanup(fta_clear))) = NEW_TESTS; \
-        FOR(EACH(__VA_ARGS__), LOAD_TEST, F); \
+        FOR(EACH(__VA_ARGS__), LOAD_TEST, get_name) \
         return launch_tests(PP_STR(name), &tests); \
     }
+
+#define GEN_NAME(macro, args, result) PP_CAT(macro, ARG_COUNT args)
+#define GEN_COND(macro, args, result) macro args == result
 
 TEST_SECTION(prepro, TEST_MACRO,
     (MAX, (-42, 0, 1), 1),

@@ -40,7 +40,7 @@ TEST_SECTION(atoi, name, ATOI_condition,
     (int_max, " \r\v\n +000000" PP_STR(INT_MAX))
 )
 
-#define STRCMP_condition(NAME, A, B) strcmp(A, B) == ft_strcmp(A, B)
+#define STRCMP_condition(NAME, A, B) compare_int_sign(strcmp(A, B), ft_strcmp(A, B))
 
 TEST_SECTION(strcmp, name, STRCMP_condition,
     (basic_equality, "Hello, World!", "Hello, World!"),

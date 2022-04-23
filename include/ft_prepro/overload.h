@@ -9,4 +9,4 @@
 #define overload(x, name, ...)                        \
     FOR(EACH(__VA_ARGS__), PRIVATE_OVERLOAD, x, name) \
         (void)0                                       \
-    FOR(EACH(__VA_ARGS__), R_PAREN_V)
+    FOR(EACH(__VA_ARGS__), R_PAREN_V, IGNORED)

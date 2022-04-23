@@ -78,9 +78,6 @@ generate()
 	cd ..
 }
 
-generate "strlen" "stdf" "int" "string" \
-		 'basic_string|"Hello\040World"' 'empty_string|""' 'other|"\\t!@#$%^&\\0*()"'
-
 generate "atoi" "stdf" "int" "stdlib" \
 		 'basic_number|"28"' 'negative|"-8128"' 'empty|""' 'negative_zero|"-0"' \
 		 'space|"\040\040-496"' 'plus_sign|"+1729\040Ramanujan"' 'tab|"\040\\t33550336\040Perfect"' \
@@ -115,6 +112,8 @@ echo -e 'int test_printf(void);' >> $global_header
 echo -e '\tsuccess += !test_printf(); total++;' >> $global_main
 echo -e 'int test_prepro(void);' >> $global_header
 echo -e '\tsuccess += !test_prepro(); total++;' >> $global_main
+echo -e 'int test_strlen(void);' >> $global_header
+echo -e '\tsuccess += !test_strlen(); total++;' >> $global_main
 
 echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
 echo -e "\treturn (success != total);\n}" >> $global_main

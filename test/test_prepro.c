@@ -1,6 +1,7 @@
 #include "libunit.h"
 #include "ft_prepro/tools.h"
 #include "ft_prepro/lambda.h"
+#include "ft_prepro/ctl.h"
 
 #define TEST(condition) lambda(int, (){return !(condition);})
 #define TEST_MACRO(macro, args, result) PP_STR(macro of ARG_COUNT args), TEST(macro args == result)

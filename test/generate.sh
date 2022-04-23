@@ -78,10 +78,6 @@ generate()
 	cd ..
 }
 
-generate "strcmp" "stdf" "int_sign" "string" \
-		 'basic_inequality|"string_one","string_two"' 'empty_s1|"","why"' 'empty_s2|"are",""' \
-		 'empty_both|"",""' 'long_equality|"Hellllllooooooo!!!!!","Hellllllooooooo!!!!!"'
-
 generate "modf" "custom" "test_modf" "test_modf" \
 		 'zero|0' 'one|1' 'two|2' 'forty_two|42' \
 		 'four_point_two|4.2' 'pi|M_PI' \
@@ -108,6 +104,8 @@ echo -e 'int test_strlen(void);' >> $global_header
 echo -e '\tsuccess += !test_strlen(); total++;' >> $global_main
 echo -e 'int test_atoi(void);' >> $global_header
 echo -e '\tsuccess += !test_atoi(); total++;' >> $global_main
+echo -e 'int test_strcmp(void);' >> $global_header
+echo -e '\tsuccess += !test_strcmp(); total++;' >> $global_main
 
 echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
 echo -e "\treturn (success != total);\n}" >> $global_main

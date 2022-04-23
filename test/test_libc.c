@@ -1,5 +1,6 @@
 #include "libunit.h"
 #include "libft.h"
+#include "comparisons.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -37,4 +38,16 @@ TEST_SECTION(atoi, name, ATOI_condition,
     (leading_zeros, " +0000231"),
     (int_min, PP_STR(INT_MIN)),
     (int_max, " \r\v\n +000000" PP_STR(INT_MAX))
+)
+
+#define STRCMP_condition(NAME, A, B) strcmp(A, B) == ft_strcmp(A, B)
+
+TEST_SECTION(strcmp, name, STRCMP_condition,
+    (basic_equality, "Hello, World!", "Hello, World!"),
+    (basic_inequality, "string_one", "string_two"),
+    (empty_s1, "", "why"),
+    (empty_s2, "not", "2"),
+    (empty_both, "", ""),
+    (long_equality, U, U),
+    (long_inequality, U, U " ")
 )

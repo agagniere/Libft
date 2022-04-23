@@ -50,3 +50,11 @@
     _FOR_18(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, F, __VA_ARGS__) F(__VA_ARGS__, T)
 #define _FOR_20(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, F, ...) \
     _FOR_19(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, F, __VA_ARGS__) F(__VA_ARGS__, U)
+#define _FOR_21(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, F, ...) \
+    _FOR_20(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, F, __VA_ARGS__) F(__VA_ARGS__, V)
+#define _FOR_22(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, F, ...) \
+    _FOR_21(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, F, __VA_ARGS__) F(__VA_ARGS__, W)
+#define _FOR_23(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, F, ...) \
+    _FOR_22(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, F, __VA_ARGS__) F(__VA_ARGS__, X)
+#define _FOR_24(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, F, ...) \
+    _FOR_23(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, F, __VA_ARGS__) F(__VA_ARGS__, Y)

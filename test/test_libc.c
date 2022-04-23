@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define name(NAME, STRING) NAME
+#define name(NAME, ...) NAME
 
 #define S "!#$%%&()*+-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'\", "
 #define T S S S S S S S S

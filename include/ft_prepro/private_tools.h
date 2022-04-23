@@ -14,6 +14,7 @@
 #define _MIN4(A, B, ...) ((A) < (B) ? _MIN3(A, __VA_ARGS__) : _MIN3(B, __VA_ARGS__))
 #define _MIN5(A, B, ...) ((A) < (B) ? _MIN4(A, __VA_ARGS__) : _MIN4(B, __VA_ARGS__))
 #define _MIN6(A, B, ...) ((A) < (B) ? _MIN5(A, __VA_ARGS__) : _MIN5(B, __VA_ARGS__))
+#define _MIN7(A, B, ...) ((A) < (B) ? _MIN6(A, __VA_ARGS__) : _MIN6(B, __VA_ARGS__))
 
 #define _MAX1(A)         (A)
 #define _MAX2(A, B)      ((A) > (B) ? (A) : (B))
@@ -21,3 +22,4 @@
 #define _MAX4(A, B, ...) ((A) > (B) ? _MAX3(A, __VA_ARGS__) : _MAX3(B, __VA_ARGS__))
 #define _MAX5(A, B, ...) ((A) > (B) ? _MAX4(A, __VA_ARGS__) : _MAX4(B, __VA_ARGS__))
 #define _MAX6(A, B, ...) ((A) > (B) ? _MAX5(A, __VA_ARGS__) : _MAX5(B, __VA_ARGS__))
+#define _MAX7(A, B, ...) ((A) > (B) ? _MAX6(A, __VA_ARGS__) : _MAX6(B, __VA_ARGS__))

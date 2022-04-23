@@ -20,7 +20,7 @@
 #define GEN_NAME(macro, args, result) PP_CAT(macro, ARG_COUNT args)
 #define GEN_COND(macro, args, result) macro args == result
 
-TEST_SECTION(prepro, TEST_MACRO,
+TEST_SECTION(prepro, GEN_NAME, GEN_COND,
     (MAX, (-42, 0, 1), 1),
     (MAX, (123, 345, 234, 346, 299), 346),
     (MAX, (-99, -123, -345, -0, -234, -346, -1), 0),

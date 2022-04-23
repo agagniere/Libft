@@ -1,6 +1,6 @@
 #include "libunit.h"
 
-#define name(MACRO, ARGS, RESULT) PP_CAT(MACRO, ARG_COUNT ARGS)
+#define name(MACRO, ARGS, RESULT) CAT(macro_, MACRO, _with_, ARG_COUNT ARGS, _args)
 #define condition(MACRO, ARGS, RESULT) MACRO ARGS == RESULT
 
 TEST_SECTION(prepro, name, condition,

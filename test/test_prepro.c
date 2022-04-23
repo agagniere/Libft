@@ -6,7 +6,7 @@
     int get_name args (void) \
     { return !( write_condition args ); }
 
-#define LOAD_TEST(get_name, args) load_test(&tests, PP_STR(get_name args), get_name args ());
+#define LOAD_TEST(get_name, args) load_test(&tests, PP_STR(get_name args), & get_name args);
 
 #define TEST_SECTION(name, get_name, write_condition, ...) \
     FOR(EACH(__VA_ARGS__), CREATE_FUNCTION, get_name, write_condition) \

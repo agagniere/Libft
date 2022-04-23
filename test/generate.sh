@@ -78,14 +78,6 @@ generate()
 	cd ..
 }
 
-generate "atoi" "stdf" "int" "stdlib" \
-		 'basic_number|"28"' 'negative|"-8128"' 'empty|""' 'negative_zero|"-0"' \
-		 'space|"\040\040-496"' 'plus_sign|"+1729\040Ramanujan"' 'tab|"\040\\t33550336\040Perfect"' \
-		 'carriage_return|"\\r+877\040BellPrime"' 'form_feed|"\\f\040-16127\040CarolPrime"' \
-		 'vertical_tab|"\\v7057\040CubanPrime"' 'two_plus_signs|"++3"' 'invalid_first_char|"~197\040Chen"' \
-		 'leading_zeros|"000231"' 'combo|"\040\\r\\v\\n\040-00000987654321"' 'int_min|"-2147483648"' \
-		 'int_max|"2147483647"'
-
 generate "strcmp" "stdf" "int_sign" "string" \
 		 'basic_inequality|"string_one","string_two"' 'empty_s1|"","why"' 'empty_s2|"are",""' \
 		 'empty_both|"",""' 'long_equality|"Hellllllooooooo!!!!!","Hellllllooooooo!!!!!"'
@@ -114,6 +106,8 @@ echo -e 'int test_prepro(void);' >> $global_header
 echo -e '\tsuccess += !test_prepro(); total++;' >> $global_main
 echo -e 'int test_strlen(void);' >> $global_header
 echo -e '\tsuccess += !test_strlen(); total++;' >> $global_main
+echo -e 'int test_atoi(void);' >> $global_header
+echo -e '\tsuccess += !test_atoi(); total++;' >> $global_main
 
 echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
 echo -e "\treturn (success != total);\n}" >> $global_main

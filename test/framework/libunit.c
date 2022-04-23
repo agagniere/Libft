@@ -13,7 +13,7 @@
 
 #define IS_CHILD 0
 
-int load_test(t_array* list, const char* name, Func function)
+int load_test(t_array* list, const char* name, t_func function)
 {
 	const t_test test = NEW_TEST(name, function);
 

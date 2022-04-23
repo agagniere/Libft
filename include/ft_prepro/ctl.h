@@ -11,7 +11,6 @@ gcc 8
 #include "private_ctl.h"
 
 #define FOR(N, ...) _FOR(N, __VA_ARGS__)
-
 #define EACH(...) ARG_COUNT(__VA_ARGS__), __VA_ARGS__
 
 /* Tools */

@@ -4,17 +4,17 @@
 
 typedef struct s_test t_test;
 typedef t_array       t_tests;
-typedef int          (*Func)(void);
+typedef int         (*t_func)(void);
 
 struct s_test
 {
 	const char* name;
-	Func      function;
+	t_func      function;
 };
 
 #define NEW_TEST(NAME, FUNCTION) \
 	(t_test) { NAME, FUNCTION }
 #define NEW_TESTS NEW_ARRAY(t_test)
 
-int load_test(t_array* list, const char* name, Func function);
+int load_test(t_array* list, const char* name, t_func function);
 int launch_tests(const char* name, t_array* list);

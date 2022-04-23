@@ -11,11 +11,11 @@
     F(__VA_ARGS__, A) F(__VA_ARGS__, B)
 
 #define _FOR_3(A, B, C, F, ...) \
-    F(__VA_ARGS__, A) F(__VA_ARGS__, B)
+    F(__VA_ARGS__, A) F(__VA_ARGS__, B) \
     F(__VA_ARGS__, C)
 
 #define _FOR_4(A, B, C, D, F, ...) \
-    F(__VA_ARGS__, A) F(__VA_ARGS__, B)
+    F(__VA_ARGS__, A) F(__VA_ARGS__, B) \
     F(__VA_ARGS__, C) F(__VA_ARGS__, D)
 
 #define _FOR_5(A, B, C, D, E, F, ...) \

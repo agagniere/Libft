@@ -46,8 +46,19 @@ TEST_SECTION(strcmp, extract_name, STRCMP_condition,
     (basic_equality, "Hello, World!", "Hello, World!"),
     (basic_inequality, "string_one", "string_two"),
     (empty_s1, "", "why"),
-    (empty_s2, "not", "2"),
+    (empty_s2, "not", ""),
     (empty_both, "", ""),
     (long_equality, U, U),
     (long_inequality, U, U " ")
+)
+
+#define MEMCMP_condition(NAME, ...) compare_int_sign(memcmp(__VA_ARGS__), ft_memcmp(__VA_ARGS__))
+
+TEST_SECTION(memcmp, extract_name, MEMCMP_condition,
+    (basic_equality, "Hello, World!", "Hello, World!", sizeof("Hello, World!")),
+    (basic_inequality, "string_one", "string_two", sizeof("string_one")),
+    (inequality_past_zero, "\0\0\0 Hi!", "\0\0\0 Bye", sizeof("\0\0\0 Bye")),
+    (long_equality, U, U, strlen(U)),
+    (long_inequality, U "\0 No!", U "\0 Yes", sizeof(U "\0 Yes")),
+    (go_no_further, "Same | different", "Same |NoTheSame", strlen("Same |"))
 )

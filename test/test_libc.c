@@ -40,7 +40,7 @@ TEST_SECTION(atoi, extract_name, ATOI_condition,
     (combo,       " \r\v\n +000002147483647")
 )
 
-#define STRCMP_condition(NAME, A, B) compare_int_sign(strcmp(A, B), ft_strcmp(A, B))
+#define STRCMP_condition(NAME, A, B) compare_sign(int)(strcmp(A, B), ft_strcmp(A, B))
 
 TEST_SECTION(strcmp, extract_name, STRCMP_condition,
     (basic_equality, "Hello, World!", "Hello, World!"),
@@ -52,7 +52,7 @@ TEST_SECTION(strcmp, extract_name, STRCMP_condition,
     (long_inequality, U, U " ")
 )
 
-#define MEMCMP_condition(NAME, ...) compare_int_sign(memcmp(__VA_ARGS__), ft_memcmp(__VA_ARGS__))
+#define MEMCMP_condition(NAME, ...) compare_sign(int)(memcmp(__VA_ARGS__), ft_memcmp(__VA_ARGS__))
 
 TEST_SECTION(memcmp, extract_name, MEMCMP_condition,
     (basic_equality, "Hello, World!", "Hello, World!", sizeof("Hello, World!")),

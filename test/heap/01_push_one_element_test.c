@@ -5,7 +5,7 @@
 
 int push_one_element_test(void)
 {
-	t_heap heap __attribute__((cleanup(heap_free))) = HEAP_NEW(unsigned, &unsigned_spaceship_ascending);
+	t_heap heap __attribute__((cleanup(heap_free))) = HEAP_NEW(unsigned, &spaceship(ascending, unsigned));
 	unsigned element                                = 42;
 
 	heap_push(&heap, &element);

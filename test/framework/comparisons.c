@@ -1,42 +1,21 @@
 #include "comparisons.h"
 
-#include "ft_string_legacy.h"
+#define define_compare_sign(T) \
+	declare_compare_sign(T) \
+	{ return (a > 0 && b > 0) || (a < 0 && b < 0) || (a == 0 && b == 0); }
 
-#include <stdbool.h>
+define_compare_sign(int)
 
-bool compare_int(int a, int b) { return a == b; }
+#define ascending(A, B) (A == B ? 0 : A > B ? 1 : -1)
+#define descending(A, B) ascending(B, A)
 
-/*
-bool compare_float(float a, float b)
-{
-    float absA = fabsf(a);
-    float absB = fabsf(b);
-    float diff = fabsa(a - b);
-}
-*/
+#define define_spaceship(WAY, T) \
+	declare_spaceship(WAY, T) \
+	{ return  WAY(*a, *b); }
 
-bool compare_int_sign(int a, int b)
-{
-	return (a > 0 && b > 0) || (a < 0 && b < 0) || (a == 0 && b == 0);
-}
+#define define_spaceship_bothways(T) \
+	define_spaceship(ascending, T) \
+	define_spaceship(descending, T)
 
-bool compare_str(const char* a, const char* b) { return ft_strequ(a, b); }
-
-int unsigned_spaceship_ascending(const unsigned* a, const unsigned* b)
-{
-	if (*a > *b)
-		return 1;
-	return (*a == *b ? 0 : -1);
-}
-
-int unsigned_spaceship_descending(const unsigned* a, const unsigned* b)
-{
-	return unsigned_spaceship_ascending(b, a);
-}
-
-int int_spaceship_ascending(const int* a, const int* b) { return (*a - *b); }
-
-int int_spaceship_descending(const int* a, const int* b)
-{
-	return int_spaceship_ascending(b, a);
-}
+define_spaceship(int)
+define_spaceship(unsigned)

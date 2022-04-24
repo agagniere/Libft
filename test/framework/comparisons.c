@@ -17,5 +17,5 @@ define_compare_sign(int)
 	define_spaceship(ascending, T) \
 	define_spaceship(descending, T)
 
-define_spaceship(int)
-define_spaceship(unsigned)
+define_spaceship_bothways(int)
+define_spaceship_bothways(unsigned)

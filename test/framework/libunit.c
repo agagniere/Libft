@@ -15,8 +15,7 @@
 
 int load_test(t_array* list, const char* name, t_func function)
 {
-	const t_test test = NEW_TEST(name, function);
-
+	const t_test test = (t_test){name, function};
 	return fta_append(list, &test, 1);
 }
 

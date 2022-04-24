@@ -11,10 +11,15 @@ jobs:
   build-and-test:
     name: Test on ${{ matrix.os }} with ${{ matrix.compiler }}
     runs-on: ${{ matrix.os }}
+    continue-on-error: true
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
         compiler: [gcc, clang]
+        exclude:
+          # GCC on macos is just clang in disguise
+          - os: macos-latest
+            compiler: gcc
     steps:
       - name: Download source files
         uses: actions/checkout@v3.0.0
@@ -23,11 +28,9 @@ jobs:
           ${{ matrix.compiler }} --version
           CC=${{ matrix.compiler }} make -j
       - name: Compile test framework
-        run: CC=${{ matrix.compiler }} CPPFLAGS=-I../../include make -C test/framework
-      - name: Generate tests
-        run: ( cd test ; bash ./generate.sh )
+        run: CC=${{ matrix.compiler }} CPPFLAGS="-I../../include "$(test "${{ matrix.compiler }}" = clang && echo -fblocks) make -C test/framework
       - name: Compile tests
-        run: CC=${{ matrix.compiler }} CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" make -j -C test
+        run: CC=${{ matrix.compiler }} CPPFLAGS="-I ../include -I framework "$(test "${{ matrix.compiler }}" = clang && echo -fblocks) LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" make -j -C test
       - name: Run tests
         run: ./test/test_libft.exe
 
@@ -38,6 +41,10 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         compiler: [gcc, clang]
+        exclude:
+          # GCC on macos is just clang in disguise
+          - os: macos-latest
+            compiler: gcc
     steps:
       - name: Download source files
         uses: actions/checkout@v3.0.0
@@ -66,10 +73,9 @@ jobs:
           conan build .
           conan export-pkg .
           popd
-      - name: Generate and compile tests
+      - name: Compile tests
         run: |
           pushd test
-          bash generate.sh
           conan install .
           CC=${{ matrix.compiler }} make -j
       - name: Run tests

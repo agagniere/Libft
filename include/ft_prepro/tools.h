@@ -23,3 +23,5 @@
 
 #define PP_STR(M) _PP_STR(M)
 #define PP_CAT(A, B) _PP_CAT(A, B)
+
+#define CAT(...) VARIADIC_MACRO(_CAT_, __VA_ARGS__)

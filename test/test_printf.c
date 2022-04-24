@@ -127,6 +127,7 @@ int test_printf()
 		success++;
 	total++;
 
+/*
 	UB("20-Wide string _%ls_", L"Hello there !");
 	UB("21-Wide string _%S_", L"克诺比将军");
 	UB("22-Wide char _%C_", 0x20AC);
@@ -141,6 +142,7 @@ int test_printf()
 	UB("2B-Overflow _%hhhu_", -987657L);
 	UB("2C-Overflow _%hhhhi_", -987657L);
 	UB("2D-Overflow _%hhhhu_", -987657L);
+*/
 
 	TEST("%s", "The End");
 	ft_printf("\t%s%i / %i%s tests passed\n}\n\n",

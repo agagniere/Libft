@@ -9,7 +9,7 @@
 #define declare_compare_sign(T) \
     bool compare_sign(T)(T a, T b)
 
-declare_compare_sign(int)
+declare_compare_sign(int);
 
 #define spaceship(WAY, T) CAT(spaceship_, WAY, _, T)
 #define declare_spaceship(WAY, T) \

@@ -1,6 +1,8 @@
 #include "libunit.h"
 #include "libft.h"
+
 #include <limits.h>
+#include <string.h>
 
 #define ITOA_condition(NAME, INT) strcmp(PP_STR(INT), ft_itoa(INT)) == 0
 

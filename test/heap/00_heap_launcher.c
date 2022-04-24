@@ -1,7 +1,7 @@
 #include "heap_tests.h"
 #include "libunit.h"
 
-int heap_launcher(void)
+int test_heap(void)
 {
 	t_tests test_list __attribute__((cleanup(fta_clear))) = NEW_TESTS;
 

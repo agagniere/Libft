@@ -35,8 +35,9 @@ TEST_SECTION(atoi, extract_name, ATOI_condition,
     (two_plus_signs,"++3"),
     (invalid_first_char, "~197 Chen"),
     (leading_zeros, " +0000231"),
-    (int_min, PP_STR(INT_MIN)),
-    (int_max, " \r\v\n +000000" PP_STR(INT_MAX))
+    (int_min,       "-2147483648"),
+    (int_max,       " 2147483647"),
+    (combo,       " \r\v\n +000002147483647")
 )
 
 #define STRCMP_condition(NAME, A, B) compare_int_sign(strcmp(A, B), ft_strcmp(A, B))

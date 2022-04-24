@@ -10,11 +10,11 @@
 #define STD 1
 
 #define _test_modf(T, NAME)                                        \
-	bool test_##NAME(T f)                                          \
+	bool PP_CAT(test_, NAME)(T f)                                  \
 	{                                                              \
 		T intg[2];                                                 \
 		T frac[2];                                                 \
-		frac[LFT] = ft_##NAME(f, intg + LFT);                      \
+		frac[LFT] = PP_CAT(ft_, NAME)(f, intg + LFT);              \
 		frac[STD] = NAME(f, intg + STD);                           \
 		if (isnan(frac[STD]) && isnan(frac[LFT]))                  \
 			return true;                                           \

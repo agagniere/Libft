@@ -4,7 +4,6 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <limits.h>
 
 #define S "!#$%%&()*+-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'\", "
 #define T S S S S S S S S
@@ -37,7 +36,9 @@ TEST_SECTION(atoi, extract_name, ATOI_condition,
     (leading_zeros, " +0000231"),
     (int_min,       "-2147483648"),
     (int_max,       " 2147483647"),
-    (combo,       " \r\v\n +000002147483647")
+    (combo,         " \r\v\n +000002147483647"),
+    (no_number,     "    \t\t  +"),
+    (space_after_sign, "+ 42")
 )
 
 #define STRCMP_condition(NAME, A, B) compare_sign(int)(strcmp(A, B), ft_strcmp(A, B))

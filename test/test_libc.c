@@ -6,14 +6,13 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define name(NAME, ...) NAME
-
 #define S "!#$%%&()*+-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'\", "
 #define T S S S S S S S S
 #define U T T T T T T T T
+
 #define STRLEN_condition(NAME, STRING) strlen(STRING) == ft_strlen(STRING)
 
-TEST_SECTION(strlen, name, STRLEN_condition,
+TEST_SECTION(strlen, extract_name, STRLEN_condition,
     (basic, "Hello, World !"),
     (empty, ""),
     (short, "1"),
@@ -23,7 +22,7 @@ TEST_SECTION(strlen, name, STRLEN_condition,
 
 #define ATOI_condition(NAME, STRING) atoi(STRING) == ft_atoi(STRING)
 
-TEST_SECTION(atoi, name, ATOI_condition,
+TEST_SECTION(atoi, extract_name, ATOI_condition,
     (basic,         "28"),
     (negative,      "-8128"),
     (negative_zero, "-0"),
@@ -42,7 +41,7 @@ TEST_SECTION(atoi, name, ATOI_condition,
 
 #define STRCMP_condition(NAME, A, B) compare_int_sign(strcmp(A, B), ft_strcmp(A, B))
 
-TEST_SECTION(strcmp, name, STRCMP_condition,
+TEST_SECTION(strcmp, extract_name, STRCMP_condition,
     (basic_equality, "Hello, World!", "Hello, World!"),
     (basic_inequality, "string_one", "string_two"),
     (empty_s1, "", "why"),

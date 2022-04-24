@@ -78,22 +78,6 @@ generate()
 	cd ..
 }
 
-generate "modf" "custom" "test_modf" "test_modf" \
-		 'zero|0' 'one|1' 'two|2' 'forty_two|42' \
-		 'four_point_two|4.2' 'pi|M_PI' \
-		 'small|4.7e-30' 'big|7.4e30' 'tiny|3e-100' 'huge|9e180' 'subnormal|1e-320' \
-		 'infinity|INFINITY' 'minus_infinity|-INFINITY' 'not_a_number|NAN' \
-		 'min|DBL_MIN' 'true_min|DBL_TRUE_MIN' 'max|DBL_MAX'
-
-generate "modff" "custom" "test_modff" "test_modf" \
-		 'forty_twof|42' 'four_point_twof|4.2' 'pi_float|3.1415926535F' 'zerof|0' 'infinityf|INFINITY' 'minus_infinityf|-INFINITY' \
-		 'not_a_numberf|NAN' 'smallf|4.7e-30' 'bigf|7.4e30' 'minf|FLT_MIN' 'true_minf|FLT_TRUE_MIN' 'maxf|FLT_MAX'
-
-generate "modfl" "custom" "test_modfl" "test_modf" \
-		 'zerol|0' 'onel|1' 'twol|2' 'forty_twol|42' \
-		 'four_point_twol|4.2L' 'pil|M_PI' 'smalll|4.7e-30L' 'bigl|7.4e30L' 'tinyl|1.159e-310L' 'hugel|1.357e300L' 'minuscule|5.456e-600L' 'vast|5.987e700L' \
-		 'infinityl|INFINITY' 'minus_infinityl|-INFINITY' 'not_a_numberl|NAN' 'minl|LDBL_MIN' 'true_minl|LDBL_TRUE_MIN' 'maxl|LDBL_MAX'
-
 echo -e 'int heap_launcher(void);' >> $global_header
 echo -e '\tsuccess += !heap_launcher(); total++;' >> $global_main
 echo -e 'int test_printf(void);' >> $global_header
@@ -106,6 +90,12 @@ echo -e 'int test_atoi(void);' >> $global_header
 echo -e '\tsuccess += !test_atoi(); total++;' >> $global_main
 echo -e 'int test_strcmp(void);' >> $global_header
 echo -e '\tsuccess += !test_strcmp(); total++;' >> $global_main
+echo -e 'int test_modf_float(void);' >> $global_header
+echo -e '\tsuccess += !test_modf_float(); total++;' >> $global_main
+echo -e 'int test_modf_double(void);' >> $global_header
+echo -e '\tsuccess += !test_modf_double(); total++;' >> $global_main
+echo -e 'int test_modf_long(void);' >> $global_header
+echo -e '\tsuccess += !test_modf_long(); total++;' >> $global_main
 
 echo -e '\n\tft_printf("%sResult : %u / %u functions%s\\n", success == total ? COLOR(GREEN) : COLOR(RED), success, total, COLOR(NORMAL));' >> $global_main
 echo -e "\treturn (success != total);\n}" >> $global_main

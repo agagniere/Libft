@@ -16,8 +16,7 @@ struct s_test
 int load_test(t_array* list, const char* name, t_func function);
 int launch_tests(const char* name, t_array* list);
 
-#define NEW_TEST(NAME, FUNCTION) \
-	(t_test) { NAME, FUNCTION }
+#define NEW_TEST(NAME, FUNCTION) (t_test) { NAME, FUNCTION }
 #define NEW_TESTS NEW_ARRAY(t_test)
 
 #define CREATE_FUNCTION(NAME, GET_NAME, WRITE_CONDITION, ARGS) \
@@ -34,3 +33,5 @@ int launch_tests(const char* name, t_array* list);
         FOR(EACH(__VA_ARGS__), LOAD_TEST, NAME, GET_NAME) \
         return launch_tests(PP_STR(NAME), &tests); \
     }
+
+#define extract_name(NAME, ...) NAME

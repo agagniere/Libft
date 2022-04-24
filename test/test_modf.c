@@ -40,10 +40,10 @@ TEST_SECTION(modf_float, extract_name, MODFF_condition,
 	(big,       7.4e30f),
 	(min,       FLT_MIN),
 	(true_min,  FLT_TRUE_MIN),
-	(max,       FLT_MAX)
+	(max,       FLT_MAX),
 	(infinity,  INFINITY),
 	(minus_infinity, -INFINITY),
-	(not_a_number, NAN),
+	(not_a_number, NAN)
 )
 
 TEST_SECTION(modf_double, extract_name, MODF_condition,
@@ -60,10 +60,10 @@ TEST_SECTION(modf_double, extract_name, MODF_condition,
 	(subnormal, 1e-320),
 	(min,       DBL_MIN),
 	(true_min,  DBL_TRUE_MIN),
-	(max,       DBL_MAX)
+	(max,       DBL_MAX),
 	(infinity,  INFINITY),
 	(minus_infinity, -INFINITY),
-	(not_a_number, NAN),
+	(not_a_number, NAN)
 )
 
 TEST_SECTION(modf_long, extract_name, MODFL_condition,
@@ -81,8 +81,8 @@ TEST_SECTION(modf_long, extract_name, MODFL_condition,
 	(vast,      5.987e700l),
 	(min,       LDBL_MIN),
 	(true_min,  LDBL_TRUE_MIN),
-	(max,       LDBL_MAX)
+	(max,       LDBL_MAX),
 	(infinity,  INFINITY),
 	(minus_infinity, -INFINITY),
-	(not_a_number, NAN),
+	(not_a_number, NAN)
 )

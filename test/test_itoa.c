@@ -33,13 +33,13 @@ TEST_SECTION(itoa_base, extract_name, ITOABASE_condition,
     (zero_base_2,       (0, 2),       "0"),
     (zero_base_36,      (0, 36),      "0"),
     (two_base_2,        (2, 2),       "10"),
-    (abc_hex,           (0xabc, 16),   "abc"),
+    (abc_hex,           (0xabc, 16),   "ABC"),
     (int_max_base_2,    (INT_MAX, 2), "1111111111111111111111111111111"),
     (int_max_base_16,   (INT_MAX, 16),"7FFFFFFF"),
     (int_max_base_13,   (INT_MAX, 13),"282BA4AAA"),
-    (int_max_base_36,   (INT_MAX, 36),""),
-    (int_min_base_2,    (INT_MIN, 2), "-1111111111111111111111111111111"),
+    (int_max_base_36,   (INT_MAX, 36),"ZIK0ZJ"),
+    (int_min_base_2,    (INT_MIN, 2), "-10000000000000000000000000000000"),
     (cool,              (591861, 36), "COOL"),
     (lmao,              (342149, 25), "LMAO"),
-    (hijack,          (57436261, 20), "HIJACK")
+    (hijack,          (73111016, 21), "HIJACK")
 )

@@ -4,6 +4,7 @@
 
 #include <limits.h>
 #include <string.h>
+#include <stdlib.h>
 
 typedef char* charptr;
 
@@ -11,7 +12,7 @@ void cleanup_charptr(char** ptr) { free(*ptr); }
 
 #define ITOA_compare(NAME, EXPECTED, INPUT) !({ RAII(charptr) str = NAME INPUT; printf("\t%s\n", str); strcmp(EXPECTED, str); })
 
-#define ITOA_condition(NAME, INT) ITOA_compare(ft_itao, PP_STR(INT), (INT))
+#define ITOA_condition(NAME, INT) ITOA_compare(ft_itoa, PP_STR(INT), (INT))
 
 TEST_SECTION(itoa, extract_name, ITOA_condition,
     (zero,       0),

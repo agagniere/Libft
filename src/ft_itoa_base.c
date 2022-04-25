@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_prepro/tools.h"
 #include <stdlib.h>
-#define ABS(v) ((v) < 0 ? -(v) : (v))
 
 static void aux(int n, int b, char* ans, int* p)
 {
@@ -53,7 +53,7 @@ char* ft_itoa_base(int value, int base)
 	int   p;
 
 	if (base < 2 || 36 < base ||
-	    !(ans = (char*)malloc(sizeof(char) * (sizeof(int) * 8 + 1))))
+	    !(ans = (char*)malloc(sizeof(char) * ((sizeof(int) << 3) + 2))))
 		return (NULL);
 	p = 0;
 	if (value < 0)

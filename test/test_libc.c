@@ -9,7 +9,7 @@
 #define T S S S S S S S S
 #define U T T T T T T T T
 
-#define STRLEN_condition(NAME, STRING) ({ printf("\t%lu\n", ft_strlen(STRING)); strlen(STRING) == ft_strlen(STRING); })
+#define STRLEN_condition(NAME, STRING) strlen(STRING) == ft_strlen(STRING)
 
 TEST_SECTION(strlen, extract_name, STRLEN_condition,
     (basic, "Hello, World !"),
@@ -19,7 +19,7 @@ TEST_SECTION(strlen, extract_name, STRLEN_condition,
     (extra_long, U)
 )
 
-#define ATOI_condition(NAME, STRING) ({ printf("\t%i\n", ft_atoi(STRING)); atoi(STRING) == ft_atoi(STRING); })
+#define ATOI_condition(NAME, STRING) atoi(STRING) == ft_atoi(STRING)
 
 TEST_SECTION(atoi, extract_name, ATOI_condition,
     (basic,         "28"),

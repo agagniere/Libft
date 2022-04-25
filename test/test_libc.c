@@ -73,3 +73,12 @@ TEST_SECTION(memchr, extract_name, MEMCHR_condition,
     (far,           S, '\0', strlen(S) + 1),
     (no_match_long, T, 0, strlen(T))
 )
+
+int test_bzero(void)
+{
+    char std[strlen(T)] = T;
+    char ft[strlen(T)] = T;
+    bzero(std, strlen(T) - strlen(S));
+    ft_bzero(ft, strlen(T) - strlen(S));
+    return memcmp(std, ft, strlen(T));
+}

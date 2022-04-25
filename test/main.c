@@ -2,7 +2,7 @@
 #include "ft_prepro/ctl.h"
 #include "ft_printf.h"
 
-#define TEST_LIST prepro, atoi, itoa, itoa_base, memcmp, memchr, strlen, strcmp, modf_float, modf_double, modf_long, heap, printf
+#define TEST_LIST prepro, atoi, itoa, itoa_base, memcmp, memchr, bzero, strlen, strcmp, modf_float, modf_double, modf_long, heap, printf
 
 #define DECLARE(IGNORED, NAME) \
     int PP_CAT(test_, NAME)(void);

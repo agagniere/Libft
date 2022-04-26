@@ -74,11 +74,15 @@ TEST_SECTION(memchr, extract_name, MEMCHR_condition,
     (no_match_long, T, 0, strlen(T))
 )
 
-int test_bzero(void)
-{
-    char std[strlen(T)] = T;
-    char ft[strlen(T)] = T;
-    bzero(std, strlen(T) - strlen(S));
-    ft_bzero(ft, strlen(T) - strlen(S));
-    return memcmp(std, ft, strlen(T));
-}
+#define BZERO_test(NAME, INT) \
+({ \
+    char std[] = T, ft[]  = T; \
+    bzero(std, INT); ft_bzero(ft, INT); \
+    memcmp(std, ft, sizeof(std)) == 0; \
+})
+
+TEST_SECTION(bzero, extract_name, BZERO_test,
+    (zero,  0),
+    (basic, 42),
+    (long,  strlen(T) - strlen(S))
+)

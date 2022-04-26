@@ -3,7 +3,7 @@
 
 int test_heap(void)
 {
-	t_tests test_list __attribute__((cleanup(fta_clear))) = NEW_TESTS;
+	t_tests test_list __attribute__((cleanup(fta_clear))) = NEW_ARRAY(t_test);
 
 	load_test(&test_list, "push one element", &push_one_element_test);
 	load_test(&test_list, "push multiple elements", &push_multiple_elements_test);

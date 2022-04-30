@@ -17,11 +17,10 @@ TEST_SECTION(prepro, PREPRO_name, PREPRO_condition,
     (ABS, (-42), 42)
 )
 
-#define COLOR_name(EXPECTED, ...) MERGE(__VA_ARGS__)
-#define COLOR_condition(EXPECTED, ...) strcmp(COLOR(__VA_ARGS__), EXPECTED) == 0
+#define COLOR_condition(NAME, EXPECTED, ...) strcmp(COLOR(__VA_ARGS__), EXPECTED) == 0
 
-TEST_SECTION(color, COLOR_name, COLOR_condition,
-    ("\e[0m", DEFAULT),
-    ("\e[3;34m", ITALIC, BLUE),
-    ("\e[1;4;31m", BOLD, RED)
+TEST_SECTION(color, extract_name, COLOR_condition,
+    (normal, "\e[0m", NORMAL),
+    (italic_blue, "\e[3;34m", ITALIC, BLUE),
+    (bold_underlined_red, "\e[1;4;31m", BOLD, UNDERLINED, RED)
 )

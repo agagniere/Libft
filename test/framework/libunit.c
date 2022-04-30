@@ -14,7 +14,7 @@
 
 #define IS_CHILD 0
 
-int load_test(t_array* list, const char* name, Function(int) function)
+int load_test(t_array* list, const char* name, Function(int, function))
 {
 	const t_test test = (t_test){name, function};
 	return fta_append(list, &test, 1);

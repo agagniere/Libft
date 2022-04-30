@@ -1,6 +1,7 @@
 #pragma once
 
 #include "private_tools.h"
+#include "private_for.h"
 
 /*
 ** Fundamentals
@@ -24,15 +25,15 @@
 #define EACH(...)         ARG_COUNT(__VA_ARGS__), __VA_ARGS__
 #define FOR(...)          _FOR(__VA_ARGS__)
 
-#define FOLD_INFIX(F, ...)   _FOLDI(F, __VA_ARGS__)
+#define FOLD_RIGHT(F, ...) _FOLDR(F, __VA_ARGS__)
 
-#define CAT(...)          FOLD_INFIX(PP_CAT, __VA_ARGS__)
-#define MERGE(...)        FOLD_INFIX(_MERGE, __VA_ARGS__)
+#define CAT(...)          FOLD_RIGHT(PP_CAT, __VA_ARGS__)
+#define MERGE(...)        FOLD_RIGHT(_MERGE, __VA_ARGS__)
 
 /*
 ** Numbers manipulation tools
 */
 
-#define MIN(...) FOLD_INFIX(PP_MIN, __VA_ARGS__)
-#define MAX(...) FOLD_INFIX(PP_MAX, __VA_ARGS__)
+#define MIN(...) _MINMAX(_LESSER, __VA_ARGS__)
+#define MAX(...) _MINMAX(_GREATER, __VA_ARGS__)
 #define ABS(V)   MAX(V, -(V))

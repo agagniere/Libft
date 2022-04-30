@@ -10,10 +10,10 @@ typedef t_array       t_tests;
 struct s_test
 {
 	const char*   name;
-	Function(int) function;
+	Function(int, function);
 };
 
-int load_test(t_array* list, const char* name, Function(int) function);
+int load_test(t_array* list, const char* name, Function(int, function));
 int launch_tests(const char* name, t_array* list);
 
 #define CREATE_FUNCTION(NAME, GET_NAME, WRITE_CONDITION, ARGS) \

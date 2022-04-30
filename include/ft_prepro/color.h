@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/02 14:47:45 by angagnie          #+#    #+#             */
-/*   Updated: 2022/04/03 11:51:33 by angagnie         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #pragma once
 
 #include "tools.h"
@@ -43,4 +31,5 @@
 #define BG_DEFAULT    49
 #define BG_WHITE      107
 
-#define COLOR(...) PP_STR(\e[JOIN(ID3,;,__VA_ARGS__)m))
+#define _COLOR_JOIN(A, B) A;B
+#define COLOR(...) PP_STR(\e[FOLD_RIGHT(_COLOR_JOIN, __VA_ARGS__)m)

@@ -52,7 +52,7 @@ struct substr
 */
 #define SUBSTR(...) CAT(SUBSTR_, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
 #define SUBSTR_1(S) SUBSTR_2(S, S == NULL ? 0 : ft_strlen(S))
-#define SUBSTR_2(S, L) (t_substr){.string = S, .length = L}
+#define SUBSTR_2(S, L) (t_substr){.string = S, .length = (L)}
 
 /*
 ** String::new

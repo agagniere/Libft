@@ -1,9 +1,10 @@
 from conans import ConanFile
 from conans import AutoToolsBuildEnvironment
+from conan.tools.build import build_jobs
 
 class LibftConan(ConanFile):
     name = "libft"
-    version = "2.3"
+    version = "2.5"
     license = "MIT"
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"
@@ -39,7 +40,7 @@ class LibftConan(ConanFile):
             autotools.flags += ['-nolibc']
         if self.options.debug:
             autotools.flags += ["-g"]
-        autotools.make(args=["shared" if self.options.shared else "static", "-j"])
+        autotools.make(args=["shared" if self.options.shared else "static", "-j", str(build_jobs(self))])
 
     def package(self):
         self.copy("*.h", dst="include", src="include")

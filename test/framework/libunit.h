@@ -1,26 +1,27 @@
 #pragma once
 
 #include "ft_array.h"
-#include "ft_prepro/ctl.h"
+#include "ft_prepro/tools.h"
+#include "ft_prepro/functions.h"
 
 typedef struct s_test t_test;
 typedef t_array       t_tests;
-typedef int         (*t_func)(void);
 
 struct s_test
 {
-	const char* name;
-	t_func      function;
+	const char*   name;
+	Function(int, function);
 };
 
-int load_test(t_array* list, const char* name, t_func function);
+int load_test(t_array* list, const char* name, Function(int, function));
 int launch_tests(const char* name, t_array* list);
 
 #define CREATE_FUNCTION(NAME, GET_NAME, WRITE_CONDITION, ARGS) \
-    int CAT(NAME, _, GET_NAME ARGS, _test) (void) \
+    int MERGE(NAME, GET_NAME ARGS, test) (void) \
     { return !( WRITE_CONDITION ARGS ); }
 
-#define LOAD_TEST(NAME, GET_NAME, ARGS) load_test(&tests, PP_STR(GET_NAME ARGS), & CAT(NAME, _, GET_NAME ARGS, _test));
+#define LOAD_TEST(NAME, GET_NAME, ARGS) \
+    load_test(&tests, PP_STR(GET_NAME ARGS), & MERGE(NAME, GET_NAME ARGS, test));
 
 #define TEST_SECTION(NAME, GET_NAME, WRITE_CONDITION, ...) \
     FOR(EACH(__VA_ARGS__), CREATE_FUNCTION, NAME, GET_NAME, WRITE_CONDITION) \

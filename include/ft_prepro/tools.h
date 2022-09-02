@@ -1,27 +1,39 @@
 #pragma once
 
 #include "private_tools.h"
+#include "private_for.h"
+
+/*
+** Fundamentals
+*/
+
+#define C_ARRAY_LENGTH(A) (sizeof(A) / sizeof(*(A)))
+
+#define PP_STR(M)         _PP_STR(M)
+#define PP_CAT(A, B)      _PP_CAT(A, B)
+#define PP_MAX(A, B)      (A > B ? A : B)
+#define PP_MIN(A, B)      (A < B ? A : B)
+
+#define ARG_COUNT(...)    _ARGCNT1(__VA_ARGS__)
+#define ID(ARG)           ARG
+#define ADD_COMMA(F, ...) F(__VA_ARGS__),
+
+/*
+** Higher level
+*/
+
+#define EACH(...)         ARG_COUNT(__VA_ARGS__), __VA_ARGS__
+#define FOR(...)          _FOR(__VA_ARGS__)
+
+#define FOLD_RIGHT(F, ...) _FOLDR(F, __VA_ARGS__)
+
+#define CAT(...)          FOLD_RIGHT(PP_CAT, __VA_ARGS__)
+#define MERGE(...)        FOLD_RIGHT(_MERGE, __VA_ARGS__)
 
 /*
 ** Numbers manipulation tools
 */
 
-#define MIN(...) VARIADIC_MACRO(_MIN, __VA_ARGS__)
-#define MAX(...) VARIADIC_MACRO(_MAX, __VA_ARGS__)
-
-#define ABS(V) MAX(V, -(V))
-
-/*
-** Miscellaneous tricks
-*/
-
-#define C_ARRAY_LENGTH(A) (sizeof(A) / sizeof(*(A)))
-
-#define ARG_COUNT(...) _ARGCNT1(__VA_ARGS__)
-
-#define VARIADIC_MACRO(NAME, ...) PP_CAT(NAME, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
-
-#define PP_STR(M) _PP_STR(M)
-#define PP_CAT(A, B) _PP_CAT(A, B)
-
-#define CAT(...) VARIADIC_MACRO(_CAT_, __VA_ARGS__)
+#define MIN(...) _MINMAX(_LESSER, __VA_ARGS__)
+#define MAX(...) _MINMAX(_GREATER, __VA_ARGS__)
+#define ABS(V)   MAX(V, -(V))

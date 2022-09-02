@@ -2,6 +2,7 @@
 
 #include "ft_array.h"
 #include "ft_prepro/color.h"
+#include "ft_prepro/functions.h"
 #include "ft_printf.h"
 
 #include <sys/wait.h>
@@ -13,7 +14,7 @@
 
 #define IS_CHILD 0
 
-int load_test(t_array* list, const char* name, t_func function)
+int load_test(t_array* list, const char* name, Function(int, function))
 {
 	const t_test test = (t_test){name, function};
 	return fta_append(list, &test, 1);

@@ -13,7 +13,8 @@
 #pragma once
 
 #include "ft_array.h"
-#include "ft_string_legacy.h"
+#include "ft_prepro/tools.h"
+#include "libft.h"
 
 /*
 ** |		----------===== String =====----------
@@ -22,15 +23,21 @@
 /*
 ** Vector<char> wraper
 */
-
 typedef t_array t_string;
 
-typedef struct s_substr t_substr;
+/*
+** This sub-string is meant not to own the pointed memory
+** i.e. not responsible for allocating and freeing it.
+** -
+** A t_string* ( i.e. t_array<char>*) can be converted
+** to a t_substr* as if it inherited from it.
+*/
+typedef struct substr t_substr;
 
-struct s_substr
+struct substr
 {
-	char*  str;
-	size_t len;
+	char*  string;
+	size_t length;
 };
 
 /*
@@ -43,15 +50,15 @@ struct s_substr
 ** Failsafe constructor, no memory is allocated.
 ** -
 */
-
-#define NEW_SUB(S) (t_substr){S, S == NULL ? 0 : ft_strlen(S)}
+#define SUBSTR(...) CAT(SUBSTR_, ARG_COUNT(__VA_ARGS__))(__VA_ARGS__)
+#define SUBSTR_1(S) SUBSTR_2(S, S == NULL ? 0 : ft_strlen(S))
+#define SUBSTR_2(S, L) (t_substr){.string = S, .length = (L)}
 
 /*
 ** String::new
 ** -
 ** Failsafe constructor.
 */
-
 #define NEW_STRING NEW_ARRAY(char)
 
 /*
@@ -59,57 +66,46 @@ struct s_substr
 ** -
 ** Handy function to use a String as a char*
 */
-
-char* ft_string(t_string* str);
+char* cstring(t_string* str);
 
 /*
-** String::join(char*)
+** String::join(String)
 ** -
-** Appends a char* at the end of the given String.
+** Appends a String or a SubString at the end of the given String.
 */
-
-#define STR_JOIN_CS(S, CS, L) (fta_append(S, CS, L))
+#define string_append(SELF, OTHER) fta_append(SELF, ((t_substr*)(OTHER))->string, ((t_substr*)(OTHER))->length)
 
 /*
-** String::join(SubString)
-** -
-** Appends a SubString at the end of the given String.
+** String::insert(String, index)
 */
-
-#define STR_JOIN(STR, SUB) fta_append(STR, (SUB)->str, (SUB)->len)
-
-/*
-** String::insert(SubString)
-*/
-
-#define STR_INSERT(ST, SB, I) fta_insert(ST, (void*)(SB)->str, (SB)->len, I)
-
-/*
-** String::insert(char*)
-** -
-** _S_ the String where data is inserted.
-** _CS_ a char* where the data is.
-** _L_ the number of char _CS_ is long.
-** _I_ the index where the data is to be inserted.
-*/
-
-#define STR_INSERT_CS(S, CS, L, I) (fta_insert(S, (void*)CS, L, I))
+#define string_insert(SELF, OTHER, INDEX) fta_insert(SELF, ((t_substr*)(OTHER))->string, ((t_substr*)(OTHER))->length, INDEX)
 
 /*
 ** String::get
 ** -
 ** Returns the address of the element at index _I_
 */
-
-#define STR_GET(STR, I) ARRAY_GETT(char, STR, I)
+#define string_get(SELF, INDEX) ARRAY_GETT(char, SELF, INDEX)
 
 /*
 ** String::getChar
 ** -
 ** Returns the element of index _I_
 */
+#define string_getchar(SELF, INDEX) (*ARRAY_GETT(char, SELF, INDEX))
 
-#define STR_GETCHAR(STR, I) (*ARRAY_GETT(char, STR, I))
+/*
+** String::equals
+** -
+** return true if the two strings are equal
+*/
+#define string_equals(SELF, OTHER)                                  \
+	(((t_substr*)(SELF))->length == ((t_substr*)(OTHER))->length && \
+	 !ft_memcmp(((t_substr*)(SELF))->string, ((t_substr*)(OTHER))->string, ((t_substr*)(SELF))->length))
+
+/*
+** |		----------===== private: =====----------
+*/
 
 /*
 ** String::nullTerminate
@@ -119,38 +115,7 @@ char* ft_string(t_string* str);
 ** However size will not be affected.
 ** the post-condition is 'strlen(STR->data) <= STR->size'
 */
+#define STRING_NULL_TERMINATE(SELF) (fta_reserve(SELF, 1) || _FTSZ(SELF))
 
-#define STR_NULL_TERMINATE(STR) (fta_reserve(STR, 1) || FTSZ(STR))
 
-/*
-** String::cleanRest
-** -
-** sets the rest of the currently allocated array to 0.
-** So if only appends are performed, there's no need to call FTSZ.
-** However if max = size the string isn't null-terminated, hence
-** the nullTerminate function.
-*/
-
-#define STR_CLEAN_REST(STR) ft_bzero(ARRAY_END(S), (S)->max - (S)->size)
-
-/*
-** Tools for manipulating characters
-*/
-
-#define UPPER_CASE(C)  (C & ~(1 << 5))
-#define LOWER_CASE(C)  (C | (1 << 5))
-#define TOGGLE_CASE(C) (C ^ (1 << 5))
-
-#define IS_LOWER(C) ('a' <= C && C <= 'z')
-#define IS_UPPER(C) ('A' <= C && C <= 'Z')
-#define IS_ALPHA(C) (IS_LOWER(C) || IS_UPPER(C))
-#define IS_DIGIT(C) ('0' <= C && C <= '9')
-#define IS_ALNUM(C) (IS_ALPHA(C) || IS_DIGIT(C))
-#define IS_BLANK(C) (C == ' ' || C == '\t')
-#define IS_SPACE(C) (IS_BLANK(C) || C == '\v' || C == '\r')
-
-/*
-** |		----------===== private: =====----------
-*/
-
-#define FTSZ(STR) (*(char*)ARRAY_END(STR) = '\0')
+#define _FTSZ(S) (*(char*)ARRAY_END(S) = '\0')

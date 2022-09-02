@@ -22,15 +22,18 @@ jobs:
             compiler: gcc
     steps:
       - name: Download source files
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3.0.2
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v1
+        id: cpu-cores
       - name: Compile libft
         run: |
           ${{ matrix.compiler }} --version
-          CC=${{ matrix.compiler }} make -j
+          CC=${{ matrix.compiler }} make -j ${{ steps.cpu-cores.outputs.count }}
       - name: Compile test framework
         run: CC=${{ matrix.compiler }} CPPFLAGS="-I../../include" make -C test/framework
       - name: Compile tests
-        run: CC=${{ matrix.compiler }} CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" make -j -C test
+        run: CC=${{ matrix.compiler }} CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" make -C test -j ${{ steps.cpu-cores.outputs.count }}
       - name: Run tests
         run: ./test/test_libft.exe
 
@@ -47,9 +50,14 @@ jobs:
             compiler: gcc
     steps:
       - name: Download source files
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3.0.2
       - name: Setup Python
-        uses: actions/setup-python@v3.0.0
+        uses: actions/setup-python@v4.2.0
+        with:
+          python-version: '3.10'
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v1
+        id: cpu-cores
       - name: Install conan
         run : |
           comp_ver=$(${{ matrix.compiler }} --version | head -1)
@@ -60,7 +68,6 @@ jobs:
           conan profile update settings.compiler.version=$(cut -d' ' -f 4 <<< $comp_ver | cut -d'.' -f1) default
           conan profile update options.libft:shared=False default
           conan profile update env.CC=${{ matrix.compiler }} default
-          conan profile show default
       - name: Compile libft
         run: |
           conan install .
@@ -77,6 +84,6 @@ jobs:
         run: |
           pushd test
           conan install .
-          CC=${{ matrix.compiler }} make -j
+          CC=${{ matrix.compiler }} make -j ${{ steps.cpu-cores.outputs.count }}
       - name: Run tests
         run: ./test/test_libft.exe

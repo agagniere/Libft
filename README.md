@@ -18,3 +18,10 @@ The first 42 project.
 * __ft_stack__ : A dequeue wrapper
 * __ft_string__ : A vector of char
 * __ft_heap__ : A priority queue implementation
+
+# Functions
+* __ft_printf__ : printf implementation
+* __get_next_line__ : read a given file, line by line
+* __ft_print_memory__ : Print a dump of a memory section, in hex and ascii
+* __itoa_base__ : returns the representation in a given base of a integer
+And many others reimplementations of standard functions like `atoi`, `modf`, etc

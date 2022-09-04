@@ -1,6 +1,5 @@
 from conans import ConanFile
 from conans import AutoToolsBuildEnvironment
-from conan.tools.build import build_jobs
 
 class LibftConan(ConanFile):
     name = "libft"
@@ -9,7 +8,7 @@ class LibftConan(ConanFile):
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"
     description = "Standard datastructures"
-    topics = ("conan", "libc", "datastructures", "macros")
+    topics = ("datastructures", "macros")
     settings = ("os", "compiler", "arch")
     options = {
         "shared": [True, False],
@@ -24,10 +23,7 @@ class LibftConan(ConanFile):
         "debug": True
     }
     generators = "make"
-    build_policy = "missing"
-
-    def source(self):
-        self.run(f"git clone {self.url} .")
+    exports_sources = "src*", "include*", 'LICENSE', 'Makefile'
 
     def configure(self):
         del self.settings.compiler.libcxx
@@ -40,12 +36,13 @@ class LibftConan(ConanFile):
             autotools.flags += ['-nolibc']
         if self.options.debug:
             autotools.flags += ["-g"]
-        autotools.make(args=["shared" if self.options.shared else "static", "-j", str(build_jobs(self))])
+        autotools.make(args=["shared" if self.options.shared else "static", '-C', self.source_folder])
 
     def package(self):
         self.copy("*.h", dst="include", src="include")
         self.copy("libft.so", dst="lib")
         self.copy("libft.a", dst="lib")
+        self.copy("LICENSE")
 
     def package_info(self):
         self.cpp_info.libs = ["ft"]

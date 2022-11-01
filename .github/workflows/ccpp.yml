@@ -22,7 +22,7 @@ jobs:
             compiler: gcc
     steps:
       - name: Download source files
-        uses: actions/checkout@v3.0.2
+        uses: actions/checkout@v3
       - name: Get number of CPU cores
         uses: SimenB/github-actions-cpu-cores@v1
         id: cpu-cores
@@ -31,7 +31,7 @@ jobs:
           ${{ matrix.compiler }} --version
           CC=${{ matrix.compiler }} make -j ${{ steps.cpu-cores.outputs.count }}
       - name: Compile test framework
-        run: CC=${{ matrix.compiler }} CPPFLAGS="-I../../include" make -C test/framework
+        run: CC=${{ matrix.compiler }} CPPFLAGS="-I ../../include" make -C test/framework
       - name: Compile tests
         run: CC=${{ matrix.compiler }} CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" make -C test -j ${{ steps.cpu-cores.outputs.count }}
       - name: Run tests
@@ -50,9 +50,9 @@ jobs:
             compiler: gcc
     steps:
       - name: Download source files
-        uses: actions/checkout@v3.0.2
+        uses: actions/checkout@v3
       - name: Setup Python
-        uses: actions/setup-python@v4.2.0
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
       - name: Get number of CPU cores
@@ -69,17 +69,9 @@ jobs:
           conan profile update options.libft:shared=False default
           conan profile update env.CC=${{ matrix.compiler }} default
       - name: Compile libft
-        run: |
-          conan install .
-          conan build .
-          conan export-pkg .
+        run: conan create .
       - name: Compile test framework
-        run: |
-          pushd test/framework
-          conan install .
-          conan build .
-          conan export-pkg .
-          popd
+        run: conan create test/framework
       - name: Compile tests
         run: |
           pushd test

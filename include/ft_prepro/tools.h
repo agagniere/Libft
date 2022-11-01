@@ -15,7 +15,7 @@
 #define PP_MIN(A, B)      (A < B ? A : B)
 
 #define ARG_COUNT(...)    _ARGCNT1(__VA_ARGS__)
-#define ID(ARG)           ARG
+#define ID(...)           __VA_ARGS__
 #define ADD_COMMA(F, ...) F(__VA_ARGS__),
 
 /*

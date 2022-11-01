@@ -1,0 +1,5 @@
+#pragma once
+
+#define _IN_RANGE_1(VAR, END) _IN_RANGE_2(VAR, 0, END)
+#define _IN_RANGE_2(VAR, BEGIN, END) _IN_RANGE_3(VAR, BEGIN, END, 1)
+#define _IN_RANGE_3(VAR, BEGIN, END, STEP) VAR = BEGIN ; VAR < END ; VAR += STEP

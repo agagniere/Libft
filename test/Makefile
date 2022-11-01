@@ -1,12 +1,12 @@
 # Files
 EXEC  = test_libft.exe
-FILES = $(shell find . -name '*.c')
+FILES = $(shell find . dict heap -maxdepth 1 -name '*.c')
 OBJ   = $(FILES:.c=.o)
 
 # Compiler
 CC       ?= gcc
 CFLAGS   += -Wall -Wextra -g
-CPPFLAGS += -I. -D_GNU_SOURCE
+CPPFLAGS += -I . -D_GNU_SOURCE
 
 # ========== Conan ==========
 CONAN_BUILD_INFO = conanbuildinfo.mak
@@ -27,7 +27,7 @@ $(EXEC): $(OBJ)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
 test_printf.o: test_printf.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -Wno-format -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -Wno-format -c -o $@ $<
 
 clean:
 	$(RM) $(OBJ)

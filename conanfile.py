@@ -1,9 +1,9 @@
-from conans import ConanFile
-from conans import AutoToolsBuildEnvironment
+from conan import ConanFile
+from conan.tools.gnu import Autotools, AutotoolsToolchain
 
 class LibftConan(ConanFile):
     name = "libft"
-    version = "2.5"
+    version = "2.6"
     license = "MIT"
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"
@@ -17,32 +17,38 @@ class LibftConan(ConanFile):
         "debug": [True, False]
     }
     default_options = {
-        "shared": True,
+        "shared": False,
         "fPIC": False,
         "optimisation": '2',
         "debug": True
     }
-    generators = "make"
-    exports_sources = "src*", "include*", 'LICENSE', 'Makefile'
+    exports_sources = "src*", "include*", 'LICENSE', 'Makefile', 'README.md'
 
     def configure(self):
         del self.settings.compiler.libcxx
         del self.settings.compiler.cppstd
+        if self.options.shared:
+            del self.options.shared
+
+    def generate(self):
+        toolchain = AutotoolsToolchain(self)
+        toolchain.extra_cflags.append(f"-O{self.options.optimisation}")
+        if self.settings.compiler == "gcc":
+            toolchain.extra_cflags.append("-nolibc")
+        if self.options.debug:
+            toolchain.extra_cflags.append("-g")
+        toolchain.generate()
 
     def build(self):
-        autotools = AutoToolsBuildEnvironment(self)
-        autotools.flags = [f"-O{self.options.optimisation}"]
-        if self.settings.compiler == 'gcc':
-            autotools.flags += ['-nolibc']
-        if self.options.debug:
-            autotools.flags += ["-g"]
-        autotools.make(args=["shared" if self.options.shared else "static", '-C', self.source_folder])
+        autotools = Autotools(self)
+        autotools.make("shared" if self.options.shared else "static")
+        autotools.make("clean")
 
     def package(self):
         self.copy("*.h", dst="include", src="include")
-        self.copy("libft.so", dst="lib")
-        self.copy("libft.a", dst="lib")
+        self.copy("libft.*", dst="lib")
         self.copy("LICENSE")
+        self.copy("README.md", dst="doc")
 
     def package_info(self):
         self.cpp_info.libs = ["ft"]

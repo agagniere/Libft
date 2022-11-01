@@ -1,6 +1,6 @@
 [requires]
-libunit/1.1
-libft/2.5
+libunit/1.2
+libft/2.6
 
 [generators]
 make

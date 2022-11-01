@@ -4,6 +4,8 @@
 cache/*
 conan*.mak
 conan*.txt
+conan*.conf
+*conan*.sh
 *.env
 *.exe
 *.json

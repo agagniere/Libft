@@ -1,14 +1,14 @@
-from conans import ConanFile
-from conans import AutoToolsBuildEnvironment
+from conan import ConanFile
+from conan.tools.gnu import Autotools, AutotoolsToolchain
 
 class LibUnitConan(ConanFile):
     name = "libunit"
-    version = "1.1"
+    version = "1.1.1"
     license = "MIT"
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"
     description = "Simplistic unit testing framework"
-    topics = ("conan", "testing", "unit-testing")
+    topics = ("testing", "unit-testing")
     settings = ("os", "compiler", "arch")
     options = {
         "fPIC" : [True, False],
@@ -20,26 +20,23 @@ class LibUnitConan(ConanFile):
         "optimisation": '2',
         "debug": True
     }
-    generators = "make"
-    requires = ["libft/2.5"]
-    build_policy = "missing"
-
-    def source(self):
-        self.run(f"git clone {self.url} tmpdir")
-        self.run("mv tmpdir/test/framework/* .")
-        self.run("rm -rf tmpdir")
+    requires = ["libft/2.6"]
+    generators = "AutotoolsDeps"
+    exports_sources = '*.c', '*.h', 'Makefile'
 
     def configure(self):
         del self.settings.compiler.libcxx
         del self.settings.compiler.cppstd
 
     def build(self):
-        autotools = AutoToolsBuildEnvironment(self)
-        autotools.flags = [f"-O{self.options.optimisation}"]
-        if self.settings.compiler == "gcc":
-            autotools.flags += ["-nolibc"]
+        toolchain = AutotoolsToolchain(self)
+        toolchain.extra_cflags.append(f"-O{self.options.optimisation}")
         if self.options.debug:
-            autotools.flags += ["-g"]
+            toolchain.extra_cflags.append("-g")
+        if self.settings.compiler == "gcc":
+            toolchain.extra_cflags.append("-nolibc")
+        toolchain.generate()
+        autotools = Autotools(self)
         autotools.make()
 
     def package(self):

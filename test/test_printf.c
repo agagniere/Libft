@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 
 #define RUN_TEST(SUCCESS, FMT, ...)                                                               \
 	pf = asprintf(&pf_dst, FMT, ##__VA_ARGS__);                                                   \
@@ -107,6 +108,19 @@ int test_printf()
 	TEST("1L-Wildcard _%*.*s_%*.*s_", 5, 5, "Hello world", 50, 50, "Hello world");
 	TEST("1M-Wildcard _%*.*s_%*.*s_", 50, 5, "Hello world", 5, 50, "Hello world");
 	TEST("1N-Wildcard _%*.*s_%*.*s_", 50, -5, "Hello world", -5, 50, "Hello world");
+	TEST("1O-Long integers _%li_", (1L) << 50);
+	TEST("1P-Long integers _%lli_", ((1L) << 60) + 12345);
+	TEST("1Q-Long integers _%lu_", ((1LU) << 63) + 98765);
+	TEST("1R-Limits _%lli_", LLONG_MIN);
+	TEST("1S-Limits _%li_", LONG_MIN);
+	TEST("1T-Limits _%i_", INT_MIN);
+	TEST("1U-Limits _%hi_", SHRT_MIN);
+	TEST("1V-Limits _%hhi_", SCHAR_MIN);
+	TEST("1W-Limits _%hhi_", SCHAR_MAX);
+	TEST("1X-Limits _%hi_", SHRT_MAX);
+	TEST("1Y-Limits _%i_", INT_MAX);
+	TEST("1Z-Limits _%li_", LONG_MAX);
+	TEST("20-Limits _%lli_", LLONG_MAX);
 	TEST("")
 	TEST("%s%s", "", "")
 

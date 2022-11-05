@@ -16,6 +16,7 @@
 
 #include <stdarg.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #define FTPF_CV       "diouxXDOUeEfFgGaAcCsSpnb"
 #define FTPF_NUMERIC  "diouDOUxXpb"
@@ -26,15 +27,15 @@ typedef struct s_modifier
 {
 	union
 	{
-		char t[6];
+		bool t[6];
 		struct
 		{
-			char zero;
-			char plus;
-			char minus;
-			char space;
-			char alternate;
-			char underscore;
+			bool zero;
+			bool plus;
+			bool minus;
+			bool space;
+			bool alternate;
+			bool underscore;
 		} n;
 	} booleans;
 	char conversion;

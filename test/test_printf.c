@@ -100,7 +100,7 @@ int test_printf()
 	TEST("1D-Wide char _%lc_", L'A');
 	TEST("1E-Wide char _%C_", L'B');
 	TEST("1F-Hexa a%xb%xc%xd", 0, 55555, 1000000);
-	TEST("1G-Hexa a%Xb%Xc%Xd", 0, 55555, 1000000);
+	TEST("1G-Hexa A%XB%XC%XD", 0, 55555, 1000000);
 	TEST("1H-Octal a%ob%oc%od", 0, 55555, 1000000);
 	TEST("1I-Octal _%o_%#o_%0o_%0#o_%.0o_%#.0o_", 0, 0, 0, 0, 0, 0);
 	TEST("1J-Wildcard _%*s_%*s_", 5, "Hello world", 50, "Hello world");
@@ -121,6 +121,11 @@ int test_printf()
 	TEST("1Y-Limits _%i_", INT_MAX);
 	TEST("1Z-Limits _%li_", LONG_MAX);
 	TEST("20-Limits _%lli_", LLONG_MAX);
+	TEST("21-Limits unsigned _%hhu_", UCHAR_MAX);
+	TEST("22-Limits unsigned _%hu_", USHRT_MAX);
+	TEST("23-Limits unsigned _%u_", UINT_MAX);
+	TEST("24-Limits unsigned _%lu_", ULONG_MAX);
+	TEST("25-Limits unsigned _%llu_", ULLONG_MAX);
 	TEST("")
 	TEST("%s%s", "", "")
 
@@ -128,7 +133,7 @@ int test_printf()
 	TEST("~ N-Flag >%n< %10.7s %.10s %5i.%.4i%% >%n< %#X%x%X%x >%n<",
 	     &a, "outputs some secrets", "[REDACTED] your password", 99, 98765,
 	     &b, 0xb, 0xabe, 0xc, 0xafe, &c);
-	printf("\t[~ N-Flag >%n< %10.7s %.10s %5i.%.4i%% >%n< %#X%x%X%x >%n<]\n",
+	ft_printf("\t[~ N-Flag >%n< %10.7s %.10s %5i.%.4i%% >%n< %#X%x%X%x >%n<]\n",
 	       &a, "outputs some secrets", "[REDACTED] your password", 99, 98765,
 	       &b, 0xb, 0xabe, 0xc, 0xafe, &c);
 	printf("\t[~ N-Flag >%n< %10.7s %.10s %5i.%.4i%% >%n< %#X%x%X%x >%n<]\n",
@@ -141,22 +146,20 @@ int test_printf()
 		success++;
 	total++;
 
-/*
-	UB("20-Wide string _%ls_", L"Hello there !");
-	UB("21-Wide string _%S_", L"克诺比将军");
-	UB("22-Wide char _%C_", 0x20AC);
-	UB("23-Wide char _%C_", L'€');
-	UB("24-Overflow _%i_", (42L << 50) +  987654L);
-	UB("25-Overflow _%u_", (42L << 50) +  987654L);
-	UB("26-Overflow _%hi_", -987654L);
-	UB("27-Overflow _%hu_", -987654L);
-	UB("28-Overflow _%hhi_", -987657L);
-	UB("29-Overflow _%hhu_", -987657L);
-	UB("2A-Overflow _%hhhi_", -987657L);
-	UB("2B-Overflow _%hhhu_", -987657L);
-	UB("2C-Overflow _%hhhhi_", -987657L);
-	UB("2D-Overflow _%hhhhu_", -987657L);
-*/
+	UB("30-Wide string _%ls_", L"Hello there !");
+	UB("31-Wide string _%S_", L"克诺比将军");
+	UB("32-Wide char _%C_", 0x20AC);
+	UB("33-Wide char _%C_", L'€');
+	UB("34-Overflow _%i_", (42L << 50) +  987654L);
+	UB("35-Overflow _%u_", (42L << 50) +  987654L);
+	UB("36-Overflow _%hi_", -987654L);
+	UB("37-Overflow _%hu_", -987654L);
+	UB("38-Overflow _%hhi_", -987657L);
+	UB("39-Overflow _%hhu_", -987657L);
+	UB("3A-Overflow _%hhhi_", -987657L);
+	UB("3B-Overflow _%hhhu_", -987657L);
+	UB("3C-Overflow _%hhhhi_", -987657L);
+	UB("3D-Overflow _%hhhhu_", -987657L);
 
 	TEST("%s", "The End");
 	ft_printf("\t%s%i / %i%s tests passed\n}\n\n",

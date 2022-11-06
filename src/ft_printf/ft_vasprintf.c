@@ -13,6 +13,7 @@
 #include "ft_printf.h"
 #include "ft_printf_private.h"
 #include "libft.h"
+#include "ft_ctype.h"
 
 static const char* pf_update_value(char const* s, int* v, va_list ap)
 {
@@ -24,14 +25,14 @@ static const char* pf_update_value(char const* s, int* v, va_list ap)
 	*v = 0;
 	while ('0' <= *s && *s <= '9')
 		*v = 10 * (*v) + *s++ - '0';
-	return (s);
+	return s;
 }
 
 static void pf_set_length(char c, char* lm)
 {
 	if ((c == 'h' || c == 'l') && *lm == c)
-		*lm = c - 32;
-	else if (*lm == 0 || !(c == 'h' && *lm != 'H'))
+		*lm = ft_toupper(c);
+	else
 		*lm = c;
 }
 
@@ -53,48 +54,30 @@ static const char* pf_match(char const* s, t_modifier* m, va_list ap)
 			return (s + 1);
 		s++;
 	}
-	return (s);
+	return s;
 }
 
-int ft_vasprintf(char** ret, char const* s, va_list ap)
+int ft_vasprintf(char** ret, char const* format, va_list ap)
 {
-	t_array     d;
+	t_string    string = NEW_STRING;
 	t_modifier  m;
 	char const* p;
 
-	d = NEW_ARRAY(char);
-	fta_reserve(&d, ft_strlen(s));
-	while (*s != '\0')
+	fta_reserve(&string, ft_strlen(format));
+	while (*format != '\0')
 	{
 		m = NEW_MODIFIER;
-		if (*s == '%' && (s = pf_match(s + 1, &m, ap)) && m.conversion)
-			pf_convert(&m, &d, ap);
-		p = s;
+		if (*format == '%' && (format = pf_match(format + 1, &m, ap)) && m.conversion)
+			pf_convert(&m, &string, ap);
+		p = format;
 		while (*p != '\0' && *p != '%')
 			p++;
-		if (p != s)
-			fta_append(&d, (void*)s, p - s);
-		s = p;
+		if (p != format)
+			fta_append(&string, format, p - format);
+		format = p;
 	}
-	fta_append(&d, "\0", 1);
-	fta_trim(&d);
-	*ret = d.data;
-	return (d.size - 1);
+	string_append(&string, &SUBSTR("\0", 1));
+	fta_trim(&string);
+	*ret = string.data;
+	return (string.size - 1);
 }
-
-/*
-** -------------------
-**		m = NEW_MODIFIER;
-**		p = s;
-**		while (*p != '\0' && *p != '%')
-**			p++;
-**		if (p != s)
-**			fta_append(&d, (void *)s, p - s);
-**		s = p;
-**		if (*p == '%')
-**		{
-**			s = pf_match(p + 1, &m);
-**			pf_convert(m, d, ap);
-**		}
-** ===============
-*/

@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "ft_array.h"
+#include "ft_string.h"
 
 #include <stdarg.h>
 #include <stdint.h>
@@ -44,23 +44,20 @@ typedef struct s_modifier
 	int  precision;
 } t_modifier;
 
-#define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0, 0}}, 0, 0, -1, -1};
+#define NEW_MODIFIER (t_modifier){ .size = -1, .precision = -1 };
 
 void db_print_modifier(t_modifier* m);
-void pf_convert(t_modifier* m, t_array* d, va_list ap);
-int  pf_signed_integer(t_modifier* m, t_array* d, va_list ap, int b);
-int  pf_unsigned_integer(t_modifier* m, t_array* d, va_list ap, int b);
-int  pf_itoa_base(t_array* d, intmax_t n, int b, char info);
+void pf_convert(t_modifier* m, t_string* out, va_list ap);
 
-int pf_cv_di(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_s(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_ws(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_c(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_wc(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_o(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_x(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_cx(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_u(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_b(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_p(t_modifier* m, t_array* d, va_list ap);
-int pf_cv_n(t_modifier* m, t_array* d, va_list ap);
+int pf_cv_di(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_s(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_ws(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_c(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_wc(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_o(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_x(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_cx(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_u(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_b(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_p(t_modifier* m, t_string* out, va_list ap);
+int pf_cv_n(t_modifier* m, t_string* out, va_list ap);

@@ -12,7 +12,7 @@
 
 #include "ft_printf_private.h"
 
-int pf_cv_n(t_modifier* m, t_array* d, va_list ap)
+int pf_cv_n(t_modifier* m, t_string* out, va_list ap)
 {
 	int* arg;
 
@@ -20,16 +20,16 @@ int pf_cv_n(t_modifier* m, t_array* d, va_list ap)
 	m->size      = 0;
 	m->precision = -1;
 	if (m->length == 'H')
-		*(char*)arg = (char)d->size;
+		*(char*)arg = (char)out->size;
 	else if (m->length == 'h')
-		*(short*)arg = (short)d->size;
+		*(short*)arg = (short)out->size;
 	else if (m->length == 'l' || m->length == 'z')
-		*(long*)arg = (long)d->size;
+		*(long*)arg = (long)out->size;
 	else if (m->length == 'L')
-		*(long long*)arg = (long long)d->size;
+		*(long long*)arg = (long long)out->size;
 	else if (m->length == 'j')
-		*(intmax_t*)arg = (intmax_t)d->size;
+		*(intmax_t*)arg = (intmax_t)out->size;
 	else
-		*(int*)arg = (int)d->size;
+		*(int*)arg = (int)out->size;
 	return (0);
 }

@@ -20,7 +20,7 @@
 int pf_itoa_base(t_string* out, intmax_t n, int base, bool is_unsigned, bool use_capital_hexdigits)
 {
 	int             ans;
-	const uintmax_t un = ABS(n);
+	const uintmax_t un = (uintmax_t)n;
 	const char* digits = (use_capital_hexdigits ? "0123456789ABCDEF" : "0123456789abcdef");
 
 	ans = 1;

@@ -24,16 +24,14 @@ int ft_isxdigit(int c)
 
 int ft_tolower(int c)
 {
-	if ('A' <= c && c <= 'Z')
+	if (ft_isupper(c))
 		return (c | ('A' ^ 'a'));
-	else
-		return (c);
+	return (c);
 }
 
 int ft_toupper(int c)
 {
-	if ('a' <= c && c <= 'z')
-		return (c - 'a' + 'A');
-	else
-		return (c);
+	if (ft_islower(c))
+		return (c & ~('a' ^ 'A'));
+	return (c);
 }

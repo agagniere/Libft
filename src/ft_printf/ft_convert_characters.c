@@ -16,7 +16,7 @@
 
 #include <wchar.h>
 
-int pf_cv_s(t_modifier* m, t_array* d, va_list ap)
+int pf_cv_s(t_modifier* m, t_string* out, va_list ap)
 {
 	char* arg;
 	int   ans;
@@ -25,11 +25,11 @@ int pf_cv_s(t_modifier* m, t_array* d, va_list ap)
 	if (arg == NULL)
 		arg = "(null)";
 	ans = (m->precision >= 0 ? MIN(ft_strlen(arg), (size_t)m->precision) : ft_strlen(arg));
-	fta_append(d, (void*)arg, ans);
-	return (ans);
+	string_append(out, &SUBSTR(arg, ans));
+	return ans;
 }
 
-int pf_cv_ws(t_modifier* m, t_array* d, va_list ap)
+int pf_cv_ws(t_modifier* m, t_string* out, va_list ap)
 {
 	wchar_t* arg;
 	size_t   len;
@@ -37,34 +37,34 @@ int pf_cv_ws(t_modifier* m, t_array* d, va_list ap)
 	arg = va_arg(ap, wchar_t*);
 	if (arg == NULL)
 		arg = L"(null)";
-	fta_reserve(d, 4 * ft_wstrlen(arg));
+	fta_reserve(out, 4 * ft_wstrlen(arg));
 	if (m->precision >= 0)
-		len = ft_wstrnconv((char*)ARRAY_END(d), arg, m->precision);
+		len = ft_wstrnconv((char*)ARRAY_END(out), arg, m->precision);
 	else
-		len = ft_wstrconv((char*)ARRAY_END(d), arg);
-	d->size += len;
-	return (len);
+		len = ft_wstrconv((char*)ARRAY_END(out), arg);
+	out->size += len;
+	return len;
 }
 
-int pf_cv_c(t_modifier* m, t_array* d, va_list ap)
+int pf_cv_c(t_modifier* m, t_string* out, va_list ap)
 {
-	unsigned char arg;
+	char arg;
 
 	(void)m;
 	arg = (char)va_arg(ap, int);
-	fta_append(d, (void*)&arg, 1);
-	return (1);
+	string_append(out, &SUBSTR(&arg, 1));
+	return 1;
 }
 
-int pf_cv_wc(t_modifier* m, t_array* d, va_list ap)
+int pf_cv_wc(t_modifier* m, t_string* out, va_list ap)
 {
 	wint_t arg;
 	size_t ans;
 
 	(void)m;
 	arg = va_arg(ap, wint_t);
-	fta_reserve(d, 4);
-	ans = ft_widetoa((char*)ARRAY_END(d), arg);
-	d->size += ans;
+	fta_reserve(out, 4);
+	ans = ft_widetoa((char*)ARRAY_END(out), arg);
+	out->size += ans;
 	return ((int)ans);
 }

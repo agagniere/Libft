@@ -21,7 +21,7 @@
 */
 
 /*
-** Vector<char> wraper
+** Vector<char> wrapper
 */
 typedef t_array t_string;
 

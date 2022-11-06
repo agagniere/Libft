@@ -12,6 +12,15 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <float.h>
+
+#if FLT_RADIX != 2
+# error "What the hell man"
+#endif
+
+#if FLT_MANT_DIG != 24 || DBL_MANT_DIG != 53
+# error "Unsupported float data model"
+#endif
 
 /*
 ** -----===== Custom Types =====-----
@@ -80,18 +89,28 @@ double ft_modf(double input, double* out_integral)
 	_ft_modf(input, intg, out_integral, 1023, 52);
 	return (input);
 }
+
 float ft_modff(float input, float* out_integral)
 {
 	my_float intg = (my_float){input};
 	_ft_modf(input, intg, out_integral, 127, 23);
 	return (input);
 }
+
 long double ft_modfl(long double input, long double* out_integral)
+#if LDBL_MANT_DIG == 53
+{
+	return ft_modf(input, (double*)out_integral);
+}
+#elif LDBL_MANT_DIG == 64
 {
 	my_long_double intg = (my_long_double){input};
 	_ft_modf(input, intg, out_integral, 16382, 64);
 	return (input);
 }
+#else
+# error "Unsupported long double data model"
+#endif
 
 /* Debug functions
 void display_double(const double* f)

@@ -26,7 +26,7 @@ fbuild: fclean
 $(EXEC): $(OBJ)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
-test_printf.o: test_printf.c
+test_print%.o: test_print%.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -Wno-format -c -o $@ $<
 
 clean:

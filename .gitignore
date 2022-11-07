@@ -2,12 +2,15 @@
 *~
 *.a
 cache/*
-conan*.mak
-conan*.txt
 conan*.conf
+conan*.mak
 *conan*.sh
+conan*.txt
 *.env
 *.exe
+*.gcda
+*.gcno
+*.gcov
 *.json
 *.lock
 *.o

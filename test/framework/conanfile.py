@@ -3,7 +3,7 @@ from conan.tools.gnu import Autotools, AutotoolsToolchain, AutotoolsDeps
 
 class LibUnitConan(ConanFile):
     name = "libunit"
-    version = "1.2"
+    version = "1.3"
     license = "MIT"
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"
@@ -13,12 +13,14 @@ class LibUnitConan(ConanFile):
     options = {
         "fPIC" : [True, False],
         "optimisation": ['0', '1', '2', '3', 's', 'fast'],
-        "debug": [True, False]
+        "debug": [True, False],
+        "short_output": [True, False]
     }
     default_options = {
         "fPIC": False,
         "optimisation": '2',
-        "debug": True
+        "debug": True,
+        "short_output": True
     }
     requires = ["libft/2.6"]
     exports_sources = '*.c', '*.h', 'Makefile'
@@ -34,6 +36,8 @@ class LibUnitConan(ConanFile):
             toolchain.extra_cflags.append("-g")
         if self.settings.compiler == "gcc":
             toolchain.extra_cflags.append("-nolibc")
+        if self.options.short_output:
+            toolchain.extra_defines.append("LIBUNIT_SHORT_OUTPUT")
         toolchain.generate()
         AutotoolsDeps(self).generate()
 

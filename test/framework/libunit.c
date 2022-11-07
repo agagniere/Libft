@@ -14,6 +14,14 @@
 
 #define IS_CHILD 0
 
+#ifdef LIBUNIT_SHORT_OUTPUT
+# define IF_LONG(STR)
+# define IF_SHORT(STR) STR
+#else
+# define IF_LONG(STR) STR
+# define IF_SHORT(STR)
+#endif
+
 int load_test(t_array* list, const char* name, Function(int, function))
 {
 	const t_test test = (t_test){name, function};
@@ -29,7 +37,10 @@ static unsigned run_test(t_test* test)
 	else
 	{
 		wait(&status);
-		ft_printf("\t%-30s : [", test->name);
+#ifndef LIBUNIT_SHORT_OUTPUT
+		ft_printf("\t%-30s : ", test->name);
+#endif
+		ft_printf("[");
 		if (status == 0)
 			ft_printf("%sOK", COLOR(BOLD, GREEN));
 		else if (status == SIGBUS)
@@ -38,7 +49,7 @@ static unsigned run_test(t_test* test)
 			ft_printf("%sSIGV", COLOR(BOLD, RED));
 		else
 			ft_printf("%sKO", COLOR(RED));
-		ft_printf("%s]\n", COLOR(NORMAL));
+		ft_printf("%s]" IF_LONG("\n"), COLOR(NORMAL));
 	}
 	return (status == 0);
 }
@@ -50,10 +61,11 @@ int launch_tests(const char* name, t_array* list)
 
 	success  = 0;
 	iterator = ARRAY_ITERATOR(list);
-	ft_printf("%s {\n", name);
+	ft_printf("%s {\n" IF_SHORT("\t"), name);
 	while (ARRAY_HASNEXT(list, iterator))
 		success += run_test((t_test*)iterator);
-	ft_printf("\t%s%lu / %lu %stests passed\n}\n\n",
+	ft_printf(IF_SHORT("\n") "}" IF_LONG("\t") IF_SHORT(" ")
+	          "%s%lu / %lu %stests passed\n\n",
 	          (success == list->size ? COLOR(GREEN) : COLOR(RED)),
 	          success,
 	          list->size,

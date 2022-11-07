@@ -53,3 +53,11 @@ fclean: clean
 	$(RM) $(TARGET_STATIC) $(TARGET_SHARED)
 
 .PHONY: static shared all clean fclean
+
+local:
+	@$(MAKE) fclean --no-print-directory
+	@$(MAKE) fclean -C test
+	@$(MAKE) fclean -C test/framework
+	@CFLAGS="-g -O0 --coverage" $(MAKE) --no-print-directory
+	@CFLAGS="-g -O0" CPPFLAGS="-I ../../include" $(MAKE) -C test/framework
+	@CFLAGS="-g -O0 --coverage" CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" $(MAKE) -C test

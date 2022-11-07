@@ -2,7 +2,7 @@
 #include "ft_prepro/tools.h"
 #include "ft_printf.h"
 
-#define TEST_LIST prepro, color, ctype, atoi, itoa, itoa_base, memcmp, memchr, bzero, strlen, strcmp, modf_float, modf_double, modf_long, heap, printf, dict, for_range
+#define TEST_LIST prepro, color, ctype, atoi, itoa, itoa_base, memcmp, memchr, bzero, strlen, strcmp, modf_float, modf_double, modf_long, heap, printf, printf_binary, dict, for_range
 
 #define DECLARE(IGNORED, NAME) \
     int MERGE(test, NAME)(void);

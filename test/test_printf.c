@@ -126,6 +126,9 @@ int test_printf()
 	TEST("23-Limits unsigned _%u_", UINT_MAX);
 	TEST("24-Limits unsigned _%lu_", ULONG_MAX);
 	TEST("25-Limits unsigned _%llu_", ULLONG_MAX);
+	TEST("26-Sinple char _%c_", '^');
+	TEST("27-Sinple char _%c_", '\t');
+	TEST("28-Sinple char _%c_", '\0');
 	TEST("")
 	TEST("%s%s", "", "")
 

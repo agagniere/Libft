@@ -25,6 +25,14 @@
 */
 typedef t_array t_string;
 
+/**
+** Give a name to C strings.
+** By convention, a C string is a null-terminated array of char.
+** Let's give it a name, to differentiate it from an address of a single char,
+** and to use it as an argument to macros (e.g. for RAII and overloading).
+*/
+typedef char* t_cstring;
+
 /*
 ** This sub-string is meant not to own the pointed memory
 ** i.e. not responsible for allocating and freeing it.
@@ -36,8 +44,8 @@ typedef struct substr t_substr;
 
 struct substr
 {
-	char*  string;
-	size_t length;
+	t_cstring string;
+	size_t    length;
 };
 
 /*

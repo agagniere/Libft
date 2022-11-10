@@ -1,16 +1,16 @@
 #include "libunit.h"
-#include "libft.h"
+
 #include "ft_prepro/raii.h"
+#include "ft_string.h"
+#include "libft.h"
 
 #include <limits.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-typedef char* charptr;
+void cleanup_t_cstring(t_cstring* ptr) { free(*ptr); }
 
-void cleanup_charptr(char** ptr) { free(*ptr); }
-
-#define ITOA_compare(NAME, EXPECTED, INPUT) !({ RAII(charptr) str = NAME INPUT; strcmp(EXPECTED, str); })
+#define ITOA_compare(NAME, EXPECTED, INPUT) !({ RAII(t_cstring) str = NAME INPUT; strcmp(EXPECTED, str); })
 
 #define ITOA_condition(NAME, INT) ITOA_compare(ft_itoa, PP_STR(INT), (INT))
 

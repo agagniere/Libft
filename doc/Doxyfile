@@ -42,19 +42,19 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "My Project"
+PROJECT_NAME           = "Libft"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         =
+PROJECT_NUMBER         = 2.6
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          =
+PROJECT_BRIEF          = Standard function and basic data structures
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
@@ -68,7 +68,7 @@ PROJECT_LOGO           =
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       =
+OUTPUT_DIRECTORY       = generated
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create up to 4096
 # sub-directories (in 2 levels) under the output directory of each output format
@@ -193,7 +193,7 @@ STRIP_FROM_PATH        =
 # specify the list of include paths that are normally passed to the compiler
 # using the -I flag.
 
-STRIP_FROM_INC_PATH    =
+STRIP_FROM_INC_PATH    = include
 
 # If the SHORT_NAMES tag is set to YES, doxygen will generate much shorter (but
 # less readable) file names. This can be useful is your file systems doesn't
@@ -209,7 +209,7 @@ SHORT_NAMES            = NO
 # description.)
 # The default value is: NO.
 
-JAVADOC_AUTOBRIEF      = NO
+JAVADOC_AUTOBRIEF      = YES
 
 # If the JAVADOC_BANNER tag is set to YES then doxygen will interpret a line
 # such as
@@ -227,7 +227,7 @@ JAVADOC_BANNER         = NO
 # requiring an explicit \brief command for a brief description.)
 # The default value is: NO.
 
-QT_AUTOBRIEF           = NO
+QT_AUTOBRIEF           = YES
 
 # The MULTILINE_CPP_IS_BRIEF tag can be set to YES to make doxygen treat a
 # multi-line C++ special comment block (i.e. a block of //! or /// comments) as
@@ -247,7 +247,7 @@ MULTILINE_CPP_IS_BRIEF = NO
 # documentation blocks is shown as doxygen documentation.
 # The default value is: YES.
 
-PYTHON_DOCSTRING       = YES
+PYTHON_DOCSTRING       = NO
 
 # If the INHERIT_DOCS tag is set to YES then an undocumented member inherits the
 # documentation from any documented member that it re-implements.
@@ -291,7 +291,7 @@ ALIASES                =
 # members will be omitted, etc.
 # The default value is: NO.
 
-OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_FOR_C  = YES
 
 # Set the OPTIMIZE_OUTPUT_JAVA tag to YES if your project consists of Java or
 # Python sources only. Doxygen will then generate output that is more tailored
@@ -448,7 +448,7 @@ INLINE_GROUPED_CLASSES = NO
 # Man pages) or section (for LaTeX and RTF).
 # The default value is: NO.
 
-INLINE_SIMPLE_STRUCTS  = NO
+INLINE_SIMPLE_STRUCTS  = YES
 
 # When TYPEDEF_HIDES_STRUCT tag is enabled, a typedef of a struct, union, or
 # enum is documented as struct, union, or enum with the name of the typedef. So
@@ -459,7 +459,7 @@ INLINE_SIMPLE_STRUCTS  = NO
 # types are typedef'ed and only the typedef is referenced, never the tag name.
 # The default value is: NO.
 
-TYPEDEF_HIDES_STRUCT   = NO
+TYPEDEF_HIDES_STRUCT   = YES
 
 # The size of the symbol lookup cache can be set using LOOKUP_CACHE_SIZE. This
 # cache is used to resolve symbols given their name and scope. Since this can be
@@ -485,7 +485,7 @@ LOOKUP_CACHE_SIZE      = 0
 # DOT_NUM_THREADS setting.
 # Minimum value: 0, maximum value: 32, default value: 1.
 
-NUM_PROC_THREADS       = 1
+NUM_PROC_THREADS       = 0
 
 #---------------------------------------------------------------------------
 # Build related configuration options
@@ -531,7 +531,7 @@ EXTRACT_STATIC         = NO
 # for Java sources.
 # The default value is: YES.
 
-EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_CLASSES  = NO
 
 # This flag is only useful for Objective-C code. If set to YES, local methods,
 # which are defined in the implementation section but not in the interface are
@@ -578,7 +578,7 @@ HIDE_UNDOC_CLASSES     = NO
 # documentation.
 # The default value is: NO.
 
-HIDE_FRIEND_COMPOUNDS  = NO
+HIDE_FRIEND_COMPOUNDS  = YES
 
 # If the HIDE_IN_BODY_DOCS tag is set to YES, doxygen will hide any
 # documentation blocks found inside the body of a function. If set to NO, these
@@ -635,7 +635,7 @@ SHOW_HEADERFILE        = YES
 # the files that are included by a file in the documentation of that file.
 # The default value is: YES.
 
-SHOW_INCLUDE_FILES     = YES
+SHOW_INCLUDE_FILES     = NO
 
 # If the SHOW_GROUPED_MEMB_INC tag is set to YES then Doxygen will add for each
 # grouped member an include statement to the documentation, telling the reader
@@ -661,7 +661,7 @@ INLINE_INFO            = YES
 # name. If set to NO, the members will appear in declaration order.
 # The default value is: YES.
 
-SORT_MEMBER_DOCS       = YES
+SORT_MEMBER_DOCS       = NO
 
 # If the SORT_BRIEF_DOCS tag is set to YES then doxygen will sort the brief
 # descriptions of file, namespace and class members alphabetically by member
@@ -681,7 +681,7 @@ SORT_BRIEF_DOCS        = NO
 # detailed member documentation.
 # The default value is: NO.
 
-SORT_MEMBERS_CTORS_1ST = NO
+SORT_MEMBERS_CTORS_1ST = YES
 
 # If the SORT_GROUP_NAMES tag is set to YES then doxygen will sort the hierarchy
 # of group names into alphabetical order. If set to NO the group names will
@@ -847,7 +847,7 @@ WARN_IF_DOC_ERROR      = YES
 # parameters have no documentation without warning.
 # The default value is: YES.
 
-WARN_IF_INCOMPLETE_DOC = YES
+WARN_IF_INCOMPLETE_DOC = NO
 
 # This WARN_NO_PARAMDOC option can be enabled to get warnings for functions that
 # are documented, but have no documentation for their parameters or return
@@ -908,7 +908,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  =
+INPUT                  = ../include/ft_array.h
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -949,51 +949,9 @@ INPUT_FILE_ENCODING    =
 # *.vhdl, *.ucf, *.qsf and *.ice.
 
 FILE_PATTERNS          = *.c \
-                         *.cc \
-                         *.cxx \
-                         *.cpp \
-                         *.c++ \
-                         *.java \
-                         *.ii \
-                         *.ixx \
-                         *.ipp \
-                         *.i++ \
-                         *.inl \
-                         *.idl \
-                         *.ddl \
-                         *.odl \
                          *.h \
-                         *.hh \
-                         *.hxx \
-                         *.hpp \
-                         *.h++ \
-                         *.l \
-                         *.cs \
-                         *.d \
-                         *.php \
-                         *.php4 \
-                         *.php5 \
-                         *.phtml \
-                         *.inc \
-                         *.m \
-                         *.markdown \
                          *.md \
-                         *.mm \
-                         *.dox \
-                         *.py \
-                         *.pyw \
-                         *.f90 \
-                         *.f95 \
-                         *.f03 \
-                         *.f08 \
-                         *.f18 \
-                         *.f \
-                         *.for \
-                         *.vhd \
-                         *.vhdl \
-                         *.ucf \
-                         *.qsf \
-                         *.ice
+                         *.py
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.
@@ -1642,7 +1600,7 @@ DISABLE_INDEX          = NO
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-GENERATE_TREEVIEW      = NO
+GENERATE_TREEVIEW      = YES
 
 # When both GENERATE_TREEVIEW and DISABLE_INDEX are set to YES, then the
 # FULL_SIDEBAR option determines if the side bar is limited to only the treeview
@@ -1696,7 +1654,7 @@ OBFUSCATE_EMAILS       = YES
 # The default value is: png.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_FORMULA_FORMAT    = png
+HTML_FORMULA_FORMAT    = svg
 
 # Use this tag to change the font size of LaTeX formulas included as images in
 # the HTML documentation. When you change the font size after a successful
@@ -1705,7 +1663,7 @@ HTML_FORMULA_FORMAT    = png
 # Minimum value: 8, maximum value: 50, default value: 10.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-FORMULA_FONTSIZE       = 10
+FORMULA_FONTSIZE       = 14
 
 # The FORMULA_MACROFILE can contain LaTeX \newcommand and \renewcommand commands
 # to create new LaTeX commands to be used in formulas as building blocks. See

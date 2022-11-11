@@ -10,16 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_ctype.h"
 #include "ft_printf.h"
 #include "ft_printf_private.h"
+#include "ft_variadic.h"
 #include "libft.h"
-#include "ft_ctype.h"
 
 static const char* pf_update_value(char const* s, int* v, va_list ap)
 {
 	if (*s == '*')
 	{
-		*v = va_arg(ap, unsigned);
+		*v = ft_va_arg(ap, int);
 		return (s + 1);
 	}
 	*v = 0;

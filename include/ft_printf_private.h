@@ -20,7 +20,7 @@
 
 #define FTPF_CV       "diouxXDOUeEfFgGaAcCsSpnb"
 #define FTPF_NUMERIC  "diouDOUxXpb"
-#define FTPF_LM       "hljzL"
+#define FTPF_LM       "hljzLt"
 #define FTPF_SWITCHES "0+- #_"
 
 typedef struct s_modifier

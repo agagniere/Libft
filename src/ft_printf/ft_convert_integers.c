@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_1.c                                     :+:      :+:    :+:   */
+/*   ft_convert_integers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/03 20:10:04 by angagnie         ###   ########.fr       */
+/*   Updated: 2022/11/11 20:10:04 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_private.h"
 #include "ft_prepro/tools.h"
+#include "ft_variadic.h"
 
-/*
-** pf_itoa_base appends _n_ expressed in base _base_ to _out_
+/**
+** pf_itoa_base appends @p n expressed in base @p base to @p out
 */
 
 int pf_itoa_base(t_string* out, intmax_t n, int base, bool is_unsigned, bool use_capital_hexdigits)
@@ -36,17 +37,19 @@ int pf_signed_integer(t_modifier* m, t_string* out, va_list ap, int base, bool u
 	intmax_t arg;
 
 	if (m->length == 'H')
-		arg = (signed char)va_arg(ap, int);
+		arg = ft_va_arg(ap, schar);
 	else if (m->length == 'h')
-		arg = (short)va_arg(ap, int);
+		arg = ft_va_arg(ap, short);
 	else if (m->length == 'l' || m->length == 'z')
-		arg = va_arg(ap, long);
+		arg = ft_va_arg(ap, long);
 	else if (m->length == 'L')
-		arg = va_arg(ap, long long);
+		arg = ft_va_arg(ap, llong);
+	else if (m->length == 't')
+		arg = ft_va_arg(ap, ptrdiff_t);
 	else if (m->length == 'j')
-		arg = va_arg(ap, intmax_t);
+		arg = ft_va_arg(ap, intmax_t);
 	else
-		arg = va_arg(ap, int);
+		arg = ft_va_arg(ap, int);
 	if (arg < 0)
 		fta_append(out, "-", 1);
 	else if (m->booleans.n.plus)
@@ -63,19 +66,19 @@ int pf_unsigned_integer(t_modifier* m, t_string* out, va_list ap, int base, bool
 	uintmax_t arg;
 
 	if (m->length == 'H')
-		arg = (unsigned char)va_arg(ap, unsigned);
+		arg = ft_va_arg(ap, uchar);
 	else if (m->length == 'h')
-		arg = (unsigned short)va_arg(ap, unsigned);
+		arg = ft_va_arg(ap, ushort);
 	else if (m->length == 'l')
-		arg = va_arg(ap, unsigned long);
+		arg = ft_va_arg(ap, ulong);
 	else if (m->length == 'L')
-		arg = va_arg(ap, unsigned long long);
+		arg = ft_va_arg(ap, ullong);
 	else if (m->length == 'z')
-		arg = va_arg(ap, size_t);
+		arg = ft_va_arg(ap, size_t);
 	else if (m->length == 'j')
-		arg = va_arg(ap, uintmax_t);
+		arg = ft_va_arg(ap, uintmax_t);
 	else
-		arg = va_arg(ap, unsigned);
+		arg = ft_va_arg(ap, unsigned);
 	if (arg == 0 && m->booleans.n.alternate && (m->conversion == 'x' || m->conversion == 'X'))
 		out->size -= 2;
 	if (arg == 0 && m->precision == 0)

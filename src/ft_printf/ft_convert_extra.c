@@ -11,22 +11,25 @@
 /* ************************************************************************** */
 
 #include "ft_printf_private.h"
+#include "ft_variadic.h"
 
 int pf_cv_n(t_modifier* m, t_string* out, va_list ap)
 {
-	int* arg;
+	void* arg;
 
-	arg          = va_arg(ap, void*);
+	arg          = ft_va_arg(ap, pointer);
 	m->size      = 0;
 	m->precision = -1;
 	if (m->length == 'H')
-		*(char*)arg = (char)out->size;
+		*(signed char*)arg = (signed char)out->size;
 	else if (m->length == 'h')
 		*(short*)arg = (short)out->size;
 	else if (m->length == 'l' || m->length == 'z')
 		*(long*)arg = (long)out->size;
 	else if (m->length == 'L')
 		*(long long*)arg = (long long)out->size;
+	else if (m->length == 't')
+		*(ptrdiff_t*)arg = (ptrdiff_t)out->size;
 	else if (m->length == 'j')
 		*(intmax_t*)arg = (intmax_t)out->size;
 	else

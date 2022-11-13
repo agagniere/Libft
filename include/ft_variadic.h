@@ -43,7 +43,7 @@ typedef void*              pointer;
 #define FT_VARIADIC_NAME(T) MERGE(ft, va, arg, T)
 
 #define FT_VARIADIC_DECLARE(IGNORED, T)			\
-	T FT_VARIADIC_NAME(T)(va_list list);
+	T FT_VARIADIC_NAME(T)(va_list* list);
 
 FOR(EACH(FT_VARIADIC_TYPES), FT_VARIADIC_DECLARE)
 

@@ -14,7 +14,7 @@
 #include "ft_printf_private.h"
 #include "libft.h"
 
-static int pf_print(t_modifier* m, t_string* out, va_list ap)
+static int pf_print(t_modifier* m, t_string* out, va_list* ap)
 {
 	int        i;
 	char const c[]    = "diuoxXcCsSpbn";
@@ -39,7 +39,7 @@ static int pf_print(t_modifier* m, t_string* out, va_list ap)
 	return 1;
 }
 
-static int pf_precision(t_modifier* m, t_string* out, va_list ap)
+static int pf_precision(t_modifier* m, t_string* out, va_list* ap)
 {
 	size_t after;
 	int    width;
@@ -57,7 +57,7 @@ static int pf_precision(t_modifier* m, t_string* out, va_list ap)
 	return len;
 }
 
-void pf_convert(t_modifier* m, t_string* out, va_list ap)
+void pf_convert(t_modifier* m, t_string* out, va_list* ap)
 {
 	size_t before;
 	size_t after;

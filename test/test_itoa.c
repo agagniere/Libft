@@ -8,8 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-void cleanup_t_cstring(t_cstring* ptr) { free(*ptr); }
-
 #define ITOA_compare(NAME, EXPECTED, INPUT) !({ RAII(t_cstring) str = NAME INPUT; strcmp(EXPECTED, str); })
 
 #define ITOA_condition(NAME, INT) ITOA_compare(ft_itoa, PP_STR(INT), (INT))

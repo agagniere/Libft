@@ -14,6 +14,7 @@
 
 #include "ft_array.h"
 #include "ft_prepro/tools.h"
+#include "ft_prepro/raii.h"
 #include "libft.h"
 
 /*
@@ -47,6 +48,9 @@ struct substr
 	t_cstring string;
 	size_t    length;
 };
+
+RAII_DECLARE_TYPE(t_cstring);
+RAII_DECLARE_TYPE(t_string);
 
 /*
 ** |		----------===== public: =====----------

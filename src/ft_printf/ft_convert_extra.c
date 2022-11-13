@@ -13,7 +13,7 @@
 #include "ft_printf_private.h"
 #include "ft_variadic.h"
 
-int pf_cv_n(t_modifier* m, t_string* out, va_list ap)
+int pf_cv_n(t_modifier* m, t_string* out, va_list* ap)
 {
 	void* arg;
 

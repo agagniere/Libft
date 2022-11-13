@@ -16,7 +16,7 @@
 #include "ft_variadic.h"
 #include "libft.h"
 
-static const char* pf_update_value(char const* s, int* v, va_list ap)
+static const char* pf_update_value(char const* s, int* v, va_list* ap)
 {
 	if (*s == '*')
 	{
@@ -37,7 +37,7 @@ static void pf_set_length(char c, char* lm)
 		*lm = c;
 }
 
-static const char* pf_match(char const* s, t_modifier* m, va_list ap)
+static const char* pf_match(char const* s, t_modifier* m, va_list* ap)
 {
 	int n;
 
@@ -68,8 +68,8 @@ int ft_vasprintf(char** ret, char const* format, va_list ap)
 	while (*format != '\0')
 	{
 		m = NEW_MODIFIER;
-		if (*format == '%' && (format = pf_match(format + 1, &m, ap)) && m.conversion)
-			pf_convert(&m, &string, ap);
+		if (*format == '%' && (format = pf_match(format + 1, &m, &ap)) && m.conversion)
+			pf_convert(&m, &string, &ap);
 		p = format;
 		while (*p != '\0' && *p != '%')
 			p++;

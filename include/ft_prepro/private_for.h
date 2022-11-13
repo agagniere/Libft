@@ -53,7 +53,8 @@
 #define _FOR_23(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, F, ...) \
     _FOR_22(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, F, __VA_ARGS__) F(__VA_ARGS__, X)
 #define _FOR_24(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, F, ...) \
-    _FOR_23(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, F, __VA_ARGS__) F(__VA_ARGS__, Y)
+    _FOR_8(A, B, C, D, E, G, H, I, F, __VA_ARGS__) \
+    _FOR_16(J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, F, __VA_ARGS__)
 #define _FOR_25(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F, ...) \
     _FOR_24(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, F, __VA_ARGS__) F(__VA_ARGS__, Z)
 #define _FOR_26(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,AA, F, ...) \
@@ -66,3 +67,8 @@
     _FOR_28(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,AA,AB,AC, F, __VA_ARGS__) F(__VA_ARGS__, AD)
 #define _FOR_30(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,AA,AB,AC,AD,AE, F, ...) \
     _FOR_29(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,AA,AB,AC,AD, F, __VA_ARGS__) F(__VA_ARGS__, AE)
+#define _FOR_31(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,AA,AB,AC,AD,AE,AF, F, ...) \
+    _FOR_30(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,AA,AB,AC,AD,AE, F, __VA_ARGS__) F(__VA_ARGS__, AF)
+#define _FOR_32(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,AA,AB,AC,AD,AE,AF,AG, F, ...) \
+    _FOR_16(A, B, C, D, E, G, H, I, J, K, L, M, N, O, P, Q, F, __VA_ARGS__) \
+    _FOR_16(R, S, T, U, V, W, X, Y, Z,AA,AB,AC,AD,AE,AF,AG, F, __VA_ARGS__)

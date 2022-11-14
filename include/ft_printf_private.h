@@ -13,6 +13,7 @@
 #pragma once
 
 #include "ft_string.h"
+#include "ft_variadic.h"
 
 #include <stdarg.h>
 #include <stdint.h>
@@ -47,17 +48,17 @@ typedef struct s_modifier
 #define NEW_MODIFIER (t_modifier){ .size = -1, .precision = -1 };
 
 void db_print_modifier(t_modifier* m);
-void pf_convert(t_modifier* m, t_string* out, va_list* ap);
+void pf_convert(t_modifier* m, t_string* out, ft_va_list ap);
 
-int pf_cv_di(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_s(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_ws(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_c(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_wc(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_o(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_x(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_cx(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_u(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_b(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_p(t_modifier* m, t_string* out, va_list* ap);
-int pf_cv_n(t_modifier* m, t_string* out, va_list* ap);
+int pf_cv_di(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_s(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_ws(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_c(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_wc(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_o(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_x(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_cx(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_u(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_b(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_p(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_n(t_modifier* m, t_string* out, ft_va_list ap);

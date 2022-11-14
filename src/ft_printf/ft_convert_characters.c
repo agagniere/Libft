@@ -17,7 +17,7 @@
 
 #include <wchar.h>
 
-int pf_cv_s(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_s(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	char*  arg;
 	int    ans;
@@ -32,7 +32,7 @@ int pf_cv_s(t_modifier* m, t_string* out, va_list* ap)
 	return ans;
 }
 
-int pf_cv_ws(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_ws(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	wchar_t* arg;
 	size_t   len;
@@ -49,7 +49,7 @@ int pf_cv_ws(t_modifier* m, t_string* out, va_list* ap)
 	return len;
 }
 
-int pf_cv_c(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_c(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	char arg;
 
@@ -59,7 +59,7 @@ int pf_cv_c(t_modifier* m, t_string* out, va_list* ap)
 	return 1;
 }
 
-int pf_cv_wc(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_wc(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	wint_t arg;
 	size_t ans;

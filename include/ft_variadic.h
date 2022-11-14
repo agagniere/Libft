@@ -14,6 +14,16 @@
 #include <stddef.h>
 #include <wchar.h>
 
+#if defined(__APPLE__) && defined(__arm64__)
+typedef va_list* ft_va_list;
+#define new_ft_va_list(ap) (&(ap))
+#elif defined(__amd64__) || defined(__x86_64__)
+typedef va_list ft_va_list;
+#define new_ft_va_list(ap) (ap)
+#else
+# error "Unsupported platform"
+#endif
+
 typedef signed char        schar;
 typedef unsigned char      uchar;
 typedef unsigned short     ushort;
@@ -42,8 +52,8 @@ typedef void*              pointer;
 
 #define FT_VARIADIC_NAME(T) MERGE(ft, va, arg, T)
 
-#define FT_VARIADIC_DECLARE(IGNORED, T)			\
-	T FT_VARIADIC_NAME(T)(va_list* list);
+#define FT_VARIADIC_DECLARE(IGNORED, T)	  \
+	T FT_VARIADIC_NAME(T)(ft_va_list list);
 
 FOR(EACH(FT_VARIADIC_TYPES), FT_VARIADIC_DECLARE)
 

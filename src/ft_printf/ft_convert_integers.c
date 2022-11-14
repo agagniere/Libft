@@ -32,7 +32,7 @@ int pf_itoa_base(t_string* out, intmax_t n, int base, bool is_unsigned, bool use
 	return (ans);
 }
 
-int pf_signed_integer(t_modifier* m, t_string* out, va_list* ap, int base, bool use_capital_hexdigits)
+int pf_signed_integer(t_modifier* m, t_string* out, ft_va_list ap, int base, bool use_capital_hexdigits)
 {
 	intmax_t arg;
 
@@ -61,7 +61,7 @@ int pf_signed_integer(t_modifier* m, t_string* out, va_list* ap, int base, bool 
 	return pf_itoa_base(out, arg, base, false, use_capital_hexdigits);
 }
 
-int pf_unsigned_integer(t_modifier* m, t_string* out, va_list* ap, int base, bool use_capital_hexdigits)
+int pf_unsigned_integer(t_modifier* m, t_string* out, ft_va_list ap, int base, bool use_capital_hexdigits)
 {
 	uintmax_t arg;
 
@@ -92,7 +92,7 @@ int pf_unsigned_integer(t_modifier* m, t_string* out, va_list* ap, int base, boo
 ** For the d (decimal) and i (integer) conversions
 */
 
-int pf_cv_di(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_di(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	return pf_signed_integer(m, out, ap, 10, false);
 }
@@ -101,40 +101,40 @@ int pf_cv_di(t_modifier* m, t_string* out, va_list* ap)
 ** For the capital X conversion
 */
 
-int pf_cv_cx(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_cx(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	if (m->booleans.n.alternate)
 		string_append(out, &SUBSTR("0X"));
 	return pf_unsigned_integer(m, out, ap, 16, true);
 }
 
-int pf_cv_x(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_x(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	if (m->booleans.n.alternate)
 		string_append(out, &SUBSTR("0x"));
 	return pf_unsigned_integer(m, out, ap, 16, false);
 }
 
-int pf_cv_o(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_o(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	if (m->booleans.n.alternate)
 		string_append(out, &SUBSTR("0"));
 	return pf_unsigned_integer(m, out, ap, 8, false);
 }
 
-int pf_cv_u(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_u(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	return pf_unsigned_integer(m, out, ap, 10, false);
 }
 
-int pf_cv_b(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_b(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	if (m->booleans.n.alternate)
 		string_append(out, &SUBSTR("b"));
 	return pf_unsigned_integer(m, out, ap, 2, false);
 }
 
-int pf_cv_p(t_modifier* m, t_string* out, va_list* ap)
+int pf_cv_p(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	(void)m;
 	string_append(out, &SUBSTR("0x"));

@@ -115,6 +115,19 @@ TEST_SECTION(printf_limits, extract_name, PRINTF_condition,
 			 (max_ullong,    "25 Limits unsigned _%llu_", ULLONG_MAX)
 	)
 
+TEST_SECTION(printf_binary, extract_name, PRINTF_condition,
+             (zero,      "F0 - Binary _%b_", 0),
+             (forty_two, "F1 - Binary _%b_", 42),
+             (prefix,    "F2 - Binary _%#b_", 9),
+             (align,     "F3 - Binary _%15b_", 753),
+             (pad,       "F4 - Binary _%015b_", 753),
+             (alzp,      "F5 - Binary _%#.0b_", 943),
+             (zero_alzp, "F6 - Binary _%#.0b_", 0),
+             (neg_al,    "F7 - Binary _%#b_", -754),
+             (neg_azps,  "F8 - Binary _%# +0.b_", -415)
+	)
+
+
 #define _PRINTF_MANUAL_condition(NAME, ARGS, EXPECTED, EXPECTED_LEN)\
 	({                                                       \
 		int   expected_len = EXPECTED_LEN;					 \
@@ -170,14 +183,6 @@ TEST_SECTION(printf_zero_unsigned, extract_name, PRINTF_MANUAL_condition,
 			 (zp_sign,        ("_%+.0u_", 0),    "__")
 	)
 
-TEST_SECTION(printf_binary, extract_name, PRINTF_MANUAL_condition,
-             (zero,      ("F0 - Binary _%b_", 0),      "F0 - Binary _0_"),
-             (forty_two, ("F1 - Binary _%b_", 42),     "F1 - Binary _101010_"),
-             (prefix,    ("F2 - Binary _%#b_", 9),     "F2 - Binary _b1001_"),
-             (align,     ("F3 - Binary _%15b_", 753),  "F3 - Binary _     1011110001_"),
-             (pad,       ("F4 - Binary _%015b_", 753), "F4 - Binary _000001011110001_")
-	)
-
 int test_printf()
 {
 	int success = 0;
@@ -186,9 +191,9 @@ int test_printf()
 	success += !test_printf_integer();
 	success += !test_printf_hexa();
 	success += !test_printf_limits();
+	success += !test_printf_binary();
 	// success += !test_printf_wide();
 	success += !test_printf_zero_int();
 	success += !test_printf_zero_unsigned();
-	success += !test_printf_binary();
 	return !(success == 7);
 }

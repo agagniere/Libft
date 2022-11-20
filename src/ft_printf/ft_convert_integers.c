@@ -79,7 +79,7 @@ int pf_unsigned_integer(t_modifier* m, t_string* out, ft_va_list ap, int base, b
 		arg = ft_va_arg(ap, uintmax_t);
 	else
 		arg = ft_va_arg(ap, unsigned);
-	if (arg == 0 && m->booleans.n.alternate && (m->conversion == 'x' || m->conversion == 'X'))
+	if (arg == 0 && m->booleans.n.alternate && (is_in(m->conversion, "xXb") >= 0))
 		out->size -= 2;
 	if (arg == 0 && m->precision == 0)
 		return (0);
@@ -130,7 +130,7 @@ int pf_cv_u(t_modifier* m, t_string* out, ft_va_list ap)
 int pf_cv_b(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	if (m->booleans.n.alternate)
-		string_append(out, &SUBSTR("b"));
+		string_append(out, &SUBSTR("0b"));
 	return pf_unsigned_integer(m, out, ap, 2, false);
 }
 

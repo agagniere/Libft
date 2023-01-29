@@ -2,6 +2,8 @@
 
 #include "tools.h"
 
+#include <stdbool.h>
+
 #ifndef PP_LIBFT_ENUM_STRING_ARRAY_NAME
 /**
 ** The name of the string array can be customized by setting this macro

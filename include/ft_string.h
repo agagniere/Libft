@@ -80,6 +80,8 @@ RAII_DECLARE_TYPE(t_string);
 */
 char* cstring(t_string* str);
 
+int string_append_format(t_string* self, const char* format, ...);
+
 /*
 ** String::join(String)
 ** -

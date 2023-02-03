@@ -7,20 +7,19 @@
 #include <string.h>
 
 #define FOR_RANGE_condition(NAME, ARGS, ...)        \
-	(                                               \
-	{                                               \
-		int  expected[] = {__VA_ARGS__};            \
-		int  length     = C_ARRAY_LENGTH(expected); \
-		int  i          = 0, v;                     \
-		bool result     = true;                     \
-		for (in_range(v, ID ARGS))                  \
-		{                                           \
-			if (i >= length || expected[i] != v)    \
-				result = false;                     \
-			i++;                                    \
-		}                                           \
-		result;                                     \
-	})
+    ({                                              \
+        int  expected[] = {__VA_ARGS__};            \
+        int  length     = C_ARRAY_LENGTH(expected); \
+        int  i          = 0, v;                     \
+        bool result     = true;                     \
+        for (in_range(v, ID ARGS))                  \
+        {                                           \
+            if (i >= length || expected[i] != v)    \
+                result = false;                     \
+            i++;                                    \
+        }                                           \
+        result;                                     \
+    })
 
 TEST_SECTION(for_range, extract_name, FOR_RANGE_condition,
 			 (simple,        (7),        0, 1, 2, 3, 4, 5, 6),

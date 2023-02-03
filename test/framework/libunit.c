@@ -72,3 +72,9 @@ int launch_tests(const char* name, t_array* list)
 	          COLOR(NORMAL));
 	return (success != list->size);
 }
+
+void libunit_print_endof_group(const char* const* name)
+{
+	ft_printf("} %s// End of the %s group%s\n" IF_LONG("\n"),
+	          COLOR(BLUE), *name, COLOR(NORMAL));
+}

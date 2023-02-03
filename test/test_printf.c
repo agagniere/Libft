@@ -180,15 +180,13 @@ TEST_SECTION(printf_binary, extract_name, PRINTF_MANUAL_condition,
 
 int test_printf()
 {
-	int success = 0;
+	TEST_GROUP("printf");
 
-	success += !test_printf_string();
-	success += !test_printf_integer();
-	success += !test_printf_hexa();
-	success += !test_printf_limits();
-	// success += !test_printf_wide();
-	success += !test_printf_zero_int();
-	success += !test_printf_zero_unsigned();
-	success += !test_printf_binary();
-	return !(success == 7);
+	return test_printf_string()
+		|| test_printf_integer()
+		|| test_printf_hexa()
+		|| test_printf_limits()
+		|| test_printf_zero_int()
+		|| test_printf_zero_unsigned()
+		|| test_printf_binary();
 }

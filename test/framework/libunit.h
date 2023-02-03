@@ -3,6 +3,8 @@
 #include "ft_array.h"
 #include "ft_prepro/tools.h"
 #include "ft_prepro/functions.h"
+#include "ft_prepro/color.h"
+#include "ft_printf.h"
 
 typedef struct s_test t_test;
 typedef t_array       t_tests;
@@ -15,6 +17,8 @@ struct s_test
 
 int load_test(t_array* list, const char* name, Function(int, function));
 int launch_tests(const char* name, t_array* list);
+
+void libunit_print_endof_group(const char* const* name);
 
 #define CREATE_FUNCTION(NAME, GET_NAME, WRITE_CONDITION, ARGS) \
     int MERGE(NAME, GET_NAME ARGS, test) (void)                \
@@ -33,3 +37,9 @@ int launch_tests(const char* name, t_array* list);
     }
 
 #define extract_name(NAME, ...) NAME
+
+#define TEST_GROUP(NAME)                                            \
+    const char* __attribute__((cleanup(libunit_print_endof_group))) \
+        group_name = NAME;                                          \
+    ft_printf("%s%s group%s {\n\n",                                 \
+              COLOR(BOLD, BLUE), group_name, COLOR(NORMAL))

@@ -76,5 +76,9 @@ TEST_SECTION(enum_iteration, extract_name, ENUM_ITERATE_condition,
 
 int test_enum()
 {
-	return test_enum_strings() || test_enum_validation() || test_enum_iteration();
+	TEST_GROUP("enums");
+
+	return test_enum_strings()
+		|| test_enum_validation()
+		|| test_enum_iteration();
 }

@@ -3,7 +3,7 @@ from conan.tools.gnu import Autotools, AutotoolsToolchain, AutotoolsDeps
 
 class LibUnitConan(ConanFile):
     name = "libunit"
-    version = "1.3"
+    version = "1.4"
     license = "MIT"
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"

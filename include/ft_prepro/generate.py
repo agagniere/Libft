@@ -1,4 +1,4 @@
-n = 65
+N = 76
 
 def digram(n: int) -> str:
     return chr(ord('A') + n // 26) + chr(ord('A') + n % 26)

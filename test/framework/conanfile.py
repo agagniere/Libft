@@ -22,7 +22,7 @@ class LibUnitConan(ConanFile):
         "debug": True,
         "short_output": True
     }
-    requires = ["libft/2.6"]
+    requires = ["libft/2.7"]
     exports_sources = '*.c', '*.h', 'Makefile'
 
     def configure(self):

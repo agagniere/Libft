@@ -3,7 +3,7 @@ from conan.tools.gnu import Autotools, AutotoolsToolchain
 
 class LibftConan(ConanFile):
     name = "libft"
-    version = "2.6"
+    version = "2.7"
     license = "MIT"
     author = "agagniere sid.xxdzs@gmail.com"
     url = "https://github.com/agagniere/Libft"

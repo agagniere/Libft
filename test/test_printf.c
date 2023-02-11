@@ -171,12 +171,16 @@ TEST_SECTION(printf_zero_unsigned, extract_name, PRINTF_MANUAL_condition,
 	)
 
 TEST_SECTION(printf_binary, extract_name, PRINTF_MANUAL_condition,
-             (zero,      ("F0 - Binary _%b_", 0),      "F0 - Binary _0_"),
-             (forty_two, ("F1 - Binary _%b_", 42),     "F1 - Binary _101010_"),
-             (prefix,    ("F2 - Binary _%#b_", 9),     "F2 - Binary _0b1001_"),
-             (align,     ("F3 - Binary _%15b_", 753),  "F3 - Binary _     1011110001_"),
-             (pad,       ("F4 - Binary _%015b_", 753), "F4 - Binary _000001011110001_")
-	)
+	(zero,      ("F0 - Binary _%b_", 0),         "F0 - Binary _0_"),
+	(forty_two, ("F1 - Binary _%b_", 42),        "F1 - Binary _101010_"),
+	(prefix,    ("F2 - Binary _%#b_", 9),        "F2 - Binary _0b1001_"),
+	(align,     ("F3 - Binary _%15b_", 753),     "F3 - Binary _     1011110001_"),
+	(pad,       ("F4 - Binary _%015b_", 753),    "F4 - Binary _000001011110001_"),
+	(przp,      ("F5 - Binary _%#.0b_", 943),    "F5 - Binary _0b1110101111_"),
+	(zero_przp, ("F6 - Binary _%#.0b_", 0),      "F6 - Binary __"),
+	(neg_pr,    ("F7 - Binary _%#hhb_", -1),     "F7 - Binary _0b11111111_"),
+	(neg_pszp,  ("F8 - Binary _%# +0.hb_", -999),"F8 - Binary _0b1111110000011001_")
+)
 
 int test_printf()
 {

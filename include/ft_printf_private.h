@@ -19,7 +19,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define FTPF_CV       "diouxXDOUeEfFgGaAcCsSpnb"
+#define FTPF_CV       "diouxXDOUeEfFgGaAcCsSpnbB"
 #define FTPF_NUMERIC  "diouDOUxXpb"
 #define FTPF_LM       "hljzLt"
 #define FTPF_SWITCHES "0+- #_"
@@ -64,3 +64,4 @@ int pf_cv_u(t_modifier* m, t_string* out, ft_va_list ap);
 int pf_cv_b(t_modifier* m, t_string* out, ft_va_list ap);
 int pf_cv_p(t_modifier* m, t_string* out, ft_va_list ap);
 int pf_cv_n(t_modifier* m, t_string* out, ft_va_list ap);
+int pf_cv_cb(t_modifier* m, t_string* out, ft_va_list ap);

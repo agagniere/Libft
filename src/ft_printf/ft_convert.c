@@ -17,11 +17,11 @@
 static int pf_print(t_modifier* m, t_string* out, ft_va_list ap)
 {
 	int        i;
-	char const c[]    = "diuoxXcCsSpbn";
+	char const c[]    = "diuoxXcCsSpbnB";
 	int      (*t[])() = {&pf_cv_di, &pf_cv_di, &pf_cv_u,
 	                     &pf_cv_o, &pf_cv_x, &pf_cv_cx,
 	                     &pf_cv_c, &pf_cv_wc, &pf_cv_s, &pf_cv_ws,
-	                     &pf_cv_p, &pf_cv_b, &pf_cv_n};
+	                     &pf_cv_p, &pf_cv_b, &pf_cv_n, &pf_cv_cb};
 
 	if (m->length == 'l' && is_in(m->conversion, "cs") >= 0)
 		m->conversion = ft_toupper(m->conversion);

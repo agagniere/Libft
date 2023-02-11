@@ -182,6 +182,15 @@ TEST_SECTION(printf_binary, extract_name, PRINTF_MANUAL_condition,
 	(neg_pszp,  ("F8 - Binary _%# +0.hb_", -999),"F8 - Binary _0b1111110000011001_")
 )
 
+TEST_SECTION(printf_boolean, extract_name, PRINTF_MANUAL_condition,
+	(yes,        ("B1 - Boolean _%B_", true),    "B1 - Boolean _true_"),
+	(no,         ("B2 - Boolean _%B_",  false),  "B2 - Boolean _false_"),
+	(length,     ("B3 - Boolean _%8B_", true),   "B3 - Boolean _    true_"),
+	(left,       ("B4 - Boolean _%-8B_", true),  "B4 - Boolean _true    _"),
+	(precisionT, ("B5 - Boolean _%.3B_", true),  "B5 - Boolean _tru_"),
+	(precisionF, ("B6 - Boolean _%.3B_", false), "B6 - Boolean _fal_")
+)
+
 int test_printf()
 {
 	TEST_GROUP("printf");
@@ -192,5 +201,6 @@ int test_printf()
 		|| test_printf_limits()
 		|| test_printf_zero_int()
 		|| test_printf_zero_unsigned()
-		|| test_printf_binary();
+		|| test_printf_binary()
+		|| test_printf_boolean();
 }

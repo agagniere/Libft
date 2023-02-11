@@ -10,6 +10,7 @@
 #include "ft_string.h"
 
 #include <stdarg.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <wchar.h>
@@ -32,7 +33,7 @@ typedef long unsigned      ulong;
 typedef long long unsigned ullong;
 typedef void*              pointer;
 
-#define PromotedToInt      Interface(char, schar, short)
+#define PromotedToInt      Interface(char, schar, short, bool)
 #define PromotedToUnsigned Interface(uchar, ushort)
 #define PromotedToDouble   Interface(float)
 #define UnpromotedSigned   Interface(int, long, llong, intmax_t, ptrdiff_t)

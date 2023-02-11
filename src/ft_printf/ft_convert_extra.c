@@ -36,3 +36,16 @@ int pf_cv_n(t_modifier* m, t_string* out, ft_va_list ap)
 		*(int*)arg = (int)out->size;
 	return (0);
 }
+
+int pf_cv_cb(t_modifier* m, t_string* out, ft_va_list ap)
+{
+	static char    representations[][6] = {"false", "true"};
+	const bool     arg                  = ft_va_arg(ap, bool);
+	t_substr       display              = SUBSTR(representations[arg]);
+
+	if (m->precision >= 0)
+		display.length = MIN(display.length, (size_t)m->precision);
+
+	string_append(out, &display);
+	return display.length;
+}

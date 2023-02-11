@@ -173,7 +173,7 @@ TEST_SECTION(printf_zero_unsigned, extract_name, PRINTF_MANUAL_condition,
 TEST_SECTION(printf_binary, extract_name, PRINTF_MANUAL_condition,
              (zero,      ("F0 - Binary _%b_", 0),      "F0 - Binary _0_"),
              (forty_two, ("F1 - Binary _%b_", 42),     "F1 - Binary _101010_"),
-             (prefix,    ("F2 - Binary _%#b_", 9),     "F2 - Binary _b1001_"),
+             (prefix,    ("F2 - Binary _%#b_", 9),     "F2 - Binary _0b1001_"),
              (align,     ("F3 - Binary _%15b_", 753),  "F3 - Binary _     1011110001_"),
              (pad,       ("F4 - Binary _%015b_", 753), "F4 - Binary _000001011110001_")
 	)

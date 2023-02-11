@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/03 20:56:06 by angagnie         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:56:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_modifier
 } t_modifier;
 
 #define NEW_MODIFIER (t_modifier){ .size = -1, .precision = -1 };
+
+int ft_string_vprintf(t_string* string, char const* format, va_list ap);
 
 void db_print_modifier(t_modifier* m);
 void pf_convert(t_modifier* m, t_string* out, ft_va_list ap);

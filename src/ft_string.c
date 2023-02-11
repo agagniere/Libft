@@ -27,19 +27,3 @@ char* cstring(t_string* str)
 	STRING_NULL_TERMINATE(str);
 	return ((char*)str->data);
 }
-
-/**
-** Append a string formed in a similar manner as printf.
-*/
-int string_append_format(t_string* self, const char* format, ...)
-{
-	va_list  arguments;
-	t_substr buffer;
-
-	va_start(arguments, format);
-	buffer.length = ft_vasprintf(&buffer.string, format, arguments);
-	va_end(arguments);
-	string_append(self, &buffer);
-	free(buffer.string);
-	return buffer.length;
-}

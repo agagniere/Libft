@@ -6,14 +6,14 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:57 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/01 19:57:46 by angagnie         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:57:46 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <stdarg.h>
-#include <stddef.h>
+#include <sys/types.h>
 
 __attribute__((format(printf, 1, 2))) int ft_printf(char const* format, ...);
 __attribute__((format(printf, 2, 3))) int ft_dprintf(int fd, char const* format, ...);

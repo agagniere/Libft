@@ -6,13 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 15:14:40 by angagnie          #+#    #+#             */
-/*   Updated: 2016/05/17 09:58:17 by angagnie         ###   ########.fr       */
+/*   Updated: 2023/02/11 19:58:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <stddef.h>
+#include <sys/types.h> // size_t
 
 typedef struct s_node
 {
@@ -31,16 +31,14 @@ typedef struct s_list
 ** ----------===== Constructors =====----------
 */
 
-void    ftl_init(t_list* l, size_t type_size);
-t_list* ftl_alloc(size_t type_size);
-int     ftl_cpy(t_list* dst, t_list const* src);
+#define LIST_INIT(LIST, TYPE) ftl_init(LIST, sizeof(TYPE))
+void ftl_init(t_list* list, size_t type_size);
 
 /*
 ** ----------===== Destructors  =====----------
 */
 
-void ftl_del();
-void ftl_free();
+void ftl_clear(t_list* self);
 
 /*
 ** ------------===== Methods  =====------------

@@ -14,18 +14,12 @@
 
 #include <stdlib.h>
 
-void ftl_del(t_list* l)
+void ftl_clear(t_list* self)
 {
 	t_node* tmp;
 
-	tmp = l->root.next;
-	while ((tmp = tmp->next) != l->root.next)
+	tmp = self->root.next;
+	while ((tmp = tmp->next) != self->root.next)
 		free(tmp->prev);
-	l->size = 0;
-}
-
-void ftl_free(t_list** l)
-{
-	ftl_del(*l);
-	*l = NULL;
+	self->size = 0;
 }

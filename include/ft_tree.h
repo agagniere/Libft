@@ -98,10 +98,10 @@ enum e_tr
 ** Pushes a new node to the tree.
 ** It is safe to reuse and push the same node multiple times.
 ** -
-** _new_ is a node to be added to the tree.
+** _new_node_ is a node to be added to the tree.
 */
 
-int ftt_push(t_tree* self, t_tnode* new);
+int ftt_push(t_tree* self, t_tnode* new_node);
 
 /*
 ** Tree::clear
@@ -151,4 +151,4 @@ int ftt_clearf(t_tree** self, void (*f)());
 ** Handles the recursion and node counting.
 */
 
-int tnode_push(t_tree* self, t_tnode** node, t_tnode* new);
+int tnode_push(t_tree* self, t_tnode** node, t_tnode* new_node);

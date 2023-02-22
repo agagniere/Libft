@@ -54,7 +54,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.x'
       - name: Get number of CPU cores
         uses: SimenB/github-actions-cpu-cores@v1
         id: cpu-cores
@@ -62,7 +62,7 @@ jobs:
         run : |
           comp_ver=$(${{ matrix.compiler }} --version | head -1)
           echo $comp_ver
-          python3 -m pip install conan
+          python3 -m pip install 'conan<2.0'
           conan profile new default --detect
           conan profile update settings.compiler=$( [ "Apple" = $(cut -d' ' -f1 <<< $comp_ver) ] && echo apple-clang || echo ${{ matrix.compiler }}) default
           conan profile update settings.compiler.version=$(cut -d' ' -f 4 <<< $comp_ver | cut -d'.' -f1) default

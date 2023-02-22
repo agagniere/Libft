@@ -252,7 +252,7 @@ int fta_overwrite(t_array* self, const t_array* other);
 /*
 ** Array::replace
 ** -
-** replace a part of _self_ by _new_
+** replace a part of _self_ by _replacement_
 ** -
 **       |---| <-len
 ** "echo $USER is cool"
@@ -264,7 +264,7 @@ int fta_overwrite(t_array* self, const t_array* other);
 ** 1 in case of failure (malloc)
 ** 0 otherwise.
 */
-int fta_replace(t_array* self, size_t index, size_t len, t_array* new);
+int fta_replace(t_array* self, size_t index, size_t len, t_array* replacement);
 
 /*
 ** Array::pop_front

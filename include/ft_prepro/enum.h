@@ -78,13 +78,13 @@ static inline const char *cstring_from_cardinal(enum cardinal value) {
 }
 
 static inline _Bool is_valid_cardinal(long value) {
-  return value < cardinal_upper_bound &&
-         cstring_from_cardinal(value) != ((void *)0);
+  return cstring_from_cardinal((enum cardinal)value) != ((void *)0);
 }
 
 static inline _Bool has_next_cardinal(enum cardinal *it) {
   ++*(long *)it;
-  while (*it < cardinal_upper_bound && !is_valid_cardinal(*it))
+  while ((long)*it < (long)cardinal_upper_bound &&
+         !is_valid_cardinal((long)*it))
     ++*(long *)it;
   return *it < cardinal_upper_bound;
 }
@@ -105,6 +105,13 @@ static inline _Bool has_next_cardinal(enum cardinal *it) {
 		} \
 	} \
 	static inline bool _MERGE(is_valid, NAME) (long value) \
-	{ return value < _EMAX(NAME) && _MERGE(cstring_from, NAME)(value) != NULL; } \
+	{ \
+		return _MERGE(cstring_from, NAME)((enum NAME)value) != NULL; \
+	} \
 	static inline bool _MERGE(has_next, NAME) (enum NAME* it) \
-	{ ++*(long*)it ; while (*it < _EMAX(NAME) && !_MERGE(is_valid, NAME)(*it)) ++*(long*)it; return *it < _EMAX(NAME); }
+	{ \
+		do { \
+			*it = (enum NAME)(1 + *it); \
+		} while ((long)*it < (long)_EMAX(NAME) && !_MERGE(is_valid, NAME)((long)*it)); \
+		return *it < _EMAX(NAME); \
+	}

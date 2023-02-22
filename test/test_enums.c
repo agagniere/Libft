@@ -26,7 +26,7 @@ DECLARE_ENUM_WITH_VALUES(
 );
 
 #define ENUM_STRING_condition(NAME, TYPE, EXPECTED_VALUE) \
-	({ !strcmp(PP_CAT(TYPE, _strings)[NAME], EXPECTED_VALUE); })
+	({ !strcmp(PP_CAT(cstring_from_, TYPE)(NAME), EXPECTED_VALUE); })
 
 TEST_SECTION(enum_strings, extract_name, ENUM_STRING_condition,
 	(East,     cardinal, "East"),
@@ -64,7 +64,7 @@ TEST_SECTION(enum_validation, extract_name, ENUM_VALID_condition,
 				result = false;                     \
 			i++;                                    \
 		}                                           \
-		result;                                     \
+		i == length && result;                      \
 	})
 
 TEST_SECTION(enum_iteration, extract_name, ENUM_ITERATE_condition,

@@ -1,5 +1,7 @@
+from os import path
 from conan import ConanFile
 from conan.tools.gnu import Autotools, AutotoolsToolchain
+from conan.tools.files import copy
 
 class LibftConan(ConanFile):
     name = "libft"
@@ -25,10 +27,10 @@ class LibftConan(ConanFile):
     exports_sources = "src*", "include*", 'LICENSE', 'Makefile', 'README.md'
 
     def configure(self):
-        del self.settings.compiler.libcxx
-        del self.settings.compiler.cppstd
+        self.settings.rm_safe('compiler.libcxx')
+        self.settings.rm_safe('compiler.cppstd')
         if self.options.shared:
-            del self.options.shared
+            self.options.rm_safe("fPIC")
 
     def generate(self):
         toolchain = AutotoolsToolchain(self)
@@ -45,10 +47,9 @@ class LibftConan(ConanFile):
         autotools.make("clean")
 
     def package(self):
-        self.copy("*.h", dst="include", src="include")
-        self.copy("libft.*", dst="lib")
-        self.copy("LICENSE")
-        self.copy("README.md", dst="doc")
+        copy(self, '*.h', path.join(self.source_folder, 'include'), path.join(self.package_folder, 'include'))
+        copy(self, 'libft.*', self.build_folder, path.join(self.package_folder, 'lib'))
+        copy(self, 'LICENSE|README.md', self.source_folder, self.package_folder)
 
     def package_info(self):
         self.cpp_info.libs = ["ft"]

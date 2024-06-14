@@ -9,6 +9,9 @@
 /*   Updated: 2016/10/27 16:22:47 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/**
+** @file ft_itoa_base.c
+*/
 
 #include "ft_prepro/tools.h"
 #include <stdlib.h>
@@ -22,27 +25,33 @@ static void aux(int n, int b, char* ans, int* p)
 	ans[(*p)++] = base[ABS(n % b)];
 }
 
-/*
+/**
+** @brief Convert an integer to an ascii character string.
+**
 ** itoa_base :	 NxN	->	String
-** |			(n,b)	|->	n expressed in base b
-** -
+**  			(n,b)	|->	n expressed in base b
+**
 ** @return : An allocated null-termminated characters array.
-** | If _value_ is strictly negative, the first character will be '-'.
-** | If _base_ is not in [2;36], NULL is returned.
-** -
-** @param _value_ : the number to be expressed in base _base_
-** @param _base_ : an integer that should be in range [2;36]
-** -
-** -----===== Mathematical property used =====-----
-** Let b in [| 2 ; +infinity [|
-** Postulate : 0 has a decomposition in base b : "0"
-** for all n in N*,
-** |	"n has a decomposition in base b"
-** | <=> there exist a unique (k, a0, a1, ..., ak) in N^(k+2)
-** | such that the sum for i = 0 to k of	(ai * b^i)
-** | equals n, with ak > 0.
-** | => k = (int)(log(n) / log(b))	where log is the natural logarithm
-** -
+** If @a value is strictly negative, the first character will be '-'.
+** If @a base is not in [2;36], NULL is returned.
+**
+** @param value : the number to be expressed in base @a base
+** @param base : an integer that should be in range [2;36]
+**
+** @section Mathematical property used
+** Let @f$ b \in [| 2 ; +\infty [| @f$
+** @subsection Postulate
+** 0 has a decomposition in base b : `"0"`
+** @subsection Induction
+** @f$ \forall n \in N* @f$,
+** 	"n has a decomposition in base b"
+** @f[
+**  \Leftrightarrow \exists ! (k, a_0, a_1, ..., a_k) \in N^{k+2}
+**  \sum_{i=0}^{k} (a_i * b^i) = 0
+**  \Rightarrow k = (int)(\log(n) / \log(b))
+** @f]
+** where log is the natural logarithm
+**
 ** Negative numbers can be expressed in base b by using the decomposition
 ** of its opposite, preceded by '-'.
 */
@@ -62,22 +71,3 @@ char* ft_itoa_base(int value, int base)
 	ans[p] = '\0';
 	return (ans);
 }
-
-/*
-** int			main(int ac, char **av)
-** {
-** 	int		n,
-** 			b;
-**
-** 	if (ac > 1)
-** 		n = atoi(av[1]);
-** 	else
-** 		n = -2147483648;
-** 	if (ac > 2)
-** 		b = atoi(av[2]);
-** 	else
-** 		b = 10;
-** 	printf("%i en base %i : %s\n", n, b, ft_itoa_base(n, b));
-** 	return (0);
-** }
-*/

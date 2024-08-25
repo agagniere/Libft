@@ -1,0 +1,5 @@
+.{
+	.name = "Libft",
+	.version = "2.10.0",
+	.paths = .{"src", "include"}
+}

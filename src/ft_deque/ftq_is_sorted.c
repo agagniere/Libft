@@ -14,7 +14,7 @@
 
 #include <stdbool.h>
 
-void local_aux(bool* answer, int (*cmp)(), int* element)
+static void local_aux(bool* answer, int (*cmp)(), int* element)
 {
 	static int* previous = NULL;
 

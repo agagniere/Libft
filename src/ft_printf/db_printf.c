@@ -13,7 +13,7 @@
 #include "ft_printf_private.h"
 #include "libft.h"
 
-void db_print_bool(char c)
+static void db_print_bool(char c)
 {
 	ft_putstr(c ? "true" : "false");
 	return;

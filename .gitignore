@@ -16,3 +16,5 @@ conan*.txt
 *.o
 *.ps1
 *.so
+.zig-cache
+zig-out

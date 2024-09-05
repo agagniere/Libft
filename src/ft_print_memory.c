@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 #include <unistd.h>
 
 static void ft_putnbr_hex(unsigned n, unsigned length)

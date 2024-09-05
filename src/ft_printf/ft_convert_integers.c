@@ -18,7 +18,7 @@
 ** pf_itoa_base appends @p n expressed in base @p base to @p out
 */
 
-int pf_itoa_base(t_string* out, intmax_t n, int base, bool is_unsigned, bool use_capital_hexdigits)
+static int pf_itoa_base(t_string* out, intmax_t n, int base, bool is_unsigned, bool use_capital_hexdigits)
 {
 	int             ans;
 	const uintmax_t un = (uintmax_t)n;
@@ -32,7 +32,7 @@ int pf_itoa_base(t_string* out, intmax_t n, int base, bool is_unsigned, bool use
 	return (ans);
 }
 
-int pf_signed_integer(t_modifier* m, t_string* out, ft_va_list ap, int base, bool use_capital_hexdigits)
+static int pf_signed_integer(t_modifier* m, t_string* out, ft_va_list ap, int base, bool use_capital_hexdigits)
 {
 	intmax_t arg;
 
@@ -61,7 +61,7 @@ int pf_signed_integer(t_modifier* m, t_string* out, ft_va_list ap, int base, boo
 	return pf_itoa_base(out, arg, base, false, use_capital_hexdigits);
 }
 
-int pf_unsigned_integer(t_modifier* m, t_string* out, ft_va_list ap, int base, bool use_capital_hexdigits)
+static int pf_unsigned_integer(t_modifier* m, t_string* out, ft_va_list ap, int base, bool use_capital_hexdigits)
 {
 	uintmax_t arg;
 

@@ -1,5 +1,5 @@
 .{
-	.name = "Libft",
-	.version = "2.10.0",
-	.paths = .{"src", "include"}
+    .name = "libft",
+    .version = "2.11.0",
+    .paths = .{ "src", "include", "test", "README.md", "LICENSE" },
 }

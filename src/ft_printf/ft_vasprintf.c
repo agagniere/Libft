@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "ft_printf_private.h"
 
 int ft_vasprintf(char** ret, char const* format, va_list ap)

@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_prepro/tools.h"
-#include <stdlib.h>
+#include "libft.h"
+
+#include "ft_prepro/tools.h" // ABS
+
+#include <stdlib.h> // malloc
 
 static void aux(int n, int b, char* ans, int* p)
 {

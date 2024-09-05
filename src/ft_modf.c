@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_math.h"
+
 #include <stddef.h>
 #include <stdint.h>
 #include <float.h>

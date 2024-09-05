@@ -15,7 +15,7 @@
 
 #include <stdlib.h>
 
-void append_element(t_string* string, char* (*f)(), void* element)
+static void append_element(t_string* string, char* (*f)(), void* element)
 {
 	char* const elem_str = f(element);
 

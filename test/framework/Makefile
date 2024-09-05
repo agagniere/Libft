@@ -4,9 +4,9 @@ FILES = libunit.c comparisons.c
 OBJ   = ${FILES:.c=.o}
 
 # Compiler
-CC     ?= gcc
-CFLAGS += -Wall -Wextra
-
+CFLAGS   += --std=c99 -Wall -Wextra
+CPPFLAGS += -Wno-unused-result -Wformat=2
+CPPFLAGS += -Wmissing-prototypes -Wmissing-declarations -Wold-style-definition
 
 all: $(NAME)
 

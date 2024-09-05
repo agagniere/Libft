@@ -4,7 +4,6 @@ FILES = $(shell find . dict heap -maxdepth 1 -name '*.c')
 OBJ   = $(FILES:.c=.o)
 
 # Compiler
-CC       ?= gcc
 CFLAGS   += -Wall -Wextra -g
 CPPFLAGS += -I . -D_GNU_SOURCE
 

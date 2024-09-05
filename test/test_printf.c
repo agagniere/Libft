@@ -66,7 +66,7 @@ TEST_SECTION(printf_hexa, extract_name, PRINTF_condition,
 
 TEST_SECTION(printf_integer, extract_name, PRINTF_condition,
 			 (pf_B_Integer, "B Integer _%i_", -612345),
-			 (pf_C_Integer, "C Integer _%u_", (1 << 31) + 75312),
+			 (pf_C_Integer, "C Integer _%u_", (1U << 31) + 75312),
 			 (pf_D_Integer, "D Integer _%hhi_", -120),
 			 (pf_E_Integer, "E Integer _%hhu_", 250),
 			 (pf_F_Integer, "F Integer _%hi_", -9999),

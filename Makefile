@@ -23,10 +23,10 @@ OBJECTS       = $(subst $(SOURCE_PATH),$(CACHE_PATH),$(FILES:.c=.o))
 DEPFILES      = $(OBJECTS:.o=.d)
 
 # Compiler
+CFLAGS   += --std=gnu99 -Wall -Wextra
 CPPFLAGS += -I $(HEADER_PATH)
-CPPFLAGS += -Wall -Wextra -Wno-unused-result -Wformat=2
+CPPFLAGS += -Wno-unused-result -Wformat=2
 CPPFLAGS += -Wmissing-prototypes -Wmissing-declarations -Wold-style-definition
-CFLAGS   += --std=gnu99
 
 static: $(TARGET_STATIC)
 

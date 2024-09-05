@@ -1,6 +1,8 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
+    const test_step = b.step("test", "Run unit tests");
+
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
@@ -17,4 +19,31 @@ pub fn build(b: *std.Build) void {
     lib.addIncludePath(b.path("include"));
     lib.installHeadersDirectory(b.path("include"), "libft", .{});
     b.installArtifact(lib);
+
+    const framework = b.addStaticLibrary(.{
+        .name = "unit",
+        .target = target,
+        .optimize = optimize,
+    });
+    framework.addCSourceFiles(.{ .root = b.path("test/framework"), .files = &.{ "libunit.c", "comparisons.c" } });
+    framework.addIncludePath(b.path("include"));
+    framework.addIncludePath(b.path("test/framework"));
+    framework.installHeader(b.path("test/framework/libunit.h"), "libunit/libunit.h");
+    framework.installHeader(b.path("test/framework/comparisons.h"), "libunit/comparisons.h");
+    b.installArtifact(framework);
+
+    const unittests = b.addExecutable(.{
+        .name = "test_libft.exe",
+        .target = target,
+        .optimize = optimize,
+    });
+    unittests.addCSourceFiles(.{ .root = b.path("test"), .files = &.{ "main.c", "test_ctype.c", "test_enums.c", "test_itoa.c", "test_libc.c", "test_modf.c", "test_prepro.c", "test_printf.c", "test_pythonic.c" } });
+    unittests.addCSourceFiles(.{ .root = b.path("test/dict"), .files = &.{ "00_dict_launcher.c", "01_set_test.c", "02_get_test.c", "03_overwrite_test.c", "04_dont_overwrite_test.c", "05_few_elements_test.c", "06_collisions_test.c" } });
+    unittests.addCSourceFiles(.{ .root = b.path("test/heap"), .files = &.{ "00_heap_launcher.c", "01_push_one_element_test.c", "02_push_multiple_elements_test.c", "03_pop_one_element_test.c", "04_pop_all_elements_test.c" } });
+    unittests.linkLibrary(lib);
+    unittests.linkLibrary(framework);
+    unittests.addIncludePath(b.path("test/framework"));
+    unittests.addIncludePath(b.path("include"));
+    const run_unittests = b.addRunArtifact(unittests);
+    test_step.dependOn(&run_unittests.step);
 }

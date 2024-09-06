@@ -1,5 +1,5 @@
 .{
     .name = "libft",
     .version = "2.11.0",
-    .paths = .{ "src", "include", "test", "README.md", "LICENSE" },
+    .paths = .{ "build.zig", "build.zig.zon", "src", "include", "test", "README.md", "LICENSE" },
 }

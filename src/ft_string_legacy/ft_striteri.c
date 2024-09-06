@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string_legacy.h"
+
 void ft_striteri(char* s, void (*f)(unsigned int, char*))
 {
 	unsigned int i;

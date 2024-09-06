@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string_legacy.h"
+
 char* ft_strcat(char* s1, const char* s2)
 {
 	char* const save = s1;

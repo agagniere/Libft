@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string_legacy.h"
+
 void ft_strrev(char* start, char* end)
 {
 	char tmp;

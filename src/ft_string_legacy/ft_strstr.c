@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "ft_string_legacy.h"
 
 char* ft_strstr(const char* s1, const char* s2)
 {

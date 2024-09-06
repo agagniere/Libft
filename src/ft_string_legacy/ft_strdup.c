@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "ft_string_legacy.h"
+
+#include <stdlib.h> // malloc
 
 char* ft_strdup(const char* s1)
 {

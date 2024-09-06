@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "ft_string_legacy.h"
 
 size_t ft_strlen(char const* str)
 {

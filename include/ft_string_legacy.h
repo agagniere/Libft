@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include <stddef.h>
+#include <stddef.h> // size_t
 
 char*  ft_strcat(char* s1, const char* s2);
 char*  ft_strchr(const char* s, int c);

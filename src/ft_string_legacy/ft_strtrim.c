@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_string_legacy.h"
 
-#include <string.h>
-
-static int ismerde(int c) { return (c == ' ' || c == '\n' || c == '\t'); }
+#include "ft_ctype.h"
 
 char* ft_strtrim(char const* s)
 {
@@ -23,13 +21,13 @@ char* ft_strtrim(char const* s)
 	int flen;
 
 	start = 0;
-	while (ismerde(s[start]))
+	while (ft_isspace(s[start]))
 		start++;
 	len  = 0;
 	flen = 0;
 	while (s[start + len] != '\0')
 	{
-		if (!ismerde(s[start + len]))
+		if (!ft_isspace(s[start + len]))
 			flen = len + 1;
 		len++;
 	}

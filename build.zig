@@ -25,7 +25,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    framework.addCSourceFiles(.{ .root = b.path("test/framework"), .files = &.{ "libunit.c", "comparisons.c" } });
+    framework.addCSourceFiles(.{ .root = b.path("test/framework"), .files = &.{ "libunit.c", "comparisons.c" }, .flags = &.{"-DLIBUNIT_SHORT_OUTPUT"} });
     framework.addIncludePath(b.path("include"));
     framework.addIncludePath(b.path("test/framework"));
     framework.installHeader(b.path("test/framework/libunit.h"), "libunit/libunit.h");

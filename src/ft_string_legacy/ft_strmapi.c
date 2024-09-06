@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_string_legacy.h"
+
 #include <stdlib.h>
 
 char* ft_strmapi(const char* s1, char (*f)(unsigned int, char))

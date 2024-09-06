@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "ft_string_legacy.h"
 
 char* ft_strncpy(char* dst, const char* src, size_t n)
 {

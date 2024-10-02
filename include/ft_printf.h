@@ -12,8 +12,8 @@
 
 #pragma once
 
-#include <stdarg.h>
-#include <sys/types.h>
+#include <stdarg.h> // va_list
+#include <stddef.h> // size_t
 
 __attribute__((format(printf, 1, 2))) int ft_printf(char const* format, ...);
 __attribute__((format(printf, 2, 3))) int ft_dprintf(int fd, char const* format, ...);

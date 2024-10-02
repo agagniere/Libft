@@ -10,8 +10,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-void cleanup_t_cstring(t_cstring* str) { if (*str) free(*str); }
-
 #define PRINTF_condition(NAME, ...)										\
 	({																	\
 		RAII(t_cstring) pf_dst = NULL;									\

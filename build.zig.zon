@@ -1,5 +1,6 @@
 .{
-    .name = "libft",
+    .name = .libft,
+    .fingerprint = 0xf352b392aedaa5c3,
     .version = "2.11.0",
     .paths = .{ "build.zig", "build.zig.zon", "src", "include", "test", "README.md", "LICENSE" },
 }

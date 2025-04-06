@@ -1,3 +1,5 @@
+#define _GNU_SOURCE // asprintf
+
 #include "libunit.h"
 
 #include "ft_printf.h"

@@ -5,6 +5,7 @@ pub fn build(b: *std.Build) void {
 
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+    const libunit_long = b.option(bool, "libunit-long-output", "Should libunit output be long, printing the name of each test case ? Defaults to false") orelse false;
 
     const lib = b.addStaticLibrary(.{
         .name = "ft",
@@ -27,7 +28,9 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     framework.linkLibC();
-    framework.addCSourceFiles(.{ .root = b.path("test/framework"), .files = &.{ "libunit.c", "comparisons.c" }, .flags = &.{"-DLIBUNIT_SHORT_OUTPUT"} });
+    framework.addCSourceFiles(.{ .root = b.path("test/framework"), .files = &.{ "libunit.c", "comparisons.c" } });
+    if (!libunit_long)
+        framework.root_module.addCMacro("LIBUNIT_SHORT_OUTPUT", "");
     framework.addIncludePath(b.path("include"));
     framework.addIncludePath(b.path("test/framework"));
     framework.installHeader(b.path("test/framework/libunit.h"), "libunit/libunit.h");

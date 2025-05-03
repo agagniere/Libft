@@ -58,6 +58,6 @@ local:
 	@$(MAKE) fclean --no-print-directory
 	@$(MAKE) fclean -C test
 	@$(MAKE) fclean -C test/framework
-	@CFLAGS="-g -O1" $(MAKE) --no-print-directory
-	@CFLAGS="-g -O1" CPPFLAGS="-I ../../include" $(MAKE) -C test/framework
-	@CFLAGS="-g -O1" CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" $(MAKE) -C test
+	@CFLAGS="-g -O2" $(MAKE) --no-print-directory -j8
+	@CFLAGS="-g -O2" CPPFLAGS="-I ../../include" $(MAKE) -C test/framework
+	@CFLAGS="-g -O2" CPPFLAGS="-I ../include -I framework" LDFLAGS="-L .. -L framework" LDLIBS="-lunit -lft" $(MAKE) -C test -j8

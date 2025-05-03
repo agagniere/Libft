@@ -1,5 +1,10 @@
 #pragma once
 
+/**
+ * @file enum.h
+ * @brief Generate functions for enumerations
+ */
+
 #include "tools.h"
 
 #include <stdbool.h>

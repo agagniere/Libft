@@ -12,47 +12,53 @@
 
 #pragma once
 
-#include <stddef.h>
+#include <stddef.h> /* size_t */
 
-/*
-** |		----------=====  Array<T>  =====----------
+/**
+** @file ft_array.h
+** Dynamic-size array.
 ** The following functions allows one to manipulate a collection of objects,
 ** not bothering about malloc.
-** It is inspired by the C++ "std::vector<T>"
-** -
+** It is inspired by the C++ `std::vector<T>`
+**
 ** In Java, one would declare such an object with :
-** |	Vector variable = new Vector<SomeType>();
-** |	ArrayList variable = new ArrayList<SomeType>();
+** ```java
+** Vector variable = new Vector<SomeType>();
+** ArrayList variable = new ArrayList<SomeType>();
+** ```
+**
 ** In C++ it would be :
-** |	std::vector<some_type> variable();
-** -
-** Here in C,
-** |	t_array	variable = NEW_ARRAY(t_some_type);
+** ```cpp
+** std::vector<some_type> variable();
+** ```
+**
+** Here in C :
+** ```
+** t_array variable = NEW_ARRAY(t_some_type);
+** ```
 */
 
-typedef struct s_array
+/**
+** Dynamic size array.
+** The elements are stored contiguously, and the storage is handled automatically.
+**/
+
+typedef struct array
 {
-	void*  data;
-	size_t size;
-	size_t capacity;
-	size_t type_size;
+	void*  data;      /**< `malloc`-ed storage */
+	size_t size;      /**< Number of elements currently stored */
+	size_t capacity;  /**< Number of elements that could be stored without re-allocation */
+	size_t type_size; /**< Size in bytes of a single element : it is the result of @c sizeof */
 } t_array;
 
-/*
-** |		----------===== public: =====----------
-*/
-
-/*
-** Array::new
-** -
-** Failsafe constructor, no memory is allocated.
-** -
-** _T_ should be the type to be stored in the array.
-** -
-** Returns an array, correctly initialised.
+/**
+** Failsafe constructor.
+** No memory is allocated.
+** @param T should be the type to be stored in the array.
+** @return an array, correctly initialised.
 */
 #define NEW_ARRAY(T)                        \
-    (struct s_array)                        \
+    (struct array)                          \
     {                                       \
         .data = NULL,                       \
         .size = 0,                          \
@@ -60,80 +66,56 @@ typedef struct s_array
         .type_size = sizeof(T)              \
     }
 
-/*
-** Array::new
-** -
+/**
 ** Constructor that tries a first malloc.
-** -
-** _type_size_ should equal to the returned value of sizeof(T)
-** -
+** @param type_size should equal to the returned value of sizeof(T)
+** @return an initialized array. If its capacity is 0, the allocation failed.
 */
 t_array fta_new(size_t type_size);
 
-/*
-** Array::alloc
-** -
-** Allocates an array and its data.
-** -
-** _type_size_ should equal to the returned value of sizeof(T)
-** -
-** Returns the allocated array,
-** or NULL if malloc failed.
-*/
-t_array* fta_alloc(size_t type_size);
-
-/*
-** Array::apppend
-** -
+/**
+** Adds @p datalen elements to @p self.
 ** Could be called "add all" like in Java.
-** Adds _datalen_ elements to _self_.
 ** May fail if malloc does.
-** -
-** _data_ should be a variable of type T* casted to void*.
-** _datalen_ should be the number of elements stored in _data_.
-** -
-** Returns a status :
-** 0 in case of success,
-** 1 if malloc failed.
+**
+** @param data should be a variable of type `T*` cast to `void*`.
+** @param datalen should be the number of elements stored in @p data.
+** @return a status :
+**  - 0 in case of success,
+**  - 1 if malloc failed.
 */
 int fta_append(t_array* self, void const* data, size_t datalen);
 
-/*
-** Array::insert
-** -
-** Adds _datalen_ elements at index _index_ to _self_.
+/**
+** Adds @p datalen elements at index @p index to @p self.
 ** May fail if malloc does.
-** -
-** _data_ should be a variable of type T* casted to void*.
-** _datalen_ should be the number of elements stored in _data_.
-** _index_ is the future index of the first element of _data_.
-** -
-** Returns a status :
-** 0 in case of success,
-** 1 if malloc failed.
+**
+** @param data should be a variable of type `T*` cast to `void*`.
+** @param datalen should be the number of elements stored in @p data.
+** @param index is the future index of the first element of @p data.
+** @return a status :
+**  - 0 in case of success,
+**  - 1 if malloc failed.
 */
 int fta_insert(t_array* self, void const* data, size_t datalen, size_t index);
 
-/*
-** Array::reserve
-** -
+/**
+** Ensure enough memory is allocated to accomodate a desired number of elements.
 ** When one has an estimation of the number of elements that they will add
-** to the array, using reserve will prevent multiple re-allocations,
+** to the array, using @c reserve will prevent multiple re-allocations,
 ** and ensure the best complexity.
-** Indeed this function makes sure that the array has enough room
-** for _size_ elements to be added.
-** -
-** _size_ is the number of elements that are planned to be added.
-** -
-** Returns a status :
-** 0 in case of success,
-** 1 if a re-alloc failed, and leaves the array as-is.
+** This function makes sure that the array has enough room
+** for @p size elements to be added.
+**
+** @param size is the number of elements that are planned to be added.
+** @return a status :
+**  - 0 in case of success,
+**  - 1 if a re-alloc failed, and leaves the array as-is.
 */
 int fta_reserve(t_array* self, size_t size);
 
-/*
-** Array::trim
-** -
+/**
+** Get rid of any extra memory allocated.
 ** Could be called "shrink to fit" as it is in C++.
 ** This function is meant to be called when no more
 ** elements are expected to be appended to the array.
@@ -141,60 +123,42 @@ int fta_reserve(t_array* self, size_t size);
 ** a low complexity and few system calls, but this
 ** functions allocates the minimum number of bytes for
 ** all elements to fit.
-** -
-** Returns :
-** 0 if the malloc succeeded,
-** 1 otherwise.
+**
+** @return a status :
+**  - 0 if the malloc succeeded,
+**  - 1 otherwise.
 */
 int fta_trim(t_array* self);
 
-/*
-** Array::clear
-** -
+/**
+** Return allocated memory to the system.
 ** Frees the underlying data, but leaves the array usable :
 ** one might still call the append function, the array was only
 ** emptied.
 */
 void fta_clear(t_array* self);
 
-/*
-** Array::clear_f
-** -
-** Same as Array::clear, but uses a custom function on each element before
-** free the underlying array,
-** useful when your structures contains addresses of allocated variables
+/**
+** Return allocated memory to the system, with a custom function.
+** Same as #fta_clear, but uses a custom function on each element before
+** freeing the underlying array.
+** Useful when your structures contains addresses of allocated variables
 ** to be freed to prevent leaks.
-** -
-** _del_ is a function that knows how to properly free a single element's
+**
+** @param del is a function that knows how to properly free a single element's
 ** contents from its address.
 */
 void fta_clearf(t_array* self, void (*del)(void*));
 
-/*
-** Array::release
-** -
-** If one initialised the array with fta_alloc, they are advised
-** to use fta_release to free it.
-** Both the underlying data and the array will be freed.
-** -
-** _ptr_ is the address of a pointer to an array,
-** and will be set to NULL to prevent further uses attempts.
-*/
-void fta_release(t_array** ptr);
-
-/*
-** Array::pop_back
-** -
-** Removes at most _len_ elements at the end.
-** -
-** _len_ is the number of elements to be removed.
+/**
+** Removes at most @p len elements at the end.
+** @param len is the number of elements to be removed.
 */
 void fta_popback(t_array* self, size_t len);
 
-/*
-** Array::pop_back w/ function
-** -
-** Same as pop_back, but provides a way to avoid leaks by freeing
+/**
+** Pop back with a custom function.
+** Same as #fta_popback, but provides a way to avoid leaks by freeing
 ** contents pointed by the poped elements.
 ** -
 ** _len_ is the number of elements to be removed.
@@ -273,83 +237,79 @@ int fta_replace(t_array* self, size_t index, size_t len, t_array* replacement);
 */
 #define ARRAY_POPFRONT(A, N) fta_popindex(A, 0, N)
 
-/*
-** Array::index_check
-** -
+/**
 ** Checks if the provided index is a valid one.
-** -
-** Returns a boolean :
-** 0 if _I_ is greater than the number of elements
-** 1 otherwise
+** @return a boolean :
+**  - 0 if @p I is greater than the number of elements
+**  - 1 otherwise
 */
 #define ARRAY_INDEX_CHECK(A, I) ((I) < (A)->size)
 
-/*
-** Array::get
-** -
-** Returns the address of the element of the array of index _I_
+/**
+** Get an element's address.
+** Returns the address of the element of the array of index @p I.
 ** Just be sure that such an element exists
 */
 #define ARRAY_GET(A, I) (ARRAY_START(A) + ARRAY_OFFSET(A, I))
 
-/*
-** Array::get_safe
-** -
+/**
+** Get an element's address, safely.
 ** Allows one to access the i-nth element of an array
 ** without bothering about neither the implementation
 ** nor if the index is actually valid.
-** -
-** _I_ is the index of the element that one wishes to access
-** -
-** Returns the desired element,
-** or NULL if _I_ is out of range
+**
+** @param I is the index of the element that one wishes to access
+** @return the desired element, or @c NULL if @p I is out of range
 */
 #define ARRAY_GETS(A, I) (ARRAY_INDEX_CHECK(A, I) ? ARRAY_GET(A, I) : NULL)
 
-/*
-** Array::get_typed
-** -
-** Same as get, but casted to a pointer of the type.
+/**
+** Get an element's address, typed.
+** Same as #ARRAY_GET, but cast to a pointer of the type.
+** @param T the type
+** @param A the array
+** @param I the index
 */
 #define ARRAY_GETT(T, A, I) ((T*)ARRAY_GET(A, I))
 
-/*
-** Array::get_typed_safe
-** -
-** Same as get_safe, but casted to a pointer of the type.
+/**
+** Get an element's address, safely and typed.
+** Same as #ARRAY_GETS, but cast to a pointer of the type.
 */
 #define ARRAY_GETTS(T, A, I) ((T*)ARRAY_GETS(A, I))
 
-/*
-** Array::get_element
-** -
-** returns the element of index _I_
+/**
+** Get an element.
+** @param T the type
+** @param A the array
+** @param I the index
+** @return the element of index @p I
 */
 #define ARRAY_GETL(T, A, I) (*ARRAY_GETT(T, A, I))
 
-/*
-** Array::index_from_pointer
-** -
-** _P_ is an element of the array whose index is seeked
+/**
+** Index from pointer.
+** @param P is the address of an element of the array whose index is seeked
 */
 #define ARRAY_IFP(A, P) ((((void*)P) - (A)->data) / (A)->type_size)
 
-/*
-** Array::iterate
-** -
+/**
+** @name Iterate functions
+** Iterate over an array.
 ** The following set of functions allow one to apply a certain
 ** function on each of the elements of the array.
-** -
-** iter :	f(T*)		knows what to do with the address of an element
-** iter1 :	f(A*,T*)	the same, but with an extra piece of information
-** iter2 :	f(A*,B*,T*)	the same, but with two external variables passed through
 **
-** iteri :	f(int,T*)		knows what to do with an element and its index
-** iteri1 :	f(A*,int,T*)	the same but with an extra piece of data
-** iteri2 :	f(A*,B*,int,T*)	the same but with two extra pieces of data
-** -
-** _f_ will be called on each of the elements.
+**  - iter :    `f(T*)`         knows what to do with the address of an element
+**  - iter1 :   `f(A*,T*)`      the same, but with an extra piece of information
+**  - iter2 :   `f(A*,B*,T*)`   the same, but with two external variables passed through
+**
+**  - iteri :   `f(int,T*)`         knows what to do with an element and its index
+**  - iteri1 :  `f(A*,int,T*)`      the same but with an extra piece of data
+**  - iteri2 :  `f(A*,B*,int,T*)`   the same but with two extra pieces of data
+**
+** @p f will be called on each of the elements.
 */
+/** @{ */
 
 void fta_iter(const t_array* self, void (*f)());
 void fta_iter1(const t_array* self, void (*f)(), void* a);
@@ -358,6 +318,8 @@ void fta_iter2(const t_array* self, void (*f)(), void* a, void* b);
 void fta_iteri(const t_array* self, void (*f)());
 void fta_iteri1(const t_array* self, void (*f)(), void* a);
 void fta_iteri2(const t_array* self, void (*f)(), void* a, void* b);
+
+/** @} */
 
 /*
 ** Iterator<Array>::new
@@ -438,12 +400,20 @@ void fta_iteri2(const t_array* self, void (*f)(), void* a, void* b);
 */
 char* fta_string(t_array* self, char* (*f)(void*));
 
+/**
+** @name private
+** Implementation specific.
+** Not meant to be used outside of the implementation of the above funcions.
+*/
+/** @{ */
+
 /*
 ** |		----------===== private: =====----------
 */
 
-/*
-** The initial size is the number of elements a new array will be able
+/**
+** The initial size.
+** It is the number of elements a new array will be able
 ** to store before allocating more memory.
 */
 #define ARRAY_INITIAL_SIZE 16
@@ -475,3 +445,5 @@ int fta_resize(t_array* self, size_t new_size);
 ** "-0000141592   "
 */
 void fta_swap(t_array* self, size_t before, size_t after);
+
+/** @} */

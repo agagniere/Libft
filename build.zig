@@ -7,12 +7,14 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
     const libunit_long = b.option(bool, "libunit-long-output", "Should libunit output be long, printing the name of each test case ? Defaults to false") orelse false;
 
-    const lib = b.addStaticLibrary(.{
+    const lib = b.addLibrary(.{
         .name = "ft",
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{
+            .target = target,
+            .optimize = optimize,
+            .link_libc = true,
+        }),
     });
-    lib.linkLibC();
     lib.addCSourceFiles(.{ .root = b.path("src/ft_array"), .files = &.{ "fta_alloc.c", "fta_append.c", "fta_clear.c", "fta_clearf.c", "fta_iter.c", "fta_iteri.c", "fta_new.c", "fta_overwrite.c", "fta_popback.c", "fta_popindex.c", "fta_release.c", "fta_replace.c", "fta_reserve.c", "fta_resize.c", "fta_string.c", "fta_swap.c", "fta_trim.c" } });
     lib.addCSourceFiles(.{ .root = b.path("src/ft_string_legacy"), .files = &.{ "ft_strcat.c", "ft_strchr.c", "ft_strclr.c", "ft_strcmp.c", "ft_strcpy.c", "ft_strdel.c", "ft_strdup.c", "ft_strequ.c", "ft_striter.c", "ft_striteri.c", "ft_strjoin.c", "ft_strlcat.c", "ft_strlen.c", "ft_strmap.c", "ft_strmapi.c", "ft_strncat.c", "ft_strncmp.c", "ft_strncpy.c", "ft_strnequ.c", "ft_strnew.c", "ft_strnstr.c", "ft_strrchr.c", "ft_strrev.c", "ft_strsplit.c", "ft_strstr.c", "ft_strsub.c", "ft_strtrim.c", "wide_char.c" } });
     lib.addCSourceFiles(.{ .root = b.path("src/ft_deque"), .files = &.{ "ft_deque.c", "ft_stack.c", "ft_stack_pushswap.c", "ftq_getters.c", "ftq_is_sorted.c", "ftq_iter.c", "ftq_pop.c", "ftq_private.c", "ftq_private_getters.c", "ftq_private_utils.c", "ftq_push.c", "ftq_string.c" } });
@@ -22,12 +24,14 @@ pub fn build(b: *std.Build) void {
     lib.installHeadersDirectory(b.path("include"), "libft", .{});
     b.installArtifact(lib);
 
-    const framework = b.addStaticLibrary(.{
+    const framework = b.addLibrary(.{
         .name = "unit",
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{
+            .target = target,
+            .optimize = optimize,
+            .link_libc = true,
+        }),
     });
-    framework.linkLibC();
     framework.addCSourceFiles(.{ .root = b.path("test/framework"), .files = &.{ "libunit.c", "comparisons.c" } });
     if (!libunit_long)
         framework.root_module.addCMacro("LIBUNIT_SHORT_OUTPUT", "");
@@ -39,8 +43,10 @@ pub fn build(b: *std.Build) void {
 
     const unittests = b.addExecutable(.{
         .name = "test_libft.exe",
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{
+            .target = target,
+            .optimize = optimize,
+        }),
     });
     unittests.addCSourceFiles(.{ .root = b.path("test"), .files = &.{ "main.c", "test_ctype.c", "test_enums.c", "test_itoa.c", "test_libc.c", "test_modf.c", "test_prepro.c", "test_printf.c", "test_pythonic.c" } });
     unittests.addCSourceFiles(.{ .root = b.path("test/dict"), .files = &.{ "00_dict_launcher.c", "01_set_test.c", "02_get_test.c", "03_overwrite_test.c", "04_dont_overwrite_test.c", "05_few_elements_test.c", "06_collisions_test.c" } });
